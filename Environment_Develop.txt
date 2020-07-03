@@ -1,0 +1,6 @@
+Fujitsu LIFEBOOK SH76/K
+Microsoft Xbox 360 Controller (有線・白)
+Microsoft Windows 10 Pro Version 2004
+Microsoft Visual Studio Community 2019 Version 16.6.2
+MonoGame 3.7.1
+PixelMplus
