@@ -38,5 +38,17 @@ namespace Game2.Utilities
 
             return path;
         }
+
+        internal static bool IsVista()
+        {
+            System.OperatingSystem os = System.Environment.OSVersion;
+
+            if (os.Version.Major == 6 && os.Version.Minor == 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
