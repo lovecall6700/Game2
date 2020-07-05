@@ -50,6 +50,11 @@ namespace Game2.Managers
         internal bool Pause;
         internal bool FullScreen;
 
+        public GameController()
+        {
+            Load();
+        }
+
         internal void Update()
         {
             _key = Keyboard.GetState();
@@ -66,7 +71,6 @@ namespace Game2.Managers
             Exit = _key.IsKeyDown(_exitKey);
             Pause = _pad1.IsButtonDown(_pauseBtn) || _key.IsKeyDown(_pauseKey) || _pad2.IsButtonDown(_pauseBtn) || _pad3.IsButtonDown(_pauseBtn) || _pad4.IsButtonDown(_pauseBtn);
             FullScreen = _key.IsKeyDown(Keys.Enter) && (_key.IsKeyDown(Keys.LeftAlt) || _key.IsKeyDown(Keys.RightAlt));
-            Load();
         }
 
         private void Load()
