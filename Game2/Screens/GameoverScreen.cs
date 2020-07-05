@@ -26,6 +26,8 @@ namespace Game2.Screens
             Items.Add(new MenuItem(new Vector2(70, 170), "Save", 1.5f));
             Items.Add(new MenuItem(new Vector2(70, 200), "End", 1.5f));
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
+            //ゲームオーバー時は多めに待つためタイマーを開始しなおす
+            WaitTimer.Start(500f, true);
         }
 
         internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)

@@ -17,19 +17,19 @@ namespace Game2.Screens
         /// <summary>
         /// 画面が出てからしばらくは操作できない
         /// </summary>
-        internal readonly Timer PreTimer = new Timer();
+        internal readonly Timer WaitTimer = new Timer();
 
         internal TimerScreen(Game2 game2, SpriteFont font) : base(game2, font)
         {
-            PreTimer.Start(500f, true);
+            WaitTimer.Start(500f, true);
         }
 
         internal override void Update(ref Vector2 offset, ref GameTime gameTime)
         {
             //画面が出てからしばらくは操作できない
-            PreTimer.Update(ref gameTime);
+            WaitTimer.Update(ref gameTime);
 
-            if (PreTimer.Running)
+            if (WaitTimer.Running)
             {
                 return;
             }

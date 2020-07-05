@@ -36,20 +36,20 @@ namespace Game2.Screens
         internal SpriteFont Font;
 
         /// <summary>
-        /// 連打対応フラグ
-        /// </summary>
-        private bool _flag = true;
-
-        /// <summary>
         /// 画面が出てからしばらくは操作できない
         /// </summary>
-        private readonly Timer _waitTimer = new Timer();
+        internal Timer WaitTimer = new Timer();
+
+        /// <summary>
+        /// ボタンが押しっぱなし
+        /// </summary>
+        internal bool Press = true;
 
         internal SelectScreen(Game2 game2, SpriteFont font) : base(game2)
         {
             Game2 = game2;
             Font = font;
-            _waitTimer.Start(500f, true);
+            WaitTimer.Start(250f, true);
         }
 
         internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
@@ -72,67 +72,63 @@ namespace Game2.Screens
         internal override void Update(ref Vector2 offset, ref GameTime gameTime)
         {
             //画面が出てからしばらくは操作できない
-            _waitTimer.Update(ref gameTime);
+            WaitTimer.Update(ref gameTime);
 
-            if (_waitTimer.Running)
+            if (WaitTimer.Running)
             {
                 return;
             }
 
-            if (!_flag && Game2.GameCtrl.Up)
-            {
-                //前回押されていないときに上が押された
-                Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
+            bool p = false;
 
-                if (Items[Index].Disable)
+            if (Game2.GameCtrl.Up)
+            {
+                p = true;
+
+                if (!Press)
                 {
+                    //前回押されていないときに上が押された
                     Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
+
+                    if (Items[Index].Disable)
+                    {
+                        Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
+                    }
+
+                    Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
                 }
-
-                _flag = true;
-                Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
-                return;
             }
-            else if (_flag && Game2.GameCtrl.Up)
+            else if (Game2.GameCtrl.Down)
             {
-                //連続して上が押されたら無視
-                return;
-            }
+                p = true;
 
-            if (!_flag && Game2.GameCtrl.Down)
-            {
-                //前回押されていないときに下が押された
-                Index = MathHelper.Clamp(Index + 1, 0, Items.Count - 1);
-
-                //連続で無効は想定していない
-                if (Items[Index].Disable)
+                if (!Press)
                 {
+                    //前回押されていないときに下が押された
                     Index = MathHelper.Clamp(Index + 1, 0, Items.Count - 1);
+
+                    //連続で無効は想定していない
+                    if (Items[Index].Disable)
+                    {
+                        Index = MathHelper.Clamp(Index + 1, 0, Items.Count - 1);
+                    }
+
+                    Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
                 }
+            }
+            else if (Game2.GameCtrl.Fire)
+            {
+                p = true;
 
-                _flag = true;
-                Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
-                return;
-            }
-            else if (_flag && Game2.GameCtrl.Down)
-            {
-                return;
-            }
-
-            if (!_flag && (Game2.GameCtrl.Fire || Game2.GameCtrl.Jump))
-            {
-                //前回押されていないときに選択が押された
-                SelectMenu();
-                _flag = true;
-                Game2.MusicPlayer.PlaySE("SoundEffects/MenuSelect");
-                return;
-            }
-            else if (_flag && (Game2.GameCtrl.Fire || Game2.GameCtrl.Jump))
-            {
-                return;
+                if (!Press)
+                {
+                    //前回押されていないときに選択が押された
+                    SelectMenu();
+                    Game2.MusicPlayer.PlaySE("SoundEffects/MenuSelect");
+                }
             }
 
-            _flag = false;
+            Press = p;
         }
 
         /// <summary>
