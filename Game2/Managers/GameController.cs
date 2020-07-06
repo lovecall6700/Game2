@@ -50,12 +50,12 @@ namespace Game2.Managers
         internal bool Pause;
         internal bool FullScreen;
 
-        public GameController()
+        internal GameController()
         {
             Load();
         }
 
-        internal void Update()
+        internal virtual void Update()
         {
             _key = Keyboard.GetState();
             _pad1 = GamePad.GetState(PlayerIndex.One);
