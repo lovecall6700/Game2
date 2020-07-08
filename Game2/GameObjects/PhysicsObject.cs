@@ -307,7 +307,7 @@ namespace Game2.GameObjects
 
                 //着地
                 Rectangle.Y = o.Rectangle.Top - Height;
-                GroundBlock = o;
+                o.AddConnection(this);
                 Velocity.Y = 0;
                 break;
             }

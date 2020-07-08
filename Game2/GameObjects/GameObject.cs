@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Game2.GameObjects
 {
@@ -9,6 +10,11 @@ namespace Game2.GameObjects
     internal partial class GameObject
     {
         internal Game2 Game2;
+
+        /// <summary>
+        /// 乗ってるオブジェクト
+        /// </summary>
+        internal List<PhysicsObject> Connection = new List<PhysicsObject>();
 
         /// <summary>
         /// Texture2D
@@ -84,7 +90,7 @@ namespace Game2.GameObjects
 
         internal virtual void Update(ref GameTime gameTime)
         {
-
+            Connection.Clear();
         }
 
         /// <summary>
@@ -126,6 +132,12 @@ namespace Game2.GameObjects
             }
 
             return 0;
+        }
+
+        internal void AddConnection(PhysicsObject o)
+        {
+            Connection.Add(o);
+            o.GroundBlock = this;
         }
     }
 }

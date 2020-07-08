@@ -343,6 +343,11 @@ namespace Game2.Screens
                         depth = int.Parse(lines[3]);
                         break;
 
+                    case "MovingFloor":
+
+                        obj = new MovingFloor(Game2, x, y, lines[3], float.Parse(lines[4]), float.Parse(lines[5]));
+                        break;
+
                     default:
 
                         //Block系
@@ -478,6 +483,13 @@ namespace Game2.Screens
                 }
             }
 
+            count = NearMapObjs.Count - 1;
+
+            for (int i = count; i >= 0; i--)
+            {
+                NearMapObjs[i].Update(ref gameTime);
+            }
+
             _enemyGenerator.Update(ref offset, ref gameTime);
 
             FocusCamera2D();
@@ -527,7 +539,8 @@ namespace Game2.Screens
 
             foreach (GameObject item in _mapObjs)
             {
-                if (Rectangle.Intersect(item.Rectangle, _sight).IsEmpty)
+                //移動床は画面外でも動かす
+                if (item.ObjectKind != GameObjectKind.MovingFloor && Rectangle.Intersect(item.Rectangle, _sight).IsEmpty)
                 {
                     if (NearMapObjs.Contains(item))
                     {

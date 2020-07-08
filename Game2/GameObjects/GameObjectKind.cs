@@ -14,6 +14,7 @@
         TreasureBox,
         ZeroFrictionBlock,
         Item,
-        Ladder
+        Ladder,
+        MovingFloor
     }
 }
