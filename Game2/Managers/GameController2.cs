@@ -314,31 +314,31 @@ namespace Game2.Managers
                 case KeyName.Fire:
 
                     b = _fire == KeyStatus.Click;
-                    _jump = KeyStatus.Release;
+                    _fire = KeyStatus.Release;
                     return b;
 
                 case KeyName.Left:
 
                     b = _left == KeyStatus.Click;
-                    _jump = KeyStatus.Release;
+                    _left = KeyStatus.Release;
                     return b;
 
                 case KeyName.Right:
 
                     b = _right == KeyStatus.Click;
-                    _jump = KeyStatus.Release;
+                    _right = KeyStatus.Release;
                     return b;
 
                 case KeyName.Down:
 
                     b = _down == KeyStatus.Click;
-                    _jump = KeyStatus.Release;
+                    _down = KeyStatus.Release;
                     return b;
 
                 case KeyName.Up:
 
                     b = _up == KeyStatus.Click;
-                    _jump = KeyStatus.Release;
+                    _up = KeyStatus.Release;
                     return b;
 
                 case KeyName.Pause:
