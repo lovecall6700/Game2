@@ -37,11 +37,7 @@ namespace Game2.GameObjects
 
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {
-                if (o.ObjectKind == GameObjectKind.Cloud)
-                {
-                    continue;
-                }
-                else if (o.ObjectKind == GameObjectKind.Ladder)
+                if (o.ObjectKind == GameObjectKind.Cloud || o.ObjectKind == GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)
                 {
                     continue;
                 }

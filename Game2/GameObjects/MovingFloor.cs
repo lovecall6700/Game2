@@ -111,11 +111,7 @@ namespace Game2.GameObjects
                 {
                     continue;
                 }
-                else if (o.ObjectKind == GameObjectKind.Cloud)
-                {
-                    continue;
-                }
-                else if (o.ObjectKind == GameObjectKind.Ladder)
+                else if (o.ObjectKind == GameObjectKind.Cloud || o.ObjectKind == GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)
                 {
                     continue;
                 }

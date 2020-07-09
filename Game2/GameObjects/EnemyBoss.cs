@@ -136,7 +136,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Remove()
+        internal override void Removed()
         {
             if (ID == 0)
             {

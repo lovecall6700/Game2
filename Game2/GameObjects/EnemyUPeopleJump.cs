@@ -33,7 +33,11 @@ namespace Game2.GameObjects
 
                 foreach (GameObject o in Game2.PlaySc.NearMapObjs)
                 {
-                    if (!Rectangle.Intersect(o.Rectangle, Rectangle).IsEmpty)
+                    if (o.ObjectKind == GameObjectKind.Disable)
+                    {
+                        continue;
+                    }
+                    else if (!Rectangle.Intersect(o.Rectangle, Rectangle).IsEmpty)
                     {
                         jump = false;
                         break;

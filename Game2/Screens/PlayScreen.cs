@@ -465,7 +465,7 @@ namespace Game2.Screens
 
                 if (EffectObjs[i].ObjectStatus == PhysicsObjectStatus.Remove)
                 {
-                    EffectObjs[i].Remove();
+                    EffectObjs[i].Removed();
                     EffectObjs.RemoveAt(i);
                 }
             }
@@ -478,7 +478,7 @@ namespace Game2.Screens
 
                 if (PhysicsObjs[i].ObjectStatus == PhysicsObjectStatus.Remove)
                 {
-                    PhysicsObjs[i].Remove();
+                    PhysicsObjs[i].Removed();
                     PhysicsObjs.RemoveAt(i);
                 }
             }
@@ -546,6 +546,8 @@ namespace Game2.Screens
                     {
                         NearMapObjs.Remove(item);
                     }
+
+                    item.Outside();
                 }
                 else
                 {
@@ -564,6 +566,8 @@ namespace Game2.Screens
                     {
                         _nearBackObjs.Remove(item);
                     }
+
+                    item.Outside();
                 }
                 else
                 {
@@ -582,6 +586,8 @@ namespace Game2.Screens
                     {
                         _nearFrontObjs.Remove(item);
                     }
+
+                    item.Outside();
                 }
                 else
                 {

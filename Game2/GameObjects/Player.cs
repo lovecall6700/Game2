@@ -390,7 +390,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Remove()
+        internal override void Removed()
         {
             Game2.Scheduler.RestartOrGameover();
         }

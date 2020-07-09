@@ -80,7 +80,7 @@ namespace Game2.GameObjects
 
         internal virtual void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            if (Img == null)
+            if (Img == null || ObjectKind == GameObjectKind.Disable)
             {
                 return;
             }
@@ -138,6 +138,14 @@ namespace Game2.GameObjects
         {
             Connection.Add(o);
             o.GroundBlock = this;
+        }
+
+        /// <summary>
+        /// 画面外に出た時の処理
+        /// </summary>
+        internal virtual void Outside()
+        {
+
         }
     }
 }

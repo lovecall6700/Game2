@@ -79,5 +79,10 @@ namespace Game2.GameObjects
                 p.Damage(Attack);
             }
         }
+
+        internal override void Outside()
+        {
+            ObjectStatus = PhysicsObjectStatus.Remove;
+        }
     }
 }

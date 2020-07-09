@@ -15,6 +15,8 @@
         ZeroFrictionBlock,
         Item,
         Ladder,
-        MovingFloor
+        MovingFloor,
+        CarckBlock,
+        Disable
     }
 }
