@@ -12,11 +12,10 @@
         Door,
         Cloud,
         TreasureBox,
-        ZeroFrictionBlock,
         Item,
         Ladder,
         MovingFloor,
-        CarckBlock,
+        Carck,
         Disable
     }
 }

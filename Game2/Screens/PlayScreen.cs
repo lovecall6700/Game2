@@ -221,10 +221,16 @@ namespace Game2.Screens
         {
             PhysicsObjs.Clear();
             EffectObjs.Clear();
+            NearMapObjs.Clear();
             Player.Restart();
             PhysicsObjs.Add(Player);
             _backColorSwitchTimer.Running = false;
             _darkZoneSwitchTimer.Running = false;
+
+            foreach (GameObject item in _mapObjs)
+            {
+                item.Restart();
+            }
         }
 
         /// <summary>
@@ -346,6 +352,11 @@ namespace Game2.Screens
                     case "MovingFloor":
 
                         obj = new MovingFloor(Game2, x, y, lines[3], float.Parse(lines[4]), float.Parse(lines[5]));
+                        break;
+
+                    case "Crack":
+
+                        obj = new Crack(Game2, x, y, lines[3]);
                         break;
 
                     default:

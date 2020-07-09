@@ -147,5 +147,13 @@ namespace Game2.GameObjects
         {
 
         }
+
+        /// <summary>
+        /// リスタート時のリセット処理
+        /// </summary>
+        internal virtual void Restart()
+        {
+
+        }
     }
 }
