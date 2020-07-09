@@ -45,21 +45,20 @@ namespace Game2.Screens
             Timer.Start(2000, true);
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Update(ref Vector2 offset, ref GameTime gameTime)
         {
+            base.Update(ref offset, ref gameTime);
+
             if (_state == 0)
             {
-                base.Draw(ref offset, ref gameTime, ref spriteBatch);
             }
             else if (_state == 1)
             {
                 Item.Position.Y -= 1;
-                base.Draw(ref offset, ref gameTime, ref spriteBatch);
 
                 for (int i = 0; i < _position.Length; i++)
                 {
                     _position[i].Y -= 1;
-                    spriteBatch.Draw(_img[i], _position[i], Color.White);
                 }
 
                 if (_position[4].Y == 0)
@@ -69,12 +68,31 @@ namespace Game2.Screens
             }
             if (_state == 2)
             {
-                base.Draw(ref offset, ref gameTime, ref spriteBatch);
-
                 if (Game2.GameCtrl.Fire)
                 {
                     Timer.Running = false;
                 }
+            }
+        }
+
+        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        {
+            if (_state == 0)
+            {
+                base.Draw(ref offset, ref gameTime, ref spriteBatch);
+            }
+            else if (_state == 1)
+            {
+                base.Draw(ref offset, ref gameTime, ref spriteBatch);
+
+                for (int i = 0; i < _position.Length; i++)
+                {
+                    spriteBatch.Draw(_img[i], _position[i], Color.White);
+                }
+            }
+            if (_state == 2)
+            {
+                base.Draw(ref offset, ref gameTime, ref spriteBatch);
             }
         }
 

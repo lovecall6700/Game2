@@ -500,7 +500,6 @@ namespace Game2
         {
             base.OnActivated(sender, args);
             _focused = true;
-            MusicPlayer.ReplaySong();
         }
 
         /// <summary>
