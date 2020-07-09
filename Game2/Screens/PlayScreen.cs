@@ -359,6 +359,11 @@ namespace Game2.Screens
                         obj = new Crack(Game2, x, y, lines[3]);
                         break;
 
+                    case "BeltConveyer":
+
+                        obj = new BeltConveyer(Game2, x, y, lines[3], lines[4]);
+                        break;
+
                     default:
 
                         //Block系

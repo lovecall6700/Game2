@@ -266,6 +266,8 @@ namespace Game2.GameObjects
             //接触の範囲
             GroundBlock = null;
             bool ret = false;
+            bool first = true;
+            GameObject temp = null;
 
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {
@@ -278,21 +280,25 @@ namespace Game2.GameObjects
                     continue;
                 }
 
-                ret = true;
-
-                //上昇中、何かとぶつかったら、めり込まずに手前で止まる
-                if (Velocity.Y < 0)
+                if (first)
                 {
-                    //上昇中の雲は素通り
-                    if (o.ObjectKind == GameObjectKind.Cloud)
-                    {
-                        continue;
-                    }
+                    first = false;
+                    ret = true;
 
-                    //頭ぶつけた
-                    Rectangle.Y = o.Rectangle.Bottom;
-                    Velocity.Y = 0;
-                    break;
+                    //上昇中、何かとぶつかったら、めり込まずに手前で止まる
+                    if (Velocity.Y < 0)
+                    {
+                        //上昇中の雲は素通り
+                        if (o.ObjectKind == GameObjectKind.Cloud)
+                        {
+                            continue;
+                        }
+
+                        //頭ぶつけた
+                        Rectangle.Y = o.Rectangle.Bottom;
+                        Velocity.Y = 0;
+                        break;
+                    }
                 }
 
                 //下降中
@@ -302,11 +308,30 @@ namespace Game2.GameObjects
                     continue;
                 }
 
+                if (temp == null)
+                {
+                    //着地
+                    temp = o;
+                }
+                else
+                {
+                    //2オブジェクトにまたがった場合、多く接触した方の影響を受ける
+                    //起点同士の距離が短い方が採用される
+                    if (Math.Abs(Position.X - o.Position.X) < Math.Abs(Position.X - temp.Position.X))
+                    {
+                        temp = o;
+                    }
+
+                    break;
+                }
+            }
+
+            if (temp != null)
+            {
                 //着地
-                Rectangle.Y = o.Rectangle.Top - Height;
-                o.AddConnection(this);
+                Rectangle.Y = temp.Rectangle.Top - Height;
+                temp.AddConnection(this);
                 Velocity.Y = 0;
-                break;
             }
 
             //移動を確定する

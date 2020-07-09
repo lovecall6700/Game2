@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Data\SoundVolumeData.cs" />
     <Compile Include="GameObjects\Crack.cs" />
+    <Compile Include="GameObjects\BeltConveyer.cs" />
     <Compile Include="GameObjects\MovingFloor.cs" />
     <Compile Include="Managers\GameController2.cs" />
     <Compile Include="Schedule.cs" />

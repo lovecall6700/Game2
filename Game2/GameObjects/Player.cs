@@ -98,7 +98,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 再スタート時の状態リセット
         /// </summary>
-        internal void Restart()
+        internal override void Restart()
         {
             Life = Game2.Session.Life;
             Position = _restartPosition;
