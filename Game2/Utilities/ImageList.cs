@@ -23,8 +23,16 @@ namespace Game2.Utilities
             _images.Add(image);
         }
 
+        internal void ClearAndAddImage(Texture2D image)
+        {
+            _index = 0;
+            _images.Clear();
+            _images.Add(image);
+        }
+
         internal void ClearImages()
         {
+            _index = 0;
             _images.Clear();
         }
 
@@ -50,7 +58,7 @@ namespace Game2.Utilities
                 return null;
             }
 
-            return _images[_index];
+            return _images[index];
         }
     }
 }

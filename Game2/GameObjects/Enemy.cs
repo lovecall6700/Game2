@@ -31,6 +31,11 @@ namespace Game2.GameObjects
         internal float LifeTime = 10000f;
 
         /// <summary>
+        /// 寿命を使うか
+        /// </summary>
+        internal bool UseLifeTime = true;
+
+        /// <summary>
         /// 発砲タイマー
         /// </summary>
         private readonly Timer _shotTimer = new Timer();
@@ -74,7 +79,7 @@ namespace Game2.GameObjects
             AttackPlayer();
             UpdateShotTime(ref gameTime);
             FinallyUpdate(ref gameTime);
-            UpdateAnimationIndex();
+            UpdateAnimation();
         }
 
         /// <summary>
@@ -83,14 +88,18 @@ namespace Game2.GameObjects
         /// <param name="gameTime">GameTime</param>
         internal void UpdateLifeTime(ref GameTime gameTime)
         {
-            if (!_lifeTimer.Update(ref gameTime))
+            if (!UseLifeTime)
+            {
+                return;
+            }
+            else if (!_lifeTimer.Update(ref gameTime))
             {
                 ObjectStatus = PhysicsObjectStatus.Dead;
             }
         }
 
         internal void UpdateShotTime(ref GameTime gameTime)
-            {
+        {
             if (!_shotTimer.Update(ref gameTime))
             {
                 Shot();

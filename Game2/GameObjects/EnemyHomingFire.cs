@@ -10,10 +10,10 @@ namespace Game2.GameObjects
 
         internal EnemyHomingFire(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            RImg[0] = Game2.Textures.GetTexture("Images/EnemyFireR1");
-            RImg[1] = Game2.Textures.GetTexture("Images/EnemyFireR2");
-            LImg[0] = Game2.Textures.GetTexture("Images/EnemyFireL1");
-            LImg[1] = Game2.Textures.GetTexture("Images/EnemyFireL2");
+            RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyFireR1"));
+            RImg.AddImage(Game2.Textures.GetTexture("Images/EnemyFireR2"));
+            LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyFireL1"));
+            LImg.AddImage(Game2.Textures.GetTexture("Images/EnemyFireL2"));
             DeadImg = Game2.Textures.GetTexture("Images/EnemyFireDead");
             Velocity = Vector2.Zero;
             MaxSpeedX = 3;

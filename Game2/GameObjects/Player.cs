@@ -66,12 +66,12 @@ namespace Game2.GameObjects
 
         internal Player(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            RImg[0] = Game2.Textures.GetTexture("Images/PlayerR1");
-            RImg[1] = Game2.Textures.GetTexture("Images/PlayerR2");
-            LImg[0] = Game2.Textures.GetTexture("Images/PlayerL1");
-            LImg[1] = Game2.Textures.GetTexture("Images/PlayerL2");
-            LadderImg[0] = Game2.Textures.GetTexture("Images/PlayerLadder1");
-            LadderImg[1] = Game2.Textures.GetTexture("Images/PlayerLadder2");
+            RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/PlayerR1"));
+            RImg.AddImage(Game2.Textures.GetTexture("Images/PlayerR2"));
+            LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/PlayerL1"));
+            LImg.AddImage(Game2.Textures.GetTexture("Images/PlayerL2"));
+            LadderImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/PlayerLadder1"));
+            LadderImg.AddImage(Game2.Textures.GetTexture("Images/PlayerLadder2"));
             _sitDownImg = Game2.Textures.GetTexture("Images/PlayerSit");
             DeadImg = Game2.Textures.GetTexture("Images/PlayerDead");
             _stayImg = Game2.Textures.GetTexture("Images/PlayerStay");
@@ -235,7 +235,7 @@ namespace Game2.GameObjects
 
             if (!_sitDown)
             {
-                UpdateAnimationIndex();
+                UpdateAnimation();
             }
 
             foreach (GameObject o in Game2.PlaySc.ItemObjs)

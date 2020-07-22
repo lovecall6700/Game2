@@ -10,10 +10,10 @@ namespace Game2.GameObjects
 
         internal EnemyBird(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            RImg[0] = Game2.Textures.GetTexture("Images/EnemyBirdR1");
-            RImg[1] = Game2.Textures.GetTexture("Images/EnemyBirdR2");
-            LImg[0] = Game2.Textures.GetTexture("Images/EnemyBirdL1");
-            LImg[1] = Game2.Textures.GetTexture("Images/EnemyBirdL2");
+            RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBirdR1"));
+            RImg.AddImage(Game2.Textures.GetTexture("Images/EnemyBirdR2"));
+            LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBirdL1"));
+            LImg.AddImage(Game2.Textures.GetTexture("Images/EnemyBirdL2"));
             DeadImg = Game2.Textures.GetTexture("Images/EnemyBirdDead");
             Velocity = Vector2.Zero;
             ControlDirectionX = 0;

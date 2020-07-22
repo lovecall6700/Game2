@@ -1,6 +1,5 @@
 ﻿using Game2.Utilities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace Game2.GameObjects
@@ -22,21 +21,21 @@ namespace Game2.GameObjects
 
             if (ID == 0)
             {
-                RImg = new Texture2D[1];
-                LImg = new Texture2D[1];
-                RImg[0] = Game2.Textures.GetTexture("Images/EnemyBossR1");
-                LImg[0] = Game2.Textures.GetTexture("Images/EnemyBossL1");
+                RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBossR1"));
+                LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBossL1"));
             }
             else
             {
-                Img = Game2.Textures.GetTexture("Images/EnemyBossBody");
+                RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBossBody"));
+                LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBossBody"));
             }
 
-            _lastPosition = Position;
             DeadImg = Game2.Textures.GetTexture("Images/EnemyBossBody");
+            _lastPosition = Position;
             Life = 2;
             MaxSpeedX = 2;
             AnimationAlways = true;
+            UseLifeTime = false;
         }
 
         internal void ResetAllHistory()

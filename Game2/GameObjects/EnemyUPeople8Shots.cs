@@ -11,10 +11,10 @@ namespace Game2.GameObjects
 
         internal EnemyUPeople8Shots(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            RImg[0] = Game2.Textures.GetTexture("Images/EnemyUPeopleR1");
-            RImg[1] = Game2.Textures.GetTexture("Images/EnemyUPeopleR2");
-            LImg[0] = Game2.Textures.GetTexture("Images/EnemyUPeopleL1");
-            LImg[1] = Game2.Textures.GetTexture("Images/EnemyUPeopleL2");
+            RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyUPeopleR1"));
+            RImg.AddImage(Game2.Textures.GetTexture("Images/EnemyUPeopleR2"));
+            LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyUPeopleL1"));
+            LImg.AddImage(Game2.Textures.GetTexture("Images/EnemyUPeopleL2"));
             DeadImg = Game2.Textures.GetTexture("Images/EnemyUPeopleDead");
             Life = 2;
             _bulletTimer.Start(500f, true);

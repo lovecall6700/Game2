@@ -158,7 +158,8 @@ namespace Game2
 
             //ゲームシステム
             Scheduler = new Scheduler(this);
-            Scheduler.Title();
+            //Scheduler.Title();
+            Scheduler.Ending();
             Session = new Session();
             Textures = new Textures(Content);
             _timeLimitDisp = new TimeLimitDisplay(this, Font, GraphicsDevice);

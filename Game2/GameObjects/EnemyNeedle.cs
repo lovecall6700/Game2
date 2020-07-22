@@ -7,16 +7,17 @@ namespace Game2.GameObjects
         internal EnemyNeedle(Game2 game2, float x, float y) : base(game2, x, y)
         {
             Img = Game2.Textures.GetTexture("Images/EnemyNeedle");
+            UseAnimation = false;
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(ref GameTime gameTime)
         {
-            if (ObjectStatus == PhysicsObjectStatus.Normal)
-            {
-                AttackPlayer();
-            }
+            return false;
+        }
 
-            UpdateLifeTime(ref gameTime);
+        internal override bool JumpAndGravity(ref GameTime gameTime)
+        {
+            return false;
         }
     }
 }

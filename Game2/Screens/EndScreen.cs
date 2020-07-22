@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game2.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Game2.Screens
 {
@@ -16,30 +18,26 @@ namespace Game2.Screens
         /// <summary>
         /// エンディング用画像
         /// </summary>
-        private readonly Texture2D[] _img = new Texture2D[5];
+        private readonly ImageList _img = new ImageList();
 
         /// <summary>
         /// 画像の位置
         /// </summary>
-        private readonly Vector2[] _position = new Vector2[5];
+        private readonly List<Vector2> _position = new List<Vector2>();
+
+        /// <summary>
+        /// 画像枚数
+        /// </summary>
+        private static readonly int numOfImage = 5;
 
         internal EndScreen(Game2 game2, SpriteFont font) : base(game2, font)
         {
-            _img[0] = Game2.Textures.GetTexture("Images/End1");
-            _position[0].X = 0;
-            _position[0].Y = 256;
-            _img[1] = Game2.Textures.GetTexture("Images/End2");
-            _position[1].X = 0;
-            _position[1].Y = 384;
-            _img[2] = Game2.Textures.GetTexture("Images/End3");
-            _position[2].X = 0;
-            _position[2].Y = 512;
-            _img[3] = Game2.Textures.GetTexture("Images/End4");
-            _position[3].X = 0;
-            _position[3].Y = 640;
-            _img[4] = Game2.Textures.GetTexture("Images/End5");
-            _position[4].X = 0;
-            _position[4].Y = 768;
+            for (int i = 0; i < numOfImage; i++)
+            {
+                _img.AddImage(Game2.Textures.GetTexture($"Images/End{i + 1}"));
+                _position.Add(new Vector2(0, 256 + i * 128));
+            }
+
             Item = new MenuItem(new Vector2(50, 100), "Congratulations!!", 1f);
             Game2.MusicPlayer.PlaySong($"Songs/BGM7");
             Timer.Start(2000, true);
@@ -55,13 +53,16 @@ namespace Game2.Screens
             else if (_state == 1)
             {
                 Item.Position.Y -= 1;
+                Vector2 v;
 
-                for (int i = 0; i < _position.Length; i++)
+                for (int i = 0; i < numOfImage; i++)
                 {
-                    _position[i].Y -= 1;
+                    v = _position[i];
+                    v.Y -= 1;
+                    _position[i] = v;
                 }
 
-                if (_position[4].Y == 0)
+                if (_position[numOfImage - 1].Y == 0)
                 {
                     Timer.Start(5000, true);
                 }
@@ -85,9 +86,9 @@ namespace Game2.Screens
             {
                 base.Draw(ref offset, ref gameTime, ref spriteBatch);
 
-                for (int i = 0; i < _position.Length; i++)
+                for (int i = 0; i < numOfImage; i++)
                 {
-                    spriteBatch.Draw(_img[i], _position[i], Color.White);
+                    spriteBatch.Draw(_img.GetImage(i), _position[i], Color.White);
                 }
             }
             if (_state == 2)

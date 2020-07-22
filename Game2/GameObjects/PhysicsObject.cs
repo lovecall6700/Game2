@@ -11,9 +11,9 @@ namespace Game2.GameObjects
     internal partial class PhysicsObject : GameObject
     {
         //各種画像
-        internal Texture2D[] RImg = new Texture2D[2];
-        internal Texture2D[] LImg = new Texture2D[2];
-        internal Texture2D[] LadderImg = new Texture2D[2];
+        internal ImageList RImg = new ImageList();
+        internal ImageList LImg = new ImageList();
+        internal ImageList LadderImg = new ImageList();
         internal Texture2D DeadImg = null;
         internal Texture2D DamageImg = null;
 
@@ -93,11 +93,6 @@ namespace Game2.GameObjects
         internal Vector2 Velocity;
 
         /// <summary>
-        /// パラパラアニメのインデックス
-        /// </summary>
-        internal int AnimationIndex;
-
-        /// <summary>
         /// 空中の摩擦を使用するか
         /// </summary>
         internal bool UseAirFriction = false;
@@ -136,6 +131,8 @@ namespace Game2.GameObjects
         /// 連続ダメージ回避タイマー
         /// </summary>
         internal readonly Timer DamageTimer = new Timer();
+
+        internal bool UseAnimation = true;
 
         internal PhysicsObject(Game2 game2, float x, float y) : base(game2, x, y)
         {
@@ -412,9 +409,13 @@ namespace Game2.GameObjects
             return ret;
         }
 
-        internal virtual void UpdateAnimationIndex()
+        internal virtual void UpdateAnimation()
         {
-            if (ObjectStatus == PhysicsObjectStatus.Dead)
+            if (!UseAnimation)
+            {
+                return;
+            }
+            else if (ObjectStatus == PhysicsObjectStatus.Dead)
             {
                 return;
             }
@@ -424,41 +425,26 @@ namespace Game2.GameObjects
             }
             else if (OnLadder && LadderImg != null)
             {
-                if (ControlDirectionY != 0 && LadderImg.Length > 1)
-                {
-                    AnimationIndex = (AnimationIndex + 1) % LadderImg.Length;
-                }
-
-                Img = LadderImg[AnimationIndex];
+                Img = LadderImg.GetImage(ControlDirectionY != 0);
             }
             else
             {
-                if (ControlDirectionX < 0 && LImg != null)
+                if (ControlDirectionX < 0)
                 {
-                    if ((AnimationAlways || GroundBlock != null) && LImg.Length > 1)
-                    {
-                        AnimationIndex = (AnimationIndex + 1) % LImg.Length;
-                    }
-
                     Direction = -1;
                 }
-                else if (ControlDirectionX > 0 && RImg != null)
+                else if (ControlDirectionX > 0)
                 {
-                    if ((AnimationAlways || GroundBlock != null) && RImg.Length > 1)
-                    {
-                        AnimationIndex = (AnimationIndex + 1) % RImg.Length;
-                    }
-
                     Direction = 1;
                 }
 
-                if (Direction < 0 && LImg != null)
+                if (Direction < 0)
                 {
-                    Img = LImg[AnimationIndex];
+                    Img = LImg.GetImage(ControlDirectionX != 0 && (AnimationAlways || GroundBlock != null));
                 }
-                else if (Direction > 0 && RImg != null)
+                else if (Direction > 0)
                 {
-                    Img = RImg[AnimationIndex];
+                    Img = RImg.GetImage(ControlDirectionX != 0 && (AnimationAlways || GroundBlock != null));
                 }
             }
         }

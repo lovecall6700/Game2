@@ -6,10 +6,10 @@ namespace Game2.GameObjects
     {
         internal EnemyJumpFish(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            RImg[0] = Game2.Textures.GetTexture("Images/EnemyJumpFishR1");
-            RImg[1] = Game2.Textures.GetTexture("Images/EnemyJumpFishR2");
-            LImg[0] = Game2.Textures.GetTexture("Images/EnemyJumpFishL1");
-            LImg[1] = Game2.Textures.GetTexture("Images/EnemyJumpFishL2");
+            RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyJumpFishR1"));
+            RImg.AddImage(Game2.Textures.GetTexture("Images/EnemyJumpFishR2"));
+            LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyJumpFishL1"));
+            LImg.AddImage(Game2.Textures.GetTexture("Images/EnemyJumpFishL2"));
             DeadImg = Game2.Textures.GetTexture("Images/EnemyJumpFishDead");
             SetSize(16, 16);
             Velocity = Vector2.Zero;
