@@ -16,8 +16,10 @@ namespace Game2.GameObjects
         private readonly Timer _timer = new Timer();
         private Vector2 _target;
 
-        internal EnemyBoss(Game2 game2, float x, float y) : base(game2, x, y)
+        internal EnemyBoss(Game2 game2, float x, float y, int id) : base(game2, x, y)
         {
+            ID = id;
+
             if (ID == 0)
             {
                 RImg = new Texture2D[1];
@@ -45,26 +47,18 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override bool JumpAndGravity(ref GameTime gameTime)
         {
-            if (ObjectStatus == PhysicsObjectStatus.Dead)
-            {
-                OnlyGravity();
-                return;
-            }
-            else if (ObjectStatus == PhysicsObjectStatus.Damage)
-            {
-                ObjectStatus = PhysicsObjectStatus.Normal;
-            }
+            return false;
+        }
 
-            AttackPlayer();
-
+        internal override bool MoveLeftOrRight(ref GameTime gameTime)
+        {
             if (ID == 0)
             {
                 Player p = Game2.PlaySc.Player;
-                _timer.Update(ref gameTime);
 
-                if (!_timer.Running)
+                if (!_timer.Update(ref gameTime))
                 {
                     _timer.Start(2000f, true);
                     _target = p.Position;
@@ -97,13 +91,14 @@ namespace Game2.GameObjects
 
                 Position += Velocity;
                 Rectangle.Location = Position.ToPoint();
-                UpdateAnimationIndex();
             }
             else
             {
                 CopyPosition();
                 Img = Game2.Textures.GetTexture("Images/EnemyBossBody");
             }
+
+            return false;
         }
 
         internal void CopyPosition()

@@ -60,16 +60,6 @@ namespace Game2.GameObjects
         private readonly int _sitDownHeight = 20;
 
         /// <summary>
-        /// 連続ダメージ回避時間
-        /// </summary>
-        private readonly float _damageCoolTime = 300f;
-
-        /// <summary>
-        /// 連続ダメージ回避タイマー
-        /// </summary>
-        private readonly Timer _damageTimer = new Timer();
-
-        /// <summary>
         /// 最大ライフ
         /// </summary>
         internal static readonly int MaxLife = 3;
@@ -108,21 +98,32 @@ namespace Game2.GameObjects
             ControlDirectionX = 0;
             _bulletTimer.Running = false;
             ObjectStatus = PhysicsObjectStatus.Normal;
-            _damageTimer.Running = false;
+            DamageTimer.Running = false;
             _enterDoor = false;
             StandUp();
         }
 
         internal override void Update(ref GameTime gameTime)
         {
-            base.Update(ref gameTime);
-            _bulletTimer.Update(ref gameTime);
-            _damageTimer.Update(ref gameTime);
-
-            if (ObjectStatus == PhysicsObjectStatus.Damage && !_damageTimer.Running)
+            if (ObjectStatus == PhysicsObjectStatus.Dead)
             {
-                ObjectStatus = PhysicsObjectStatus.Normal;
+                OnlyGravity();
             }
+            else
+            {
+                MoveLeftOrRight(ref gameTime);
+
+                if (UseLadder)
+                {
+                    Ladder(ref gameTime);
+                }
+                else
+                {
+                    JumpAndGravity(ref gameTime);
+                }
+            }
+
+            RecoveryDamage(ref gameTime);
 
             if (ObjectStatus == PhysicsObjectStatus.Normal)
             {
@@ -182,7 +183,7 @@ namespace Game2.GameObjects
                 }
 
                 //発砲
-                if (!_bulletTimer.Running && !OnLadder && Game2.GameCtrl.Fire)
+                if (!_bulletTimer.Update(ref gameTime) && !OnLadder && Game2.GameCtrl.Fire)
                 {
                     StandUp();
 
@@ -407,12 +408,11 @@ namespace Game2.GameObjects
 
         internal override void DecLife(int damage)
         {
-            if (!_damageTimer.Running)
+            if (!DamageTimer.Running)
             {
                 base.DecLife(damage);
                 Game2.Inventory.SetItem("DoubleScore", false);
                 Game2.Inventory.SetItem("Sword", false);
-                _damageTimer.Start(_damageCoolTime, true);
             }
         }
 

@@ -20,15 +20,8 @@ namespace Game2.GameObjects
             AnimationAlways = true;
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(ref GameTime gameTime)
         {
-            UpdateLifeTime(ref gameTime);
-
-            if (ObjectStatus != PhysicsObjectStatus.Normal)
-            {
-                return;
-            }
-
             Velocity.X = ControlDirectionX * AccelerationX;
             Velocity.Y += Gravity;
 
@@ -39,8 +32,12 @@ namespace Game2.GameObjects
 
             Position += Velocity;
             Rectangle.Location = Position.ToPoint();
-            AttackPlayer();
-            UpdateAnimationIndex();
+            return false;
+        }
+
+        internal override bool JumpAndGravity(ref GameTime gameTime)
+        {
+            return false;
         }
 
         internal override void Jump()

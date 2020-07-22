@@ -12,10 +12,8 @@ namespace Game2.GameObjects
         {
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void FinallyUpdate(ref GameTime gameTime)
         {
-            base.Update(ref gameTime);
-
             if (GroundBlock != null)
             {
                 _jumpRect.Y = (int)Position.Y + Height;
@@ -51,7 +49,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void TouchWall()
+        internal override void TouchWithWall()
         {
             if (_rnd.Next(0, 2) == 0)
             {

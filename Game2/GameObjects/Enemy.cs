@@ -23,12 +23,22 @@ namespace Game2.GameObjects
         /// <summary>
         /// 寿命タイマー
         /// </summary>
-        private readonly Timer _timer = new Timer();
+        private readonly Timer _lifeTimer = new Timer();
 
         /// <summary>
         /// 寿命までの時間
         /// </summary>
         internal float LifeTime = 10000f;
+
+        /// <summary>
+        /// 発砲タイマー
+        /// </summary>
+        private readonly Timer _shotTimer = new Timer();
+
+        /// <summary>
+        /// 発砲までの時間
+        /// </summary>
+        internal float ShotTime = 10000f;
 
         internal Enemy(Game2 game2, float x, float y) : base(game2, x, y)
         {
@@ -36,7 +46,35 @@ namespace Game2.GameObjects
             DeadSE = "SoundEffects/EnemyDead";
             DamageSE = "SoundEffects/EnemyDamage";
             //一定時間たったら勝手に死ぬ
-            _timer.Start(LifeTime, true);
+            _lifeTimer.Start(LifeTime, true);
+            _shotTimer.Start(ShotTime, true);
+        }
+
+        internal override void Update(ref GameTime gameTime)
+        {
+            UpdateLifeTime(ref gameTime);
+            RecoveryDamage(ref gameTime);
+
+            if (ObjectStatus == PhysicsObjectStatus.Dead)
+            {
+                OnlyGravity();
+                return;
+            }
+            else if (ObjectStatus == PhysicsObjectStatus.Damage)
+            {
+                return;
+            }
+
+            if (MoveLeftOrRight(ref gameTime))
+            {
+                TouchWithWall();
+            }
+
+            JumpAndGravity(ref gameTime);
+            AttackPlayer();
+            UpdateShotTime(ref gameTime);
+            FinallyUpdate(ref gameTime);
+            UpdateAnimationIndex();
         }
 
         /// <summary>
@@ -45,20 +83,18 @@ namespace Game2.GameObjects
         /// <param name="gameTime">GameTime</param>
         internal void UpdateLifeTime(ref GameTime gameTime)
         {
-            _timer.Update(ref gameTime);
-
-            if (!_timer.Running)
+            if (!_lifeTimer.Update(ref gameTime))
             {
                 ObjectStatus = PhysicsObjectStatus.Dead;
             }
+        }
 
-            if (ObjectStatus == PhysicsObjectStatus.Damage)
+        internal void UpdateShotTime(ref GameTime gameTime)
             {
-                ObjectStatus = PhysicsObjectStatus.Normal;
-            }
-            else if (ObjectStatus == PhysicsObjectStatus.Dead)
+            if (!_shotTimer.Update(ref gameTime))
             {
-                OnlyGravity();
+                Shot();
+                _shotTimer.Start(ShotTime, true);
             }
         }
 
@@ -80,9 +116,22 @@ namespace Game2.GameObjects
             }
         }
 
+        internal virtual void TouchWithWall()
+        {
+        }
+
+        internal virtual void Shot()
+        {
+        }
+
         internal override void Outside()
         {
             ObjectStatus = PhysicsObjectStatus.Remove;
+        }
+
+        internal virtual void FinallyUpdate(ref GameTime gameTime)
+        {
+
         }
     }
 }

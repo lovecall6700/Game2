@@ -1,5 +1,4 @@
 ﻿using Game2.Utilities;
-using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
@@ -22,27 +21,14 @@ namespace Game2.GameObjects
             SetSize(16, 32);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Shot()
         {
-            base.Update(ref gameTime);
-
-            if (ObjectStatus != PhysicsObjectStatus.Normal)
+            for (int dir = 0; dir < 360; dir += 45)
             {
-                return;
+                Game2.PlaySc.PhysicsObjs.Add(new EnemyBullet(Game2, Position.X, Position.Y + 2, dir));
             }
 
-            _bulletTimer.Update(ref gameTime);
-
-            if (!_bulletTimer.Running)
-            {
-                for (int dir = 0; dir < 360; dir += 45)
-                {
-                    Game2.PlaySc.PhysicsObjs.Add(new EnemyBullet(Game2, Position.X, Position.Y + 2, dir));
-                }
-
-                Game2.MusicPlayer.PlaySE("SoundEffects/EnemyShot");
-                _bulletTimer.Start(5000f, true);
-            }
+            Game2.MusicPlayer.PlaySE("SoundEffects/EnemyShot");
         }
     }
 }

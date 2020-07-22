@@ -52,9 +52,7 @@ namespace Game2.Managers
             }
 
             //敵の出現は一定間隔
-            _timer.Update(ref gameTime);
-
-            if (_timer.Running)
+            if (_timer.Update(ref gameTime))
             {
                 return;
             }

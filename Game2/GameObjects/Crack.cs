@@ -33,9 +33,7 @@ namespace Game2.GameObjects
                 return;
             }
 
-            _timer.Update(ref gameTime);
-
-            if (Connection.Count != 0 && !_timer.Running)
+            if (!_timer.Update(ref gameTime) && Connection.Count != 0)
             {
                 _timer.Start(_time, true);
                 _life--;

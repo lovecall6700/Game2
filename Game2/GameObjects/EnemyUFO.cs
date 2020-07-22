@@ -48,10 +48,7 @@ namespace Game2.GameObjects
 
             for (int i = 0; i < max; i++)
             {
-                body[i] = new EnemyBoss(Game2, 0, 0)
-                {
-                    ID = i
-                };
+                body[i] = new EnemyBoss(Game2, 0, 0, i);
 
                 if (i > 0)
                 {

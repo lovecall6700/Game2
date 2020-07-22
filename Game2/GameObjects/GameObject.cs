@@ -90,7 +90,10 @@ namespace Game2.GameObjects
 
         internal virtual void Update(ref GameTime gameTime)
         {
-            Connection.Clear();
+            if (Connection.Count > 0)
+            {
+                Connection.Clear();
+            }
         }
 
         /// <summary>

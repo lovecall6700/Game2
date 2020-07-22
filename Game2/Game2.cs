@@ -221,10 +221,8 @@ namespace Game2
                 Exit();
             }
 
-            _fullScTimer.Update(ref gameTime);
-
             //Alt+Enterで最大化
-            if (!_fullScTimer.Running && GameCtrl.FullScreen)
+            if (!_fullScTimer.Update(ref gameTime) && GameCtrl.FullScreen)
             {
                 Graphics.ToggleFullScreen();
                 _timeLimitDisp.Initialize(GraphicsDevice);
@@ -235,9 +233,7 @@ namespace Game2
                 Camera2D.Initialize(GraphicsDevice, Width, Height);
             }
 
-            _pauseTimer.Update(ref gameTime);
-
-            if (!_pauseTimer.Running && GameCtrl.Pause)
+            if (!_pauseTimer.Update(ref gameTime) && GameCtrl.Pause)
             {
                 _paused = !_paused;
 

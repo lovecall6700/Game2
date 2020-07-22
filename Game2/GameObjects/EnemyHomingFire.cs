@@ -21,19 +21,11 @@ namespace Game2.GameObjects
             LifeTime = 30000f;
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(ref GameTime gameTime)
         {
-            UpdateLifeTime(ref gameTime);
-
-            if (ObjectStatus != PhysicsObjectStatus.Normal)
-            {
-                return;
-            }
-
             Player p = Game2.PlaySc.Player;
-            _hormingTimer.Update(ref gameTime);
 
-            if (!_hormingTimer.Running)
+            if (!_hormingTimer.Update(ref gameTime))
             {
                 _hormingTimer.Start(2000f, true);
                 _target = p.Position;
@@ -55,8 +47,12 @@ namespace Game2.GameObjects
 
             Position += Velocity;
             Rectangle.Location = Position.ToPoint();
-            UpdateAnimationIndex();
-            AttackPlayer();
+            return false;
+        }
+
+        internal override bool JumpAndGravity(ref GameTime gameTime)
+        {
+            return false;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 消えるまでの時間
         /// </summary>
-        private readonly Timer _timer = new Timer();
+        private readonly Timer _removeTimer = new Timer();
 
         /// <summary>
         /// /弾速
@@ -36,21 +36,19 @@ namespace Game2.GameObjects
             MaxSpeedX = 12;
             UseAirFriction = false;
             Gravity = 0.3f;
-            _timer.Start(500f, true);
+            _removeTimer.Start(500f, true);
             SetSize(8, 8);
             Attack = 1;
         }
 
         internal override void Update(ref GameTime gameTime)
         {
-            _timer.Update(ref gameTime);
-
-            if (!_timer.Running)
+            if (!_removeTimer.Update(ref gameTime))
             {
                 ObjectStatus = PhysicsObjectStatus.Remove;
             }
 
-            if (MoveLeftOrRight() | JumpAndGravity())
+            if (MoveLeftOrRight(ref gameTime) | JumpAndGravity(ref gameTime))
             {
                 ObjectStatus = PhysicsObjectStatus.Remove;
             }

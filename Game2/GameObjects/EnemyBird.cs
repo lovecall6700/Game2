@@ -23,18 +23,18 @@ namespace Game2.GameObjects
             _timer.Start(2000f, true);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(ref GameTime gameTime)
         {
-            UpdateLifeTime(ref gameTime);
+            Velocity.X += ControlDirectionX * AirAccelerationX;
+            Velocity.X = MathHelper.Clamp(Velocity.X, -MaxSpeedX, MaxSpeedX);
+            Rectangle.X = (int)(Position.X + Velocity.X);
+            Position.X = Rectangle.X;
+            return false;
+        }
 
-            if (ObjectStatus != PhysicsObjectStatus.Normal)
-            {
-                return;
-            }
-
-            _timer.Update(ref gameTime);
-
-            if (!_timer.Running && !_exit)
+        internal override bool JumpAndGravity(ref GameTime gameTime)
+        {
+            if (!_timer.Update(ref gameTime) && !_exit)
             {
                 _exit = true;
                 Player p = Game2.PlaySc.Player;
@@ -45,17 +45,12 @@ namespace Game2.GameObjects
                 }
             }
 
-            Velocity.X += ControlDirectionX * AirAccelerationX;
-            Velocity.X = MathHelper.Clamp(Velocity.X, -MaxSpeedX, MaxSpeedX);
-            Rectangle.X = (int)(Position.X + Velocity.X);
-            Position.X = Rectangle.X;
-            AttackPlayer();
-            UpdateAnimationIndex();
-
             if (_exit)
             {
                 OnlyGravity();
             }
+
+            return false;
         }
     }
 }

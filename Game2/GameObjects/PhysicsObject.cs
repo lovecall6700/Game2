@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game2.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -126,6 +127,16 @@ namespace Game2.GameObjects
         /// </summary>
         internal bool UseOutOfMapY = true;
 
+        /// <summary>
+        /// 連続ダメージ回避時間
+        /// </summary>
+        internal float DamageTime = 300f;
+
+        /// <summary>
+        /// 連続ダメージ回避タイマー
+        /// </summary>
+        internal readonly Timer DamageTimer = new Timer();
+
         internal PhysicsObject(Game2 game2, float x, float y) : base(game2, x, y)
         {
             ObjectStatus = PhysicsObjectStatus.Normal;
@@ -133,29 +144,14 @@ namespace Game2.GameObjects
 
         internal override void Update(ref GameTime gameTime)
         {
-            if (ObjectStatus == PhysicsObjectStatus.Dead)
-            {
-                OnlyGravity();
-                return;
-            }
-
-            MoveLeftOrRight();
-
-            if (UseLadder)
-            {
-                Ladder();
-            }
-            else
-            {
-                JumpAndGravity();
-            }
         }
 
         /// <summary>
         /// ハシゴの処理
         /// ハシゴの上にいないなら通常のJumpAndGravity()を呼ぶ
         /// </summary>
-        private void Ladder()
+        /// <param name="gameTime">GameTime</param>
+        internal void Ladder(ref GameTime gameTime)
         {
             OnLadder = false;
             GameObject ladder = null;
@@ -178,7 +174,7 @@ namespace Game2.GameObjects
             //ハシゴの上にいないなら普通に重力を処理
             if (!OnLadder)
             {
-                JumpAndGravity();
+                JumpAndGravity(ref gameTime);
                 return;
             }
 
@@ -253,8 +249,9 @@ namespace Game2.GameObjects
         /// <summary>
         /// 上下方向の物理制御をおこない、何かに接触したかを返す
         /// </summary>
+        /// <param name="gameTime">GameTime</param>
         /// <returns>何かに接触したか</returns>
-        internal virtual bool JumpAndGravity()
+        internal virtual bool JumpAndGravity(ref GameTime gameTime)
         {
             //とりあえず落ちてみる
             Velocity.Y += Gravity;
@@ -349,7 +346,9 @@ namespace Game2.GameObjects
         /// <summary>
         /// 左右方向の物理制御をおこない、何かに接触したかを調べる
         /// </summary>
-        internal virtual bool MoveLeftOrRight()
+        /// <param name="gameTime">GameTime</param>
+        /// <returns>接触の有無</returns>
+        internal virtual bool MoveLeftOrRight(ref GameTime gameTime)
         {
             bool ret = false;
             Velocity.X += ControlDirectionX * (GroundBlock != null ? AccelerationX : AirAccelerationX);
@@ -416,6 +415,10 @@ namespace Game2.GameObjects
         internal virtual void UpdateAnimationIndex()
         {
             if (ObjectStatus == PhysicsObjectStatus.Dead)
+            {
+                return;
+            }
+            else if (ObjectStatus == PhysicsObjectStatus.Damage)
             {
                 return;
             }
@@ -487,6 +490,7 @@ namespace Game2.GameObjects
             else
             {
                 ObjectStatus = PhysicsObjectStatus.Damage;
+                DamageTimer.Start(DamageTime, true);
                 Damaged();
             }
         }
@@ -567,6 +571,14 @@ namespace Game2.GameObjects
             else
             {
                 base.Draw(ref offset, ref gameTime, ref spriteBatch);
+            }
+        }
+
+        internal void RecoveryDamage(ref GameTime gameTime)
+        {
+            if (ObjectStatus == PhysicsObjectStatus.Damage && !DamageTimer.Update(ref gameTime))
+            {
+                ObjectStatus = PhysicsObjectStatus.Normal;
             }
         }
     }

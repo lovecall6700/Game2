@@ -22,19 +22,20 @@ namespace Game2.GameObjects
             SetSize(8, 8);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(ref GameTime gameTime)
         {
-            UpdateLifeTime(ref gameTime);
-
-            if (ObjectStatus != PhysicsObjectStatus.Normal)
-            {
-                return;
-            }
-
             Position += Velocity;
             Rectangle.Location = Position.ToPoint();
-            AttackPlayer();
+            return false;
+        }
 
+        internal override bool JumpAndGravity(ref GameTime gameTime)
+        {
+            return false;
+        }
+
+        internal override void FinallyUpdate(ref GameTime gameTime)
+        {
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {
                 if (o.ObjectKind == GameObjectKind.Cloud || o.ObjectKind == GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)

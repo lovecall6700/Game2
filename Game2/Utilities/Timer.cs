@@ -51,13 +51,16 @@ namespace Game2.Utilities
         /// ゲーム時間でタイマーを更新する
         /// </summary>
         /// <param name="gameTime">GameTime</param>
-        internal void Update(ref GameTime gameTime)
+        /// <returns>タイマーが動作しているか(終了しているか)</returns>
+        internal bool Update(ref GameTime gameTime)
         {
             if (Running && _time > 0f)
             {
                 _time -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 Running = _time > 0f;
             }
+
+            return Running;
         }
 
         /// <summary>

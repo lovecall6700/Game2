@@ -10,11 +10,11 @@ namespace Game2.GameObjects
         {
         }
 
-        internal override void TouchWall()
+        internal override void TouchWithWall()
         {
             if (_rnd.Next(0, 2) == 0)
             {
-                base.TouchWall();
+                base.TouchWithWall();
             }
             else
             {

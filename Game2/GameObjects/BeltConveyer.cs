@@ -40,9 +40,7 @@ namespace Game2.GameObjects
 
         internal override void Update(ref GameTime gameTime)
         {
-            _timer.Update(ref gameTime);
-
-            if (!_timer.Running)
+            if (!_timer.Update(ref gameTime))
             {
                 _vibro = !_vibro;
                 _timer.Start(_time, true);

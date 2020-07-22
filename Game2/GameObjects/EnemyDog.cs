@@ -16,26 +16,7 @@ namespace Game2.GameObjects
             MaxSpeedX = 4;
         }
 
-        internal override void Update(ref GameTime gameTime)
-        {
-            UpdateLifeTime(ref gameTime);
-
-            if (ObjectStatus != PhysicsObjectStatus.Normal)
-            {
-                return;
-            }
-
-            if (MoveLeftOrRight())
-            {
-                TouchWall();
-            }
-
-            JumpAndGravity();
-            AttackPlayer();
-            UpdateAnimationIndex();
-        }
-
-        internal virtual void TouchWall()
+        internal override void TouchWithWall()
         {
             ControlDirectionX *= -1;
         }

@@ -121,6 +121,7 @@
     <Compile Include="Screens\StageDirType.cs" />
     <Compile Include="Screens\TimerScreen.cs" />
     <Compile Include="Screens\SelectScreen.cs" />
+    <Compile Include="Utilities\ImageList.cs" />
     <Compile Include="Utilities\Timer.cs" />
     <Compile Include="Screens\GameoverScreen.cs" />
     <Compile Include="Screens\MenuItem.cs" />
