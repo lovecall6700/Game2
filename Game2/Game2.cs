@@ -62,7 +62,7 @@ namespace Game2
         /// <summary>
         /// ゲームコントローラ
         /// </summary>
-        internal GameController GameCtrl;
+        internal GameController2 GameCtrl;
 
         /// <summary>
         /// カメラ
@@ -158,8 +158,7 @@ namespace Game2
 
             //ゲームシステム
             Scheduler = new Scheduler(this);
-            //Scheduler.Title();
-            Scheduler.Ending();
+            Scheduler.Title();
             Session = new Session();
             Textures = new Textures(Content);
             _timeLimitDisp = new TimeLimitDisplay(this, Font, GraphicsDevice);
@@ -169,7 +168,7 @@ namespace Game2
             _lifeDisp = new LifeDisplay(this, Font, GraphicsDevice);
             Inventory = new Inventory(this);
             MusicPlayer = new MusicPlayer(Content);
-            GameCtrl = new GameController();
+            GameCtrl = new GameController2();
             Camera2D = new Camera2D();
             Camera2D.Initialize(GraphicsDevice, Width, Height);
         }
@@ -214,7 +213,7 @@ namespace Game2
         protected override void Update(GameTime gameTime)
         {
             Scheduler.Update();
-            GameCtrl.Update();
+            GameCtrl.Update(ref gameTime);
 
             //ESCで終了
             if (GameCtrl.Exit)

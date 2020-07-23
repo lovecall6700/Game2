@@ -1,5 +1,4 @@
-﻿using Game2.Utilities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -35,21 +34,10 @@ namespace Game2.Screens
         /// </summary>
         internal SpriteFont Font;
 
-        /// <summary>
-        /// 画面が出てからしばらくは操作できない
-        /// </summary>
-        internal Timer WaitTimer = new Timer();
-
-        /// <summary>
-        /// ボタンが押しっぱなし
-        /// </summary>
-        internal bool Press = true;
-
         internal SelectScreen(Game2 game2, SpriteFont font) : base(game2)
         {
             Game2 = game2;
             Font = font;
-            WaitTimer.Start(250f, true);
         }
 
         internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
@@ -71,62 +59,37 @@ namespace Game2.Screens
 
         internal override void Update(ref Vector2 offset, ref GameTime gameTime)
         {
-            //画面が出てからしばらくは操作できない
-            if (WaitTimer.Update(ref gameTime))
+            if (Game2.GameCtrl.IsClick(Managers.KeyName.Up))
             {
-                return;
-            }
+                //前回押されていないときに上が押された
+                Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
 
-            bool p = false;
-
-            if (Game2.GameCtrl.Up)
-            {
-                p = true;
-
-                if (!Press)
+                if (Items[Index].Disable)
                 {
-                    //前回押されていないときに上が押された
                     Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
-
-                    if (Items[Index].Disable)
-                    {
-                        Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
-                    }
-
-                    Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
                 }
-            }
-            else if (Game2.GameCtrl.Down)
-            {
-                p = true;
 
-                if (!Press)
+                Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
+            }
+            else if (Game2.GameCtrl.IsClick(Managers.KeyName.Down))
+            {
+                //前回押されていないときに下が押された
+                Index = MathHelper.Clamp(Index + 1, 0, Items.Count - 1);
+
+                //連続で無効は想定していない
+                if (Items[Index].Disable)
                 {
-                    //前回押されていないときに下が押された
                     Index = MathHelper.Clamp(Index + 1, 0, Items.Count - 1);
-
-                    //連続で無効は想定していない
-                    if (Items[Index].Disable)
-                    {
-                        Index = MathHelper.Clamp(Index + 1, 0, Items.Count - 1);
-                    }
-
-                    Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
                 }
+
+                Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
             }
-            else if (Game2.GameCtrl.Fire)
+            else if (Game2.GameCtrl.IsClick(Managers.KeyName.Fire))
             {
-                p = true;
-
-                if (!Press)
-                {
-                    //前回押されていないときに選択が押された
-                    SelectMenu();
-                    Game2.MusicPlayer.PlaySE("SoundEffects/MenuSelect");
-                }
+                //前回押されていないときに選択が押された
+                SelectMenu();
+                Game2.MusicPlayer.PlaySE("SoundEffects/MenuSelect");
             }
-
-            Press = p;
         }
 
         /// <summary>

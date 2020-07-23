@@ -51,14 +51,13 @@ namespace Game2.Managers
         private bool _flipflop = false;
         private readonly Timer _timer = new Timer();
 
-        internal float ClickTime = 100f;
-        internal float RepeatTime = 100f;
+        internal float ClickTime = 150f;
+        internal float RepeatTime = 250f;
 
-        internal void Update(GameTime gameTime)
+        internal void Update(ref GameTime gameTime)
         {
             base.Update();
             _timer.Update(ref gameTime);
-
             UpdateStatus(Up, ref _up);
             UpdateStatus(Down, ref _down);
             UpdateStatus(Left, ref _left);
@@ -117,7 +116,7 @@ namespace Game2.Managers
                     state = KeyStatus.Release;
                 }
             }
-            else //if(state == ControllerStatus.Repeat)
+            else if (state == KeyStatus.Repeat)
             {
                 //リピート時
                 if (_timer.Running)
@@ -301,56 +300,88 @@ namespace Game2.Managers
         /// <returns>ボタンがクリックか</returns>
         internal bool IsClick(KeyName name)
         {
-            bool b;
+            bool b = false;
 
             switch (name)
             {
                 case KeyName.Jump:
 
-                    b = _jump == KeyStatus.Click;
-                    _jump = KeyStatus.Release;
+                    if (_jump == KeyStatus.Click)
+                    {
+                        _jump = KeyStatus.Release;
+                        b = true;
+                    }
+
                     return b;
 
                 case KeyName.Fire:
 
-                    b = _fire == KeyStatus.Click;
-                    _fire = KeyStatus.Release;
+                    if (_fire == KeyStatus.Click)
+                    {
+                        _fire = KeyStatus.Release;
+                        b = true;
+                    }
+
                     return b;
 
                 case KeyName.Left:
 
-                    b = _left == KeyStatus.Click;
-                    _left = KeyStatus.Release;
+                    if (_left == KeyStatus.Click)
+                    {
+                        _left = KeyStatus.Release;
+                        b = true;
+                    }
+
                     return b;
 
                 case KeyName.Right:
 
-                    b = _right == KeyStatus.Click;
-                    _right = KeyStatus.Release;
+                    if (_right == KeyStatus.Click)
+                    {
+                        _right = KeyStatus.Release;
+                        b = true;
+                    }
+
                     return b;
 
                 case KeyName.Down:
 
-                    b = _down == KeyStatus.Click;
-                    _down = KeyStatus.Release;
+                    if (_down == KeyStatus.Click)
+                    {
+                        _down = KeyStatus.Release;
+                        b = true;
+                    }
+
                     return b;
 
                 case KeyName.Up:
 
-                    b = _up == KeyStatus.Click;
-                    _up = KeyStatus.Release;
+                    if (_up == KeyStatus.Click)
+                    {
+                        _up = KeyStatus.Release;
+                        b = true;
+                    }
+
                     return b;
 
                 case KeyName.Pause:
 
-                    b = _pause == KeyStatus.Click;
-                    _pause = KeyStatus.Release;
+                    if (_pause == KeyStatus.Click)
+                    {
+                        _pause = KeyStatus.Release;
+                        b = true;
+                    }
+
                     return b;
 
                 case KeyName.FullScreen:
 
-                    b = _fullScreen == KeyStatus.Click;
-                    _fullScreen = KeyStatus.Release;
+                    if (_fullScreen == KeyStatus.Click)
+                    {
+                        _fullScreen = KeyStatus.Release;
+                        b = true;
+                    }
+
                     return b;
             }
 

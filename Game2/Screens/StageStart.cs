@@ -11,11 +11,6 @@ namespace Game2.Screens
     internal class StageStart : TimerScreen
     {
         /// <summary>
-        /// 連打抑制
-        /// </summary>
-        private bool _flag = false;
-
-        /// <summary>
         /// アイテムアイコン
         /// </summary>
         private readonly List<Texture2D> _icons = new List<Texture2D>();
@@ -89,11 +84,7 @@ namespace Game2.Screens
 
         internal override void Update(ref Vector2 offset, ref GameTime gametime)
         {
-            if (!_flag && !Game2.GameCtrl.Fire)
-            {
-                _flag = true;
-            }
-            else if (_flag && Game2.GameCtrl.Fire)
+            if (Game2.GameCtrl.IsClick(Managers.KeyName.Fire))
             {
                 //強制定期にタイムアップを発生させる
                 Timer.Running = false;

@@ -69,7 +69,7 @@ namespace Game2.Screens
             }
             if (_state == 2)
             {
-                if (Game2.GameCtrl.Fire)
+                if (Game2.GameCtrl.IsClick(Managers.KeyName.Fire))
                 {
                     Timer.Running = false;
                 }
