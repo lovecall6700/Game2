@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game2.GameObjects;
+using Microsoft.Xna.Framework;
 using System.IO;
 using System.Windows.Forms;
 
@@ -49,6 +50,34 @@ namespace Game2.Utilities
             }
 
             return false;
+        }
+
+        internal static void Homing(PhysicsObject obj, Vector2 target, ref Vector2 velocity, float speed)
+        {
+
+            if (target != obj.Position)
+            {
+                Vector2 v = Vector2.Normalize(target - obj.Position) * speed;
+
+                //左右向きプルプルをやめる
+                if (Vector2.Distance(target, obj.Position) <= v.Length())
+                {
+                    velocity = target - obj.Position;
+                }
+                else
+                {
+                    velocity = v;
+
+                    if (velocity.X > 0)
+                    {
+                        obj.ControlDirectionX = 1;
+                    }
+                    else if (velocity.X < 0)
+                    {
+                        obj.ControlDirectionX = -1;
+                    }
+                }
+            }
         }
     }
 }

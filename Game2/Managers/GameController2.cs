@@ -51,7 +51,7 @@ namespace Game2.Managers
         private bool _flipflop = false;
         private readonly Timer _timer = new Timer();
 
-        internal float ClickTime = 150f;
+        internal float ClickTime = 300f;
         internal float RepeatTime = 250f;
 
         internal void Update(ref GameTime gameTime)

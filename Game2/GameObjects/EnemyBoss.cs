@@ -12,7 +12,7 @@ namespace Game2.GameObjects
         internal bool Tail = false;
         private readonly List<Vector2> _history = new List<Vector2>();
         private Vector2 _lastPosition;
-        private readonly Timer _timer = new Timer();
+        private readonly Timer _hormingTimer = new Timer();
         private Vector2 _target;
 
         internal EnemyBoss(Game2 game2, float x, float y, int id) : base(game2, x, y)
@@ -57,25 +57,13 @@ namespace Game2.GameObjects
             {
                 Player p = Game2.PlaySc.Player;
 
-                if (!_timer.Update(ref gameTime))
+                if (!_hormingTimer.Update(ref gameTime))
                 {
-                    _timer.Start(2000f, true);
+                    _hormingTimer.Start(2000f, true);
                     _target = p.Position;
                 }
 
-                if (p.Position != Position)
-                {
-                    Velocity = Vector2.Normalize(_target - Position) * MaxSpeedX;
-
-                    if (Velocity.X > 0)
-                    {
-                        ControlDirectionX = 1;
-                    }
-                    else
-                    {
-                        ControlDirectionX = -1;
-                    }
-                }
+                Utility.Homing(this, _target, ref Velocity, MaxSpeedX);
 
                 if ((_lastPosition != Position) && Vector2.Distance(_lastPosition, Position) > 15f)
                 {

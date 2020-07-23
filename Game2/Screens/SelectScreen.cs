@@ -34,6 +34,8 @@ namespace Game2.Screens
         /// </summary>
         internal SpriteFont Font;
 
+        private bool _keyFlag = true;
+
         internal SelectScreen(Game2 game2, SpriteFont font) : base(game2)
         {
             Game2 = game2;
@@ -59,6 +61,17 @@ namespace Game2.Screens
 
         internal override void Update(ref Vector2 offset, ref GameTime gameTime)
         {
+            //一度離すのを確認してから入力を受け付ける
+            if (_keyFlag)
+            {
+                if (Game2.GameCtrl.IsRelease(Managers.KeyName.Fire))
+                {
+                    _keyFlag = false;
+                }
+
+                return;
+            }
+
             if (Game2.GameCtrl.IsClick(Managers.KeyName.Up))
             {
                 //前回押されていないときに上が押された

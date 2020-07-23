@@ -31,20 +31,7 @@ namespace Game2.GameObjects
                 _target = p.Position;
             }
 
-            if (p.Position != Position)
-            {
-                Velocity = Vector2.Normalize(_target - Position) * MaxSpeedX;
-
-                if (Velocity.X > 0)
-                {
-                    ControlDirectionX = 1;
-                }
-                else
-                {
-                    ControlDirectionX = -1;
-                }
-            }
-
+            Utility.Homing(this, _target, ref Velocity, MaxSpeedX);
             Position += Velocity;
             Rectangle.Location = Position.ToPoint();
             return false;
