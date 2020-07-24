@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game2.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Game2.Screens
@@ -54,6 +55,8 @@ namespace Game2.Screens
                     {
                         _saveOnce = true;
                         Items[1].Menu = "Saved";
+                        Vector2 v = Utility.GetMsgSize(Font, "Saved", 1.5f) / 2; ;
+                        Items[1].Position.X = 128 - v.X;
                         Items[1].Disable = true;
                         Index = 0;
                         Game2.Scheduler.SaveStage();
