@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game2.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -40,6 +41,13 @@ namespace Game2.Screens
         {
             Game2 = game2;
             Font = font;
+        }
+
+        internal void AddMenuItem(float x, float y, string menu, float scale)
+        {
+            Vector2 v = Utility.GetMsgSize(Font, menu, scale) / 2;
+            v.Y = 0;
+            Items.Add(new MenuItem(new Vector2(x, y) - v, menu, scale));
         }
 
         internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)

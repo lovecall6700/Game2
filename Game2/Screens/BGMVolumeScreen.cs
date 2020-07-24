@@ -17,12 +17,12 @@ namespace Game2.Screens
                 Color = Color.White
             };
 
-            Items.Add(new MenuItem(new Vector2(110, 110), "100%", 1f));
-            Items.Add(new MenuItem(new Vector2(110, 130), "80%", 1f));
-            Items.Add(new MenuItem(new Vector2(110, 150), "50%", 1f));
-            Items.Add(new MenuItem(new Vector2(110, 170), "25%", 1f));
-            Items.Add(new MenuItem(new Vector2(110, 190), "Mute", 1f));
-            Items.Add(new MenuItem(new Vector2(110, 210), "End", 1f));
+            AddMenuItem(128, 110, "100%", 1f);
+            AddMenuItem(128, 130, "80%", 1f);
+            AddMenuItem(128, 150, "50%", 1f);
+            AddMenuItem(128, 170, "25%", 1f);
+            AddMenuItem(128, 190, "Mute", 1f);
+            AddMenuItem(128, 210, "End", 1f);
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
 

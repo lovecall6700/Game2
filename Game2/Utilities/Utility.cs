@@ -1,5 +1,6 @@
 ﻿using Game2.GameObjects;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -78,6 +79,11 @@ namespace Game2.Utilities
                     }
                 }
             }
+        }
+
+        internal static Vector2 GetMsgSize(SpriteFont font, string msg, float scale)
+        {
+            return font.MeasureString(msg) * scale;
         }
     }
 }

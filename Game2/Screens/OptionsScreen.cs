@@ -17,9 +17,9 @@ namespace Game2.Screens
                 Color = Color.White
             };
 
-            Items.Add(new MenuItem(new Vector2(60, 120), "BGM Volume", 1.5f));
-            Items.Add(new MenuItem(new Vector2(60, 145), "SE Volume", 1.5f));
-            Items.Add(new MenuItem(new Vector2(60, 170), "End", 1.5f));
+            AddMenuItem(128, 120, "BGM Volume", 1.5f);
+            AddMenuItem(128, 145, "SE Volume", 1.5f);
+            AddMenuItem(128, 170, "End", 1.5f);
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
 

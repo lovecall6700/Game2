@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game2.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Game2.Screens
@@ -40,7 +41,7 @@ namespace Game2.Screens
 
         internal Vector2 GetMsgSize(string msg, float scale)
         {
-            return _font.MeasureString(msg) * scale;
+            return Utility.GetMsgSize(_font, msg, scale);
         }
     }
 }

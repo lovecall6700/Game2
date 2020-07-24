@@ -18,10 +18,10 @@ namespace Game2.Screens
 
         internal TitleScreen(Game2 game2, SpriteFont font) : base(game2, font)
         {
-            Items.Add(new MenuItem(new Vector2(70, 140), "Start", 1.2f));
-            Items.Add(new MenuItem(new Vector2(70, 162), "Continue", 1.2f));
-            Items.Add(new MenuItem(new Vector2(70, 184), "Options", 1.2f));
-            Items.Add(new MenuItem(new Vector2(70, 208), "End", 1.2f));
+            AddMenuItem(128, 140, "Start", 1.2f);
+            AddMenuItem(128, 162, "Continue", 1.2f);
+            AddMenuItem(128, 184, "Options", 1.2f);
+            AddMenuItem(128, 208, "End", 1.2f);
             Game2.MusicPlayer.PlaySong($"Songs/BGM1");
             _titleImg = Game2.Textures.GetTexture("Images/Title");
             _storyTimer.Start(8000f, true);

@@ -19,14 +19,20 @@ namespace Game2.Screens
         {
             Timer.Start(4200, true);
 
+            string msg;
+
             if (Game2.Session.StageNo == Game2.StartStageNo && Game2.Session.DoorNo == Game2.StartDoorNo)
             {
-                Item = new MenuItem(new Vector2(55, 100), $"Stage {Game2.Session.StageNo} Start!!", 1f);
+                msg = $"Stage {Game2.Session.StageNo} Start!!";
             }
             else
             {
-                Item = new MenuItem(new Vector2(10, 100), $"Stage {Game2.Session.StageNo} - Door {Game2.Session.DoorNo + 1} Start!!", 1f);
+                msg = $"Stage {Game2.Session.StageNo} - Door {Game2.Session.DoorNo + 1} Start!!";
             }
+
+            Vector2 v = GetMsgSize(msg, 1f);
+            v.Y = 0;
+            Item = new MenuItem(new Vector2(128, 100) - v / 2, msg, 1f);
 
             //アイテムの所有を確認する
             if (Game2.Inventory.HasDoubleScoreItem())

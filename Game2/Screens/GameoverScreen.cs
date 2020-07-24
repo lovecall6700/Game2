@@ -22,9 +22,9 @@ namespace Game2.Screens
                 Color = Color.White
             };
 
-            Items.Add(new MenuItem(new Vector2(70, 140), "Retry", 1.5f));
-            Items.Add(new MenuItem(new Vector2(70, 170), "Save", 1.5f));
-            Items.Add(new MenuItem(new Vector2(70, 200), "End", 1.5f));
+            AddMenuItem(128, 140, "Retry", 1.5f);
+            AddMenuItem(128, 170, "Save", 1.5f);
+            AddMenuItem(128, 200, "End", 1.5f);
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
 
