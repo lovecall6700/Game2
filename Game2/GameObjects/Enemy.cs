@@ -65,10 +65,6 @@ namespace Game2.GameObjects
                 OnlyGravity();
                 return;
             }
-            else if (ObjectStatus == PhysicsObjectStatus.Damage)
-            {
-                return;
-            }
 
             if (MoveLeftOrRight(ref gameTime))
             {
@@ -80,6 +76,12 @@ namespace Game2.GameObjects
             UpdateShotTime(ref gameTime);
             FinallyUpdate(ref gameTime);
             UpdateAnimation();
+        }
+
+        internal override void Damaged()
+        {
+            base.Damaged();
+            Velocity = new Vector2(-10 * Direction, -5);
         }
 
         /// <summary>
