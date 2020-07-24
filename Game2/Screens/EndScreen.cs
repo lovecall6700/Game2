@@ -10,13 +10,14 @@ namespace Game2.Screens
     /// </summary>
     internal class EndScreen : TimerScreen
     {
+
         /// <summary>
         /// 画面の状態
         /// </summary>
         private int _state = 0;
 
         /// <summary>
-        /// エンディング用画像
+        /// 画像
         /// </summary>
         private readonly ImageList _img = new ImageList();
 
@@ -25,22 +26,68 @@ namespace Game2.Screens
         /// </summary>
         private readonly List<Vector2> _position = new List<Vector2>();
 
-        /// <summary>
-        /// 画像枚数
-        /// </summary>
-        private static readonly int numOfImage = 5;
+        internal bool AlwaysSkip = false;
 
         internal EndScreen(Game2 game2, SpriteFont font) : base(game2, font)
         {
-            for (int i = 0; i < numOfImage; i++)
+            string baseName = FileName();
+
+            for (int i = 0; i < NumOfImage(); i++)
             {
-                _img.AddImage(Game2.Textures.GetTexture($"Images/End{i + 1}"));
+                _img.AddImage(Game2.Textures.GetTexture(baseName + (i + 1)));
                 _position.Add(new Vector2(0, 256 + i * 128));
             }
 
-            Item = new MenuItem(new Vector2(50, 100), "Congratulations!!", 1f);
-            Game2.MusicPlayer.PlaySong($"Songs/BGM7");
-            Timer.Start(2000, true);
+            string msg1 = Msg1();
+            float msg1Sclae = Msg1Scale();
+            Item = new MenuItem(new Vector2(128, 128) - GetMsgSize(msg1, msg1Sclae) / 2, msg1, msg1Sclae);
+            Game2.MusicPlayer.PlaySong(BgmName());
+            Timer.Start(WaitTime1(), true);
+        }
+
+        internal virtual string FileName()
+        {
+            return "Images/End";
+        }
+
+        internal virtual int NumOfImage()
+        {
+            return 5;
+        }
+
+        internal virtual string Msg1()
+        {
+            return "Congratulations!!";
+        }
+
+        internal virtual float Msg1Scale()
+        {
+            return 1f;
+        }
+
+        internal virtual string Msg2()
+        {
+            return "Fin.";
+        }
+
+        internal virtual float Msg2Scale()
+        {
+            return 3f;
+        }
+
+        internal virtual float WaitTime1()
+        {
+            return 2000f;
+        }
+
+        internal virtual float WaitTime2()
+        {
+            return 30000f;
+        }
+
+        internal virtual string BgmName()
+        {
+            return "Songs/BGM7";
         }
 
         internal override void Update(ref Vector2 offset, ref GameTime gameTime)
@@ -55,22 +102,28 @@ namespace Game2.Screens
                 Item.Position.Y -= 1;
                 Vector2 v;
 
-                for (int i = 0; i < numOfImage; i++)
+                for (int i = 0; i < NumOfImage(); i++)
                 {
                     v = _position[i];
                     v.Y -= 1;
                     _position[i] = v;
                 }
 
-                if (_position[numOfImage - 1].Y == 0)
+                if (_position[NumOfImage() - 1].Y == 0)
                 {
+                    //ダミーの時間を上書きする
                     Timer.Start(5000, true);
                 }
             }
-            if (_state == 2)
+            else if (_state == 2)
+            {
+            }
+
+            if (AlwaysSkip || _state == 2)
             {
                 if (Game2.GameCtrl.IsClick(Managers.KeyName.Fire))
                 {
+                    _state = 2;
                     Timer.Running = false;
                 }
             }
@@ -86,12 +139,12 @@ namespace Game2.Screens
             {
                 base.Draw(ref offset, ref gameTime, ref spriteBatch);
 
-                for (int i = 0; i < numOfImage; i++)
+                for (int i = 0; i < NumOfImage(); i++)
                 {
                     spriteBatch.Draw(_img.GetImage(i), _position[i], Color.White);
                 }
             }
-            if (_state == 2)
+            else if (_state == 2)
             {
                 base.Draw(ref offset, ref gameTime, ref spriteBatch);
             }
@@ -102,13 +155,17 @@ namespace Game2.Screens
             if (_state == 0)
             {
                 _state = 1;
-                Timer.Start(30000, true);
+                //ダミーの時間を長めにセット
+                Timer.Start(1000000, true);
             }
             else if (_state == 1)
             {
                 _state = 2;
-                Item = new MenuItem(new Vector2(75, 100), "Fin.", 3f);
-                Timer.Start(30000, true);
+
+                string msg2 = Msg2();
+                float msg2Sclae = Msg2Scale();
+                Item = new MenuItem(new Vector2(128, 128) - GetMsgSize(msg2, msg2Sclae) / 2, msg2, msg2Sclae);
+                Timer.Start(WaitTime2(), true);
             }
             else if (_state == 2)
             {

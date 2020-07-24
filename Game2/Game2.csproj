@@ -111,6 +111,7 @@
     <Compile Include="Managers\TimeLimitDisplay.cs" />
     <Compile Include="Managers\ScoreDisplay.cs" />
     <Compile Include="Scheduler.cs" />
+    <Compile Include="Screens\StoryScreen.cs" />
     <Compile Include="Screens\OptionsScreen.cs" />
     <Compile Include="Screens\SEVolumeScreen.cs" />
     <Compile Include="Screens\BGMVolumeScreen.cs" />

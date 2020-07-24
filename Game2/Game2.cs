@@ -488,6 +488,15 @@ namespace Game2
         }
 
         /// <summary>
+        /// ストーリー画面を表示する
+        /// </summary>
+        internal void ExecStory()
+        {
+            _hideHiscore = true;
+            _screen = new StoryScreen(this, Font);
+        }
+
+        /// <summary>
         /// フォーカスを得た
         /// </summary>
         /// <param name="sender">sender</param>

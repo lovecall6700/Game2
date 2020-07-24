@@ -18,6 +18,7 @@
         SaveStage,
         BGMVolume,
         SEVolume,
-        Options
+        Options,
+        Story
     }
 }

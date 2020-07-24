@@ -36,6 +36,19 @@
         }
 
         /// <summary>
+        /// ストーリー画面を予約
+        /// </summary>
+        internal void Story()
+        {
+            if (Next != Schedule.None)
+            {
+                return;
+            }
+
+            Next = Schedule.Story;
+        }
+
+        /// <summary>
         /// リトライを予約
         /// </summary>
         internal void Retry()
@@ -280,6 +293,12 @@
 
                     Playing = false;
                     _game2.ExecOptions();
+                    break;
+
+                case Schedule.Story:
+
+                    Playing = false;
+                    _game2.ExecStory();
                     break;
             }
 

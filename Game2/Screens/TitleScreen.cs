@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game2.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Game2.Screens
@@ -13,6 +14,8 @@ namespace Game2.Screens
         /// </summary>
         private readonly Texture2D _titleImg;
 
+        private readonly Timer _storyTimer = new Timer();
+
         internal TitleScreen(Game2 game2, SpriteFont font) : base(game2, font)
         {
             Items.Add(new MenuItem(new Vector2(70, 140), "Start", 1.2f));
@@ -21,12 +24,24 @@ namespace Game2.Screens
             Items.Add(new MenuItem(new Vector2(70, 208), "End", 1.2f));
             Game2.MusicPlayer.PlaySong($"Songs/BGM1");
             _titleImg = Game2.Textures.GetTexture("Images/Title");
+            _storyTimer.Start(8000f, true);
         }
 
         internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             base.Draw(ref offset, ref gameTime, ref spriteBatch);
             spriteBatch.Draw(_titleImg, Vector2.Zero, Color.White);
+        }
+
+        internal override void Update(ref Vector2 offset, ref GameTime gameTime)
+        {
+            if (!_storyTimer.Update(ref gameTime))
+            {
+                Game2.Scheduler.Story();
+                return;
+            }
+
+            base.Update(ref offset, ref gameTime);
         }
 
         internal override void SelectMenu()

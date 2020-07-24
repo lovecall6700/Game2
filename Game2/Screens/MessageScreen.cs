@@ -37,5 +37,10 @@ namespace Game2.Screens
                 Item.Draw(ref spriteBatch, ref _font);
             }
         }
+
+        internal Vector2 GetMsgSize(string msg, float scale)
+        {
+            return _font.MeasureString(msg) * scale;
+        }
     }
 }
