@@ -229,6 +229,8 @@ namespace Game2
             //Alt+Enterで最大化
             if (!_fullScTimer.Update(ref gameTime) && GameCtrl.FullScreen)
             {
+                _paused = true;
+                MusicPlayer.StopSong();
                 Graphics.ToggleFullScreen();
                 _timeLimitDisp.Initialize(GraphicsDevice);
                 _scoreDisp.Initialize(GraphicsDevice);
