@@ -364,6 +364,12 @@ namespace Game2.Screens
                         obj = new BeltConveyer(Game2, x, y, lines[3], lines[4]);
                         break;
 
+                    case "StaticMessage":
+
+                        obj = new StaticMessage(Game2, x, y, lines[3], Game2.Font);
+                        depth = -1;
+                        break;
+
                     default:
 
                         //Block系

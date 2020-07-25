@@ -66,6 +66,7 @@
     <Compile Include="GameObjects\Crack.cs" />
     <Compile Include="GameObjects\BeltConveyer.cs" />
     <Compile Include="GameObjects\MovingFloor.cs" />
+    <Compile Include="GameObjects\StaticMessage.cs" />
     <Compile Include="Managers\GameController2.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="GameObjects\ObjectVisibility.cs" />

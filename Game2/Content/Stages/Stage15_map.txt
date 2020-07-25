@@ -1,2 +1,3 @@
 9,0,Door,0,Disable,10,3,Null,Null
+5,5,StaticMessage,BLACK HOLE
 14,14,Cloud,0
