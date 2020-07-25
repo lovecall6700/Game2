@@ -12,6 +12,10 @@ namespace Game2.Screens
             AlwaysSkip = true;
         }
 
+        internal override void AddSecondMsg()
+        {
+        }
+
         internal override string FileName()
         {
             return "Images/Story";

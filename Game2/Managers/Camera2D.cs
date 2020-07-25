@@ -34,7 +34,7 @@ namespace Game2.Managers
                 Zoom = (float)backHeight / height;
                 Viewport = new Viewport((backWidth - backHeight) / 2, 0, backHeight, backHeight);
             }
-            else if (backWidth > backHeight)
+            else if (backWidth < backHeight)
             {
                 //縦長
                 Zoom = (float)backWidth / width;

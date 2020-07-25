@@ -21,6 +21,8 @@ namespace Game2.Screens
         /// </summary>
         private readonly ImageList _img = new ImageList();
 
+        internal MenuItem SecondMsg;
+
         /// <summary>
         /// 画像の位置
         /// </summary>
@@ -41,8 +43,26 @@ namespace Game2.Screens
             string msg1 = Msg1();
             float msg1Sclae = Msg1Scale();
             Item = new MenuItem(new Vector2(128, 128) - GetMsgSize(msg1, msg1Sclae) / 2, msg1, msg1Sclae);
+            AddSecondMsg();
             Game2.MusicPlayer.PlaySong(BgmName());
             Timer.Start(WaitTime1(), true);
+        }
+
+        internal virtual void AddSecondMsg()
+        {
+            int sc = Game2.GetScore();
+            int hs = Game2.Session.HighScore;
+            string score = $"SCORE:{sc}";
+            SecondMsg = new MenuItem(new Vector2(128, 200) - GetMsgSize(score, 0.5f) / 2, score, 0.5f);
+
+            if (sc == hs)
+            {
+                SecondMsg.Color = Color.Red;
+            }
+            else
+            {
+                SecondMsg.Color = Color.White;
+            }
         }
 
         internal virtual string FileName()
@@ -147,6 +167,11 @@ namespace Game2.Screens
             else if (_state == 2)
             {
                 base.Draw(ref offset, ref gameTime, ref spriteBatch);
+
+                if (SecondMsg != null)
+                {
+                    SecondMsg.Draw(ref spriteBatch, ref Font); ;
+                }
             }
         }
 
@@ -161,7 +186,6 @@ namespace Game2.Screens
             else if (_state == 1)
             {
                 _state = 2;
-
                 string msg2 = Msg2();
                 float msg2Sclae = Msg2Scale();
                 Item = new MenuItem(new Vector2(128, 128) - GetMsgSize(msg2, msg2Sclae) / 2, msg2, msg2Sclae);

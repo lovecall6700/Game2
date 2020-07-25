@@ -22,12 +22,12 @@ namespace Game2.Screens
         /// <summary>
         /// 描画フォント
         /// </summary>
-        private SpriteFont _font;
+        internal SpriteFont Font;
 
         internal MessageScreen(Game2 game2, SpriteFont font) : base(game2)
         {
             Game2 = game2;
-            _font = font;
+            Font = font;
         }
 
         internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
@@ -35,13 +35,13 @@ namespace Game2.Screens
             if (Item != null)
             {
                 Item.Color = Color;
-                Item.Draw(ref spriteBatch, ref _font);
+                Item.Draw(ref spriteBatch, ref Font);
             }
         }
 
         internal Vector2 GetMsgSize(string msg, float scale)
         {
-            return Utility.GetMsgSize(_font, msg, scale);
+            return Utility.GetMsgSize(Font, msg, scale);
         }
     }
 }

@@ -18,11 +18,11 @@ namespace Game2
         private readonly Timer _pauseTimer = new Timer();
 
         //画面構成物
-        private readonly ScoreDisplay _scoreDisp;
-        private readonly RemainDisplay _remainDisp;
-        private readonly TimeLimitDisplay _timeLimitDisp;
-        private readonly LifeDisplay _lifeDisp;
-        private readonly PauseDisplay _pauseDisp;
+        private ScoreDisplay _scoreDisp;
+        private RemainDisplay _remainDisp;
+        private TimeLimitDisplay _timeLimitDisp;
+        private LifeDisplay _lifeDisp;
+        private PauseDisplay _pauseDisp;
 
         /// <summary>
         /// 現在描画する画面
@@ -82,7 +82,7 @@ namespace Game2
         /// <summary>
         /// テクスチャ管理
         /// </summary>
-        internal readonly Textures Textures;
+        internal Textures Textures;
 
         /// <summary>
         /// 全体マップに対する描画位置
@@ -150,10 +150,13 @@ namespace Game2
 
             Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
             Graphics.ApplyChanges();
-
-            //描画関連
             UpdateViewport();
             SpriteBatch = new SpriteBatch(GraphicsDevice);
+        }
+
+        protected override void Initialize()
+        {
+            //描画関連
             Font = Content.Load<SpriteFont>("Fonts/PixelMplus10");
 
             //ゲームシステム
@@ -171,7 +174,9 @@ namespace Game2
             GameCtrl = new GameController2();
             Camera2D = new Camera2D();
             Camera2D.Initialize(GraphicsDevice, Width, Height);
+            base.Initialize();
         }
+
 
         /// <summary>
         /// ウィンドウサイズ変更時の処理
@@ -182,8 +187,8 @@ namespace Game2
         {
             if (Graphics.IsFullScreen)
             {
-                Graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-                Graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                Graphics.PreferredBackBufferWidth = GraphicsDevice.Adapter.CurrentDisplayMode.Width;
+                Graphics.PreferredBackBufferHeight = GraphicsDevice.Adapter.CurrentDisplayMode.Height;
             }
             else
             {
@@ -294,6 +299,11 @@ namespace Game2
             Session.UpdateHighScore(_scoreDisp.Value);
         }
 
+        internal int GetScore()
+        {
+            return _scoreDisp.Value;
+        }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -347,6 +357,7 @@ namespace Game2
         /// </summary>
         internal void ExecTitle()
         {
+            _hideHiscore = false;
             _screen = new TitleScreen(this, Font);
             Session.LoadHighScore();
         }
