@@ -91,6 +91,7 @@ namespace Game2.Screens
                 }
 
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
+                PushUp();
             }
             else if (Game2.GameCtrl.IsClick(Managers.KeyName.Down))
             {
@@ -111,6 +112,21 @@ namespace Game2.Screens
                 SelectMenu();
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuSelect");
             }
+        }
+
+        internal virtual void PushUp()
+        {
+
+        }
+
+        internal virtual void PushDown()
+        {
+
+        }
+
+        internal virtual void PushFire()
+        {
+
         }
 
         /// <summary>

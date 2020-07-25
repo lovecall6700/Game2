@@ -44,6 +44,21 @@ namespace Game2.Screens
             base.Update(ref offset, ref gameTime);
         }
 
+        internal override void PushUp()
+        {
+            _storyTimer.Start(8000f, true);
+        }
+
+        internal override void PushDown()
+        {
+            _storyTimer.Start(8000f, true);
+        }
+
+        internal override void PushFire()
+        {
+            _storyTimer.Start(8000f, true);
+        }
+
         internal override void SelectMenu()
         {
             switch (Index)
