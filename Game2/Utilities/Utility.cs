@@ -41,6 +41,10 @@ namespace Game2.Utilities
             return path;
         }
 
+        /// <summary>
+        /// OSがVistaか調べる
+        /// </summary>
+        /// <returns>OSがVistaか</returns>
         internal static bool IsVista()
         {
             System.OperatingSystem os = System.Environment.OSVersion;
@@ -53,6 +57,13 @@ namespace Game2.Utilities
             return false;
         }
 
+        /// <summary>
+        /// 対象を追尾するための速度ベクトルを得る
+        /// </summary>
+        /// <param name="obj">追跡者</param>
+        /// <param name="target">対象座標</param>
+        /// <param name="velocity">速度ベクトル</param>
+        /// <param name="speed">速度</param>
         internal static void Homing(PhysicsObject obj, Vector2 target, ref Vector2 velocity, float speed)
         {
 
@@ -81,6 +92,13 @@ namespace Game2.Utilities
             }
         }
 
+        /// <summary>
+        /// 指定フォントにおける文字列の描画サイズを得る
+        /// </summary>
+        /// <param name="font">SpriteFont</param>
+        /// <param name="msg">文字列</param>
+        /// <param name="scale">表示倍率</param>
+        /// <returns>描画サイズ</returns>
         internal static Vector2 GetMsgSize(SpriteFont font, string msg, float scale)
         {
             return font.MeasureString(msg) * scale;

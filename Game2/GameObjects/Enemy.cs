@@ -142,7 +142,6 @@ namespace Game2.GameObjects
 
         internal virtual void FinallyUpdate(ref GameTime gameTime)
         {
-
         }
     }
 }

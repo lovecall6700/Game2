@@ -11,6 +11,7 @@ namespace Game2.Managers
 {
     /// <summary>
     /// 音楽プレーヤー
+    /// Vistaでは何故か動作しない？
     /// </summary>
     internal class MusicPlayer
     {
@@ -116,6 +117,9 @@ namespace Game2.Managers
             }
         }
 
+        /// <summary>
+        /// BGMの再生を停止する
+        /// </summary>
         internal void StopSong()
         {
             try
@@ -125,6 +129,9 @@ namespace Game2.Managers
             catch { }
         }
 
+        /// <summary>
+        /// BGMの再生を頭から再スタートする
+        /// </summary>
         internal void ReplaySong()
         {
             try
@@ -194,6 +201,10 @@ namespace Game2.Managers
             catch { }
         }
 
+        /// <summary>
+        /// BGMの音量を設定する
+        /// </summary>
+        /// <param name="v">0.0から1.0までの数</param>
         internal void SetSongVolume(float v)
         {
             try
@@ -204,6 +215,10 @@ namespace Game2.Managers
             catch { }
         }
 
+        /// <summary>
+        /// SEの音量を設定する
+        /// </summary>
+        /// <param name="v">0.0から1.0までの数</param>
         internal void SetSEVolume(float v)
         {
             try

@@ -18,7 +18,6 @@ namespace Game2.Screens
         internal StageStart(Game2 game2, SpriteFont font) : base(game2, font)
         {
             Timer.Start(4200, true);
-
             string msg;
 
             if (Game2.Session.StageNo == Game2.StartStageNo && Game2.Session.DoorNo == Game2.StartDoorNo)

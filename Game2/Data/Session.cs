@@ -164,6 +164,10 @@ namespace Game2
             }
         }
 
+        /// <summary>
+        /// ハイスコアを更新する
+        /// </summary>
+        /// <param name="value">スコア</param>
         internal void UpdateHighScore(int value)
         {
             if (value > HighScore)
@@ -173,6 +177,10 @@ namespace Game2
             }
         }
 
+        /// <summary>
+        /// 宝箱の状態を保存する
+        /// </summary>
+        /// <param name="tb">TreasureBox</param>
         internal void AddTreasureBox(TreasureBox tb)
         {
             string id = tb.GetTreasureBoxID();
@@ -187,6 +195,10 @@ namespace Game2
             }
         }
 
+        /// <summary>
+        /// ドアの状態を保存する
+        /// </summary>
+        /// <param name="d">Door</param>
         internal void AddDoor(Door d)
         {
             string id = d.GetDoorID();
@@ -201,6 +213,10 @@ namespace Game2
             }
         }
 
+        /// <summary>
+        /// アイテムの状態を保存する
+        /// </summary>
+        /// <param name="d">Item</param>
         internal void AddItem(Item d)
         {
             string id = d.GetItemID();

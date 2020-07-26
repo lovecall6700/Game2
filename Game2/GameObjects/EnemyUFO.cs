@@ -10,6 +10,8 @@ namespace Game2.GameObjects
         internal EnemyUFO(Game2 game2, float x, float y) : base(game2, x, y)
         {
             Img = Game2.Textures.GetTexture("Images/EnemyUFO");
+            SetSize(256, 128);
+            Attack = 255;
         }
 
         internal override void Update(ref GameTime gameTime)

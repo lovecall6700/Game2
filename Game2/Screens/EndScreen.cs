@@ -21,6 +21,9 @@ namespace Game2.Screens
         /// </summary>
         private readonly ImageList _img = new ImageList();
 
+        /// <summary>
+        /// サブメッセージ
+        /// </summary>
         internal MenuItem SecondMsg;
 
         /// <summary>
@@ -28,6 +31,9 @@ namespace Game2.Screens
         /// </summary>
         private readonly List<Vector2> _position = new List<Vector2>();
 
+        /// <summary>
+        /// 常時スキップを受け付けるか
+        /// </summary>
         internal bool AlwaysSkip = false;
 
         internal EndScreen(Game2 game2, SpriteFont font) : base(game2, font)

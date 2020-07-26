@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework;
 
 namespace Game2.Managers
 {
+    /// <summary>
+    /// ボタンの機能名
+    /// </summary>
     internal enum KeyName
     {
         Jump = 0,
@@ -48,10 +51,21 @@ namespace Game2.Managers
         private KeyStatus _fire = KeyStatus.Release;
         private KeyStatus _pause = KeyStatus.Release;
         private KeyStatus _fullScreen = KeyStatus.Release;
-        private bool _flipflop = false;
         private readonly Timer _timer = new Timer();
 
+        /// <summary>
+        /// 連打時のボタン状態
+        /// </summary>
+        private bool _flipflop = false;
+
+        /// <summary>
+        /// クリックの制限時間
+        /// </summary>
         internal float ClickTime = 300f;
+
+        /// <summary>
+        /// 連打の制限時間
+        /// </summary>
         internal float RepeatTime = 250f;
 
         internal void Update(ref GameTime gameTime)
@@ -68,6 +82,11 @@ namespace Game2.Managers
             UpdateStatus(FullScreen, ref _fullScreen);
         }
 
+        /// <summary>
+        /// ボタンの状態を更新する
+        /// </summary>
+        /// <param name="raw">素のボタン状態</param>
+        /// <param name="state">ボタンの状態</param>
         private void UpdateStatus(bool raw, ref KeyStatus state)
         {
             if (state == KeyStatus.Release)

@@ -132,6 +132,9 @@ namespace Game2.GameObjects
         /// </summary>
         internal readonly Timer DamageTimer = new Timer();
 
+        /// <summary>
+        /// アニメーションするか
+        /// </summary>
         internal bool UseAnimation = true;
 
         internal PhysicsObject(Game2 game2, float x, float y) : base(game2, x, y)
@@ -176,7 +179,6 @@ namespace Game2.GameObjects
             }
 
             //ハシゴの上にいる
-
             //上り下りの最中はハシゴの中央によって行く
             if (ControlDirectionY != 0)
             {
@@ -274,6 +276,7 @@ namespace Game2.GameObjects
                     continue;
                 }
 
+                //頭上の物体には一度だけ接触判定を行う
                 if (first)
                 {
                     first = false;
@@ -424,6 +427,9 @@ namespace Game2.GameObjects
             return ret;
         }
 
+        /// <summary>
+        /// アニメーション画像を更新する
+        /// </summary>
         internal virtual void UpdateAnimation()
         {
             if (!UseAnimation)
@@ -575,6 +581,10 @@ namespace Game2.GameObjects
             }
         }
 
+        /// <summary>
+        /// ダメージ状態から回復する
+        /// </summary>
+        /// <param name="gameTime">GameTime</param>
         internal void RecoveryDamage(ref GameTime gameTime)
         {
             if (ObjectStatus == PhysicsObjectStatus.Damage && !DamageTimer.Update(ref gameTime))

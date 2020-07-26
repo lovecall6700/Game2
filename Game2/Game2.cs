@@ -267,6 +267,7 @@ namespace Game2
 
             if (!_focused || _paused)
             {
+                _pauseDisp.Update(ref gameTime);
                 return;
             }
 
@@ -310,6 +311,10 @@ namespace Game2
             Session.UpdateHighScore(_scoreDisp.Value);
         }
 
+        /// <summary>
+        /// 得点を返す
+        /// </summary>
+        /// <returns>得点</returns>
         internal int GetScore()
         {
             return _scoreDisp.Value;

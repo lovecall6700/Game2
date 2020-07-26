@@ -52,12 +52,12 @@ namespace Game2.GameObjects
         internal GameObjectKind ObjectKind;
 
         /// <summary>
-        /// 摩擦
+        /// 摩擦力
         /// </summary>
         private readonly float _friction = 2f;
 
         /// <summary>
-        /// 空中摩擦
+        /// 大気の摩擦力
         /// </summary>
         private static readonly float airFriction = 1f;
 
@@ -70,6 +70,11 @@ namespace Game2.GameObjects
             SetSize(Width, Height);
         }
 
+        /// <summary>
+        /// オブジェクトの接触サイズを設定する
+        /// </summary>
+        /// <param name="w">幅</param>
+        /// <param name="h">高さ</param>
         internal void SetSize(int w, int h)
         {
             Width = w;
@@ -118,7 +123,7 @@ namespace Game2.GameObjects
         }
 
         /// <summary>
-        /// 空中の摩擦力を返す
+        /// 大気の摩擦力を返す
         /// </summary>
         /// <param name="velocity">速度</param>
         /// <returns>摩擦力</returns>
@@ -137,6 +142,10 @@ namespace Game2.GameObjects
             return 0;
         }
 
+        /// <summary>
+        /// 上に乗った物体との接続を持つ
+        /// </summary>
+        /// <param name="o">PhysicsObject</param>
         internal void AddConnection(PhysicsObject o)
         {
             Connection.Add(o);

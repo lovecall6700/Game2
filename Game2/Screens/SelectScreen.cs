@@ -82,7 +82,7 @@ namespace Game2.Screens
 
             if (Game2.GameCtrl.IsClick(Managers.KeyName.Up))
             {
-                //前回押されていないときに上が押された
+                //上が押された
                 Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
 
                 if (Items[Index].Disable)
@@ -95,7 +95,7 @@ namespace Game2.Screens
             }
             else if (Game2.GameCtrl.IsClick(Managers.KeyName.Down))
             {
-                //前回押されていないときに下が押された
+                //下が押された
                 Index = MathHelper.Clamp(Index + 1, 0, Items.Count - 1);
 
                 //連続で無効は想定していない
@@ -109,7 +109,7 @@ namespace Game2.Screens
             }
             else if (Game2.GameCtrl.IsClick(Managers.KeyName.Fire))
             {
-                //前回押されていないときに選択が押された
+                //選択が押された
                 SelectMenu();
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuSelect");
                 PushFire();
@@ -118,17 +118,14 @@ namespace Game2.Screens
 
         internal virtual void PushUp()
         {
-
         }
 
         internal virtual void PushDown()
         {
-
         }
 
         internal virtual void PushFire()
         {
-
         }
 
         /// <summary>

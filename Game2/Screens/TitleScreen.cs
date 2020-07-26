@@ -14,6 +14,9 @@ namespace Game2.Screens
         /// </summary>
         private readonly Texture2D _titleImg;
 
+        /// <summary>
+        /// ストーリ画面に遷移するまでの時間
+        /// </summary>
         private readonly Timer _storyTimer = new Timer();
 
         internal TitleScreen(Game2 game2, SpriteFont font) : base(game2, font)

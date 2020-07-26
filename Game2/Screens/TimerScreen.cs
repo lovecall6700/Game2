@@ -43,7 +43,6 @@ namespace Game2.Screens
         /// </summary>
         internal virtual void Timeup()
         {
-
         }
     }
 }
