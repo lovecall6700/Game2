@@ -105,12 +105,14 @@ namespace Game2.Screens
                 }
 
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
+                PushDown();
             }
             else if (Game2.GameCtrl.IsClick(Managers.KeyName.Fire))
             {
                 //前回押されていないときに選択が押された
                 SelectMenu();
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuSelect");
+                PushFire();
             }
         }
 
