@@ -295,11 +295,26 @@ namespace Game2.GameObjects
                     }
                 }
 
-                //下降中
-                //プレーヤーが靴を所有して、上からの接触なら、雲に乗れる
-                if (o.ObjectKind == GameObjectKind.Cloud && (ObjectKind != GameObjectKind.Player || o.Rectangle.Top - Position.Y < Height || !Game2.Inventory.HasShoesItem()))
+                //下降中、以下の条件で雲を素通りする
+                //プレーヤーがアイテムを持っており雲と上から接触したら乗れる
+                //敵が雲と上から接触したら乗れる
+                if (o.ObjectKind == GameObjectKind.Cloud)
                 {
-                    continue;
+                    if (Position.Y <= o.Rectangle.Top - Height)
+                    {
+                        if (ObjectKind == GameObjectKind.Enemy || (ObjectKind == GameObjectKind.Player && Game2.Inventory.HasShoesItem()))
+                        {
+                            //素通りさせる
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
 
                 if (temp == null)
