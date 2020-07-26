@@ -62,7 +62,7 @@ namespace Game2.GameObjects
             }
 
             body[max - 1].Tail = true;
-            body[0].Position.X = Position.X + 128;
+            body[0].Position.X = Position.X + 120;
             body[0].Position.Y = Position.Y + 110;
             body[0].ResetAllHistory();
             Array.Reverse(body);

@@ -83,7 +83,7 @@ namespace Game2.Managers
             }
             else if (_counter == 10 && e != null)
             {
-                e.Position = new Vector2(100, -128) - offset;
+                e.Position = new Vector2(272, -128);
             }
             else if (_game2.PlaySc.StageDir == Screens.StageDirType.Horizontal)
             {
