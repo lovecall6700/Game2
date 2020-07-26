@@ -22,9 +22,14 @@ namespace Game2.Screens
         private readonly ImageList _img = new ImageList();
 
         /// <summary>
-        /// サブメッセージ
+        /// 2ndメッセージ
         /// </summary>
         internal MenuItem SecondMsg;
+
+        /// <summary>
+        /// 3rdメッセージ
+        /// </summary>
+        internal MenuItem ThirdMsg;
 
         /// <summary>
         /// 画像の位置
@@ -50,6 +55,7 @@ namespace Game2.Screens
             float msg1Sclae = Msg1Scale();
             Item = new MenuItem(new Vector2(128, 128) - GetMsgSize(msg1, msg1Sclae) / 2, msg1, msg1Sclae);
             AddSecondMsg();
+            AddThirdMsg();
             Game2.MusicPlayer.PlaySong(BgmName());
             Timer.Start(WaitTime1(), true);
         }
@@ -68,6 +74,18 @@ namespace Game2.Screens
             else
             {
                 SecondMsg.Color = Color.White;
+            }
+        }
+
+        internal virtual void AddThirdMsg()
+        {
+            if (Game2.Session.EnableTime)
+            {
+                string time = $"TIME:{Game2.Session.CalcTime()}ms";
+                ThirdMsg = new MenuItem(new Vector2(128, 220) - GetMsgSize(time, 0.5f) / 2, time, 0.5f)
+                {
+                    Color = Color.White
+                };
             }
         }
 
@@ -177,6 +195,11 @@ namespace Game2.Screens
                 if (SecondMsg != null)
                 {
                     SecondMsg.Draw(ref spriteBatch, ref Font); ;
+                }
+
+                if (ThirdMsg != null)
+                {
+                    ThirdMsg.Draw(ref spriteBatch, ref Font); ;
                 }
             }
         }

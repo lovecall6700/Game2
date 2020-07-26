@@ -156,7 +156,6 @@ namespace Game2
         protected override void Initialize()
         {
             //ゲームシステム
-            Session = new Session();
             Textures = new Textures(Content);
             Scheduler = new Scheduler(this);
             GameCtrl = new GameController2();
@@ -373,9 +372,10 @@ namespace Game2
         /// </summary>
         internal void ExecTitle()
         {
+            Session = new Session();
+            Session.LoadHighScore();
             _hideHiscore = false;
             _screen = new TitleScreen(this, Font);
-            Session.LoadHighScore();
         }
 
         /// <summary>
@@ -392,6 +392,11 @@ namespace Game2
         /// </summary>
         internal void ExecContinueStart()
         {
+            Session = new Session
+            {
+                EnableTime = false
+            };
+            Session.LoadHighScore();
             Session.LoadStage();
             Session.Life = Player.MaxLife;
             _remainDisp.TitleContinue();
@@ -409,6 +414,7 @@ namespace Game2
         {
             _hideHiscore = false;
             Session = new Session();
+            Session.StartTime();
             Session.LoadHighScore();
             Session.StageNo = StartStageNo;
             Session.DoorNo = StartDoorNo;
@@ -455,6 +461,7 @@ namespace Game2
         internal void ExecEnding()
         {
             _hideHiscore = true;
+            Session.EndTime();
             _screen = new EndScreen(this, Font);
         }
 

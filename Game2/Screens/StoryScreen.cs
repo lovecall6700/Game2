@@ -16,6 +16,10 @@ namespace Game2.Screens
         {
         }
 
+        internal override void AddThirdMsg()
+        {
+        }
+
         internal override string FileName()
         {
             return "Images/Story";

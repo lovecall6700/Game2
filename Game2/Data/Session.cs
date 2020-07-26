@@ -1,6 +1,7 @@
 ﻿using Game2.GameObjects;
 using Game2.Utilities;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -65,6 +66,16 @@ namespace Game2
         /// 裏技アイテム無限フラグ
         /// </summary>
         public bool InfiniteItem = false;
+
+        /// <summary>
+        /// 時間測定
+        /// </summary>
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+
+        /// <summary>
+        /// 時間測定が有効か
+        /// </summary>
+        internal bool EnableTime = true;
 
         /// <summary>
         /// ストレージからハイスコアをロードする
@@ -229,6 +240,32 @@ namespace Game2
             {
                 ItemVisibility.Add(id, d.Visibility);
             }
+        }
+
+
+        /// <summary>
+        /// 時間測定を開始する
+        /// </summary>
+        internal void StartTime()
+        {
+            _stopwatch.Start();
+        }
+
+        /// <summary>
+        /// 時間測定を終了する
+        /// </summary>
+        internal void EndTime()
+        {
+            _stopwatch.Stop();
+        }
+
+        /// <summary>
+        /// クリア時間を得る
+        /// </summary>
+        /// <returns>クリア時間</returns>
+        internal long CalcTime()
+        {
+            return _stopwatch.ElapsedMilliseconds;
         }
     }
 }

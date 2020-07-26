@@ -44,6 +44,7 @@ namespace Game2.Screens
                     if (Game2.GameCtrl.Right && Game2.GameCtrl.Left)
                     {
                         Game2.Session.InfiniteItem = true;
+                        Game2.Session.EnableTime = false;
                     }
 
                     Game2.Scheduler.Retry();
