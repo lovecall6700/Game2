@@ -37,6 +37,8 @@ namespace Game2.GameObjects
                     ObjectStatus = PhysicsObjectStatus.Remove;
                 }
             }
+
+            Rectangle.Location = Position.ToPoint();
         }
 
         /// <summary>
