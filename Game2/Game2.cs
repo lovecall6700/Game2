@@ -151,32 +151,41 @@ namespace Game2
             Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
             Graphics.ApplyChanges();
             UpdateViewport();
-            SpriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         protected override void Initialize()
         {
-            //描画関連
-            Font = Content.Load<SpriteFont>("Fonts/PixelMplus10");
-
             //ゲームシステム
-            Scheduler = new Scheduler(this);
-            Scheduler.Title();
             Session = new Session();
             Textures = new Textures(Content);
+            Scheduler = new Scheduler(this);
+            GameCtrl = new GameController2();
+            Camera2D = new Camera2D();
+            base.Initialize();
+        }
+
+        protected override void LoadContent()
+        {
+            //描画関連
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            Font = Content.Load<SpriteFont>("Fonts/PixelMplus10");
             _timeLimitDisp = new TimeLimitDisplay(this, Font, GraphicsDevice);
             _scoreDisp = new ScoreDisplay(this, Font, GraphicsDevice);
             _remainDisp = new RemainDisplay(this, Font, GraphicsDevice);
             _pauseDisp = new PauseDisplay(this, Font, GraphicsDevice);
             _lifeDisp = new LifeDisplay(this, Font, GraphicsDevice);
-            Inventory = new Inventory(this);
-            MusicPlayer = new MusicPlayer(Content);
-            GameCtrl = new GameController2();
-            Camera2D = new Camera2D();
             Camera2D.Initialize(GraphicsDevice, Width, Height);
-            base.Initialize();
-        }
 
+            //ゲーム関連
+            Inventory = new Inventory(this);
+
+            //音は最後
+            MusicPlayer = new MusicPlayer(Content);
+
+            //すべての初期化後はタイトル画面を予約
+            Scheduler.Title();
+            base.LoadContent();
+        }
 
         /// <summary>
         /// ウィンドウサイズ変更時の処理
