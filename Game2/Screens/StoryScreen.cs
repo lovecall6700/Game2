@@ -5,7 +5,7 @@ namespace Game2.Screens
     /// <summary>
     /// ストーリー画面
     /// </summary>
-    internal class StoryScreen : EndScreen
+    internal class StoryScreen : EndingScreen
     {
         internal StoryScreen(Game2 game2, SpriteFont font) : base(game2, font)
         {

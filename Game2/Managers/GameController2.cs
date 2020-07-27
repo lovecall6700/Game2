@@ -3,54 +3,16 @@ using Microsoft.Xna.Framework;
 
 namespace Game2.Managers
 {
-    /// <summary>
-    /// ボタンの機能名
-    /// </summary>
-    internal enum KeyName
-    {
-        Jump = 0,
-        Fire,
-        Left,
-        Right,
-        Down,
-        Up,
-        Pause,
-        FullScreen
-    }
-
-    /// <summary>
-    /// ボタンの状態
-    /// </summary>
-    internal enum KeyStatus
-    {
-        /// <summary>
-        /// 解放
-        /// </summary>
-        Release = 0,
-        /// <summary>
-        /// クリック(押して離す)
-        /// </summary>
-        Click,
-        /// <summary>
-        /// 押下
-        /// </summary>
-        Press,
-        /// <summary>
-        /// 連打
-        /// </summary>
-        Repeat
-    }
-
     internal class GameController2 : GameController
     {
-        private KeyStatus _up = KeyStatus.Release;
-        private KeyStatus _down = KeyStatus.Release;
-        private KeyStatus _left = KeyStatus.Release;
-        private KeyStatus _right = KeyStatus.Release;
-        private KeyStatus _jump = KeyStatus.Release;
-        private KeyStatus _fire = KeyStatus.Release;
-        private KeyStatus _pause = KeyStatus.Release;
-        private KeyStatus _fullScreen = KeyStatus.Release;
+        private ButtonStatus _up = ButtonStatus.Release;
+        private ButtonStatus _down = ButtonStatus.Release;
+        private ButtonStatus _left = ButtonStatus.Release;
+        private ButtonStatus _right = ButtonStatus.Release;
+        private ButtonStatus _jump = ButtonStatus.Release;
+        private ButtonStatus _fire = ButtonStatus.Release;
+        private ButtonStatus _pause = ButtonStatus.Release;
+        private ButtonStatus _fullScreen = ButtonStatus.Release;
         private readonly Timer _timer = new Timer();
 
         /// <summary>
@@ -87,18 +49,18 @@ namespace Game2.Managers
         /// </summary>
         /// <param name="raw">素のボタン状態</param>
         /// <param name="state">ボタンの状態</param>
-        private void UpdateStatus(bool raw, ref KeyStatus state)
+        private void UpdateStatus(bool raw, ref ButtonStatus state)
         {
-            if (state == KeyStatus.Release)
+            if (state == ButtonStatus.Release)
             {
                 if (raw)
                 {
                     //リリース時に押されたら無条件でプレスへ
-                    state = KeyStatus.Press;
+                    state = ButtonStatus.Press;
                     _timer.Start(ClickTime, true);
                 }
             }
-            else if (state == KeyStatus.Press)
+            else if (state == ButtonStatus.Press)
             {
                 //プレス時
                 if (!raw)
@@ -106,17 +68,17 @@ namespace Game2.Managers
                     if (_timer.Running)
                     {
                         //一定時間以内に離れたらクリックへ
-                        state = KeyStatus.Click;
+                        state = ButtonStatus.Click;
                         _timer.Start(RepeatTime, true);
                     }
                     else
                     {
                         //一定時間離れたままならリリースへ
-                        state = KeyStatus.Release;
+                        state = ButtonStatus.Release;
                     }
                 }
             }
-            else if (state == KeyStatus.Click)
+            else if (state == ButtonStatus.Click)
             {
                 //クリック時
                 if (_timer.Running)
@@ -124,7 +86,7 @@ namespace Game2.Managers
                     if (raw)
                     {
                         //一定時間内に押されたらリピートへ
-                        state = KeyStatus.Repeat;
+                        state = ButtonStatus.Repeat;
                         _flipflop = true;
                         _timer.Start(RepeatTime, true);
                     }
@@ -132,10 +94,10 @@ namespace Game2.Managers
                 else
                 {
                     //一定時間以上離れたらリリースへ
-                    state = KeyStatus.Release;
+                    state = ButtonStatus.Release;
                 }
             }
-            else if (state == KeyStatus.Repeat)
+            else if (state == ButtonStatus.Repeat)
             {
                 //リピート時
                 if (_timer.Running)
@@ -166,12 +128,12 @@ namespace Game2.Managers
                     if (raw)
                     {
                         //押されたままだったらプレスへ
-                        state = KeyStatus.Press;
+                        state = ButtonStatus.Press;
                     }
                     else
                     {
                         //離れたままだったらリリースへ
-                        state = KeyStatus.Release;
+                        state = ButtonStatus.Release;
                     }
                 }
             }
@@ -182,41 +144,41 @@ namespace Game2.Managers
         /// </summary>
         /// <param name="name">KeyName</param>
         /// <returns>ボタンが解放か</returns>
-        internal bool IsRelease(KeyName name)
+        internal bool IsRelease(ButtonNames name)
         {
             switch (name)
             {
-                case KeyName.Jump:
+                case ButtonNames.Jump:
 
-                    return _jump == KeyStatus.Release;
+                    return _jump == ButtonStatus.Release;
 
-                case KeyName.Fire:
+                case ButtonNames.Fire:
 
-                    return _fire == KeyStatus.Release;
+                    return _fire == ButtonStatus.Release;
 
-                case KeyName.Left:
+                case ButtonNames.Left:
 
-                    return _left == KeyStatus.Release;
+                    return _left == ButtonStatus.Release;
 
-                case KeyName.Right:
+                case ButtonNames.Right:
 
-                    return _right == KeyStatus.Release;
+                    return _right == ButtonStatus.Release;
 
-                case KeyName.Down:
+                case ButtonNames.Down:
 
-                    return _down == KeyStatus.Release;
+                    return _down == ButtonStatus.Release;
 
-                case KeyName.Up:
+                case ButtonNames.Up:
 
-                    return _up == KeyStatus.Release;
+                    return _up == ButtonStatus.Release;
 
-                case KeyName.Pause:
+                case ButtonNames.Pause:
 
-                    return _pause == KeyStatus.Release;
+                    return _pause == ButtonStatus.Release;
 
-                case KeyName.FullScreen:
+                case ButtonNames.FullScreen:
 
-                    return _fullScreen == KeyStatus.Release;
+                    return _fullScreen == ButtonStatus.Release;
             }
 
             return false;
@@ -227,41 +189,41 @@ namespace Game2.Managers
         /// </summary>
         /// <param name="name">KeyName</param>
         /// <returns>ボタンが押下か</returns>
-        internal bool IsPress(KeyName name)
+        internal bool IsPress(ButtonNames name)
         {
             switch (name)
             {
-                case KeyName.Jump:
+                case ButtonNames.Jump:
 
-                    return _jump == KeyStatus.Press;
+                    return _jump == ButtonStatus.Press;
 
-                case KeyName.Fire:
+                case ButtonNames.Fire:
 
-                    return _fire == KeyStatus.Press;
+                    return _fire == ButtonStatus.Press;
 
-                case KeyName.Left:
+                case ButtonNames.Left:
 
-                    return _left == KeyStatus.Press;
+                    return _left == ButtonStatus.Press;
 
-                case KeyName.Right:
+                case ButtonNames.Right:
 
-                    return _right == KeyStatus.Press;
+                    return _right == ButtonStatus.Press;
 
-                case KeyName.Down:
+                case ButtonNames.Down:
 
-                    return _down == KeyStatus.Press;
+                    return _down == ButtonStatus.Press;
 
-                case KeyName.Up:
+                case ButtonNames.Up:
 
-                    return _up == KeyStatus.Press;
+                    return _up == ButtonStatus.Press;
 
-                case KeyName.Pause:
+                case ButtonNames.Pause:
 
-                    return _pause == KeyStatus.Press;
+                    return _pause == ButtonStatus.Press;
 
-                case KeyName.FullScreen:
+                case ButtonNames.FullScreen:
 
-                    return _fullScreen == KeyStatus.Press;
+                    return _fullScreen == ButtonStatus.Press;
             }
 
             return false;
@@ -272,41 +234,41 @@ namespace Game2.Managers
         /// </summary>
         /// <param name="name">KeyName</param>
         /// <returns>ボタンが連打か</returns>
-        internal bool IsRepeat(KeyName name)
+        internal bool IsRepeat(ButtonNames name)
         {
             switch (name)
             {
-                case KeyName.Jump:
+                case ButtonNames.Jump:
 
-                    return _jump == KeyStatus.Repeat;
+                    return _jump == ButtonStatus.Repeat;
 
-                case KeyName.Fire:
+                case ButtonNames.Fire:
 
-                    return _fire == KeyStatus.Repeat;
+                    return _fire == ButtonStatus.Repeat;
 
-                case KeyName.Left:
+                case ButtonNames.Left:
 
-                    return _left == KeyStatus.Repeat;
+                    return _left == ButtonStatus.Repeat;
 
-                case KeyName.Right:
+                case ButtonNames.Right:
 
-                    return _right == KeyStatus.Repeat;
+                    return _right == ButtonStatus.Repeat;
 
-                case KeyName.Down:
+                case ButtonNames.Down:
 
-                    return _down == KeyStatus.Repeat;
+                    return _down == ButtonStatus.Repeat;
 
-                case KeyName.Up:
+                case ButtonNames.Up:
 
-                    return _up == KeyStatus.Repeat;
+                    return _up == ButtonStatus.Repeat;
 
-                case KeyName.Pause:
+                case ButtonNames.Pause:
 
-                    return _pause == KeyStatus.Repeat;
+                    return _pause == ButtonStatus.Repeat;
 
-                case KeyName.FullScreen:
+                case ButtonNames.FullScreen:
 
-                    return _fullScreen == KeyStatus.Repeat;
+                    return _fullScreen == ButtonStatus.Repeat;
             }
 
             return false;
@@ -317,87 +279,87 @@ namespace Game2.Managers
         /// </summary>
         /// <param name="name">KeyName</param>
         /// <returns>ボタンがクリックか</returns>
-        internal bool IsClick(KeyName name)
+        internal bool IsClick(ButtonNames name)
         {
             bool b = false;
 
             switch (name)
             {
-                case KeyName.Jump:
+                case ButtonNames.Jump:
 
-                    if (_jump == KeyStatus.Click)
+                    if (_jump == ButtonStatus.Click)
                     {
-                        _jump = KeyStatus.Release;
+                        _jump = ButtonStatus.Release;
                         b = true;
                     }
 
                     return b;
 
-                case KeyName.Fire:
+                case ButtonNames.Fire:
 
-                    if (_fire == KeyStatus.Click)
+                    if (_fire == ButtonStatus.Click)
                     {
-                        _fire = KeyStatus.Release;
+                        _fire = ButtonStatus.Release;
                         b = true;
                     }
 
                     return b;
 
-                case KeyName.Left:
+                case ButtonNames.Left:
 
-                    if (_left == KeyStatus.Click)
+                    if (_left == ButtonStatus.Click)
                     {
-                        _left = KeyStatus.Release;
+                        _left = ButtonStatus.Release;
                         b = true;
                     }
 
                     return b;
 
-                case KeyName.Right:
+                case ButtonNames.Right:
 
-                    if (_right == KeyStatus.Click)
+                    if (_right == ButtonStatus.Click)
                     {
-                        _right = KeyStatus.Release;
+                        _right = ButtonStatus.Release;
                         b = true;
                     }
 
                     return b;
 
-                case KeyName.Down:
+                case ButtonNames.Down:
 
-                    if (_down == KeyStatus.Click)
+                    if (_down == ButtonStatus.Click)
                     {
-                        _down = KeyStatus.Release;
+                        _down = ButtonStatus.Release;
                         b = true;
                     }
 
                     return b;
 
-                case KeyName.Up:
+                case ButtonNames.Up:
 
-                    if (_up == KeyStatus.Click)
+                    if (_up == ButtonStatus.Click)
                     {
-                        _up = KeyStatus.Release;
+                        _up = ButtonStatus.Release;
                         b = true;
                     }
 
                     return b;
 
-                case KeyName.Pause:
+                case ButtonNames.Pause:
 
-                    if (_pause == KeyStatus.Click)
+                    if (_pause == ButtonStatus.Click)
                     {
-                        _pause = KeyStatus.Release;
+                        _pause = ButtonStatus.Release;
                         b = true;
                     }
 
                     return b;
 
-                case KeyName.FullScreen:
+                case ButtonNames.FullScreen:
 
-                    if (_fullScreen == KeyStatus.Click)
+                    if (_fullScreen == ButtonStatus.Click)
                     {
-                        _fullScreen = KeyStatus.Release;
+                        _fullScreen = ButtonStatus.Release;
                         b = true;
                     }
 

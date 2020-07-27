@@ -72,7 +72,7 @@ namespace Game2.Screens
             //一度離すのを確認してから入力を受け付ける
             if (_keyFlag)
             {
-                if (Game2.GameCtrl.IsRelease(Managers.KeyName.Fire))
+                if (Game2.GameCtrl.IsRelease(Managers.ButtonNames.Fire))
                 {
                     _keyFlag = false;
                 }
@@ -80,7 +80,7 @@ namespace Game2.Screens
                 return;
             }
 
-            if (Game2.GameCtrl.IsClick(Managers.KeyName.Up))
+            if (Game2.GameCtrl.IsClick(Managers.ButtonNames.Up))
             {
                 //上が押された
                 Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
@@ -93,7 +93,7 @@ namespace Game2.Screens
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
                 PushUp();
             }
-            else if (Game2.GameCtrl.IsClick(Managers.KeyName.Down))
+            else if (Game2.GameCtrl.IsClick(Managers.ButtonNames.Down))
             {
                 //下が押された
                 Index = MathHelper.Clamp(Index + 1, 0, Items.Count - 1);
@@ -107,7 +107,7 @@ namespace Game2.Screens
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
                 PushDown();
             }
-            else if (Game2.GameCtrl.IsClick(Managers.KeyName.Fire))
+            else if (Game2.GameCtrl.IsClick(Managers.ButtonNames.Fire))
             {
                 //選択が押された
                 SelectMenu();

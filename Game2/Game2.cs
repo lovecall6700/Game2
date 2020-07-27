@@ -462,7 +462,7 @@ namespace Game2
         {
             _hideHiscore = true;
             Session.EndTime();
-            _screen = new EndScreen(this, Font);
+            _screen = new EndingScreen(this, Font);
         }
 
         /// <summary>

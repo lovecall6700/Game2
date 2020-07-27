@@ -8,7 +8,7 @@ namespace Game2.Screens
     /// <summary>
     /// エンディング画面
     /// </summary>
-    internal class EndScreen : TimerScreen
+    internal class EndingScreen : TimerScreen
     {
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Game2.Screens
         /// </summary>
         internal bool AlwaysSkip = false;
 
-        internal EndScreen(Game2 game2, SpriteFont font) : base(game2, font)
+        internal EndingScreen(Game2 game2, SpriteFont font) : base(game2, font)
         {
             string baseName = FileName();
 
@@ -165,7 +165,7 @@ namespace Game2.Screens
 
             if (AlwaysSkip || _state == 2)
             {
-                if (Game2.GameCtrl.IsClick(Managers.KeyName.Fire))
+                if (Game2.GameCtrl.IsClick(Managers.ButtonNames.Fire))
                 {
                     _state = 2;
                     Timer.Running = false;

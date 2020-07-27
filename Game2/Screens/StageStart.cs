@@ -89,7 +89,7 @@ namespace Game2.Screens
 
         internal override void Update(ref Vector2 offset, ref GameTime gametime)
         {
-            if (Game2.GameCtrl.IsClick(Managers.KeyName.Fire))
+            if (Game2.GameCtrl.IsClick(Managers.ButtonNames.Fire))
             {
                 //強制定期にタイムアップを発生させる
                 Timer.Running = false;

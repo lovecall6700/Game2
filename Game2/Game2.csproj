@@ -67,7 +67,9 @@
     <Compile Include="GameObjects\BeltConveyer.cs" />
     <Compile Include="GameObjects\MovingFloor.cs" />
     <Compile Include="GameObjects\StaticMessage.cs" />
+    <Compile Include="Managers\ButtonStatus.cs" />
     <Compile Include="Managers\GameController2.cs" />
+    <Compile Include="Managers\ButtonNames.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="GameObjects\ObjectVisibility.cs" />
     <Compile Include="GameObjects\EnemyUFO.cs" />
@@ -118,7 +120,7 @@
     <Compile Include="Screens\BGMVolumeScreen.cs" />
     <Compile Include="Screens\PlayScreen.cs" />
     <Compile Include="Managers\Textures.cs" />
-    <Compile Include="Screens\EndScreen.cs" />
+    <Compile Include="Screens\EndingScreen.cs" />
     <Compile Include="Screens\MessageScreen.cs" />
     <Compile Include="Screens\StageDirType.cs" />
     <Compile Include="Screens\TimerScreen.cs" />
