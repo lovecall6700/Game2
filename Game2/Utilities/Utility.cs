@@ -31,7 +31,7 @@ namespace Game2.Utilities
         {
             // パスを取得
             System.Diagnostics.FileVersionInfo info = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            string path = Path.Combine(Environment.GetEnvironmentVariable("AppData"), info.CompanyName, info.ProductName, info.FileVersion);
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), info.CompanyName, info.ProductName, info.FileVersion);
 
             // パスのフォルダを作成
             if (!Directory.Exists(path))
