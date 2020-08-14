@@ -63,7 +63,7 @@ namespace Game2.Managers
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream($@"{Utility.GetSaveFilePath()}\soundvolume.dat", FileMode.Open);
+                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "soundvolume.dat"), FileMode.Open);
                 SoundVolumeData sd = (SoundVolumeData)formatter.Deserialize(fs);
                 fs.Close();
                 _BGMVolume = sd.BGMVolume;
@@ -96,7 +96,7 @@ namespace Game2.Managers
                 };
 
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream($@"{Utility.GetSaveFilePath()}\soundvolume.dat", FileMode.Create);
+                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "soundvolume.dat"), FileMode.Create);
                 formatter.Serialize(fs, data);
                 fs.Close();
             }

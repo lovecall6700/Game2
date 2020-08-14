@@ -1,8 +1,8 @@
 ﻿using Game2.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.IO;
-using System.Windows.Forms;
 
 namespace Game2.Utilities
 {
@@ -30,7 +30,8 @@ namespace Game2.Utilities
         internal static string GetSaveFilePath()
         {
             // パスを取得
-            string path = Application.UserAppDataPath;
+            System.Diagnostics.FileVersionInfo info = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), info.CompanyName, info.ProductName, info.FileVersion);
 
             // パスのフォルダを作成
             if (!Directory.Exists(path))
@@ -47,7 +48,7 @@ namespace Game2.Utilities
         /// <returns>OSがVistaか</returns>
         internal static bool IsVista()
         {
-            System.OperatingSystem os = System.Environment.OSVersion;
+            OperatingSystem os = Environment.OSVersion;
 
             if (os.Version.Major == 6 && os.Version.Minor == 0)
             {
