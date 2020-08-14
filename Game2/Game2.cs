@@ -193,6 +193,8 @@ namespace Game2
         /// <param name="e">EventArgs</param>
         private void WindowSizeChanged(object sender, EventArgs e)
         {
+            Window.ClientSizeChanged -= WindowSizeChanged;
+
             if (Graphics.IsFullScreen)
             {
                 Graphics.PreferredBackBufferWidth = GraphicsDevice.Adapter.CurrentDisplayMode.Width;
@@ -206,6 +208,7 @@ namespace Game2
 
             Graphics.ApplyChanges();
             UpdateViewport();
+            Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
         }
 
         /// <summary>
