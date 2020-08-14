@@ -148,9 +148,9 @@ namespace Game2
                 SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight
             };
 
-            Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
             Graphics.ApplyChanges();
             UpdateViewport();
+            Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
         }
 
         protected override void Initialize()
