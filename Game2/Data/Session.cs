@@ -85,7 +85,7 @@ namespace Game2
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream($@"{Utility.GetSaveFilePath()}\highscore.dat", FileMode.Open);
+                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "highscore.dat"), FileMode.Open);
                 HighScoreData sd = (HighScoreData)formatter.Deserialize(fs);
                 fs.Close();
                 HighScore = sd.HighScore;
@@ -111,7 +111,7 @@ namespace Game2
                 };
 
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream($@"{Utility.GetSaveFilePath()}\highscore.dat", FileMode.Create);
+                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "highscore.dat"), FileMode.Create);
                 formatter.Serialize(fs, data);
                 fs.Close();
             }
@@ -128,7 +128,7 @@ namespace Game2
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream($@"{Utility.GetSaveFilePath()}\stage.dat", FileMode.Open);
+                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "stage.dat"), FileMode.Open);
                 SaveData sd = (SaveData)formatter.Deserialize(fs);
                 fs.Close();
                 StageNo = sd.StageNo;
@@ -166,7 +166,7 @@ namespace Game2
                 };
 
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream($@"{Utility.GetSaveFilePath()}\stage.dat", FileMode.Create);
+                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "stage.dat"), FileMode.Create);
                 formatter.Serialize(fs, data);
                 fs.Close();
             }

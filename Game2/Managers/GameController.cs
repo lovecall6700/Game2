@@ -77,7 +77,7 @@ namespace Game2.Managers
         {
             try
             {
-                foreach (string line in File.ReadLines($@"{Utility.GetSaveFilePath()}\KeyConfig.txt"))
+                foreach (string line in File.ReadLines(Path.Combine(Utility.GetSaveFilePath(), "KeyConfig.txt")))
                 {
                     string[] lines = line.Split('=');
 
