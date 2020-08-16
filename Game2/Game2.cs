@@ -580,7 +580,7 @@ namespace Game2
             {
                 int width = GraphicsDevice.PresentationParameters.BackBufferWidth;
                 int height = GraphicsDevice.PresentationParameters.BackBufferHeight;
-                RenderTarget2D screenshot = new RenderTarget2D(GraphicsDevice, width, height, false, SurfaceFormat.Bgra32, DepthFormat.None);
+                RenderTarget2D screenshot = new RenderTarget2D(GraphicsDevice, width, height, false, SurfaceFormat.Color, DepthFormat.None);
                 GraphicsDevice.SetRenderTarget(screenshot);
                 Draw(new GameTime());
                 GraphicsDevice.SetRenderTarget(null);
@@ -590,19 +590,9 @@ namespace Game2
                 {
                     DateTime datetime = DateTime.Now;
                     string ymdhms = datetime.ToString("yyyyMMddHHmmss");
-                    System.Drawing.Imaging.PixelFormat format = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
                     FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), $"screenshot_{ymdhms}.png"), FileMode.OpenOrCreate);
-                    System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(width, height, format);
-                    System.Drawing.Rectangle rect = new System.Drawing.Rectangle(0, 0, width, height);
-                    int[] textureData = new int[width * height];
-                    screenshot.GetData(textureData);
-                    System.Drawing.Imaging.BitmapData bitmapData = bitmap.LockBits(rect, System.Drawing.Imaging.ImageLockMode.WriteOnly, format);
-                    IntPtr safePtr = bitmapData.Scan0;
-                    System.Runtime.InteropServices.Marshal.Copy(textureData, 0, safePtr, textureData.Length);
-                    bitmap.UnlockBits(bitmapData);
-                    bitmap.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
+                    screenshot.SaveAsPng(fs, width, height);
                     fs.Close();
-                    bitmap.Dispose();
                     screenshot.Dispose();
                 }
             }
