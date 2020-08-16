@@ -105,6 +105,6 @@ Windowsなら`C:\Users\(ユーザー名)\AppData\Roaming\SHIRAISHI\Game2\1.0.0.0
 =====
 
 - 実行には各種OS向け[.NET Core Runtime 3.1.7](https://dotnet.microsoft.com/download/dotnet-core/3.1 ".NET Core Runtime 3.1.7")のインストールが必須です。
-- Windowsでは`Game2.exe`ファイルをダブルクリックすると動きます。
+- Windows 10の場合、ダウンロードしたzipファイルを右クリックして`プロパティ`から`ブロックの解除`にチェックを入れて`OK`押してください。その後、zipファイルを再び右クリックして`すべて展開`から`展開`を押してください。展開されたフォルダ内の`Game2.exe`をダブルクリックするとゲームが開始されます。
 - Linuxではシェルから`dotnet Game2.dll`で動きます。
 - その他OSでの実行方法は知らん。
