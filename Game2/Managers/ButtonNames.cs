@@ -12,6 +12,7 @@
         Down,
         Up,
         Pause,
-        FullScreen
+        FullScreen,
+        Screenshot
     }
 }
