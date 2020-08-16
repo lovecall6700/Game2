@@ -5,6 +5,7 @@ using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 
 namespace Game2
 {
@@ -237,6 +238,11 @@ namespace Game2
                 Exit();
             }
 
+            if (GameCtrl.IsClick(ButtonNames.Screenshot))
+            {
+                SaveScreenshot();
+            }
+
             //Alt+Enterで最大化
             if (!_fullScTimer.Update(ref gameTime) && GameCtrl.FullScreen)
             {
@@ -464,6 +470,14 @@ namespace Game2
         internal void ExecEnding()
         {
             _hideHiscore = true;
+
+            if (Session == null)
+            {
+                Session = new Session();
+                Session.LoadHighScore();
+                Session.EnableTime = false;
+            }
+
             Session.EndTime();
             _screen = new EndingScreen(this, Font);
         }
@@ -555,6 +569,46 @@ namespace Game2
             _focused = false;
             _paused = true;
             MusicPlayer.StopSong();
+        }
+
+        /// <summary>
+        /// スクリーンショットを保存する
+        /// </summary>
+        public void SaveScreenshot()
+        {
+            try
+            {
+                int width = GraphicsDevice.PresentationParameters.BackBufferWidth;
+                int height = GraphicsDevice.PresentationParameters.BackBufferHeight;
+                RenderTarget2D screenshot = new RenderTarget2D(GraphicsDevice, width, height, false, SurfaceFormat.Bgra32, DepthFormat.None);
+                GraphicsDevice.SetRenderTarget(screenshot);
+                Draw(new GameTime());
+                GraphicsDevice.SetRenderTarget(null);
+                GraphicsDevice.Present();
+
+                if (screenshot != null)
+                {
+                    DateTime datetime = DateTime.Now;
+                    string ymdhms = datetime.ToString("yyyyMMddHHmmss");
+                    System.Drawing.Imaging.PixelFormat format = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
+                    FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), $"screenshot_{ymdhms}.png"), FileMode.OpenOrCreate);
+                    System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(width, height, format);
+                    System.Drawing.Rectangle rect = new System.Drawing.Rectangle(0, 0, width, height);
+                    int[] textureData = new int[width * height];
+                    screenshot.GetData(textureData);
+                    System.Drawing.Imaging.BitmapData bitmapData = bitmap.LockBits(rect, System.Drawing.Imaging.ImageLockMode.WriteOnly, format);
+                    IntPtr safePtr = bitmapData.Scan0;
+                    System.Runtime.InteropServices.Marshal.Copy(textureData, 0, safePtr, textureData.Length);
+                    bitmap.UnlockBits(bitmapData);
+                    bitmap.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
+                    fs.Close();
+                    bitmap.Dispose();
+                    screenshot.Dispose();
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }

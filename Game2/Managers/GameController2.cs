@@ -13,6 +13,7 @@ namespace Game2.Managers
         private ButtonStatus _fire = ButtonStatus.Release;
         private ButtonStatus _pause = ButtonStatus.Release;
         private ButtonStatus _fullScreen = ButtonStatus.Release;
+        private ButtonStatus _screenshot = ButtonStatus.Release;
         private readonly Timer _timer = new Timer();
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace Game2.Managers
             UpdateStatus(Fire, ref _fire);
             UpdateStatus(Pause, ref _pause);
             UpdateStatus(FullScreen, ref _fullScreen);
+            UpdateStatus(Screenshot, ref _screenshot);
         }
 
         /// <summary>
@@ -179,6 +181,10 @@ namespace Game2.Managers
                 case ButtonNames.FullScreen:
 
                     return _fullScreen == ButtonStatus.Release;
+
+                case ButtonNames.Screenshot:
+
+                    return _screenshot == ButtonStatus.Release;
             }
 
             return false;
@@ -224,6 +230,10 @@ namespace Game2.Managers
                 case ButtonNames.FullScreen:
 
                     return _fullScreen == ButtonStatus.Press;
+
+                case ButtonNames.Screenshot:
+
+                    return _screenshot == ButtonStatus.Press;
             }
 
             return false;
@@ -269,6 +279,10 @@ namespace Game2.Managers
                 case ButtonNames.FullScreen:
 
                     return _fullScreen == ButtonStatus.Repeat;
+
+                case ButtonNames.Screenshot:
+
+                    return _screenshot == ButtonStatus.Repeat;
             }
 
             return false;
@@ -360,6 +374,16 @@ namespace Game2.Managers
                     if (_fullScreen == ButtonStatus.Click)
                     {
                         _fullScreen = ButtonStatus.Release;
+                        b = true;
+                    }
+
+                    return b;
+
+                case ButtonNames.Screenshot:
+
+                    if (_screenshot == ButtonStatus.Click)
+                    {
+                        _screenshot = ButtonStatus.Release;
                         b = true;
                     }
 

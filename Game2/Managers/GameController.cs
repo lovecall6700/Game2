@@ -38,6 +38,7 @@ namespace Game2.Managers
         private Keys _leftKey2 = Keys.A;
         private Keys _rightKey2 = Keys.D;
         private Keys _pauseKey = Keys.P;
+        private Keys _screenshotKey = Keys.F12;
 
         //押されたキー一覧
         internal bool Jump;
@@ -49,6 +50,7 @@ namespace Game2.Managers
         internal bool Exit;
         internal bool Pause;
         internal bool FullScreen;
+        internal bool Screenshot;
 
         internal GameController()
         {
@@ -71,6 +73,7 @@ namespace Game2.Managers
             Exit = _key.IsKeyDown(_exitKey);
             Pause = _pad1.IsButtonDown(_pauseBtn) || _key.IsKeyDown(_pauseKey) || _pad2.IsButtonDown(_pauseBtn) || _pad3.IsButtonDown(_pauseBtn) || _pad4.IsButtonDown(_pauseBtn);
             FullScreen = _key.IsKeyDown(Keys.Enter) && (_key.IsKeyDown(Keys.LeftAlt) || _key.IsKeyDown(Keys.RightAlt));
+            Screenshot = _key.IsKeyDown(_screenshotKey);
         }
 
         private void Load()
@@ -217,6 +220,13 @@ namespace Game2.Managers
                         if (!TryParse(lines[1].Trim(), out _pauseKey))
                         {
                             _pauseKey = Keys.P;
+                        }
+                    }
+                    else if (lines[0].Trim() == "ScreenshotKey")
+                    {
+                        if (!TryParse(lines[1].Trim(), out _screenshotKey))
+                        {
+                            _screenshotKey = Keys.F12;
                         }
                     }
                 }

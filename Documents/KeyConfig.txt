@@ -17,3 +17,4 @@ DownKey2 = S
 LeftKey2 = A
 RightKey2 = D
 PauseKey = P
+ScreenshotKey = F12
