@@ -56,9 +56,9 @@
 
 各種セーブデータ・設定ファイルパス
 =====
+`C:\Users\(ユーザー名)\AppData\Roaming\SHIRAISHI\Game2\1.0.0.0`に各種セーブデータが保管されます。
 
-- `C:\Users\(ユーザー名)\AppData\Roaming\SHIRAISHI\Game2\1.0.0.0`に各種セーブデータが保管されます。
-- `KeyConfig.txt`ファイルを用意することでキー操作を好みのキーに変更できます。`KeyConfig.txt`を`C:\Users\(ユーザー名)\AppData\Roaming\SHIRAISHI\Game2\1.0.0.0`内にコピーして、`AboutKeyConfig.txt`に書かれているキー名を参考に変えてみてください。
+`KeyConfig.txt`ファイルを用意することでキー操作を好みのキーに変更できます。`KeyConfig.txt`を`C:\Users\(ユーザー名)\AppData\Roaming\SHIRAISHI\Game2\1.0.0.0`内にコピーして、`AboutKeyConfig.txt`に書かれているキー名を参考に変えてみてください。
 
 
 扉
