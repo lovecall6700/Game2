@@ -59,7 +59,7 @@
 =====
 Windowsなら`C:\Users\(ユーザー名)\AppData\Roaming\SHIRAISHI\Game2\1.0.0.0`、Linuxなら`/home/(ユーザー名)/.Config/SHIRAISHI/Game2/1.0.0.0`、macOSはGame2.dllのあるフォルダ内の`SHIRAISHI\Game2\1.0.0.0`に各種セーブデータが保管される。
 
-`KeyConfig.txt`ファイルを用意することでキー操作を好みのキーに変更できます。`KeyConfig.txt`をWindowsなら`SHIRAISHI\Game2\1.0.0.0`内にコピーして、`AboutKeyConfig.txt`に書かれているキー名を参考に変えてみてください。
+`KeyConfig.txt`ファイルを用意することでキー操作を好みのキーに変更できます。`KeyConfig.txt`を`SHIRAISHI\Game2\1.0.0.0`内にコピーして、`AboutKeyConfig.txt`に書かれているキー名を参考に変えてみてください。
 
 
 扉
