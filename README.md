@@ -57,9 +57,9 @@
 
 各種セーブデータ・設定ファイルパス
 =====
-Windowsなら`C:\Users\(ユーザー名)\AppData\Roaming\SHIRAISHI\Game2\1.0.0.0`、Linuxなら`/home/(ユーザー名)/.Config/SHIRAISHI/Game2/1.0.0.0`に各種セーブデータが保管される。
+Windowsなら`C:\Users\(ユーザー名)\AppData\Roaming\SHIRAISHI\Game2\1.0.0.0`、Linuxなら`/home/(ユーザー名)/.Config/SHIRAISHI/Game2/1.0.0.0`、macOSはGame2.dllのあるフォルダ内の`SHIRAISHI\Game2\1.0.0.0`に各種セーブデータが保管される。
 
-`KeyConfig.txt`ファイルを用意することでキー操作を好みのキーに変更できます。`KeyConfig.txt`をWindowsなら`C:\Users\(ユーザー名)\AppData\Roaming\SHIRAISHI\Game2\1.0.0.0`内にコピーして、`AboutKeyConfig.txt`に書かれているキー名を参考に変えてみてください。
+`KeyConfig.txt`ファイルを用意することでキー操作を好みのキーに変更できます。`KeyConfig.txt`をWindowsなら`SHIRAISHI\Game2\1.0.0.0`内にコピーして、`AboutKeyConfig.txt`に書かれているキー名を参考に変えてみてください。
 
 
 扉
@@ -110,5 +110,4 @@ Windows 10の場合、ダウンロードしたzipファイルを右クリック�
 実行した結果パソコンが爆発したり、死人が出ても俺は知らん。
 
 - 実行には各種OS向け[.NET Core Runtime 3.1.7](https://dotnet.microsoft.com/download/dotnet-core/3.1 ".NET Core Runtime 3.1.7")のインストールが必須です。
-- Linuxではシェルから`dotnet Game2.dll`で動きます。
-- その他OSでの実行方法は知らん。
+- LinuxとmacOSではシェルから`dotnet Game2.dll`で動きます。
