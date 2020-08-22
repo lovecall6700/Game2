@@ -150,7 +150,6 @@ namespace Game2
             };
 
             Graphics.ApplyChanges();
-            UpdateViewport();
             Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
         }
 
@@ -217,6 +216,11 @@ namespace Game2
         /// </summary>
         private void UpdateViewport()
         {
+            if (GraphicsDevice == null)
+            {
+                return;
+            }
+
             int backWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
             int backHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
             Viewport = new Viewport(0, 0, backWidth, backHeight);
