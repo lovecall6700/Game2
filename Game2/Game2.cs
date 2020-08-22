@@ -91,7 +91,6 @@ namespace Game2
         internal Vector2 Offset;
 
         //その他のシステム周り
-        internal Viewport Viewport;
         internal SpriteFont Font;
         internal GraphicsDeviceManager Graphics;
         internal SpriteBatch SpriteBatch;
@@ -150,7 +149,6 @@ namespace Game2
             };
 
             Graphics.ApplyChanges();
-            UpdateViewport();
             Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
         }
 
@@ -208,18 +206,7 @@ namespace Game2
             }
 
             Graphics.ApplyChanges();
-            UpdateViewport();
             Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
-        }
-
-        /// <summary>
-        /// Viewportを更新する
-        /// </summary>
-        private void UpdateViewport()
-        {
-            int backWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
-            int backHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
-            Viewport = new Viewport(0, 0, backWidth, backHeight);
         }
 
         /// <summary>
