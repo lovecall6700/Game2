@@ -206,6 +206,12 @@ namespace Game2
             }
 
             Graphics.ApplyChanges();
+
+            if (Camera2D != null)
+            {
+                Camera2D.Initialize(GraphicsDevice, Width, Height);
+            }
+
             Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
         }
 
