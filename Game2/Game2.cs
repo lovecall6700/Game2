@@ -375,7 +375,6 @@ namespace Game2
         internal void ExecTitle()
         {
             Session = new Session();
-            Session.LoadHighScore();
             _hideHiscore = false;
             _screen = new TitleScreen(this, Font);
         }
@@ -397,7 +396,6 @@ namespace Game2
             {
                 EnableTime = false
             };
-            Session.LoadHighScore();
             Session.LoadStage();
             Session.Life = Player.MaxLife;
             _remainDisp.TitleContinue();
@@ -416,7 +414,6 @@ namespace Game2
             _hideHiscore = false;
             Session = new Session();
             Session.StartTime();
-            Session.LoadHighScore();
             Session.StageNo = StartStageNo;
             Session.DoorNo = StartDoorNo;
             Session.Life = Player.MaxLife;
@@ -445,6 +442,7 @@ namespace Game2
         {
             if (_remainDisp.Miss())
             {
+                SaveHighScore();
                 _screen = new GameoverScreen(this, Font);
             }
             else
@@ -465,12 +463,14 @@ namespace Game2
 
             if (Session == null)
             {
-                Session = new Session();
-                Session.LoadHighScore();
-                Session.EnableTime = false;
+                Session = new Session
+                {
+                    EnableTime = false
+                };
             }
 
             Session.EndTime();
+            SaveHighScore();
             _screen = new EndingScreen(this, Font);
         }
 
@@ -599,12 +599,6 @@ namespace Game2
             {
                 Session.SaveHighScore();
             }
-        }
-
-        protected override void OnExiting(object sender, EventArgs args)
-        {
-            SaveHighScore();
-            base.OnExiting(sender, args);
         }
     }
 }

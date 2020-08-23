@@ -78,9 +78,17 @@ namespace Game2
         internal bool EnableTime = true;
 
         /// <summary>
+        /// Session
+        /// </summary>
+        public Session()
+        {
+            LoadHighScore();
+        }
+
+        /// <summary>
         /// ストレージからハイスコアをロードする
         /// </summary>
-        internal void LoadHighScore()
+        private void LoadHighScore()
         {
             try
             {
@@ -184,7 +192,6 @@ namespace Game2
             if (value > HighScore)
             {
                 HighScore = value;
-                SaveHighScore();
             }
         }
 
