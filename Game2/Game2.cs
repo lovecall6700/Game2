@@ -385,7 +385,6 @@ namespace Game2
         /// </summary>
         internal void ExecQuit()
         {
-            Session.SaveHighScore();
             Exit();
         }
 
@@ -592,6 +591,20 @@ namespace Game2
             catch
             {
             }
+        }
+
+        public void SaveHighScore()
+        {
+            if (Session != null)
+            {
+                Session.SaveHighScore();
+            }
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            SaveHighScore();
+            base.OnExiting(sender, args);
         }
     }
 }
