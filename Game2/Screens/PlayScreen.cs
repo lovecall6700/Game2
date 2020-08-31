@@ -536,11 +536,10 @@ namespace Game2.Screens
                 }
 
                 Game2.Offset.Y = 0;
+                Game2.Offset.X = MathHelper.Clamp(Game2.Offset.X, 0, _mapWidth * 16 - Game2.Width);
             }
             else if (StageDir == StageDirType.Vertical)
             {
-                Game2.Offset.X = 0;
-
                 if (Player.Rectangle.Top < Game2.Offset.Y + 100)
                 {
                     Game2.Offset.Y = Player.Rectangle.Top - 100;
@@ -549,6 +548,9 @@ namespace Game2.Screens
                 {
                     Game2.Offset.Y = Player.Rectangle.Bottom - 156;
                 }
+
+                Game2.Offset.X = 0;
+                Game2.Offset.Y = MathHelper.Clamp(Game2.Offset.Y, 0, _mapHeight * 16 - Game2.Height);
             }
             else
             {
