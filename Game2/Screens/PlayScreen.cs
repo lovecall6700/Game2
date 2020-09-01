@@ -519,6 +519,34 @@ namespace Game2.Screens
             _darkZoneSwitchTimer.Update(ref gameTime);
         }
 
+        private void FocusXCamera2D()
+        {
+            if (Player.Rectangle.Left < Game2.Offset.X + 100)
+            {
+                Game2.Offset.X = Player.Rectangle.Left - 100;
+            }
+            else if (Game2.Offset.X + 156 < Player.Rectangle.Right)
+            {
+                Game2.Offset.X = Player.Rectangle.Right - 156;
+            }
+
+            Game2.Offset.X = MathHelper.Clamp(Game2.Offset.X, 0, _mapWidth * 16 - Game2.Width);
+        }
+
+        private void FocusYCamera2D()
+        {
+            if (Player.Rectangle.Top < Game2.Offset.Y + 100)
+            {
+                Game2.Offset.Y = Player.Rectangle.Top - 100;
+            }
+            else if (Game2.Offset.Y + 156 < Player.Rectangle.Bottom)
+            {
+                Game2.Offset.Y = Player.Rectangle.Bottom - 156;
+            }
+
+            Game2.Offset.Y = MathHelper.Clamp(Game2.Offset.Y, 0, _mapHeight * 16 - Game2.Height);
+        }
+
         /// <summary>
         /// カメラの位置を更新する
         /// </summary>
@@ -526,35 +554,18 @@ namespace Game2.Screens
         {
             if (StageDir == StageDirType.Horizontal)
             {
-                if (Player.Rectangle.Left < Game2.Offset.X + 100)
-                {
-                    Game2.Offset.X = Player.Rectangle.Left - 100;
-                }
-                else if (Game2.Offset.X + 156 < Player.Rectangle.Right)
-                {
-                    Game2.Offset.X = Player.Rectangle.Right - 156;
-                }
-
+                FocusXCamera2D();
                 Game2.Offset.Y = 0;
-                Game2.Offset.X = MathHelper.Clamp(Game2.Offset.X, 0, _mapWidth * 16 - Game2.Width);
             }
             else if (StageDir == StageDirType.Vertical)
             {
-                if (Player.Rectangle.Top < Game2.Offset.Y + 100)
-                {
-                    Game2.Offset.Y = Player.Rectangle.Top - 100;
-                }
-                else if (Game2.Offset.Y + 156 < Player.Rectangle.Bottom)
-                {
-                    Game2.Offset.Y = Player.Rectangle.Bottom - 156;
-                }
-
+                FocusYCamera2D();
                 Game2.Offset.X = 0;
-                Game2.Offset.Y = MathHelper.Clamp(Game2.Offset.Y, 0, _mapHeight * 16 - Game2.Height);
             }
             else
             {
-                Game2.Offset = new Vector2(0, 0);
+                FocusXCamera2D();
+                FocusYCamera2D();
             }
 
             //視界内のマップに対してのみ物理演算を行う
