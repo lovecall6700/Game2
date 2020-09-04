@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -15,6 +16,9 @@ namespace Game2.Managers
     /// </summary>
     internal class MusicPlayer
     {
+
+        private TimeSpan _playPosition;
+
         private readonly ContentManager _content;
 
         /// <summary>
@@ -118,19 +122,23 @@ namespace Game2.Managers
         }
 
         /// <summary>
-        /// BGMの再生を停止する
+        /// BGMの再生を一時停止する
         /// </summary>
         internal void StopSong()
         {
             try
             {
-                MediaPlayer.Stop();
+                if (_bgm != null)
+                {
+                    _playPosition = MediaPlayer.PlayPosition;
+                    MediaPlayer.Stop();
+                }
             }
             catch { }
         }
 
         /// <summary>
-        /// BGMの再生を頭から再スタートする
+        /// BGMの再生を一時停止位置から再スタートする
         /// </summary>
         internal void ReplaySong()
         {
@@ -138,7 +146,12 @@ namespace Game2.Managers
             {
                 if (_bgm != null)
                 {
-                    MediaPlayer.Play(_bgm);
+                    if (_playPosition > _bgm.Duration)
+                    {
+                        _playPosition = new TimeSpan(0, 0, 0);
+                    }
+
+                    MediaPlayer.Play(_bgm, _playPosition);
                 }
             }
             catch { }
@@ -175,8 +188,12 @@ namespace Game2.Managers
                 if (_lastSongName != name)
                 {
                     _bgm = _content.Load<Song>(name);
-                    MediaPlayer.Play(_bgm);
                     _lastSongName = name;
+
+                    if (_bgm != null)
+                    {
+                        MediaPlayer.Play(_bgm);
+                    }
                 }
             }
             catch { }
