@@ -13,6 +13,7 @@
         Up,
         Pause,
         FullScreen,
-        Screenshot
+        Screenshot,
+        Exit
     }
 }
