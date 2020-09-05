@@ -14,6 +14,7 @@ namespace Game2.Managers
         private ButtonStatus _pause = ButtonStatus.Release;
         private ButtonStatus _fullScreen = ButtonStatus.Release;
         private ButtonStatus _screenshot = ButtonStatus.Release;
+        private ButtonStatus _exit = ButtonStatus.Release;
         private readonly Timer _timer = new Timer();
 
         /// <summary>
@@ -44,6 +45,7 @@ namespace Game2.Managers
             UpdateStatus(Pause, ref _pause);
             UpdateStatus(FullScreen, ref _fullScreen);
             UpdateStatus(Screenshot, ref _screenshot);
+            UpdateStatus(Exit, ref _exit);
         }
 
         /// <summary>
@@ -185,6 +187,10 @@ namespace Game2.Managers
                 case ButtonNames.Screenshot:
 
                     return _screenshot == ButtonStatus.Release;
+
+                case ButtonNames.Exit:
+
+                    return _exit == ButtonStatus.Release;
             }
 
             return false;
@@ -234,6 +240,10 @@ namespace Game2.Managers
                 case ButtonNames.Screenshot:
 
                     return _screenshot == ButtonStatus.Press;
+
+                case ButtonNames.Exit:
+
+                    return _exit == ButtonStatus.Press;
             }
 
             return false;
@@ -283,6 +293,10 @@ namespace Game2.Managers
                 case ButtonNames.Screenshot:
 
                     return _screenshot == ButtonStatus.Repeat;
+
+                case ButtonNames.Exit:
+
+                    return _exit == ButtonStatus.Repeat;
             }
 
             return false;
@@ -384,6 +398,16 @@ namespace Game2.Managers
                     if (_screenshot == ButtonStatus.Click)
                     {
                         _screenshot = ButtonStatus.Release;
+                        b = true;
+                    }
+
+                    return b;
+
+                case ButtonNames.Exit:
+
+                    if (_exit == ButtonStatus.Click)
+                    {
+                        _exit = ButtonStatus.Release;
                         b = true;
                     }
 

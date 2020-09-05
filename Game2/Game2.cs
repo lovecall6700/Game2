@@ -226,9 +226,9 @@ namespace Game2
             GameCtrl.Update(ref gameTime);
 
             //ESCで終了
-            if (GameCtrl.Exit)
+            if (GameCtrl.IsClick(ButtonNames.Exit))
             {
-                Exit();
+                Scheduler.Title();
             }
 
             if (GameCtrl.IsClick(ButtonNames.Screenshot))
