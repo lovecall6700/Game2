@@ -94,5 +94,5 @@ Windows 10の場合、ダウンロードしたzipファイルを右クリック�
 
 実行した結果パソコンが爆発したり、死人が出ても俺は知らん。
 
-・実行には各種OS向け.NET Core Runtime 3.1.7(https://dotnet.microsoft.com/download/dotnet-core/3.1)のインストールが必須です。
+・実行には各種OS向け.NET Core Runtime 3.1.7(https://dotnet.microsoft.com/download/dotnet-core/3.1)のインストールが必須です。3.1.8や3.1.9など新しいバージョンがあれば、そちらを使ったほうがいいかもしれません。
 ・LinuxとmacOSではシェルから`dotnet Game2.dll`で動きます。
