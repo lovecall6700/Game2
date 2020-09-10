@@ -27,7 +27,7 @@ namespace Game2.Screens
 
         internal override int NumOfImage()
         {
-            return 2;
+            return 4;
         }
 
         internal override string Msg1()
