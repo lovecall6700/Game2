@@ -48,6 +48,7 @@ namespace Game2.Managers
             }
 
             Transform = Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
+            device.Viewport = Viewport;
         }
     }
 }
