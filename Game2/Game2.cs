@@ -269,6 +269,7 @@ namespace Game2
             if (!_focused || _paused)
             {
                 _pauseDisp.Update(ref gameTime);
+                base.Update(gameTime);
                 return;
             }
 
@@ -327,8 +328,6 @@ namespace Game2
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Viewport = Camera2D.Viewport;
-
             if (Scheduler.Playing)
             {
                 //ゲーム描画
