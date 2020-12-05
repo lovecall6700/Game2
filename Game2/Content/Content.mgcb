@@ -92,12 +92,6 @@
 /processorParam:Quality=Best
 /build:SoundEffects/Crack.wav
 
-#begin SoundEffects/EnemyDamage.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/EnemyDamage.wav
-
 #begin SoundEffects/EnemyDead.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
