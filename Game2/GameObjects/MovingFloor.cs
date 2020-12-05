@@ -16,7 +16,7 @@ namespace Game2.GameObjects
             _min = min;
             _max = max;
             ObjectKind = GameObjectKind.MovingFloor;
-            Img = Game2.Textures.GetTexture("Images/MovingFloor");
+            Img = Game2.Textures.GetTexture("MovingFloor");
             SetSize(48, 10);
         }
 

@@ -10,19 +10,19 @@ namespace Game2.GameObjects
     internal class Crack : Block
     {
         private int _life = 5;
-        private readonly Texture2D[] _crackImg = new Texture2D[5];
+        private readonly ImageList _crackImg = new ImageList();
         private readonly Timer _timer = new Timer();
         private readonly float _time = 200f;
 
         internal Crack(Game2 game2, float x, float y, string dummy) : base(game2, x, y)
         {
             ObjectKind = GameObjectKind.Carck;
-            Img = Game2.Textures.GetTexture("Images/" + dummy);
-            _crackImg[0] = Game2.Textures.GetTexture("Images/Crack3");
-            _crackImg[1] = Game2.Textures.GetTexture("Images/Crack2");
-            _crackImg[2] = Game2.Textures.GetTexture("Images/Crack1");
-            _crackImg[3] = Game2.Textures.GetTexture("Images/Null");
-            _crackImg[4] = Game2.Textures.GetTexture("Images/Null");
+            Img = Game2.Textures.GetTexture("" + dummy);
+            _crackImg.AddImage(Game2.Textures.GetTexture("Crack3"));
+            _crackImg.AddImage(Game2.Textures.GetTexture("Crack2"));
+            _crackImg.AddImage(Game2.Textures.GetTexture("Crack1"));
+            _crackImg.AddImage(Game2.Textures.GetTexture("Null"));
+            _crackImg.AddImage(Game2.Textures.GetTexture("Null"));
             SetSize(16, 16);
         }
 
@@ -54,7 +54,7 @@ namespace Game2.GameObjects
 
             if (_life > 0)
             {
-                spriteBatch.Draw(_crackImg[_life - 1], Position - offset, Color.White);
+                spriteBatch.Draw(Game2.Images, Position - offset, _crackImg.GetImage(_life - 1), Color.White);
             }
         }
 

@@ -9,7 +9,7 @@ namespace Game2.GameObjects
 
         internal EnemyUFO(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            Img = Game2.Textures.GetTexture("Images/EnemyUFO");
+            Img = Game2.Textures.GetTexture("EnemyUFO");
             SetSize(256, 80);
             Attack = 255;
         }

@@ -1,6 +1,5 @@
 Fujitsu LIFEBOOK SH76/K
-Microsoft Xbox 360 Controller (有線・白)
 Microsoft Windows 10 Pro
 Microsoft Visual Studio Community 2019
-MonoGame 3.8
-PixelMplus
+MonoGame 3.7.1/3.8
+

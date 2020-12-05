@@ -1,6 +1,5 @@
 ﻿using Game2.Utilities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Game2.GameObjects
 {
@@ -12,12 +11,12 @@ namespace Game2.GameObjects
         /// <summary>
         /// 座った絵
         /// </summary>
-        private readonly Texture2D _sitDownImg;
+        private readonly Rectangle? _sitDownImg;
 
         /// <summary>
         /// 後ろ向きに立っている絵
         /// </summary>
-        private readonly Texture2D _stayImg;
+        private readonly Rectangle? _stayImg;
 
         /// <summary>
         /// 再スタート位置
@@ -66,15 +65,15 @@ namespace Game2.GameObjects
 
         internal Player(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/PlayerR1"));
-            RImg.AddImage(Game2.Textures.GetTexture("Images/PlayerR2"));
-            LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/PlayerL1"));
-            LImg.AddImage(Game2.Textures.GetTexture("Images/PlayerL2"));
-            LadderImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/PlayerLadder1"));
-            LadderImg.AddImage(Game2.Textures.GetTexture("Images/PlayerLadder2"));
-            _sitDownImg = Game2.Textures.GetTexture("Images/PlayerSit");
-            DeadImg = Game2.Textures.GetTexture("Images/PlayerDead");
-            _stayImg = Game2.Textures.GetTexture("Images/PlayerStay");
+            RImg.ClearAndAddImage(Game2.Textures.GetTexture("PlayerR1"));
+            RImg.AddImage(Game2.Textures.GetTexture("PlayerR2"));
+            LImg.ClearAndAddImage(Game2.Textures.GetTexture("PlayerL1"));
+            LImg.AddImage(Game2.Textures.GetTexture("PlayerL2"));
+            LadderImg.ClearAndAddImage(Game2.Textures.GetTexture("PlayerLadder1"));
+            LadderImg.AddImage(Game2.Textures.GetTexture("PlayerLadder2"));
+            _sitDownImg = Game2.Textures.GetTexture("PlayerSit");
+            DeadImg = Game2.Textures.GetTexture("PlayerDead");
+            _stayImg = Game2.Textures.GetTexture("PlayerStay");
             DeadSE = "SoundEffects/PlayerDead";
             DamageSE = "SoundEffects/PlayerDead";
             UseAirFriction = true;

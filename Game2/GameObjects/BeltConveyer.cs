@@ -8,7 +8,7 @@ namespace Game2.GameObjects
     {
         private readonly bool _left = false;
         private readonly float _speed = -4f;
-        private readonly Texture2D _beltImg;
+        private readonly Rectangle? _beltImg;
         private readonly Timer _timer = new Timer();
         private readonly float _time = 100f;
         private bool _vibro = false;
@@ -18,8 +18,8 @@ namespace Game2.GameObjects
         internal BeltConveyer(Game2 game2, float x, float y, string dummy, string dir) : base(game2, x, y)
         {
             ObjectKind = GameObjectKind.Block;
-            Img = Game2.Textures.GetTexture("Images/" + dummy);
-            _beltImg = Game2.Textures.GetTexture("Images/BeltConveyer");
+            Img = Game2.Textures.GetTexture("" + dummy);
+            _beltImg = Game2.Textures.GetTexture("BeltConveyer");
             SetSize(16, 16);
 
             if (dir == "Left")
@@ -35,7 +35,7 @@ namespace Game2.GameObjects
         internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             base.Draw(ref offset, ref gameTime, ref spriteBatch);
-            spriteBatch.Draw(_beltImg, Position - offset + (_vibro ? _vibroA : _vibroB), Color.White);
+            spriteBatch.Draw(Game2.Images, Position - offset + (_vibro ? _vibroA : _vibroB), _beltImg, Color.White);
         }
 
         internal override void Update(ref GameTime gameTime)

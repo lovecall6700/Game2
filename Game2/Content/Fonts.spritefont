@@ -51,25 +51,10 @@ with.
     See the documentation for more information.
     -->
     <CharacterRegions>
-      <!--アスキー-->
       <CharacterRegion>
         <Start>&#32;</Start>
         <End>&#126;</End>
       </CharacterRegion>
-      <!--かな-->
-      <!-- 
-      <CharacterRegion>
-        <Start>&#12353;</Start>
-        <End>&#12438;</End>
-      </CharacterRegion>
-      -->
-      <!--カナ-->
-      <!-- 
-      <CharacterRegion>
-        <Start>&#12449;</Start>
-        <End>&#12538;</End>
-      </CharacterRegion>
-      -->
     </CharacterRegions>
   </Asset>
 </XnaContent>

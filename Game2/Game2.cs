@@ -25,6 +25,9 @@ namespace Game2
         private LifeDisplay _lifeDisp;
         private PauseDisplay _pauseDisp;
 
+        //画像セット
+        internal Texture2D Images = null;
+
         /// <summary>
         /// 現在描画する画面
         /// </summary>
@@ -155,7 +158,7 @@ namespace Game2
         protected override void Initialize()
         {
             //ゲームシステム
-            Textures = new Textures(Content);
+            Textures = new Textures();
             Scheduler = new Scheduler(this);
             GameCtrl = new GameController2();
             Camera2D = new Camera2D();
@@ -166,7 +169,8 @@ namespace Game2
         {
             //描画関連
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            Font = Content.Load<SpriteFont>("Fonts/PixelMplus10");
+            Images = Content.Load<Texture2D>("Images");
+            Font = Content.Load<SpriteFont>("Fonts");
             _timeLimitDisp = new TimeLimitDisplay(this, Font, GraphicsDevice);
             _scoreDisp = new ScoreDisplay(this, Font, GraphicsDevice);
             _remainDisp = new RemainDisplay(this, Font, GraphicsDevice);
