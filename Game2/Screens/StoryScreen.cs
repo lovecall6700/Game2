@@ -22,7 +22,7 @@ namespace Game2.Screens
 
         internal override string FileName()
         {
-            return "Images/Story";
+            return "Story";
         }
 
         internal override int NumOfImage()

@@ -14,7 +14,7 @@
         internal Cloud(Game2 game2, float x, float y) : base(game2, x, y)
         {
             ObjectKind = GameObjectKind.Cloud;
-            Img = Game2.Textures.GetTexture("Images/Cloud");
+            Img = Game2.Textures.GetTexture("Cloud");
             SetSize(32, 16);
         }
     }

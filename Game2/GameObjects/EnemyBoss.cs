@@ -21,16 +21,16 @@ namespace Game2.GameObjects
 
             if (ID == 0)
             {
-                RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBossR1"));
-                LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBossL1"));
+                RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyBossR1"));
+                LImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyBossL1"));
             }
             else
             {
-                RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBossBody"));
-                LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyBossBody"));
+                RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyBossBody"));
+                LImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyBossBody"));
             }
 
-            DeadImg = Game2.Textures.GetTexture("Images/EnemyBossBody");
+            DeadImg = Game2.Textures.GetTexture("EnemyBossBody");
             _lastPosition = Position;
             Life = 2;
             MaxSpeedX = 2;
@@ -82,7 +82,7 @@ namespace Game2.GameObjects
             else
             {
                 CopyPosition();
-                Img = Game2.Textures.GetTexture("Images/EnemyBossBody");
+                Img = Game2.Textures.GetTexture("EnemyBossBody");
             }
 
             return false;

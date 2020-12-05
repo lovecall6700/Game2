@@ -375,7 +375,7 @@ namespace Game2.Screens
                         //Block系
                         obj = new Block(Game2, x, y)
                         {
-                            Img = Game2.Textures.GetTexture($"Images/{objectName}")
+                            Img = Game2.Textures.GetTexture($"{objectName}")
                         };
 
                         depth = int.Parse(lines[3]);

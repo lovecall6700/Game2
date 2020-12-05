@@ -41,17 +41,17 @@ namespace Game2.GameObjects
         /// <summary>
         /// 閉じたテクスチャ
         /// </summary>
-        private readonly Texture2D _closeImg = null;
+        private readonly Rectangle? _closeImg = null;
 
         /// <summary>
         /// 不可視・隠し扉のダミーテクスチャ上段
         /// </summary>
-        private readonly Texture2D _dummyImgUp = null;
+        private readonly Rectangle? _dummyImgUp = null;
 
         /// <summary>
         /// 不可視・隠し扉のダミーテクスチャ下段
         /// </summary>
-        private readonly Texture2D _dummyImgDown = null;
+        private readonly Rectangle? _dummyImgDown = null;
 
         /// <summary>
         /// 扉
@@ -72,7 +72,7 @@ namespace Game2.GameObjects
             StageNo = stageNo;
             DestStageNo = destStage;
             DestDoorNo = destNo;
-            _closeImg = Game2.Textures.GetTexture("Images/DoorClose");
+            _closeImg = Game2.Textures.GetTexture("DoorClose");
             SetSize(16, 32);
 
             if (doorType == "Hidden")
@@ -94,12 +94,12 @@ namespace Game2.GameObjects
 
             if (dummyUp != "Null")
             {
-                _dummyImgUp = Game2.Textures.GetTexture("Images/" + dummyUp);
+                _dummyImgUp = Game2.Textures.GetTexture("" + dummyUp);
             }
 
             if (dummyDown != "Null")
             {
-                _dummyImgDown = Game2.Textures.GetTexture("Images/" + dummyDown);
+                _dummyImgDown = Game2.Textures.GetTexture("" + dummyDown);
             }
         }
 
@@ -132,12 +132,12 @@ namespace Game2.GameObjects
                 //不可視・隠し扉はダミーのテクスチャを描画する
                 if (_dummyImgUp != null)
                 {
-                    spriteBatch.Draw(_dummyImgUp, Position - offset, Color.White);
+                    spriteBatch.Draw(Game2.Images, Position - offset, _dummyImgUp, Color.White);
                 }
 
                 if (_dummyImgDown != null)
                 {
-                    spriteBatch.Draw(_dummyImgDown, Position - offset + _downOffset, Color.White);
+                    spriteBatch.Draw(Game2.Images, Position - offset + _downOffset, _dummyImgDown, Color.White);
                 }
 
                 return;

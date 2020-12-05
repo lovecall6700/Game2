@@ -91,7 +91,7 @@ namespace Game2.Screens
 
         internal virtual string FileName()
         {
-            return "Images/End";
+            return "End";
         }
 
         internal virtual int NumOfImage()
@@ -185,7 +185,7 @@ namespace Game2.Screens
 
                 for (int i = 0; i < NumOfImage(); i++)
                 {
-                    spriteBatch.Draw(_img.GetImage(i), _position[i], Color.White);
+                    spriteBatch.Draw(Game2.Images, _position[i], _img.GetImage(i), Color.White);
                 }
             }
             else if (_state == 2)
