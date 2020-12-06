@@ -1,4 +1,4 @@
-﻿using Game2.GameObjects;
+using Game2.GameObjects;
 using Game2.Managers;
 using Game2.Screens;
 using Game2.Utilities;

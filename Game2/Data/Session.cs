@@ -1,4 +1,4 @@
-﻿using Game2.GameObjects;
+using Game2.GameObjects;
 using Game2.Utilities;
 using System.Collections.Generic;
 using System.Diagnostics;

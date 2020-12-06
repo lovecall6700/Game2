@@ -1,4 +1,4 @@
-﻿namespace Game2.Managers
+namespace Game2.Managers
 {
     /// <summary>
     /// ボタンの状態

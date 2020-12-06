@@ -1,4 +1,4 @@
-﻿namespace Game2.GameObjects
+namespace Game2.GameObjects
 {
     internal class EnemyUPeopleLife : EnemyUPeopleBasic
     {

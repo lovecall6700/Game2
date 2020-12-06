@@ -1,4 +1,4 @@
-﻿namespace Game2.GameObjects
+namespace Game2.GameObjects
 {
     /// <summary>
     /// オブジェクト状態の一覧
