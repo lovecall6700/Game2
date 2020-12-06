@@ -1,4 +1,4 @@
-﻿namespace Game2.Screens
+namespace Game2.Screens
 {
     /// <summary>
     /// ステージの構成一覧

@@ -1,4 +1,4 @@
-﻿namespace Game2
+namespace Game2
 {
     /// <summary>
     /// 画面の切り替え・状態一覧
