@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Game2.Screens
 {
@@ -22,7 +22,7 @@ namespace Game2.Screens
 
         internal override string FileName()
         {
-            return "Images/Story";
+            return "Story";
         }
 
         internal override int NumOfImage()

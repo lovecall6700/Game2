@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace Game2.Utilities
@@ -6,7 +6,7 @@ namespace Game2.Utilities
     internal class ImageList
     {
         private int _index = 0;
-        private readonly List<Texture2D> _images = new List<Texture2D>();
+        private readonly List<Rectangle?> _images = new List<Rectangle?>();
 
         internal void IncIndex()
         {
@@ -18,12 +18,12 @@ namespace Game2.Utilities
             _index = (_index + 1) % _images.Count;
         }
 
-        internal void AddImage(Texture2D image)
+        internal void AddImage(Rectangle? image)
         {
             _images.Add(image);
         }
 
-        internal void ClearAndAddImage(Texture2D image)
+        internal void ClearAndAddImage(Rectangle? image)
         {
             _index = 0;
             _images.Clear();
@@ -41,7 +41,7 @@ namespace Game2.Utilities
             _index = 0;
         }
 
-        internal Texture2D GetImage(bool incIndex)
+        internal Rectangle? GetImage(bool incIndex)
         {
             if (incIndex)
             {
@@ -51,7 +51,7 @@ namespace Game2.Utilities
             return GetImage(_index);
         }
 
-        internal Texture2D GetImage(int index)
+        internal Rectangle? GetImage(int index)
         {
             if (_images.Count == 0 || index < 0 || _images.Count <= index)
             {

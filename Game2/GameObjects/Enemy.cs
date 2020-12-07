@@ -1,4 +1,4 @@
-﻿using Game2.Utilities;
+using Game2.Utilities;
 using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
@@ -49,7 +49,7 @@ namespace Game2.GameObjects
         {
             ObjectKind = GameObjectKind.Enemy;
             DeadSE = "SoundEffects/EnemyDead";
-            DamageSE = "SoundEffects/EnemyDamage";
+            DamageSE = "SoundEffects/EnemyDead";
             //一定時間たったら勝手に死ぬ
             _lifeTimer.Start(LifeTime, true);
             _shotTimer.Start(ShotTime, true);

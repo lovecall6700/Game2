@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
@@ -18,7 +18,7 @@ namespace Game2.GameObjects
             Velocity = direction * bulletSpeed;
             MaxSpeedX = 10;
             LifeTime = 800f;
-            Img = Game2.Textures.GetTexture("Images/EnemyBullet");
+            Img = Game2.Textures.GetTexture("EnemyBullet");
             SetSize(8, 8);
         }
 

@@ -1,4 +1,4 @@
-﻿using Game2.Utilities;
+using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -12,7 +12,7 @@ namespace Game2.Screens
         /// <summary>
         /// タイトルロゴ
         /// </summary>
-        private readonly Texture2D _titleImg;
+        private readonly Rectangle? _titleImg;
 
         /// <summary>
         /// ストーリ画面に遷移するまでの時間
@@ -26,14 +26,14 @@ namespace Game2.Screens
             AddMenuItem(128, 184, "Options", 1.2f);
             AddMenuItem(128, 208, "End", 1.2f);
             Game2.MusicPlayer.PlaySong($"Songs/BGM1");
-            _titleImg = Game2.Textures.GetTexture("Images/Title");
+            _titleImg = Game2.Textures.GetTexture("Title");
             _storyTimer.Start(8000f, true);
         }
 
         internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             base.Draw(ref offset, ref gameTime, ref spriteBatch);
-            spriteBatch.Draw(_titleImg, Vector2.Zero, Color.White);
+            spriteBatch.Draw(Game2.Images, Vector2.Zero, _titleImg, Color.White);
         }
 
         internal override void Update(ref Vector2 offset, ref GameTime gameTime)

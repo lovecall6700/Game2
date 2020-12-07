@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
@@ -6,7 +6,7 @@ namespace Game2.GameObjects
     {
         internal EnemyNeedle(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            Img = Game2.Textures.GetTexture("Images/EnemyNeedle");
+            Img = Game2.Textures.GetTexture("EnemyNeedle");
             UseAnimation = false;
         }
 

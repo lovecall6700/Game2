@@ -1,14 +1,14 @@
-﻿namespace Game2.GameObjects
+namespace Game2.GameObjects
 {
     internal class EnemyUPeopleBasic : EnemyDog
     {
         internal EnemyUPeopleBasic(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            RImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyUPeopleR1"));
-            RImg.AddImage(Game2.Textures.GetTexture("Images/EnemyUPeopleR2"));
-            LImg.ClearAndAddImage(Game2.Textures.GetTexture("Images/EnemyUPeopleL1"));
-            LImg.AddImage(Game2.Textures.GetTexture("Images/EnemyUPeopleL2"));
-            DeadImg = Game2.Textures.GetTexture("Images/EnemyUPeopleDead");
+            RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyUPeopleR1"));
+            RImg.AddImage(Game2.Textures.GetTexture("EnemyUPeopleR2"));
+            LImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyUPeopleL1"));
+            LImg.AddImage(Game2.Textures.GetTexture("EnemyUPeopleL2"));
+            DeadImg = Game2.Textures.GetTexture("EnemyUPeopleDead");
             Life = 2;
             SetSize(16, 32);
         }

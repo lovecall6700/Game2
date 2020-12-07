@@ -1,4 +1,4 @@
-﻿using Game2.Utilities;
+using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,8 +14,8 @@ namespace Game2.GameObjects
         internal ImageList RImg = new ImageList();
         internal ImageList LImg = new ImageList();
         internal ImageList LadderImg = new ImageList();
-        internal Texture2D DeadImg = null;
-        internal Texture2D DamageImg = null;
+        internal Rectangle? DeadImg = null;
+        internal Rectangle? DamageImg = null;
 
         //効果音
         internal string DeadSE = null;
@@ -573,7 +573,7 @@ namespace Game2.GameObjects
                     return;
                 }
 
-                spriteBatch.Draw(Img, Position - offset, Color.Red);
+                spriteBatch.Draw(Game2.Images, Position - offset, Img, Color.Red);
             }
             else
             {

@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -19,7 +19,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// Texture2D
         /// </summary>
-        internal Texture2D Img = null;
+        internal Rectangle? Img = null;
 
         /// <summary>
         /// 位置
@@ -90,7 +90,7 @@ namespace Game2.GameObjects
                 return;
             }
 
-            spriteBatch.Draw(Img, Position - offset, Color.White);
+            spriteBatch.Draw(Game2.Images, Position - offset, Img, Color.White);
         }
 
         internal virtual void Update(ref GameTime gameTime)

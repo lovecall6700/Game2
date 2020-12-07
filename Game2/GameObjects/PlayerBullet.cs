@@ -1,4 +1,4 @@
-﻿using Game2.Utilities;
+using Game2.Utilities;
 using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
@@ -25,11 +25,11 @@ namespace Game2.GameObjects
 
             if (direction == -1)
             {
-                Img = Game2.Textures.GetTexture("Images/PlayerBulletL");
+                Img = Game2.Textures.GetTexture("PlayerBulletL");
             }
             else if (direction == 1)
             {
-                Img = Game2.Textures.GetTexture("Images/PlayerBulletR");
+                Img = Game2.Textures.GetTexture("PlayerBulletR");
             }
 
             Velocity = new Vector2(direction * bulletSpeed, 0);

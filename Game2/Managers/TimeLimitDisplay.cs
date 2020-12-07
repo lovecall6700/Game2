@@ -1,4 +1,4 @@
-﻿using Game2.GameObjects;
+using Game2.GameObjects;
 using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

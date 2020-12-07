@@ -1,4 +1,4 @@
-﻿namespace Game2.GameObjects
+namespace Game2.GameObjects
 {
     /// <summary>
     /// 氷ブロック
@@ -7,7 +7,7 @@
     {
         internal Ice(Game2 game2, float x, float y) : base(game2, x, y)
         {
-            Img = Game2.Textures.GetTexture("Images/Ice");
+            Img = Game2.Textures.GetTexture("Ice");
         }
 
         internal override float GetFriction(float velocity, float controlDirection)

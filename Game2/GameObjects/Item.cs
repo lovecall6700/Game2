@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
@@ -21,12 +20,12 @@ namespace Game2.GameObjects
         /// <summary>
         /// アイテム画像
         /// </summary>
-        internal Texture2D ItemImg;
+        internal Rectangle? ItemImg;
 
         /// <summary>
         /// 隠しアイテム用ダミー画像
         /// </summary>
-        internal Texture2D DummyImg;
+        internal Rectangle? DummyImg;
 
         /// <summary>
         /// ステージ番号
@@ -44,7 +43,7 @@ namespace Game2.GameObjects
             Name = name;
             _stageNo = stageNo;
             _itemNo = itemNo;
-            ItemImg = Game2.Textures.GetTexture($"Images/Item{name}");
+            ItemImg = Game2.Textures.GetTexture($"Item{name}");
 
             if (hidden)
             {
@@ -57,7 +56,7 @@ namespace Game2.GameObjects
 
             if (dummy != "Null")
             {
-                DummyImg = Game2.Textures.GetTexture("Images/" + dummy);
+                DummyImg = Game2.Textures.GetTexture("" + dummy);
             }
         }
 

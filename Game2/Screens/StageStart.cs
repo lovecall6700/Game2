@@ -1,4 +1,4 @@
-﻿using Game2.Utilities;
+using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace Game2.Screens
         /// <summary>
         /// アイテムアイコン
         /// </summary>
-        private readonly List<Texture2D> _icons = new List<Texture2D>();
+        private readonly List<Rectangle?> _icons = new List<Rectangle?>();
 
         internal StageStart(Game2 game2, SpriteFont font) : base(game2, font)
         {
@@ -36,47 +36,47 @@ namespace Game2.Screens
             //アイテムの所有を確認する
             if (Game2.Inventory.HasDoubleScoreItem())
             {
-                _icons.Add(Game2.Textures.GetTexture($"Images/ItemDoubleScore"));
+                _icons.Add(Game2.Textures.GetTexture($"ItemDoubleScore"));
             }
 
             if (Game2.Inventory.HasFinderItem())
             {
-                _icons.Add(Game2.Textures.GetTexture($"Images/ItemFinder"));
+                _icons.Add(Game2.Textures.GetTexture($"ItemFinder"));
             }
 
             if (Game2.Inventory.HasShieldItem())
             {
-                _icons.Add(Game2.Textures.GetTexture($"Images/ItemShield"));
+                _icons.Add(Game2.Textures.GetTexture($"ItemShield"));
             }
 
             if (Game2.Inventory.HasTimeItem())
             {
-                _icons.Add(Game2.Textures.GetTexture($"Images/ItemTime"));
+                _icons.Add(Game2.Textures.GetTexture($"ItemTime"));
             }
 
             if (Game2.Inventory.HasLightItem())
             {
-                _icons.Add(Game2.Textures.GetTexture($"Images/ItemLight"));
+                _icons.Add(Game2.Textures.GetTexture($"ItemLight"));
             }
 
             if (Game2.Inventory.HasSwordItem())
             {
-                _icons.Add(Game2.Textures.GetTexture($"Images/ItemSword"));
+                _icons.Add(Game2.Textures.GetTexture($"ItemSword"));
             }
 
             if (Game2.Inventory.HasShoesItem())
             {
-                _icons.Add(Game2.Textures.GetTexture($"Images/ItemShoes"));
+                _icons.Add(Game2.Textures.GetTexture($"ItemShoes"));
             }
 
             if (Game2.Inventory.HasTripleShotItem())
             {
-                _icons.Add(Game2.Textures.GetTexture($"Images/ItemTripleShot"));
+                _icons.Add(Game2.Textures.GetTexture($"ItemTripleShot"));
             }
 
             if (Game2.Inventory.HasHighJumpItem())
             {
-                _icons.Add(Game2.Textures.GetTexture($"Images/ItemHighJump"));
+                _icons.Add(Game2.Textures.GetTexture($"ItemHighJump"));
             }
 
             Game2.MusicPlayer.PlaySong($"Songs/BGM4");
@@ -104,7 +104,7 @@ namespace Game2.Screens
 
             for (int i = 0; i < _icons.Count; i++)
             {
-                spriteBatch.Draw(_icons[i], new Vector2(20 + 20 * i, 150), Color.White);
+                spriteBatch.Draw(Game2.Images, new Vector2(20 + 20 * i, 150), _icons[i], Color.White);
             }
         }
     }

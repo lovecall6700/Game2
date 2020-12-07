@@ -1,4 +1,4 @@
-﻿namespace Game2
+namespace Game2
 {
     /// <summary>
     /// 状態変更のスケジュール管理

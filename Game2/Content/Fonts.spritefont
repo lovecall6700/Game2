@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 This file contains an xml description of a font, and will be read by the XNA
 Framework Content Pipeline. Follow the comments to customize the appearance
@@ -51,25 +51,10 @@ with.
     See the documentation for more information.
     -->
     <CharacterRegions>
-      <!--アスキー-->
       <CharacterRegion>
         <Start>&#32;</Start>
         <End>&#126;</End>
       </CharacterRegion>
-      <!--かな-->
-      <!-- 
-      <CharacterRegion>
-        <Start>&#12353;</Start>
-        <End>&#12438;</End>
-      </CharacterRegion>
-      -->
-      <!--カナ-->
-      <!-- 
-      <CharacterRegion>
-        <Start>&#12449;</Start>
-        <End>&#12538;</End>
-      </CharacterRegion>
-      -->
     </CharacterRegions>
   </Asset>
 </XnaContent>

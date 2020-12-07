@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
@@ -31,17 +30,17 @@ namespace Game2.GameObjects
         /// <summary>
         /// 開いた宝箱のテクスチャ
         /// </summary>
-        private readonly Texture2D _openImg = null;
+        private readonly Rectangle? _openImg = null;
 
         /// <summary>
         /// 閉じた宝箱のテクスチャ
         /// </summary>
-        private readonly Texture2D _closeImg = null;
+        private readonly Rectangle? _closeImg = null;
 
         /// <summary>
         /// 隠し宝箱のダミーテクスチャ
         /// </summary>
-        private readonly Texture2D _dummyImg = null;
+        private readonly Rectangle? _dummyImg = null;
 
         /// <summary>
         /// TreasureBox
@@ -68,13 +67,13 @@ namespace Game2.GameObjects
             }
 
             Score = score;
-            _closeImg = Game2.Textures.GetTexture("Images/TreasureBoxClose");
-            _openImg = Game2.Textures.GetTexture("Images/TreasureBoxOpen");
+            _closeImg = Game2.Textures.GetTexture("TreasureBoxClose");
+            _openImg = Game2.Textures.GetTexture("TreasureBoxOpen");
             Img = _closeImg;
 
             if (dummy != "Null")
             {
-                _dummyImg = Game2.Textures.GetTexture("Images/" + dummy);
+                _dummyImg = Game2.Textures.GetTexture("" + dummy);
             }
         }
 
