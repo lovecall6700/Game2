@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 using System.Threading;
 
 namespace Game2
@@ -21,6 +23,11 @@ namespace Game2
             {
                 return;
             }
+
+            //作業ディレクトリは実行ファイルの場所
+            string location = Assembly.GetExecutingAssembly().Location;
+            string parent = Directory.GetParent(location).FullName;
+            Directory.SetCurrentDirectory(parent);
 
             using (Game2 game = new Game2())
             {
