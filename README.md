@@ -110,15 +110,32 @@
 
 実行環境
 =====
-V2系は、32bit版と64bit版の`Windows Vista/7/10`で動作します。`Vista`ではBGMが演奏されません。
+V2系とV3系の2種類があります。それぞれの実行環境に合わせてzipファイルをダウンロードしてください。
 
-V3系は、64bit版の`Windows 7/10`、`Linux`、`macOS`で動作します。
-V3系は、実行に各種OS向け[.NET Core Runtime 3.1.10](https://dotnet.microsoft.com/download/dotnet-core/3.1 ".NET Core Runtime 3.1.10")のインストールが必要です。3.1.11や3.1.12など新しいバージョンがあれば、そちらを使ったほうがいいかもしれません。
 
-`Windows`の場合、ダウンロードしたzipファイルを右クリックし`プロパティ`を選び、`ブロックの解除`にチェックを入れるか`ブロックの解除`ボタンを押し、`OK`ボタン押してください。その後、zipファイルを再び右クリックして`すべて展開`から`展開`を押してください。
+v2系(`Windows`用)
+-----
 
-`Windows`では`Game2.exe`をダブルクリックするとゲームが開始します。
+v2系は、32bit版と64bit版の`Windows Vista/7/10`で動作します。`Vista`ではBGMが演奏されません。`Linux`/`Mac`をご利用の方は、[Game2 v3系](https://github.com/lovecall6700/Game2/releases/ "Game2 v3系")をお試しください。
+
+ダウンロードしたzipファイルを右クリックし`プロパティ`を選び、`ブロックの解除`にチェックを入れるか`ブロックの解除`ボタンを押し、`OK`ボタン押してください。その後、zipファイルを再び右クリックして`すべて展開`から`展開`を押してください。
+
+`Game2.exe`をダブルクリックするとゲームが開始します。
+
+
+v3系(`Windows`を含む各種OS向け)
+-----
+
+v3系は、32bit版/64bit版両方のWindows 7/10、32bit版/64bit版両方のLinux、64bit版のmacOSで動作します。動作には各種ランタイムのインストールが必要です。
+
+32bit版/64bit版両方のWindows 7/10、64bit版のLinux、64bit版のmacOSでは[.NET Core Runtime 3.1.10](https://dotnet.microsoft.com/download/dotnet-core/3.1 ".NET Core Runtime 3.1.10")のインストールが必要です。3.1.11や3.1.12など新しいバージョンがあれば、そちらを使ったほうがいいかもしれません。
+
 `Linux`と`macOS`ではシェルから`dotnet Game2.dll`でゲームが開始します。
+`Windows 7/10`では`Game2.exe`をダブルクリックするとゲームが開始します。
+
+32bit版の`Linux`では[Mono](https://www.mono-project.com/download/stable/#download-lin "Mono")の`mono-runtime`パッケージのインストールが必要です。
+
+シェルから`mono Game2.exe`でゲームが開始します。
 
 
 ライセンス
