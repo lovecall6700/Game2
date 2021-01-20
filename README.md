@@ -110,7 +110,7 @@
 
 実行環境
 =====
-[Game2 Releases](https://github.com/lovecall6700/Game2/releases "Game2 Releases")からダウンロードできます。それぞれの実行環境に合わせてzipファイルをダウンロードしてください。v2系とv3系の2種類があります。ダウンロードするファイルが表示されていない場合は、すぐ下の「Assets」を左クリックすると表示されます。
+`Game2 Releases`( https://github.com/lovecall6700/Game2/releases )からダウンロードできます。それぞれの実行環境に合わせてzipファイルをダウンロードしてください。v2系とv3系の2種類があります。ダウンロードするファイルが表示されていない場合は、すぐ下の「Assets」を左クリックすると表示されます。
 
 実行した結果パソコンが爆発したり、死人が出ても俺は知らん。
 
@@ -121,7 +121,7 @@
 -----
 v3系の「Game2_(バージョン番号).zip」をダウンロードしてください。
 
-[.NET Core Runtime 3.1.10](https://dotnet.microsoft.com/download/dotnet-core/3.1 ".NET Core Runtime 3.1.10")のインストールが必要です。3.1.11や3.1.12など新しいバージョンがあれば、そちらを使ったほうがいいかもしれません。
+`.NET Core Runtime 3.1.10`( https://dotnet.microsoft.com/download/dotnet-core/3.1 )のインストールが必要です。3.1.11や3.1.12など新しいバージョンがあれば、そちらを使ったほうがいいかもしれません。
 
 `Windows`ではダウンロードしたzipファイルを右クリックし`プロパティ`を選び、`ブロックの解除`にチェックを入れるか`ブロックの解除`ボタンを押し、`OK`ボタン押してください。その後、zipファイルを再び右クリックして`すべて展開`から`展開`を押してください。
 
@@ -133,7 +133,7 @@ v3系の「Game2_(バージョン番号).zip」をダウンロードしてくだ
 -----
 v3系の「Game2_(バージョン番号)_dotnet452.zip」をダウンロードしてください。
 
-[Mono](https://www.mono-project.com/download/stable/#download-lin "Mono")の`mono-runtime`パッケージのインストールが必要です。
+`Mono`( https://www.mono-project.com/download/stable/#download-lin )の`mono-runtime`パッケージのインストールが必要です。
 
 シェルから`mono Game2.exe`でゲームが開始します。
 
