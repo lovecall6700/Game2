@@ -129,7 +129,7 @@ v3系の「Game2_(バージョン番号).zip」をダウンロードしてくだ
 `Windows 7/10`では`Game2.exe`をダブルクリックするとゲームが開始します。
 
 
-32bit版の`Linux`
+32bit版のLinux
 -----
 v3系の「Game2_(バージョン番号)_dotnet452.zip」をダウンロードしてください。
 
@@ -138,7 +138,7 @@ v3系の「Game2_(バージョン番号)_dotnet452.zip」をダウンロード�
 シェルから`mono Game2.exe`でゲームが開始します。
 
 
-`Windows Vista`
+Windows Vista
 -----
 v2系の「Game2_(バージョン番号).zip」をダウンロードしてください。`Windows Vista`ではBGMが演奏されません。
 
