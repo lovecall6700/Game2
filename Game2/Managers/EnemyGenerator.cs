@@ -83,7 +83,16 @@ namespace Game2.Managers
             }
             else if (_counter == 10 && e != null)
             {
-                e.Position = new Vector2(272, -128);
+                if (_game2.Session.StageNo == 24)
+                {
+                    e.Position = new Vector2(136, -80);
+                }
+                else
+                {
+                    e.Position = new Vector2(272, -128);
+                }
+
+                e.Rectangle.Location = e.Position.ToPoint();
             }
             else if (_game2.PlaySc.StageDir == Screens.StageDirType.Horizontal)
             {
@@ -279,6 +288,13 @@ namespace Game2.Managers
                     }
 
                     BossFlag = true;
+
+                    // UFOルートのステージは特殊UFO戦
+                    if (_game2.Session.StageNo == 24)
+                    {
+                        return new EnemyUFO2(_game2, 0, 0);
+                    }
+
                     return new EnemyUFO(_game2, 0, 0);
             }
 

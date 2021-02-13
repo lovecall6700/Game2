@@ -29,6 +29,7 @@ namespace Game2.Managers
             _rectangles.Add("End3", new Rectangle(512, 96, 256, 128));
             _rectangles.Add("End4", new Rectangle(768, 96, 256, 128));
             _rectangles.Add("End5", new Rectangle(0, 224, 256, 128));
+            _rectangles.Add("End6", new Rectangle(768, 352, 256, 128));
             _rectangles.Add("EnemyBirdDead", new Rectangle(112, 32, 16, 16));
             _rectangles.Add("EnemyBirdL1", new Rectangle(80, 32, 16, 16));
             _rectangles.Add("EnemyBirdL2", new Rectangle(80, 48, 16, 16));

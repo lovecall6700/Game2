@@ -123,7 +123,6 @@ namespace Game2.Utilities
             {"AntiqueWhite", Color.AntiqueWhite},
             {"AliceBlue", Color.AliceBlue},
             {"Transparent", Color.Transparent},
-            {"TransparentBlack", Color.TransparentBlack},
             {"DarkGreen", Color.DarkGreen},
             {"DarkKhaki", Color.DarkKhaki},
             {"CornflowerBlue", Color.CornflowerBlue},

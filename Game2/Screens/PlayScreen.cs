@@ -223,6 +223,7 @@ namespace Game2.Screens
             EffectObjs.Clear();
             NearMapObjs.Clear();
             Player.Restart();
+            ResetMap();
             PhysicsObjs.Add(Player);
             _backColorSwitchTimer.Running = false;
             _darkZoneSwitchTimer.Running = false;
@@ -240,6 +241,22 @@ namespace Game2.Screens
         {
             LoadSettings();
             LoadMap();
+        }
+
+        /// <summary>
+        /// マップをリセットする
+        /// </summary>
+        private void ResetMap()
+        {
+            foreach (GameObject item in _mapObjs)
+            {
+                //移動床は画面外でも動かす
+                if (item.ObjectKind == GameObjectKind.MovingFloor)
+                {
+                    MovingFloor mf = (MovingFloor)item;
+                    mf.ResetPosition();
+                }
+            }
         }
 
         /// <summary>

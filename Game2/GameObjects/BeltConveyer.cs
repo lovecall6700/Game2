@@ -12,8 +12,8 @@ namespace Game2.GameObjects
         private readonly Timer _timer = new Timer();
         private readonly float _time = 100f;
         private bool _vibro = false;
-        private Vector2 _vibroA = new Vector2(2f, 0);
-        private Vector2 _vibroB = new Vector2(-2f, 0);
+        private Vector2 _vibroA = new Vector2(1f, 0);
+        private Vector2 _vibroB = new Vector2(-1f, 0);
 
         internal BeltConveyer(Game2 game2, float x, float y, string dummy, string dir) : base(game2, x, y)
         {
@@ -24,11 +24,11 @@ namespace Game2.GameObjects
 
             if (dir == "Left")
             {
-                _left = true;
+                _left = false;
             }
             else
             {
-                _left = false;
+                _left = true;
             }
         }
 
