@@ -13,11 +13,17 @@ namespace Game2.GameObjects
         internal MovingFloor(Game2 game2, float x, float y, string type, float min, float max) : base(game2, x, y)
         {
             Vertical = type == "Vertical";
-            _min = min;
-            _max = max;
+            _dir = min < max;
+            _min = MathHelper.Min(min, max);
+            _max = MathHelper.Max(min, max);
             ObjectKind = GameObjectKind.MovingFloor;
             Img = Game2.Textures.GetTexture("MovingFloor");
             SetSize(48, 10);
+        }
+
+        internal void ResetPosition()
+        {
+            Position = Origin;
         }
 
         internal override void Update(ref GameTime gameTime)

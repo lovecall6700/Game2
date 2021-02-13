@@ -12,7 +12,7 @@ namespace Game2.GameObjects
         private int _life = 5;
         private readonly ImageList _crackImg = new ImageList();
         private readonly Timer _timer = new Timer();
-        private readonly float _time = 200f;
+        private readonly float _time = 120f;
 
         internal Crack(Game2 game2, float x, float y, string dummy) : base(game2, x, y)
         {

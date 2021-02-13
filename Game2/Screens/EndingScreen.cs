@@ -96,7 +96,7 @@ namespace Game2.Screens
 
         internal virtual int NumOfImage()
         {
-            return 5;
+            return Game2.Session.StageNo == 24 ? 6 : 5;
         }
 
         internal virtual string Msg1()
@@ -111,7 +111,7 @@ namespace Game2.Screens
 
         internal virtual string Msg2()
         {
-            return "Fin.";
+            return Game2.Session.StageNo == 24 ? "Fin!!" : "Fin.";
         }
 
         internal virtual float Msg2Scale()
