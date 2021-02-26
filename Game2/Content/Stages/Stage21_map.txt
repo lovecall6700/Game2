@@ -240,7 +240,8 @@
 107,7,Crack,DarkRock
 110,7,Door,10,Normal,21,9,Null,Null
 120,7,Crack,DarkRock
-123,7,Door,11,Normal,21,8,Null,Null
+123,7,Door,1,Invisible,22,1,Null,Null
+128,7,Door,11,Normal,21,8,Null,Null
 133,7,Crack,DarkRock
 136,7,Door,12,Normal,21,7,Null,Null
 146,7,Crack,DarkRock
@@ -701,7 +702,6 @@
 122,13,Crack,DarkRock
 123,13,Crack,DarkRock
 125,13,Crack,DarkRock
-126,13,Door,1,Invisible,22,1,Null,Null
 127,13,Crack,DarkRock
 129,13,Crack,DarkRock
 135,13,DarkRock,0
