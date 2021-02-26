@@ -467,6 +467,7 @@
 180,10,Water,1
 181,10,Water,1
 182,10,Water,1
+184,10,Door,0,Normal,17,15,Null,Null
 187,10,Water,1
 188,10,Water,1
 189,10,Water,1
@@ -800,7 +801,6 @@
 189,13,Water,1
 194,13,Water,1
 195,13,Water,1
-198,13,Door,0,Normal,17,15,Null,Null
 0,14,Reed,1
 1,14,Reed,1
 2,14,Reed,1
@@ -928,6 +928,7 @@
 191,14,TreasureBox,True,100,Null
 194,14,Water,1
 195,14,Water,1
+198,14,TreasureBox,False,10000,Null
 0,15,Reed,1
 1,15,Reed,1
 2,15,Reed,1
@@ -1054,6 +1055,7 @@
 187,15,Water,1
 188,15,Water,1
 189,15,Water,1
+190,15,Brick,0
 191,15,Brick,0
 192,15,Brick,0
 194,15,Water,1

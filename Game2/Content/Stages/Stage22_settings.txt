@@ -4,7 +4,7 @@ Blue
 Blue
 5000
 50
-30000
+60000
 BGM2
 False
 -1
