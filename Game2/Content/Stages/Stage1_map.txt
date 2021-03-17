@@ -197,4 +197,4 @@
 56,15,Water,1
 57,15,Water,1
 58,15,Water,1
-59,15,Water,1
+59,15,Door,4,Invisible,17,0,Water,Null

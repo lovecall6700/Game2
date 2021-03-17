@@ -63,6 +63,11 @@ namespace Game2.GameObjects
         /// </summary>
         internal static readonly int MaxLife = 3;
 
+        /// <summary>
+        /// ジャンプ可能フラグ
+        /// </summary>
+        private bool _canJump = true;
+
         internal Player(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("PlayerR1"));
@@ -213,11 +218,17 @@ namespace Game2.GameObjects
                     }
                 }
 
-                if (GroundBlock != null && Game2.GameCtrl.Jump && Direction != 0)
+                if (!_canJump && !Game2.GameCtrl.Jump)
+                {
+                    _canJump = true;
+                }
+
+                if (_canJump && GroundBlock != null && Game2.GameCtrl.Jump && Direction != 0)
                 {
                     StandUp();
                     _jumpStartHeight = Position.Y;
                     Jump();
+                    _canJump = false;
                 }
                 else if (GroundBlock == null && Velocity.Y < 0 && !Game2.GameCtrl.Jump && _jumpStartHeight - Position.Y > _jumpMinHeight)
                 {

@@ -188,11 +188,59 @@
 #begin Stages/Stage16_settings.txt
 /copy:Stages/Stage16_settings.txt
 
+#begin Stages/Stage17_map.txt
+/copy:Stages/Stage17_map.txt
+
+#begin Stages/Stage17_settings.txt
+/copy:Stages/Stage17_settings.txt
+
+#begin Stages/Stage18_map.txt
+/copy:Stages/Stage18_map.txt
+
+#begin Stages/Stage18_settings.txt
+/copy:Stages/Stage18_settings.txt
+
+#begin Stages/Stage19_map.txt
+/copy:Stages/Stage19_map.txt
+
+#begin Stages/Stage19_settings.txt
+/copy:Stages/Stage19_settings.txt
+
 #begin Stages/Stage2_map.txt
 /copy:Stages/Stage2_map.txt
 
 #begin Stages/Stage2_settings.txt
 /copy:Stages/Stage2_settings.txt
+
+#begin Stages/Stage20_map.txt
+/copy:Stages/Stage20_map.txt
+
+#begin Stages/Stage20_settings.txt
+/copy:Stages/Stage20_settings.txt
+
+#begin Stages/Stage21_map.txt
+/copy:Stages/Stage21_map.txt
+
+#begin Stages/Stage21_settings.txt
+/copy:Stages/Stage21_settings.txt
+
+#begin Stages/Stage22_map.txt
+/copy:Stages/Stage22_map.txt
+
+#begin Stages/Stage22_settings.txt
+/copy:Stages/Stage22_settings.txt
+
+#begin Stages/Stage23_map.txt
+/copy:Stages/Stage23_map.txt
+
+#begin Stages/Stage23_settings.txt
+/copy:Stages/Stage23_settings.txt
+
+#begin Stages/Stage24_map.txt
+/copy:Stages/Stage24_map.txt
+
+#begin Stages/Stage24_settings.txt
+/copy:Stages/Stage24_settings.txt
 
 #begin Stages/Stage3_map.txt
 /copy:Stages/Stage3_map.txt
