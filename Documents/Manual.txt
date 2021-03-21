@@ -118,7 +118,7 @@
 説明書は`Documents`フォルダ内の`Manual.txt`です。
 
 
-32bit版/64bit版両方のWindows 7/10、32bit版/64bit版両方のLinux、64bit版のmacOS
+32bit版/64bit版両方のWindows 7/10、64bit版のLinux、64bit版のmacOS
 -----
 v3系の「Game2_(バージョン番号).zip」をダウンロードしてください。
 
