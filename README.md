@@ -118,9 +118,9 @@
 説明書は`Documents`フォルダ内の`Manual.txt`です。
 
 
-32bit版/64bit版両方のWindows 7/10、32bit版/64bit版両方のLinux、64bit版のmacOS
+32bit版/64bit版両方のWindows 7/10、64bit版のLinux、64bit版のmacOS
 -----
-v3系の「Game2_(バージョン番号).zip」をダウンロードしてください。
+「Game2_v3.(バージョン番号).zip」をダウンロードしてください。
 
 `.NET Core Runtime 3.1.10`( https://dotnet.microsoft.com/download/dotnet-core/3.1 )のインストールが必要です。3.1.11や3.1.12など新しいバージョンがあれば、そちらを使ったほうがいいかもしれません。
 
@@ -132,7 +132,7 @@ v3系の「Game2_(バージョン番号).zip」をダウンロードしてくだ
 
 32bit版のLinux
 -----
-v3系の「Game2_(バージョン番号)_dotnet452.zip」をダウンロードしてください。
+「Game2_v3.(バージョン番号)_dotnet452.zip」をダウンロードしてください。
 
 `Mono`( https://www.mono-project.com/download/stable/#download-lin )の`mono-runtime`パッケージのインストールが必要です。
 
@@ -141,7 +141,7 @@ v3系の「Game2_(バージョン番号)_dotnet452.zip」をダウンロード�
 
 Windows Vista
 -----
-v2系の「Game2_(バージョン番号).zip」をダウンロードしてください。`Windows Vista`ではBGMが演奏されません。
+「Game2_v2.(バージョン番号).zip」をダウンロードしてください。`Windows Vista`ではBGMが演奏されません。
 
 `Windows`ではダウンロードしたzipファイルを右クリックし`プロパティ`を選び、`ブロックの解除`にチェックを入れるか`ブロックの解除`ボタンを押し、`OK`ボタン押してください。その後、zipファイルを再び右クリックして`すべて展開`から`展開`を押してください。
 
