@@ -241,7 +241,7 @@ namespace Game2
             }
 
             //Alt+Enterで最大化
-            if (!_fullScTimer.Update(ref gameTime) && GameCtrl.FullScreen)
+            if (!_fullScTimer.Update(ref gameTime) && GameCtrl.IsClick(ButtonNames.FullScreen))
             {
                 _paused = true;
                 MusicPlayer.StopSong();
@@ -254,7 +254,7 @@ namespace Game2
                 Camera2D.Initialize(GraphicsDevice, Width, Height);
             }
 
-            if (!_pauseTimer.Update(ref gameTime) && GameCtrl.Pause)
+            if (!_pauseTimer.Update(ref gameTime) && GameCtrl.IsClick(ButtonNames.Pause))
             {
                 _paused = !_paused;
 
