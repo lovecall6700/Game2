@@ -8,7 +8,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// 敵や動く床などの画面上を動く物体
     /// </summary>
-    internal partial class PhysicsObject : GameObject
+    internal class PhysicsObject : GameObject
     {
         //各種画像
         internal ImageList RImg = new ImageList();

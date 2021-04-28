@@ -5,7 +5,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// アイテム
     /// </summary>
-    internal partial class Item : GameObject
+    internal class Item : GameObject
     {
         /// <summary>
         /// アイテム可視性
