@@ -5,7 +5,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// 宝箱
     /// </summary>
-    internal partial class TreasureBox : GameObject
+    internal class TreasureBox : GameObject
     {
         /// <summary>
         /// ステージ番号

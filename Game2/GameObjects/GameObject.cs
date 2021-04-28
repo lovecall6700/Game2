@@ -7,7 +7,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// 物体
     /// </summary>
-    internal partial class GameObject
+    internal class GameObject
     {
         internal Game2 Game2;
 

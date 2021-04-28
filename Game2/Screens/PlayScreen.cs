@@ -11,7 +11,7 @@ namespace Game2.Screens
     /// <summary>
     /// ゲームプレイ画面
     /// </summary>
-    internal partial class PlayScreen : Screen
+    internal class PlayScreen : Screen
     {
         /// <summary>
         /// 描画範囲より少し大きい範囲
