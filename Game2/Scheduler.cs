@@ -3,7 +3,7 @@ namespace Game2
     /// <summary>
     /// 状態変更のスケジュール管理
     /// </summary>
-    internal partial class Scheduler
+    internal class Scheduler
     {
         /// <summary>
         /// 画面の切り替え予約

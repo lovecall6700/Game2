@@ -6,7 +6,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// 扉
     /// </summary>
-    internal partial class Door : GameObject
+    internal class Door : GameObject
     {
         /// <summary>
         /// ステージ番号
