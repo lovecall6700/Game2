@@ -222,7 +222,7 @@ namespace Game2.Screens
             }
             else if (_state == 2)
             {
-                Game2.Scheduler.Title();
+                Game2.Scheduler.SetSchedule(Schedule.Title);
             }
         }
     }

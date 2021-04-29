@@ -76,7 +76,7 @@ namespace Game2.GameObjects
 
         internal override void Removed()
         {
-            Game2.Scheduler.Ending();
+            Game2.Scheduler.SetSchedule(Schedule.Ending);
         }
     }
 }

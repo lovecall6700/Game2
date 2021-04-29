@@ -47,7 +47,7 @@ namespace Game2.Screens
                         Game2.Session.EnableTime = false;
                     }
 
-                    Game2.Scheduler.Retry();
+                    Game2.Scheduler.SetSchedule(Schedule.Retry);
                     break;
 
                 case 1:
@@ -60,14 +60,14 @@ namespace Game2.Screens
                         Items[1].Position.X = 128 - v.X;
                         Items[1].Disable = true;
                         Index = 0;
-                        Game2.Scheduler.SaveStage();
+                        Game2.Scheduler.SetSchedule(Schedule.SaveStage);
                     }
 
                     break;
 
                 case 2:
 
-                    Game2.Scheduler.Title();
+                    Game2.Scheduler.SetSchedule(Schedule.Title);
                     break;
             }
         }
