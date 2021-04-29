@@ -84,7 +84,7 @@ namespace Game2.Screens
 
         internal override void Timeup()
         {
-            Game2.Scheduler.GameStart();
+            Game2.Scheduler.SetSchedule(Schedule.GameStart);
         }
 
         internal override void Update(ref Vector2 offset, ref GameTime gametime)
