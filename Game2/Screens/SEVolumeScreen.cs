@@ -38,7 +38,7 @@ namespace Game2.Screens
             {
                 case 5:
 
-                    Game2.Scheduler.Options();
+                    Game2.Scheduler.SetSchedule(Schedule.Options);
                     break;
 
                 default:

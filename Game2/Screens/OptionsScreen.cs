@@ -35,17 +35,17 @@ namespace Game2.Screens
             {
                 case 0:
 
-                    Game2.Scheduler.BGMVolume();
+                    Game2.Scheduler.SetSchedule(Schedule.BGMVolume);
                     break;
 
                 case 1:
 
-                    Game2.Scheduler.SEVolume();
+                    Game2.Scheduler.SetSchedule(Schedule.SEVolume);
                     break;
 
                 case 2:
 
-                    Game2.Scheduler.Title();
+                    Game2.Scheduler.SetSchedule(Schedule.Title);
                     break;
             }
         }

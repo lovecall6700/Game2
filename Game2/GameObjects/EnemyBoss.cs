@@ -122,7 +122,7 @@ namespace Game2.GameObjects
         {
             if (ID == 0)
             {
-                Game2.Scheduler.Ending();
+                Game2.Scheduler.SetSchedule(Schedule.Ending);
             }
         }
     }

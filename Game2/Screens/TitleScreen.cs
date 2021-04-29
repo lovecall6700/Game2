@@ -40,7 +40,7 @@ namespace Game2.Screens
         {
             if (!_storyTimer.Update(ref gameTime))
             {
-                Game2.Scheduler.Story();
+                Game2.Scheduler.SetSchedule(Schedule.Story);
                 return;
             }
 
@@ -67,19 +67,19 @@ namespace Game2.Screens
             switch (Index)
             {
                 case 0:
-                    Game2.Scheduler.InitialStart();
+                    Game2.Scheduler.SetSchedule(Schedule.InitialStart);
                     break;
 
                 case 1:
-                    Game2.Scheduler.ContinueStart();
+                    Game2.Scheduler.SetSchedule(Schedule.ContinueStart);
                     break;
 
                 case 2:
-                    Game2.Scheduler.Options();
+                    Game2.Scheduler.SetSchedule(Schedule.Options);
                     break;
 
                 case 3:
-                    Game2.Scheduler.Quit();
+                    Game2.Scheduler.SetSchedule(Schedule.Quit);
                     break;
             }
         }

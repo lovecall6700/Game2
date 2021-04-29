@@ -362,7 +362,7 @@ namespace Game2.GameObjects
                         }
 
                         Game2.Session.Life = Life;
-                        Game2.Scheduler.EnterDoor();
+                        Game2.Scheduler.SetSchedule(Schedule.EnterDoor);
 
                     }
                     else if (d.Visibility == ObjectVisibility.Hidden && (_sitDown || Game2.Inventory.HasFinderItem()))
@@ -403,7 +403,7 @@ namespace Game2.GameObjects
 
         internal override void Removed()
         {
-            Game2.Scheduler.RestartOrGameover();
+            Game2.Scheduler.SetSchedule(Schedule.RestartOrGameover);
         }
 
         internal override void OutOfMapY()

@@ -185,7 +185,7 @@ namespace Game2
             MusicPlayer = new MusicPlayer(Content);
 
             //すべての初期化後はタイトル画面を予約
-            Scheduler.Title();
+            Scheduler.SetSchedule(Schedule.Title);
             base.LoadContent();
         }
 
@@ -232,7 +232,7 @@ namespace Game2
             //ESCで終了
             if (GameCtrl.IsClick(ButtonNames.Exit))
             {
-                Scheduler.Title();
+                Scheduler.SetSchedule(Schedule.Title);
             }
 
             if (GameCtrl.IsClick(ButtonNames.Screenshot))
