@@ -133,6 +133,8 @@ namespace Game2
         /// </summary>
         internal static readonly int WindowHeight = 600;
 
+        private bool _initCamera2D = false;
+
         internal Game2()
         {
             Content.RootDirectory = "Content";
@@ -141,9 +143,9 @@ namespace Game2
             //フレームレート
             TargetElapsedTime = TimeSpan.FromMilliseconds(1000d / 30d);
             InactiveSleepTime = TimeSpan.FromMilliseconds(1000d);
-            Camera2D = new Camera2D();
 
             //ウィンドウのサイズを確定する
+            Camera2D = new Camera2D();
             ChangeWindowSize();
         }
 
@@ -223,7 +225,7 @@ namespace Game2
 
             Graphics.ApplyChanges();
             Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
-            Camera2D.Initialize(GraphicsDevice, Width, Height);
+            _initCamera2D = true;
         }
 
         /// <summary>
@@ -235,6 +237,12 @@ namespace Game2
         {
             Scheduler.Update();
             GameCtrl.Update(ref gameTime);
+
+            if (_initCamera2D)
+            {
+                Camera2D.Initialize(GraphicsDevice, Width, Height);
+                _initCamera2D = false;
+            }
 
             //ESCで終了
             if (GameCtrl.IsClick(ButtonNames.Exit))
