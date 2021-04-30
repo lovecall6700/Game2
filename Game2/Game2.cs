@@ -133,11 +133,6 @@ namespace Game2
         /// </summary>
         internal static readonly int WindowHeight = 600;
 
-        /// <summary>
-        /// ウィンドウサイズに変更があった
-        /// </summary>
-        private bool _windowSizeChanged = false;
-
         internal Game2()
         {
             Content.RootDirectory = "Content";
@@ -146,6 +141,7 @@ namespace Game2
             //フレームレート
             TargetElapsedTime = TimeSpan.FromMilliseconds(1000d / 30d);
             InactiveSleepTime = TimeSpan.FromMilliseconds(1000d);
+            Camera2D = new Camera2D();
 
             //ウィンドウのサイズを確定する
             ChangeWindowSize();
@@ -157,7 +153,6 @@ namespace Game2
             Textures = new Textures();
             Scheduler = new Scheduler(this);
             GameCtrl = new GameController2();
-            Camera2D = new Camera2D();
             base.Initialize();
         }
 
@@ -172,7 +167,6 @@ namespace Game2
             _remainDisp = new RemainDisplay(this, Font, GraphicsDevice);
             _pauseDisp = new PauseDisplay(this, Font, GraphicsDevice);
             _lifeDisp = new LifeDisplay(this, Font, GraphicsDevice);
-            Camera2D.Initialize(GraphicsDevice, Width, Height);
 
             //ゲーム関連
             Inventory = new Inventory(this);
@@ -229,7 +223,7 @@ namespace Game2
 
             Graphics.ApplyChanges();
             Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
-            _windowSizeChanged = true;
+            Camera2D.Initialize(GraphicsDevice, Width, Height);
         }
 
         /// <summary>
@@ -241,19 +235,6 @@ namespace Game2
         {
             Scheduler.Update();
             GameCtrl.Update(ref gameTime);
-
-            //ウィンドウサイズが変更された場合はカメラを再計算する
-            if (_windowSizeChanged)
-            {
-                Camera2D.Initialize(GraphicsDevice, Width, Height);
-                _timeLimitDisp.Initialize(GraphicsDevice);
-                _scoreDisp.Initialize(GraphicsDevice);
-                _remainDisp.Initialize(GraphicsDevice);
-                _lifeDisp.Initialize(GraphicsDevice);
-                _windowSizeChanged = false;
-                base.Update(gameTime);
-                return;
-            }
 
             //ESCで終了
             if (GameCtrl.IsClick(ButtonNames.Exit))
@@ -600,14 +581,28 @@ namespace Game2
         {
             try
             {
+                //原寸サイズのRenderTargetを作成する
                 int width = GraphicsDevice.PresentationParameters.BackBufferWidth;
                 int height = GraphicsDevice.PresentationParameters.BackBufferHeight;
                 RenderTarget2D screenshot = new RenderTarget2D(GraphicsDevice, width, height, false, SurfaceFormat.Color, DepthFormat.None);
+
+                //RenderTargetを変更する
                 GraphicsDevice.SetRenderTarget(screenshot);
+
+                //Viewportを再計算する
+                Camera2D.Initialize(GraphicsDevice, Width, Height);
+
+                //RenderTargetに描画する
                 Draw(new GameTime());
+
+                //RenderTargetを戻す
                 GraphicsDevice.SetRenderTarget(null);
                 GraphicsDevice.Present();
 
+                //Viewportを再計算する
+                Camera2D.Initialize(GraphicsDevice, Width, Height);
+
+                //ファイルに書き出す
                 if (screenshot != null)
                 {
                     DateTime datetime = DateTime.Now;
