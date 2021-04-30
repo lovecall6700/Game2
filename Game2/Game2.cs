@@ -133,6 +133,11 @@ namespace Game2
         /// </summary>
         internal static readonly int WindowHeight = 600;
 
+        /// <summary>
+        /// ウィンドウサイズに変更があった
+        /// </summary>
+        private bool _windowSizeChanged = false;
+
         internal Game2()
         {
             Content.RootDirectory = "Content";
@@ -142,17 +147,8 @@ namespace Game2
             TargetElapsedTime = TimeSpan.FromMilliseconds(1000d / 30d);
             InactiveSleepTime = TimeSpan.FromMilliseconds(1000d);
 
-            //ウィンドウサイズ等の設定、サイズ変更対応
-            Graphics = new GraphicsDeviceManager(this)
-            {
-                PreferredBackBufferWidth = WindowWidth,
-                PreferredBackBufferHeight = WindowHeight,
-                IsFullScreen = false,
-                SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight
-            };
-
-            Graphics.ApplyChanges();
-            Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
+            //ウィンドウのサイズを確定する
+            ChangeWindowSize();
         }
 
         protected override void Initialize()
@@ -190,33 +186,50 @@ namespace Game2
         }
 
         /// <summary>
-        /// ウィンドウサイズ変更時の処理
+        /// WindowSizeChanged
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">EventArgs</param>
         private void WindowSizeChanged(object sender, EventArgs e)
         {
+            ChangeWindowSize();
+        }
+
+        /// <summary>
+        /// ウィンドウサイズ変更時の処理
+        /// </summary>
+        private void ChangeWindowSize()
+        {
             Window.ClientSizeChanged -= WindowSizeChanged;
 
-            if (Graphics.IsFullScreen)
+            if (Graphics == null)
             {
-                Graphics.PreferredBackBufferWidth = GraphicsDevice.Adapter.CurrentDisplayMode.Width;
-                Graphics.PreferredBackBufferHeight = GraphicsDevice.Adapter.CurrentDisplayMode.Height;
+                //ウィンドウサイズ等の設定、サイズ変更対応
+                Graphics = new GraphicsDeviceManager(this)
+                {
+                    PreferredBackBufferWidth = WindowWidth,
+                    PreferredBackBufferHeight = WindowHeight,
+                    IsFullScreen = false,
+                    SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight
+                };
             }
             else
             {
-                Graphics.PreferredBackBufferWidth = WindowWidth;
-                Graphics.PreferredBackBufferHeight = WindowHeight;
+                if (Graphics.IsFullScreen)
+                {
+                    Graphics.PreferredBackBufferWidth = GraphicsDevice.Adapter.CurrentDisplayMode.Width;
+                    Graphics.PreferredBackBufferHeight = GraphicsDevice.Adapter.CurrentDisplayMode.Height;
+                }
+                else
+                {
+                    Graphics.PreferredBackBufferWidth = WindowWidth;
+                    Graphics.PreferredBackBufferHeight = WindowHeight;
+                }
             }
 
             Graphics.ApplyChanges();
-
-            if (Camera2D != null)
-            {
-                Camera2D.Initialize(GraphicsDevice, Width, Height);
-            }
-
             Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
+            _windowSizeChanged = true;
         }
 
         /// <summary>
@@ -229,15 +242,25 @@ namespace Game2
             Scheduler.Update();
             GameCtrl.Update(ref gameTime);
 
+            //ウィンドウサイズが変更された場合はカメラを再計算する
+            if (_windowSizeChanged)
+            {
+                Camera2D.Initialize(GraphicsDevice, Width, Height);
+                _timeLimitDisp.Initialize(GraphicsDevice);
+                _scoreDisp.Initialize(GraphicsDevice);
+                _remainDisp.Initialize(GraphicsDevice);
+                _lifeDisp.Initialize(GraphicsDevice);
+                _windowSizeChanged = false;
+                base.Update(gameTime);
+                return;
+            }
+
             //ESCで終了
             if (GameCtrl.IsClick(ButtonNames.Exit))
             {
                 Scheduler.SetSchedule(Schedule.Title);
-            }
-
-            if (GameCtrl.IsClick(ButtonNames.Screenshot))
-            {
-                SaveScreenshot();
+                base.Update(gameTime);
+                return;
             }
 
             //Alt+Enterで最大化
@@ -246,14 +269,18 @@ namespace Game2
                 _paused = true;
                 MusicPlayer.StopSong();
                 Graphics.ToggleFullScreen();
-                _timeLimitDisp.Initialize(GraphicsDevice);
-                _scoreDisp.Initialize(GraphicsDevice);
-                _remainDisp.Initialize(GraphicsDevice);
-                _lifeDisp.Initialize(GraphicsDevice);
                 _fullScTimer.Start(3000f, true);
-                Camera2D.Initialize(GraphicsDevice, Width, Height);
+                base.Update(gameTime);
+                return;
             }
 
+            //スクリーンショット
+            if (GameCtrl.IsClick(ButtonNames.Screenshot))
+            {
+                SaveScreenshot();
+            }
+
+            //ポーズ切り替え
             if (!_pauseTimer.Update(ref gameTime) && GameCtrl.IsClick(ButtonNames.Pause))
             {
                 _paused = !_paused;
