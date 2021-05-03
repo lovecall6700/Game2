@@ -82,7 +82,7 @@ namespace Game2.Managers
                     }
                 }
             }
-            else if (state == ButtonStatus.Click)
+            else if (state == ButtonStatus.Click || state == ButtonStatus.Click2)
             {
                 //クリック時
                 if (_timer.Running)
@@ -154,43 +154,43 @@ namespace Game2.Managers
             {
                 case ButtonNames.Jump:
 
-                    return _jump == ButtonStatus.Release;
+                    return _jump == ButtonStatus.Release || _jump == ButtonStatus.Click2;
 
                 case ButtonNames.Fire:
 
-                    return _fire == ButtonStatus.Release;
+                    return _fire == ButtonStatus.Release || _fire == ButtonStatus.Click2;
 
                 case ButtonNames.Left:
 
-                    return _left == ButtonStatus.Release;
+                    return _left == ButtonStatus.Release || _left == ButtonStatus.Click2;
 
                 case ButtonNames.Right:
 
-                    return _right == ButtonStatus.Release;
+                    return _right == ButtonStatus.Release || _right == ButtonStatus.Click2;
 
                 case ButtonNames.Down:
 
-                    return _down == ButtonStatus.Release;
+                    return _down == ButtonStatus.Release || _down == ButtonStatus.Click2;
 
                 case ButtonNames.Up:
 
-                    return _up == ButtonStatus.Release;
+                    return _up == ButtonStatus.Release || _up == ButtonStatus.Click2;
 
                 case ButtonNames.Pause:
 
-                    return _pause == ButtonStatus.Release;
+                    return _pause == ButtonStatus.Release || _pause == ButtonStatus.Click2;
 
                 case ButtonNames.FullScreen:
 
-                    return _fullScreen == ButtonStatus.Release;
+                    return _fullScreen == ButtonStatus.Release || _fullScreen == ButtonStatus.Click2;
 
                 case ButtonNames.Screenshot:
 
-                    return _screenshot == ButtonStatus.Release;
+                    return _screenshot == ButtonStatus.Release || _screenshot == ButtonStatus.Click2;
 
                 case ButtonNames.Exit:
 
-                    return _exit == ButtonStatus.Release;
+                    return _exit == ButtonStatus.Release || _exit == ButtonStatus.Click2;
             }
 
             return false;
@@ -317,7 +317,7 @@ namespace Game2.Managers
 
                     if (_jump == ButtonStatus.Click)
                     {
-                        _jump = ButtonStatus.Release;
+                        _jump = ButtonStatus.Click2;
                         b = true;
                     }
 
@@ -327,7 +327,7 @@ namespace Game2.Managers
 
                     if (_fire == ButtonStatus.Click)
                     {
-                        _fire = ButtonStatus.Release;
+                        _fire = ButtonStatus.Click2;
                         b = true;
                     }
 
@@ -337,7 +337,7 @@ namespace Game2.Managers
 
                     if (_left == ButtonStatus.Click)
                     {
-                        _left = ButtonStatus.Release;
+                        _left = ButtonStatus.Click2;
                         b = true;
                     }
 
@@ -347,7 +347,7 @@ namespace Game2.Managers
 
                     if (_right == ButtonStatus.Click)
                     {
-                        _right = ButtonStatus.Release;
+                        _right = ButtonStatus.Click2;
                         b = true;
                     }
 
@@ -357,7 +357,7 @@ namespace Game2.Managers
 
                     if (_down == ButtonStatus.Click)
                     {
-                        _down = ButtonStatus.Release;
+                        _down = ButtonStatus.Click2;
                         b = true;
                     }
 
@@ -367,7 +367,7 @@ namespace Game2.Managers
 
                     if (_up == ButtonStatus.Click)
                     {
-                        _up = ButtonStatus.Release;
+                        _up = ButtonStatus.Click2;
                         b = true;
                     }
 
@@ -377,7 +377,7 @@ namespace Game2.Managers
 
                     if (_pause == ButtonStatus.Click)
                     {
-                        _pause = ButtonStatus.Release;
+                        _pause = ButtonStatus.Click2;
                         b = true;
                     }
 
@@ -387,7 +387,7 @@ namespace Game2.Managers
 
                     if (_fullScreen == ButtonStatus.Click)
                     {
-                        _fullScreen = ButtonStatus.Release;
+                        _fullScreen = ButtonStatus.Click2;
                         b = true;
                     }
 
@@ -397,7 +397,7 @@ namespace Game2.Managers
 
                     if (_screenshot == ButtonStatus.Click)
                     {
-                        _screenshot = ButtonStatus.Release;
+                        _screenshot = ButtonStatus.Click2;
                         b = true;
                     }
 
@@ -407,7 +407,7 @@ namespace Game2.Managers
 
                     if (_exit == ButtonStatus.Click)
                     {
-                        _exit = ButtonStatus.Release;
+                        _exit = ButtonStatus.Click2;
                         b = true;
                     }
 
