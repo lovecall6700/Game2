@@ -14,6 +14,10 @@ namespace Game2.Managers
         /// </summary>
         Click,
         /// <summary>
+        /// クリック判定後に内部処理用としてクリック状態を保存
+        /// </summary>
+        Click2,
+        /// <summary>
         /// 押下
         /// </summary>
         Press,
