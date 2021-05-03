@@ -132,7 +132,7 @@
 
 32bit版のLinux
 -----
-「Game2_v3.(バージョン番号)_dotnet452.zip」をダウンロードしてください。
+「Game2_v3.(バージョン番号)_net452.zip」をダウンロードしてください。
 
 `Mono`( https://www.mono-project.com/download/stable/#download-lin )の`mono-runtime`パッケージのインストールが必要です。
 
