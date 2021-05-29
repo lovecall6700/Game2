@@ -24,7 +24,7 @@ namespace Game2.Screens
         /// </summary>
         internal SpriteFont Font;
 
-        internal MessageScreen(Game2 game2, SpriteFont font) : base(game2)
+        internal MessageScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2)
         {
             Game2 = game2;
             Font = font;
@@ -41,7 +41,7 @@ namespace Game2.Screens
 
         internal Vector2 GetMsgSize(string msg, float scale)
         {
-            return Utility.GetMsgSize(Font, msg, scale);
+            return Utility.GetMsgSize(ref Font, msg, scale);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Game2.Managers;
 using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Game2.GameObjects
         private readonly Timer _hormingTimer = new Timer();
         private Vector2 _target;
 
-        internal EnemyBoss(Game2 game2, float x, float y, int id) : base(game2, x, y)
+        internal EnemyBoss(ref Game2 game2, float x, float y, int id) : base(ref game2, x, y)
         {
             ID = id;
 
@@ -122,7 +123,7 @@ namespace Game2.GameObjects
         {
             if (ID == 0)
             {
-                Game2.Scheduler.SetSchedule(Schedule.Ending);
+                Game2.Scheduler.SetSchedule(Schedules.Ending);
             }
         }
     }

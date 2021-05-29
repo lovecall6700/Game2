@@ -66,10 +66,10 @@
     <Compile Include="GameObjects\EnemyUFO2.cs" />
     <Compile Include="GameObjects\MovingFloor.cs" />
     <Compile Include="GameObjects\StaticMessage.cs" />
-    <Compile Include="Managers\ButtonStatus.cs" />
-    <Compile Include="Managers\GameController2.cs" />
-    <Compile Include="Managers\ButtonNames.cs" />
-    <Compile Include="Schedule.cs" />
+    <Compile Include="Inputs\ButtonStatus.cs" />
+    <Compile Include="Inputs\GameController2.cs" />
+    <Compile Include="Inputs\ButtonNames.cs" />
+    <Compile Include="Managers\Scheduler.cs" />
     <Compile Include="GameObjects\ObjectVisibility.cs" />
     <Compile Include="GameObjects\EnemyUFO.cs" />
     <Compile Include="GameObjects\EnemyBoss.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="GameObjects\EnemyJumpDog.cs" />
     <Compile Include="GameObjects\EnemyNeedle.cs" />
     <Compile Include="GameObjects\EnemyBird.cs" />
-    <Compile Include="GameObjects\GameObjectKind.cs" />
+    <Compile Include="GameObjects\GameObjectKinds.cs" />
     <Compile Include="GameObjects\Ladder.cs" />
     <Compile Include="GameObjects\EnemyDog.cs" />
     <Compile Include="GameObjects\EnemyBullet.cs" />
@@ -102,7 +102,7 @@
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameObjects\TreasureBox.cs" />
     <Compile Include="Managers\DigitalDisplay.cs" />
-    <Compile Include="Managers\GameController.cs" />
+    <Compile Include="Inputs\GameController.cs" />
     <Compile Include="Managers\Inventory.cs" />
     <Compile Include="Managers\Camera2D.cs" />
     <Compile Include="Managers\MusicPlayer.cs" />
@@ -112,7 +112,7 @@
     <Compile Include="Data\HighScoreData.cs" />
     <Compile Include="Managers\TimeLimitDisplay.cs" />
     <Compile Include="Managers\ScoreDisplay.cs" />
-    <Compile Include="Scheduler.cs" />
+    <Compile Include="Managers\Schedules.cs" />
     <Compile Include="Screens\StoryScreen.cs" />
     <Compile Include="Screens\OptionsScreen.cs" />
     <Compile Include="Screens\SEVolumeScreen.cs" />

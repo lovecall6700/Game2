@@ -1,4 +1,5 @@
 using Game2.GameObjects;
+using Game2.Inputs;
 using Game2.Managers;
 using Game2.Screens;
 using Game2.Utilities;
@@ -14,6 +15,8 @@ namespace Game2
     /// </summary>
     internal class Game2 : Game
     {
+        private Game2 _game2;
+
         //タイマー
         private readonly Timer _fullScTimer = new Timer();
         private readonly Timer _pauseTimer = new Timer();
@@ -147,13 +150,14 @@ namespace Game2
             //ウィンドウのサイズを確定する
             Camera2D = new Camera2D();
             ChangeWindowSize();
+            _game2 = this;
         }
 
         protected override void Initialize()
         {
             //ゲームシステム
             Textures = new Textures();
-            Scheduler = new Scheduler(this);
+            Scheduler = new Scheduler(ref _game2);
             GameCtrl = new GameController2();
             base.Initialize();
         }
@@ -164,20 +168,20 @@ namespace Game2
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Images = Content.Load<Texture2D>("Images");
             Font = Content.Load<SpriteFont>("Fonts");
-            _timeLimitDisp = new TimeLimitDisplay(this, Font, GraphicsDevice);
-            _scoreDisp = new ScoreDisplay(this, Font, GraphicsDevice);
-            _remainDisp = new RemainDisplay(this, Font, GraphicsDevice);
-            _pauseDisp = new PauseDisplay(this, Font, GraphicsDevice);
-            _lifeDisp = new LifeDisplay(this, Font, GraphicsDevice);
+            _timeLimitDisp = new TimeLimitDisplay(ref _game2, ref Font, GraphicsDevice);
+            _scoreDisp = new ScoreDisplay(ref _game2, ref Font, GraphicsDevice);
+            _remainDisp = new RemainDisplay(ref _game2, ref Font, GraphicsDevice);
+            _pauseDisp = new PauseDisplay(ref _game2, ref Font, GraphicsDevice);
+            _lifeDisp = new LifeDisplay(ref _game2, ref Font, GraphicsDevice);
 
             //ゲーム関連
-            Inventory = new Inventory(this);
+            Inventory = new Inventory(ref _game2);
 
             //音は最後
             MusicPlayer = new MusicPlayer(Content);
 
             //すべての初期化後はタイトル画面を予約
-            Scheduler.SetSchedule(Schedule.Title);
+            Scheduler.SetSchedule(Schedules.Title);
             base.LoadContent();
         }
 
@@ -247,7 +251,7 @@ namespace Game2
             //ESCで終了
             if (GameCtrl.IsClick(ButtonNames.Exit))
             {
-                Scheduler.SetSchedule(Schedule.Title);
+                Scheduler.SetSchedule(Schedules.Title);
                 base.Update(gameTime);
                 return;
             }
@@ -395,7 +399,7 @@ namespace Game2
         {
             Session = new Session();
             _hideHiscore = false;
-            _screen = new TitleScreen(this, Font);
+            _screen = new TitleScreen(ref _game2, ref Font);
         }
 
         /// <summary>
@@ -420,8 +424,8 @@ namespace Game2
             _remainDisp.TitleContinue();
             _scoreDisp.TitleToLoadStart();
             Inventory.TitleToLoadStart();
-            _screen = new StageStart(this, Font);
-            PlaySc = new PlayScreen(this);
+            _screen = new StageStart(ref _game2, ref Font);
+            PlaySc = new PlayScreen(ref _game2);
             PlaySc.LoadStage();
         }
 
@@ -439,8 +443,8 @@ namespace Game2
             _remainDisp.TitleToInitialStart();
             _scoreDisp.TitleToInitialStart();
             Inventory.TitleToInitialStart();
-            _screen = new StageStart(this, Font);
-            PlaySc = new PlayScreen(this);
+            _screen = new StageStart(ref _game2, ref Font);
+            PlaySc = new PlayScreen(ref _game2);
             PlaySc.LoadStage();
         }
 
@@ -462,14 +466,14 @@ namespace Game2
             if (_remainDisp.Miss())
             {
                 SaveHighScore();
-                _screen = new GameoverScreen(this, Font);
+                _screen = new GameoverScreen(ref _game2, ref Font);
             }
             else
             {
                 _timeLimitDisp.Timer.Start(Session.TimeLimit, true);
                 Session.Life = Player.MaxLife;
                 PlaySc.Restart();
-                _screen = new StageStart(this, Font);
+                _screen = new StageStart(ref _game2, ref Font);
             }
         }
 
@@ -490,7 +494,7 @@ namespace Game2
 
             Session.EndTime();
             SaveHighScore();
-            _screen = new EndingScreen(this, Font);
+            _screen = new EndingScreen(ref _game2, ref Font);
         }
 
         /// <summary>
@@ -502,7 +506,7 @@ namespace Game2
             Session.DoorNo = Session.DestDoorNo;
             Session.Life = PlaySc.Player.Life;
             PlaySc.LoadStage();
-            _screen = new StageStart(this, Font);
+            _screen = new StageStart(ref _game2, ref Font);
         }
 
         /// <summary>
@@ -522,7 +526,7 @@ namespace Game2
             _scoreDisp.GameoverRetryToStart();
             Inventory.GameoverRetryToStart();
             PlaySc.Restart();
-            _screen = new StageStart(this, Font);
+            _screen = new StageStart(ref _game2, ref Font);
         }
 
         /// <summary>
@@ -530,7 +534,7 @@ namespace Game2
         /// </summary>
         internal void ExecBGMVolume()
         {
-            _screen = new BGMVolumeScreen(this, Font);
+            _screen = new BGMVolumeScreen(ref _game2, ref Font);
         }
 
         /// <summary>
@@ -538,7 +542,7 @@ namespace Game2
         /// </summary>
         internal void ExecSEVolume()
         {
-            _screen = new SEVolumeScreen(this, Font);
+            _screen = new SEVolumeScreen(ref _game2, ref Font);
         }
 
         /// <summary>
@@ -546,7 +550,7 @@ namespace Game2
         /// </summary>
         internal void ExecOptions()
         {
-            _screen = new OptionsScreen(this, Font);
+            _screen = new OptionsScreen(ref _game2, ref Font);
         }
 
         /// <summary>
@@ -555,7 +559,7 @@ namespace Game2
         internal void ExecStory()
         {
             _hideHiscore = true;
-            _screen = new StoryScreen(this, Font);
+            _screen = new StoryScreen(ref _game2, ref Font);
         }
 
         /// <summary>

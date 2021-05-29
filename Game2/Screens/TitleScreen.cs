@@ -1,3 +1,4 @@
+using Game2.Managers;
 using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +20,7 @@ namespace Game2.Screens
         /// </summary>
         private readonly Timer _storyTimer = new Timer();
 
-        internal TitleScreen(Game2 game2, SpriteFont font) : base(game2, font)
+        internal TitleScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
         {
             AddMenuItem(128, 140, "Start", 1.2f);
             AddMenuItem(128, 162, "Continue", 1.2f);
@@ -40,7 +41,7 @@ namespace Game2.Screens
         {
             if (!_storyTimer.Update(ref gameTime))
             {
-                Game2.Scheduler.SetSchedule(Schedule.Story);
+                Game2.Scheduler.SetSchedule(Schedules.Story);
                 return;
             }
 
@@ -67,19 +68,19 @@ namespace Game2.Screens
             switch (Index)
             {
                 case 0:
-                    Game2.Scheduler.SetSchedule(Schedule.InitialStart);
+                    Game2.Scheduler.SetSchedule(Schedules.InitialStart);
                     break;
 
                 case 1:
-                    Game2.Scheduler.SetSchedule(Schedule.ContinueStart);
+                    Game2.Scheduler.SetSchedule(Schedules.ContinueStart);
                     break;
 
                 case 2:
-                    Game2.Scheduler.SetSchedule(Schedule.Options);
+                    Game2.Scheduler.SetSchedule(Schedules.Options);
                     break;
 
                 case 3:
-                    Game2.Scheduler.SetSchedule(Schedule.Quit);
+                    Game2.Scheduler.SetSchedule(Schedules.Quit);
                     break;
             }
         }

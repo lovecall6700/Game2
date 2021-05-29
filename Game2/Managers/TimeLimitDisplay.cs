@@ -15,7 +15,7 @@ namespace Game2.Managers
         /// </summary>
         internal Timer Timer = new Timer();
 
-        internal TimeLimitDisplay(Game2 game2, SpriteFont font, GraphicsDevice device) : base(game2, font, device)
+        internal TimeLimitDisplay(ref Game2 game2, ref SpriteFont font, GraphicsDevice device) : base(ref game2, ref font, device)
         {
             Format = "{0:000}";
         }
@@ -47,7 +47,7 @@ namespace Game2.Managers
             {
                 if (Game2.PlaySc.Player.ObjectStatus == PhysicsObjectStatus.Normal)
                 {
-                    Game2.PlaySc.EffectObjs.Add(new PopupMessage(Game2, Game2.PlaySc.Player.Position.X, Game2.PlaySc.Player.Position.Y, "TIME OVER", Game2.Font));
+                    Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, ref Game2.Font, Game2.PlaySc.Player.Position.X, Game2.PlaySc.Player.Position.Y, "TIME OVER"));
                     Game2.PlaySc.Player.ObjectStatus = PhysicsObjectStatus.Dead;
                     Game2.Inventory.SetItem("Shoes", false);
                     Game2.Inventory.SetItem("Time", false);

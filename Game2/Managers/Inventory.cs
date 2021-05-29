@@ -16,7 +16,7 @@ namespace Game2.Managers
         private bool _highJump = false;
         private readonly Game2 _game2;
 
-        public Inventory(Game2 game2)
+        public Inventory(ref Game2 game2)
         {
             _game2 = game2;
         }

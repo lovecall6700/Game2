@@ -1,3 +1,4 @@
+using Game2.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,7 +11,7 @@ namespace Game2.Screens
     {
         private readonly MenuItem _item;
 
-        internal OptionsScreen(Game2 game2, SpriteFont font) : base(game2, font)
+        internal OptionsScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
         {
             _item = new MenuItem(new Vector2(80, 70), "Options", 1.5f)
             {
@@ -35,17 +36,17 @@ namespace Game2.Screens
             {
                 case 0:
 
-                    Game2.Scheduler.SetSchedule(Schedule.BGMVolume);
+                    Game2.Scheduler.SetSchedule(Schedules.BGMVolume);
                     break;
 
                 case 1:
 
-                    Game2.Scheduler.SetSchedule(Schedule.SEVolume);
+                    Game2.Scheduler.SetSchedule(Schedules.SEVolume);
                     break;
 
                 case 2:
 
-                    Game2.Scheduler.SetSchedule(Schedule.Title);
+                    Game2.Scheduler.SetSchedule(Schedules.Title);
                     break;
             }
         }

@@ -10,13 +10,13 @@ namespace Game2.GameObjects
         private readonly float _min = -50f;
         private readonly float _max = 50f;
 
-        internal MovingFloor(Game2 game2, float x, float y, string type, float min, float max) : base(game2, x, y)
+        internal MovingFloor(ref Game2 game2, float x, float y, string type, float min, float max) : base(ref game2, x, y)
         {
             Vertical = type == "Vertical";
             _dir = min < max;
             _min = MathHelper.Min(min, max);
             _max = MathHelper.Max(min, max);
-            ObjectKind = GameObjectKind.MovingFloor;
+            ObjectKind = GameObjectKinds.MovingFloor;
             Img = Game2.Textures.GetTexture("MovingFloor");
             SetSize(48, 10);
         }
@@ -117,7 +117,7 @@ namespace Game2.GameObjects
                 {
                     continue;
                 }
-                else if (o.ObjectKind == GameObjectKind.Cloud || o.ObjectKind == GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)
+                else if (o.ObjectKind == GameObjectKinds.Cloud || o.ObjectKind == GameObjectKinds.Ladder || o.ObjectKind == GameObjectKinds.Disable)
                 {
                     continue;
                 }

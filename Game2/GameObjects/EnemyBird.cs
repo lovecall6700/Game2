@@ -8,7 +8,7 @@ namespace Game2.GameObjects
         private readonly Timer _timer = new Timer();
         private bool _exit = false;
 
-        internal EnemyBird(Game2 game2, float x, float y) : base(game2, x, y)
+        internal EnemyBird(ref Game2 game2, float x, float y) : base(ref game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyBirdR1"));
             RImg.AddImage(Game2.Textures.GetTexture("EnemyBirdR2"));

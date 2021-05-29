@@ -18,9 +18,9 @@ namespace Game2.GameObjects
         /// </summary>
         private static readonly int bulletSpeed = 12;
 
-        internal PlayerBullet(Game2 game2, float x, float y, int direction) : base(game2, x, y)
+        internal PlayerBullet(ref Game2 game2, float x, float y, int direction) : base(ref game2, x, y)
         {
-            ObjectKind = GameObjectKind.PlayerBullet;
+            ObjectKind = GameObjectKinds.PlayerBullet;
             ControlDirectionX = direction;
 
             if (direction == -1)
@@ -56,7 +56,7 @@ namespace Game2.GameObjects
             {
                 foreach (PhysicsObject o in Game2.PlaySc.PhysicsObjs)
                 {
-                    if (o.ObjectKind != GameObjectKind.Enemy)
+                    if (o.ObjectKind != GameObjectKinds.Enemy)
                     {
                         continue;
                     }

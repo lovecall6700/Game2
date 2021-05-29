@@ -1,3 +1,5 @@
+using Game2.Inputs;
+using Game2.Managers;
 using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -41,7 +43,7 @@ namespace Game2.Screens
         /// </summary>
         internal bool AlwaysSkip = false;
 
-        internal EndingScreen(Game2 game2, SpriteFont font) : base(game2, font)
+        internal EndingScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
         {
             string baseName = FileName();
 
@@ -165,7 +167,7 @@ namespace Game2.Screens
 
             if (AlwaysSkip || _state == 2)
             {
-                if (Game2.GameCtrl.IsClick(Managers.ButtonNames.Fire))
+                if (Game2.GameCtrl.IsClick(ButtonNames.Fire))
                 {
                     _state = 2;
                     Timer.Running = false;
@@ -222,7 +224,7 @@ namespace Game2.Screens
             }
             else if (_state == 2)
             {
-                Game2.Scheduler.SetSchedule(Schedule.Title);
+                Game2.Scheduler.SetSchedule(Schedules.Title);
             }
         }
     }

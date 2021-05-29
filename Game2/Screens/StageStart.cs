@@ -1,3 +1,5 @@
+using Game2.Inputs;
+using Game2.Managers;
 using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +17,7 @@ namespace Game2.Screens
         /// </summary>
         private readonly List<Rectangle?> _icons = new List<Rectangle?>();
 
-        internal StageStart(Game2 game2, SpriteFont font) : base(game2, font)
+        internal StageStart(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
         {
             Timer.Start(4200, true);
             string msg;
@@ -84,12 +86,12 @@ namespace Game2.Screens
 
         internal override void Timeup()
         {
-            Game2.Scheduler.SetSchedule(Schedule.GameStart);
+            Game2.Scheduler.SetSchedule(Schedules.GameStart);
         }
 
         internal override void Update(ref Vector2 offset, ref GameTime gametime)
         {
-            if (Game2.GameCtrl.IsClick(Managers.ButtonNames.Fire))
+            if (Game2.GameCtrl.IsClick(ButtonNames.Fire))
             {
                 //強制定期にタイムアップを発生させる
                 Timer.Running = false;

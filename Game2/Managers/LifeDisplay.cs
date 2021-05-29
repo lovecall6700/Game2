@@ -8,7 +8,7 @@ namespace Game2.Managers
     /// </summary>
     internal class LifeDisplay : DigitalDisplay
     {
-        internal LifeDisplay(Game2 game2, SpriteFont font, GraphicsDevice device) : base(game2, font, device)
+        internal LifeDisplay(ref Game2 game2, ref SpriteFont font, GraphicsDevice device) : base(ref game2, ref font, device)
         {
             Format = "LIFE {0:0}";
         }
