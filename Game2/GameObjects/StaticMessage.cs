@@ -11,7 +11,7 @@ namespace Game2.GameObjects
         private readonly SpriteFont _font;
         private readonly string _message;
 
-        internal StaticMessage(Game2 game2, float x, float y, string msg, SpriteFont font) : base(game2, x, y)
+        internal StaticMessage(ref Game2 game2, ref SpriteFont font, float x, float y, string msg) : base(ref game2, x, y)
         {
             _message = msg;
             _font = font;

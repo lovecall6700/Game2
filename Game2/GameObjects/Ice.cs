@@ -5,7 +5,7 @@ namespace Game2.GameObjects
     /// </summary>
     internal class Ice : Block
     {
-        internal Ice(Game2 game2, float x, float y) : base(game2, x, y)
+        internal Ice(ref Game2 game2, float x, float y) : base(ref game2, x, y)
         {
             Img = Game2.Textures.GetTexture("Ice");
         }

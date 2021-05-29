@@ -7,7 +7,7 @@ namespace Game2.GameObjects
     {
         private int _state = 0;
 
-        internal EnemyUFO(Game2 game2, float x, float y) : base(game2, x, y)
+        internal EnemyUFO(ref Game2 game2, float x, float y) : base(ref game2, x, y)
         {
             Img = Game2.Textures.GetTexture("EnemyUFO");
             SetSize(256, 80);
@@ -52,7 +52,7 @@ namespace Game2.GameObjects
 
             for (int i = 0; i < max; i++)
             {
-                body[i] = new EnemyBoss(Game2, 0, 0, i);
+                body[i] = new EnemyBoss(ref Game2, 0, 0, i);
 
                 if (i > 0)
                 {

@@ -131,7 +131,7 @@ namespace Game2.Screens
         /// </summary>
         private EnemyGenerator _enemyGenerator;
 
-        internal PlayScreen(Game2 game2) : base(game2)
+        internal PlayScreen(ref Game2 game2) : base(ref game2)
         {
         }
 
@@ -251,7 +251,7 @@ namespace Game2.Screens
             foreach (GameObject item in _mapObjs)
             {
                 //移動床は画面外でも動かす
-                if (item.ObjectKind == GameObjectKind.MovingFloor)
+                if (item.ObjectKind == GameObjectKinds.MovingFloor)
                 {
                     MovingFloor mf = (MovingFloor)item;
                     mf.ResetPosition();
@@ -304,7 +304,7 @@ namespace Game2.Screens
                         //例: 71,10,Door,1,Normal,1,0,Null,Null                        
                         int destStageNo = int.Parse(lines[5]);
                         int destDoorNo = int.Parse(lines[6]);
-                        Door door = new Door(Game2, x, y, stageNo, doorNo, lines[4], destStageNo, destDoorNo, lines[7], lines[8]);
+                        Door door = new Door(ref Game2, x, y, stageNo, doorNo, lines[4], destStageNo, destDoorNo, lines[7], lines[8]);
 
                         if (Game2.Session.DoorVisibility.ContainsKey(door.GetDoorID()))
                         {
@@ -316,7 +316,7 @@ namespace Game2.Screens
                         if (doorNo == startDoorNo)
                         {
                             //主人公スタート位置の決定
-                            Player = new Player(Game2, x, y);
+                            Player = new Player(ref Game2, x, y);
                             PhysicsObjs.Add(Player);
                         }
 
@@ -324,7 +324,7 @@ namespace Game2.Screens
 
                     case "TreasureBox":
 
-                        TreasureBox treasureBox = new TreasureBox(Game2, x, y, bool.Parse(lines[3]), int.Parse(lines[4]), lines[5], stageNo, treasureBoxNo);
+                        TreasureBox treasureBox = new TreasureBox(ref Game2, x, y, bool.Parse(lines[3]), int.Parse(lines[4]), lines[5], stageNo, treasureBoxNo);
 
                         if (Game2.Session.TreasureBoxVisibility.ContainsKey(treasureBox.GetTreasureBoxID()))
                         {
@@ -337,7 +337,7 @@ namespace Game2.Screens
 
                     case "Item":
 
-                        Item item = new Item(Game2, x, y, stageNo, itemNo, lines[3], bool.Parse(lines[4]), lines[5]);
+                        Item item = new Item(ref Game2, x, y, stageNo, itemNo, lines[3], bool.Parse(lines[4]), lines[5]);
 
                         if (Game2.Session.ItemVisibility.ContainsKey(item.GetItemID()))
                         {
@@ -350,47 +350,47 @@ namespace Game2.Screens
 
                     case "Cloud":
 
-                        obj = new Cloud(Game2, x, y);
+                        obj = new Cloud(ref Game2, x, y);
                         depth = int.Parse(lines[3]);
                         break;
 
                     case "Ice":
 
-                        obj = new Ice(Game2, x, y);
+                        obj = new Ice(ref Game2, x, y);
                         depth = int.Parse(lines[3]);
                         break;
 
                     case "Ladder":
 
-                        obj = new Ladder(Game2, x, y);
+                        obj = new Ladder(ref Game2, x, y);
                         depth = int.Parse(lines[3]);
                         break;
 
                     case "MovingFloor":
 
-                        obj = new MovingFloor(Game2, x, y, lines[3], float.Parse(lines[4]), float.Parse(lines[5]));
+                        obj = new MovingFloor(ref Game2, x, y, lines[3], float.Parse(lines[4]), float.Parse(lines[5]));
                         break;
 
                     case "Crack":
 
-                        obj = new Crack(Game2, x, y, lines[3]);
+                        obj = new Crack(ref Game2, x, y, lines[3]);
                         break;
 
                     case "BeltConveyer":
 
-                        obj = new BeltConveyer(Game2, x, y, lines[3], lines[4]);
+                        obj = new BeltConveyer(ref Game2, x, y, lines[3], lines[4]);
                         break;
 
                     case "StaticMessage":
 
-                        obj = new StaticMessage(Game2, x, y, lines[3], Game2.Font);
+                        obj = new StaticMessage(ref Game2, ref Game2.Font, x, y, lines[3]);
                         depth = -1;
                         break;
 
                     default:
 
                         //Block系
-                        obj = new Block(Game2, x, y)
+                        obj = new Block(ref Game2, x, y)
                         {
                             Img = Game2.Textures.GetTexture($"{objectName}")
                         };
@@ -465,7 +465,7 @@ namespace Game2.Screens
             _darkZoneSwitchTimes[1] = float.Parse(settings[index++]);
 
             //敵
-            _enemyGenerator = new EnemyGenerator(Game2);
+            _enemyGenerator = new EnemyGenerator(ref Game2);
             _enemyGenerator.SetSpawn(0, bool.Parse(settings[index++]));
             _enemyGenerator.SetSpawn(1, bool.Parse(settings[index++]));
             _enemyGenerator.SetSpawn(2, bool.Parse(settings[index++]));
@@ -592,7 +592,7 @@ namespace Game2.Screens
             foreach (GameObject item in _mapObjs)
             {
                 //移動床は画面外でも動かす
-                if (item.ObjectKind != GameObjectKind.MovingFloor && Rectangle.Intersect(item.Rectangle, _sight).IsEmpty)
+                if (item.ObjectKind != GameObjectKinds.MovingFloor && Rectangle.Intersect(item.Rectangle, _sight).IsEmpty)
                 {
                     if (NearMapObjs.Contains(item))
                     {

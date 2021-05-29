@@ -1,7 +1,7 @@
 using Game2.Utilities;
 using Microsoft.Xna.Framework;
 
-namespace Game2.Managers
+namespace Game2.Inputs
 {
     internal class GameController2 : GameController
     {

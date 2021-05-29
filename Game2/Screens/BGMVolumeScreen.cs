@@ -1,3 +1,4 @@
+using Game2.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,7 +11,7 @@ namespace Game2.Screens
     {
         private readonly MenuItem _item;
 
-        internal BGMVolumeScreen(Game2 game2, SpriteFont font) : base(game2, font)
+        internal BGMVolumeScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
         {
             _item = new MenuItem(new Vector2(60, 70), "BGM Volume", 1.5f)
             {
@@ -38,7 +39,7 @@ namespace Game2.Screens
             {
                 case 5:
 
-                    Game2.Scheduler.SetSchedule(Schedule.Options);
+                    Game2.Scheduler.SetSchedule(Schedules.Options);
                     break;
 
                 default:

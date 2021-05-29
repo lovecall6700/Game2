@@ -6,7 +6,7 @@ namespace Game2.GameObjects
     {
         private readonly Random _rnd = new Random();
 
-        internal EnemyJumpDog(Game2 game2, float x, float y) : base(game2, x, y)
+        internal EnemyJumpDog(ref Game2 game2, float x, float y) : base(ref game2, x, y)
         {
         }
 

@@ -9,9 +9,9 @@ namespace Game2.GameObjects
         /// </summary>
         private static readonly int bulletSpeed = 9;
 
-        internal EnemyBullet(Game2 game2, float x, float y, float angle) : base(game2, x, y)
+        internal EnemyBullet(ref Game2 game2, float x, float y, float angle) : base(ref game2, x, y)
         {
-            ObjectKind = GameObjectKind.PlayerBullet;
+            ObjectKind = GameObjectKinds.PlayerBullet;
             Vector2 upVector = new Vector2(0.0f, -1.0f);
             Matrix rotation = Matrix.CreateRotationZ(MathHelper.ToRadians(angle));
             Vector2 direction = Vector2.Transform(upVector, rotation);
@@ -38,7 +38,7 @@ namespace Game2.GameObjects
         {
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {
-                if (o.ObjectKind == GameObjectKind.Cloud || o.ObjectKind == GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)
+                if (o.ObjectKind == GameObjectKinds.Cloud || o.ObjectKind == GameObjectKinds.Ladder || o.ObjectKind == GameObjectKinds.Disable)
                 {
                     continue;
                 }

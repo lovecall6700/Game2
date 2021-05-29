@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
 
-namespace Game2.Managers
+namespace Game2.Inputs
 {
     /// <summary>
     /// プレーヤーの操作をまとめる

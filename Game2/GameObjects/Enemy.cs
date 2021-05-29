@@ -45,9 +45,9 @@ namespace Game2.GameObjects
         /// </summary>
         internal float ShotTime = 10000f;
 
-        internal Enemy(Game2 game2, float x, float y) : base(game2, x, y)
+        internal Enemy(ref Game2 game2, float x, float y) : base(ref game2, x, y)
         {
-            ObjectKind = GameObjectKind.Enemy;
+            ObjectKind = GameObjectKinds.Enemy;
             DeadSE = "SoundEffects/EnemyDead";
             DamageSE = "SoundEffects/EnemyDead";
             //一定時間たったら勝手に死ぬ

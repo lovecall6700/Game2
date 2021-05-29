@@ -14,9 +14,9 @@ namespace Game2.GameObjects
         private readonly Timer _timer = new Timer();
         private readonly float _time = 120f;
 
-        internal Crack(Game2 game2, float x, float y, string dummy) : base(game2, x, y)
+        internal Crack(ref Game2 game2, float x, float y, string dummy) : base(ref game2, x, y)
         {
-            ObjectKind = GameObjectKind.Carck;
+            ObjectKind = GameObjectKinds.Carck;
             Img = Game2.Textures.GetTexture("" + dummy);
             _crackImg.AddImage(Game2.Textures.GetTexture("Crack3"));
             _crackImg.AddImage(Game2.Textures.GetTexture("Crack2"));
@@ -28,7 +28,7 @@ namespace Game2.GameObjects
 
         internal override void Update(ref GameTime gameTime)
         {
-            if (ObjectKind == GameObjectKind.Disable)
+            if (ObjectKind == GameObjectKinds.Disable)
             {
                 return;
             }
@@ -41,7 +41,7 @@ namespace Game2.GameObjects
 
                 if (_life <= 0)
                 {
-                    ObjectKind = GameObjectKind.Disable;
+                    ObjectKind = GameObjectKinds.Disable;
                 }
             }
 
@@ -61,7 +61,7 @@ namespace Game2.GameObjects
         internal override void Outside()
         {
             //画面外に出たら崩れたブロックは復活する
-            if (ObjectKind == GameObjectKind.Disable)
+            if (ObjectKind == GameObjectKinds.Disable)
             {
                 Restart();
             }
@@ -70,7 +70,7 @@ namespace Game2.GameObjects
         internal override void Restart()
         {
             _life = 5;
-            ObjectKind = GameObjectKind.Carck;
+            ObjectKind = GameObjectKinds.Carck;
         }
     }
 }
