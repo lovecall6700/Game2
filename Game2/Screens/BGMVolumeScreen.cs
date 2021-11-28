@@ -1,4 +1,5 @@
 using Game2.Managers;
+using Game2.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -24,6 +25,18 @@ namespace Game2.Screens
             AddMenuItem(128, 170, "25%", 1f);
             AddMenuItem(128, 190, "Mute", 1f);
             AddMenuItem(128, 210, "End", 1f);
+            float volume = Game2.MusicPlayer.GetSongVolume();
+            SelectVolumeItem(volume);
+
+            if (Utility.AlmostEqual(volume, 1.0f))
+            {
+                Index = 1;
+            }
+            else
+            {
+                Index = 0;
+            }
+
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
 
@@ -47,7 +60,46 @@ namespace Game2.Screens
                     float v = 1f - 0.25f * Index;
                     Game2.MusicPlayer.SetSongVolume(v);
                     Game2.MusicPlayer.SaveSoundVolume();
+                    SelectVolumeItem(v);
                     break;
+            }
+        }
+
+        /// <summary>
+        /// ボリュームの選択を行う
+        /// </summary>
+        /// <param name="volume">ボリューム</param>
+        internal void SelectVolumeItem(float volume)
+        {
+            foreach (MenuItem item in Items)
+            {
+                item.Disable = false;
+            }
+
+            if (Utility.AlmostEqual(volume, 1.0f))
+            {
+                Items[0].Disable = true;
+                Index = 1;
+            }
+            else if (Utility.AlmostEqual(volume, 0.75f))
+            {
+                Items[1].Disable = true;
+                Index = 2;
+            }
+            else if (Utility.AlmostEqual(volume, 0.5f))
+            {
+                Items[2].Disable = true;
+                Index = 3;
+            }
+            else if (Utility.AlmostEqual(volume, 0.25f))
+            {
+                Items[3].Disable = true;
+                Index = 4;
+            }
+            else if (Utility.AlmostEqual(volume, 0.0f))
+            {
+                Items[4].Disable = true;
+                Index = 0;
             }
         }
     }

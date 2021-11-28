@@ -92,7 +92,14 @@ namespace Game2.Screens
 
                 if (Items[Index].Disable)
                 {
-                    Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
+                    if (Index == 0)
+                    {
+                        Index = 1;
+                    }
+                    else
+                    {
+                        Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
+                    }
                 }
 
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");

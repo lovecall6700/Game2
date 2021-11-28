@@ -32,59 +32,59 @@
 /processorParam:TextureFormat=Color
 /build:Images.png
 
-#begin Songs/BGM1.wma
-/importer:WmaImporter
+#begin Songs/BGM1.wav
+/importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/BGM1.wma
+/build:Songs/BGM1.wav
 
-#begin Songs/BGM2.wma
-/importer:WmaImporter
+#begin Songs/BGM2.wav
+/importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/BGM2.wma
+/build:Songs/BGM2.wav
 
-#begin Songs/BGM3.wma
-/importer:WmaImporter
+#begin Songs/BGM3.wav
+/importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/BGM3.wma
+/build:Songs/BGM3.wav
 
-#begin Songs/BGM4.wma
-/importer:WmaImporter
+#begin Songs/BGM4.wav
+/importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/BGM4.wma
+/build:Songs/BGM4.wav
 
-#begin Songs/BGM5.wma
-/importer:WmaImporter
+#begin Songs/BGM5.wav
+/importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/BGM5.wma
+/build:Songs/BGM5.wav
 
-#begin Songs/BGM6.wma
-/importer:WmaImporter
+#begin Songs/BGM6.wav
+/importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/BGM6.wma
+/build:Songs/BGM6.wav
 
-#begin Songs/BGM7.wma
-/importer:WmaImporter
+#begin Songs/BGM7.wav
+/importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/BGM7.wma
+/build:Songs/BGM7.wav
 
-#begin Songs/BGM8.wma
-/importer:WmaImporter
+#begin Songs/BGM8.wav
+/importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/BGM8.wma
+/build:Songs/BGM8.wav
 
-#begin Songs/BGM9.wma
-/importer:WmaImporter
+#begin Songs/BGM9.wav
+/importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/BGM9.wma
+/build:Songs/BGM9.wav
 
 #begin SoundEffects/Crack.wav
 /importer:WavImporter

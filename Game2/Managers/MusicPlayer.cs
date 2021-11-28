@@ -245,5 +245,23 @@ namespace Game2.Managers
             }
             catch { }
         }
+
+        /// <summary>
+        /// BGMの音量を取得する
+        /// </summary>
+        /// <returns>0.0から1.0までの数</returns>
+        internal float GetSongVolume()
+        {
+            return _BGMVolume;
+        }
+
+        /// <summary>
+        /// SEの音量を取得する
+        /// </summary>
+        /// <returns>0.0から1.0までの数</returns>
+        internal float GetSEVolume()
+        {
+            return _SEVolume;
+        }
     }
 }

@@ -238,5 +238,17 @@ namespace Game2.Utilities
         {
             return font.MeasureString(msg) * scale;
         }
+
+        /// <summary>
+        /// 浮動小数点同士の比較を行う
+        /// </summary>
+        /// <param name="a">値1</param>
+        /// <param name="b">値1</param>
+        /// <param name="epsilon">誤差</param>
+        /// <returns>比較結果</returns>
+        internal static bool AlmostEqual(double a, double b, double epsilon = 0.01)
+        {
+            return Math.Abs(a - b) < epsilon;
+        }
     }
 }
