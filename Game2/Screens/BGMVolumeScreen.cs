@@ -20,7 +20,7 @@ namespace Game2.Screens
             };
 
             AddMenuItem(128, 110, "100%", 1f);
-            AddMenuItem(128, 130, "80%", 1f);
+            AddMenuItem(128, 130, "75%", 1f);
             AddMenuItem(128, 150, "50%", 1f);
             AddMenuItem(128, 170, "25%", 1f);
             AddMenuItem(128, 190, "Mute", 1f);

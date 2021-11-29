@@ -80,8 +80,8 @@ namespace Game2.Managers
             {
             }
 
-            _BGMVolume = 0.8f;
-            _SEVolume = 0.8f;
+            _BGMVolume = 0.75f;
+            _SEVolume = 0.75f;
             SetSongVolume(_BGMVolume);
             SetSEVolume(_SEVolume);
         }
