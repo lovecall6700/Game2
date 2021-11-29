@@ -39,12 +39,12 @@ namespace Game2.Managers
         /// <summary>
         /// BGM音量
         /// </summary>
-        private float _BGMVolume = 0.8f;
+        private float _BGMVolume = 0.75f;
 
         /// <summary>
         /// SE音量
         /// </summary>
-        private float _SEVolume = 0.8f;
+        private float _SEVolume = 0.75f;
 
         public MusicPlayer(ContentManager content)
         {
