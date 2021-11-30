@@ -10,7 +10,7 @@ namespace Game2.Screens
     {
         internal Game2 Game2;
 
-        internal Screen(Game2 game2)
+        internal Screen(ref Game2 game2)
         {
             Game2 = game2;
         }

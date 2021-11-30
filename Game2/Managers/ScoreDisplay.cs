@@ -8,7 +8,7 @@ namespace Game2.Managers
     /// </summary>
     internal class ScoreDisplay : DigitalDisplay
     {
-        internal ScoreDisplay(Game2 game2, SpriteFont font, GraphicsDevice device) : base(game2, font, device)
+        internal ScoreDisplay(ref Game2 game2, ref SpriteFont font, GraphicsDevice device) : base(ref game2, ref font, device)
         {
             Initialize(device);
         }

@@ -37,9 +37,9 @@ namespace Game2.GameObjects
         /// </summary>
         private readonly int _itemNo;
 
-        internal Item(Game2 game2, float x, float y, int stageNo, int itemNo, string name, bool hidden, string dummy) : base(game2, x, y)
+        internal Item(ref Game2 game2, float x, float y, int stageNo, int itemNo, string name, bool hidden, string dummy) : base(ref game2, x, y)
         {
-            ObjectKind = GameObjectKind.Item;
+            ObjectKind = GameObjectKinds.Item;
             Name = name;
             _stageNo = stageNo;
             _itemNo = itemNo;

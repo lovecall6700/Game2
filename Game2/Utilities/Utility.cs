@@ -193,22 +193,6 @@ namespace Game2.Utilities
         }
 
         /// <summary>
-        /// OSがVistaか調べる
-        /// </summary>
-        /// <returns>OSがVistaか</returns>
-        internal static bool IsVista()
-        {
-            OperatingSystem os = Environment.OSVersion;
-
-            if (os.Version.Major == 6 && os.Version.Minor == 0)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
         /// 対象を追尾するための速度ベクトルを得る
         /// </summary>
         /// <param name="obj">追跡者</param>
@@ -250,9 +234,21 @@ namespace Game2.Utilities
         /// <param name="msg">文字列</param>
         /// <param name="scale">表示倍率</param>
         /// <returns>描画サイズ</returns>
-        internal static Vector2 GetMsgSize(SpriteFont font, string msg, float scale)
+        internal static Vector2 GetMsgSize(ref SpriteFont font, string msg, float scale)
         {
             return font.MeasureString(msg) * scale;
+        }
+
+        /// <summary>
+        /// 浮動小数点同士の比較を行う
+        /// </summary>
+        /// <param name="a">値1</param>
+        /// <param name="b">値1</param>
+        /// <param name="epsilon">誤差</param>
+        /// <returns>比較結果</returns>
+        internal static bool AlmostEqual(double a, double b, double epsilon = 0.01)
+        {
+            return Math.Abs(a - b) < epsilon;
         }
     }
 }

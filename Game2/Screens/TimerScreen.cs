@@ -19,7 +19,7 @@ namespace Game2.Screens
         /// </summary>
         internal readonly Timer WaitTimer = new Timer();
 
-        internal TimerScreen(Game2 game2, SpriteFont font) : base(game2, font)
+        internal TimerScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
         {
             WaitTimer.Start(500f, true);
         }

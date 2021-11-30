@@ -65,9 +65,9 @@ namespace Game2.GameObjects
         /// <param name="destNo">ドアの移動先ドア番号</param>
         /// <param name="dummyUp">不可視・隠し扉の上段テクスチャ名</param>
         /// <param name="dummyDown">不可視・隠し扉の下段テクスチャ名</param>
-        internal Door(Game2 game2, float x, float y, int stageNo, int doorNo, string doorType, int destStage, int destNo, string dummyUp, string dummyDown) : base(game2, x, y)
+        internal Door(ref Game2 game2, float x, float y, int stageNo, int doorNo, string doorType, int destStage, int destNo, string dummyUp, string dummyDown) : base(ref game2, x, y)
         {
-            ObjectKind = GameObjectKind.Door;
+            ObjectKind = GameObjectKinds.Door;
             DoorNo = doorNo;
             StageNo = stageNo;
             DestStageNo = destStage;

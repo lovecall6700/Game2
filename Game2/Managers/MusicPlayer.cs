@@ -39,12 +39,12 @@ namespace Game2.Managers
         /// <summary>
         /// BGM音量
         /// </summary>
-        private float _BGMVolume = 0.8f;
+        private float _BGMVolume = 0.75f;
 
         /// <summary>
         /// SE音量
         /// </summary>
-        private float _SEVolume = 0.8f;
+        private float _SEVolume = 0.75f;
 
         public MusicPlayer(ContentManager content)
         {
@@ -80,8 +80,8 @@ namespace Game2.Managers
             {
             }
 
-            _BGMVolume = 0.8f;
-            _SEVolume = 0.8f;
+            _BGMVolume = 0.75f;
+            _SEVolume = 0.75f;
             SetSongVolume(_BGMVolume);
             SetSEVolume(_SEVolume);
         }
@@ -244,6 +244,24 @@ namespace Game2.Managers
                 SoundEffect.MasterVolume = _SEVolume;
             }
             catch { }
+        }
+
+        /// <summary>
+        /// BGMの音量を取得する
+        /// </summary>
+        /// <returns>0.0から1.0までの数</returns>
+        internal float GetSongVolume()
+        {
+            return _BGMVolume;
+        }
+
+        /// <summary>
+        /// SEの音量を取得する
+        /// </summary>
+        /// <returns>0.0から1.0までの数</returns>
+        internal float GetSEVolume()
+        {
+            return _SEVolume;
         }
     }
 }

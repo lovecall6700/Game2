@@ -137,7 +137,7 @@ namespace Game2.GameObjects
         /// </summary>
         internal bool UseAnimation = true;
 
-        internal PhysicsObject(Game2 game2, float x, float y) : base(game2, x, y)
+        internal PhysicsObject(ref Game2 game2, float x, float y) : base(ref game2, x, y)
         {
             ObjectStatus = PhysicsObjectStatus.Normal;
         }
@@ -159,7 +159,7 @@ namespace Game2.GameObjects
             //ハシゴにいるか確認する
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {
-                if (o.ObjectKind != GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)
+                if (o.ObjectKind != GameObjectKinds.Ladder || o.ObjectKind == GameObjectKinds.Disable)
                 {
                     continue;
                 }
@@ -200,7 +200,7 @@ namespace Game2.GameObjects
 
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {
-                if (o.ObjectKind == GameObjectKind.Cloud || o.ObjectKind == GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)
+                if (o.ObjectKind == GameObjectKinds.Cloud || o.ObjectKind == GameObjectKinds.Ladder || o.ObjectKind == GameObjectKinds.Disable)
                 {
                     continue;
                 }
@@ -267,7 +267,7 @@ namespace Game2.GameObjects
 
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {
-                if (o.ObjectKind == GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)
+                if (o.ObjectKind == GameObjectKinds.Ladder || o.ObjectKind == GameObjectKinds.Disable)
                 {
                     continue;
                 }
@@ -286,7 +286,7 @@ namespace Game2.GameObjects
                     if (Velocity.Y < 0)
                     {
                         //上昇中の雲は素通り
-                        if (o.ObjectKind == GameObjectKind.Cloud)
+                        if (o.ObjectKind == GameObjectKinds.Cloud)
                         {
                             continue;
                         }
@@ -301,11 +301,11 @@ namespace Game2.GameObjects
                 //下降中、以下の条件で雲を素通りする
                 //プレーヤーがアイテムを持っており雲と上から接触したら乗れる
                 //敵が雲と上から接触したら乗れる
-                if (o.ObjectKind == GameObjectKind.Cloud)
+                if (o.ObjectKind == GameObjectKinds.Cloud)
                 {
                     if (Position.Y <= o.Rectangle.Top - Height)
                     {
-                        if (ObjectKind == GameObjectKind.Enemy || (ObjectKind == GameObjectKind.Player && Game2.Inventory.HasShoesItem()))
+                        if (ObjectKind == GameObjectKinds.Enemy || (ObjectKind == GameObjectKinds.Player && Game2.Inventory.HasShoesItem()))
                         {
                             //素通りさせる
                         }
@@ -397,7 +397,7 @@ namespace Game2.GameObjects
 
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {
-                if (o.ObjectKind == GameObjectKind.Cloud || o.ObjectKind == GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)
+                if (o.ObjectKind == GameObjectKinds.Cloud || o.ObjectKind == GameObjectKinds.Ladder || o.ObjectKind == GameObjectKinds.Disable)
                 {
                     continue;
                 }

@@ -41,7 +41,7 @@ namespace Game2.Managers
         /// </summary>
         private Vector2 _zero = Vector2.Zero;
 
-        internal DigitalDisplay(Game2 game2, SpriteFont font, GraphicsDevice device)
+        internal DigitalDisplay(ref Game2 game2, ref SpriteFont font, GraphicsDevice device)
         {
             Game2 = game2;
             Value = 0;

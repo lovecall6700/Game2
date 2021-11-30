@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -68,11 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
+    <Compile Include="Game2.cs" />
     <Compile Include="Data\HighScoreData.cs" />
     <Compile Include="Data\SaveData.cs" />
     <Compile Include="Data\Session.cs" />
     <Compile Include="Data\SoundVolumeData.cs" />
-    <Compile Include="Game2.cs" />
     <Compile Include="GameObjects\BeltConveyer.cs" />
     <Compile Include="GameObjects\Block.cs" />
     <Compile Include="GameObjects\Cloud.cs" />
@@ -94,7 +94,7 @@
     <Compile Include="GameObjects\EnemyUPeopleJump.cs" />
     <Compile Include="GameObjects\EnemyUPeopleLife.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
-    <Compile Include="GameObjects\GameObjectKind.cs" />
+    <Compile Include="GameObjects\GameObjectKinds.cs" />
     <Compile Include="GameObjects\Ice.cs" />
     <Compile Include="GameObjects\Item.cs" />
     <Compile Include="GameObjects\Ladder.cs" />
@@ -107,25 +107,25 @@
     <Compile Include="GameObjects\PopupMessage.cs" />
     <Compile Include="GameObjects\StaticMessage.cs" />
     <Compile Include="GameObjects\TreasureBox.cs" />
-    <Compile Include="Managers\ButtonNames.cs" />
-    <Compile Include="Managers\ButtonStatus.cs" />
+    <Compile Include="Inputs\ButtonNames.cs" />
+    <Compile Include="Inputs\ButtonStatus.cs" />
+    <Compile Include="Inputs\GameController.cs" />
+    <Compile Include="Inputs\GameController2.cs" />
     <Compile Include="Managers\Camera2D.cs" />
     <Compile Include="Managers\DigitalDisplay.cs" />
     <Compile Include="Managers\EnemyGenerator.cs" />
-    <Compile Include="Managers\GameController.cs" />
-    <Compile Include="Managers\GameController2.cs" />
     <Compile Include="Managers\Inventory.cs" />
     <Compile Include="Managers\LifeDisplay.cs" />
     <Compile Include="Managers\MusicPlayer.cs" />
     <Compile Include="Managers\PauseDisplay.cs" />
     <Compile Include="Managers\RemainDisplay.cs" />
+    <Compile Include="Managers\Scheduler.cs" />
+    <Compile Include="Managers\Schedules.cs" />
     <Compile Include="Managers\ScoreDisplay.cs" />
     <Compile Include="Managers\Textures.cs" />
     <Compile Include="Managers\TimeLimitDisplay.cs" />
-    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Schedule.cs" />
-    <Compile Include="Scheduler.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Screens\BGMVolumeScreen.cs" />
     <Compile Include="Screens\EndingScreen.cs" />
     <Compile Include="Screens\GameoverScreen.cs" />

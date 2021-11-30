@@ -15,9 +15,9 @@ namespace Game2.GameObjects
         private Vector2 _vibroA = new Vector2(1f, 0);
         private Vector2 _vibroB = new Vector2(-1f, 0);
 
-        internal BeltConveyer(Game2 game2, float x, float y, string dummy, string dir) : base(game2, x, y)
+        internal BeltConveyer(ref Game2 game2, float x, float y, string dummy, string dir) : base(ref game2, x, y)
         {
-            ObjectKind = GameObjectKind.Block;
+            ObjectKind = GameObjectKinds.Block;
             Img = Game2.Textures.GetTexture("" + dummy);
             _beltImg = Game2.Textures.GetTexture("BeltConveyer");
             SetSize(16, 16);
@@ -76,7 +76,7 @@ namespace Game2.GameObjects
                 {
                     continue;
                 }
-                else if (o.ObjectKind == GameObjectKind.Cloud || o.ObjectKind == GameObjectKind.Ladder || o.ObjectKind == GameObjectKind.Disable)
+                else if (o.ObjectKind == GameObjectKinds.Cloud || o.ObjectKind == GameObjectKinds.Ladder || o.ObjectKind == GameObjectKinds.Disable)
                 {
                     continue;
                 }

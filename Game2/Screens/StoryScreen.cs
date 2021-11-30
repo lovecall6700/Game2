@@ -7,7 +7,7 @@ namespace Game2.Screens
     /// </summary>
     internal class StoryScreen : EndingScreen
     {
-        internal StoryScreen(Game2 game2, SpriteFont font) : base(game2, font)
+        internal StoryScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
         {
             AlwaysSkip = true;
         }

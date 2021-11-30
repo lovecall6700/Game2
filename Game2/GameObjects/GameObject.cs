@@ -49,7 +49,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// ゲームオブジェクト種別
         /// </summary>
-        internal GameObjectKind ObjectKind;
+        internal GameObjectKinds ObjectKind;
 
         /// <summary>
         /// 摩擦力
@@ -61,7 +61,7 @@ namespace Game2.GameObjects
         /// </summary>
         private static readonly float airFriction = 1f;
 
-        internal GameObject(Game2 game2, float x, float y)
+        internal GameObject(ref Game2 game2, float x, float y)
         {
             Game2 = game2;
             Position = new Vector2(x, y);
@@ -85,7 +85,7 @@ namespace Game2.GameObjects
 
         internal virtual void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            if (Img == null || ObjectKind == GameObjectKind.Disable)
+            if (Img == null || ObjectKind == GameObjectKinds.Disable)
             {
                 return;
             }

@@ -11,7 +11,7 @@ namespace Game2.Managers
     internal class EnemyGenerator
     {
         private readonly Random _rnd = new Random();
-        private readonly Game2 _game2;
+        private Game2 _game2;
 
         /// <summary>
         /// 敵を生成するタイマー
@@ -38,7 +38,7 @@ namespace Game2.Managers
         /// </summary>
         internal bool BossFlag = false;
 
-        internal EnemyGenerator(Game2 game2)
+        internal EnemyGenerator(ref Game2 game2)
         {
             _game2 = game2;
         }
@@ -242,43 +242,43 @@ namespace Game2.Managers
             {
                 case 0:
 
-                    return new EnemyDog(_game2, 0, 0);
+                    return new EnemyDog(ref _game2, 0, 0);
 
                 case 1:
 
-                    return new EnemyBird(_game2, 0, 0);
+                    return new EnemyBird(ref _game2, 0, 0);
 
                 case 2:
 
-                    return new EnemyNeedle(_game2, 0, 0);
+                    return new EnemyNeedle(ref _game2, 0, 0);
 
                 case 3:
 
-                    return new EnemyJumpDog(_game2, 0, 0);
+                    return new EnemyJumpDog(ref _game2, 0, 0);
 
                 case 4:
 
-                    return new EnemyJumpFish(_game2, 0, 0);
+                    return new EnemyJumpFish(ref _game2, 0, 0);
 
                 case 5:
 
-                    return new EnemyHomingFire(_game2, 0, 0);
+                    return new EnemyHomingFire(ref _game2, 0, 0);
 
                 case 6:
 
-                    return new EnemyUPeopleBasic(_game2, 0, 0);
+                    return new EnemyUPeopleBasic(ref _game2, 0, 0);
 
                 case 7:
 
-                    return new EnemyUPeopleJump(_game2, 0, 0);
+                    return new EnemyUPeopleJump(ref _game2, 0, 0);
 
                 case 8:
 
-                    return new EnemyUPeople8Shots(_game2, 0, 0);
+                    return new EnemyUPeople8Shots(ref _game2, 0, 0);
 
                 case 9:
 
-                    return new EnemyUPeopleLife(_game2, 0, 0);
+                    return new EnemyUPeopleLife(ref _game2, 0, 0);
 
                 case 10:
 
@@ -292,10 +292,10 @@ namespace Game2.Managers
                     // UFOルートのステージは特殊UFO戦
                     if (_game2.Session.StageNo == 24)
                     {
-                        return new EnemyUFO2(_game2, 0, 0);
+                        return new EnemyUFO2(ref _game2, 0, 0);
                     }
 
-                    return new EnemyUFO(_game2, 0, 0);
+                    return new EnemyUFO(ref _game2, 0, 0);
             }
 
             return null;
