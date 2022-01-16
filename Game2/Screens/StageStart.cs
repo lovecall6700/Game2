@@ -17,6 +17,8 @@ namespace Game2.Screens
         /// </summary>
         private readonly List<Rectangle?> _icons = new List<Rectangle?>();
 
+        private bool _keyFlag = true;
+
         internal StageStart(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
         {
             Timer.Start(4200, true);
@@ -91,7 +93,13 @@ namespace Game2.Screens
 
         internal override void Update(ref Vector2 offset, ref GameTime gametime)
         {
-            if (Game2.GameCtrl.IsClick(ButtonNames.Fire))
+            //一度離すのを確認してからスキップ入力を受け付ける
+            //絶対離したくない人が、そのまま押していてもタイムアップする。
+            if (_keyFlag && Game2.GameCtrl.IsRelease(ButtonNames.Fire))
+            {
+                _keyFlag = false;
+            }
+            else if (Game2.GameCtrl.IsClick(ButtonNames.Fire))
             {
                 //強制定期にタイムアップを発生させる
                 Timer.Running = false;
