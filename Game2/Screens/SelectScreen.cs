@@ -75,7 +75,9 @@ namespace Game2.Screens
             //一度離すのを確認してから入力を受け付ける
             if (_keyFlag)
             {
-                if (Game2.GameCtrl.IsRelease(ButtonNames.Fire))
+                if (Game2.GameCtrl.IsRelease(ButtonNames.Fire) &&
+                    Game2.GameCtrl.IsRelease(ButtonNames.Up) &&
+                    Game2.GameCtrl.IsRelease(ButtonNames.Down))
                 {
                     _keyFlag = false;
                 }
