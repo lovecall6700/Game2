@@ -99,7 +99,7 @@ namespace Game2.Screens
             {
                 _keyFlag = false;
             }
-            else if (Game2.GameCtrl.IsClick(ButtonNames.Fire))
+            else if (!_keyFlag && Game2.GameCtrl.IsClick(ButtonNames.Fire))
             {
                 //強制定期にタイムアップを発生させる
                 Timer.Running = false;
