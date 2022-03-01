@@ -100,6 +100,7 @@ namespace Game2
         internal SpriteFont Font;
         internal GraphicsDeviceManager Graphics;
         internal SpriteBatch SpriteBatch;
+        private Rectangle _oldLocation;
 
         /// <summary>
         /// ゲーム開始時のステージ番号
@@ -140,6 +141,7 @@ namespace Game2
 
         internal Game2()
         {
+
             Content.RootDirectory = "Content";
             Window.Title = "Game2";
 
@@ -149,13 +151,14 @@ namespace Game2
 
             //ウィンドウのサイズを確定する
             Camera2D = new Camera2D();
-            ChangeWindowSize();
+            Graphics = new GraphicsDeviceManager(this);
             _game2 = this;
         }
 
         protected override void Initialize()
         {
             //ゲームシステム
+            UnsetFullscreen();
             Textures = new Textures();
             Scheduler = new Scheduler(ref _game2);
             GameCtrl = new GameController2();
@@ -186,53 +189,6 @@ namespace Game2
         }
 
         /// <summary>
-        /// WindowSizeChanged
-        /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="e">EventArgs</param>
-        private void WindowSizeChanged(object sender, EventArgs e)
-        {
-            ChangeWindowSize();
-        }
-
-        /// <summary>
-        /// ウィンドウサイズ変更時の処理
-        /// </summary>
-        private void ChangeWindowSize()
-        {
-            Window.ClientSizeChanged -= WindowSizeChanged;
-
-            if (Graphics == null)
-            {
-                //ウィンドウサイズ等の設定、サイズ変更対応
-                Graphics = new GraphicsDeviceManager(this)
-                {
-                    PreferredBackBufferWidth = WindowWidth,
-                    PreferredBackBufferHeight = WindowHeight,
-                    IsFullScreen = false,
-                    SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight
-                };
-            }
-            else
-            {
-                if (Graphics.IsFullScreen)
-                {
-                    Graphics.PreferredBackBufferWidth = GraphicsDevice.Adapter.CurrentDisplayMode.Width;
-                    Graphics.PreferredBackBufferHeight = GraphicsDevice.Adapter.CurrentDisplayMode.Height;
-                }
-                else
-                {
-                    Graphics.PreferredBackBufferWidth = WindowWidth;
-                    Graphics.PreferredBackBufferHeight = WindowHeight;
-                }
-            }
-
-            Graphics.ApplyChanges();
-            Window.ClientSizeChanged += new EventHandler<EventArgs>(WindowSizeChanged);
-            _initCamera2D = true;
-        }
-
-        /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
@@ -241,6 +197,14 @@ namespace Game2
         {
             Scheduler.Update();
             GameCtrl.Update(ref gameTime);
+
+            //ウィンドウ位置が変更されたらCamera2Dを初期化する
+            Rectangle location = Window.ClientBounds;
+            if (location != _oldLocation)
+            {
+                _oldLocation = location;
+                _initCamera2D = true; ;
+            }
 
             if (_initCamera2D)
             {
@@ -261,7 +225,16 @@ namespace Game2
             {
                 _paused = true;
                 MusicPlayer.StopSong();
-                Graphics.ToggleFullScreen();
+
+                if (Graphics.IsFullScreen)
+                {
+                    UnsetFullscreen();
+                }
+                else
+                {
+                    SetFullscreen();
+                }
+
                 _fullScTimer.Start(3000f, true);
                 base.Update(gameTime);
                 return;
@@ -636,6 +609,26 @@ namespace Game2
             {
                 Session.SaveHighScore();
             }
+        }
+
+        private void SetFullscreen()
+        {
+            Graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            Graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            Graphics.IsFullScreen = true;
+            Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            Graphics.ApplyChanges();
+            _initCamera2D = true;
+        }
+
+        private void UnsetFullscreen()
+        {
+            Graphics.PreferredBackBufferWidth = WindowWidth;
+            Graphics.PreferredBackBufferHeight = WindowHeight;
+            Graphics.IsFullScreen = false;
+            Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            Graphics.ApplyChanges();
+            _initCamera2D = true;
         }
     }
 }
