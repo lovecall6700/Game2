@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Game2.Managers
 {
@@ -47,6 +48,7 @@ namespace Game2.Managers
                 Viewport = new Viewport(0, 0, backHeight, backHeight);
             }
 
+            Zoom = (float)Math.Round(Zoom, 2);
             Transform = Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
             device.Viewport = Viewport;
         }
