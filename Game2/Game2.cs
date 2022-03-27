@@ -141,9 +141,12 @@ namespace Game2
 
         internal Game2()
         {
-
+            //GraphicsDeviceManagerの初期化はこの位置でなければならない。
+            //他の位置ではモニタ解像度に対するサイズ補正が動作しない。
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             Window.Title = "Game2";
+            Window.AllowUserResizing = true;
 
             //フレームレート
             TargetElapsedTime = TimeSpan.FromMilliseconds(1000d / 30d);
@@ -151,7 +154,6 @@ namespace Game2
 
             //ウィンドウのサイズを確定する
             Camera2D = new Camera2D();
-            Graphics = new GraphicsDeviceManager(this);
             _game2 = this;
         }
 
