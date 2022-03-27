@@ -196,12 +196,12 @@ namespace Game2.Screens
 
                 if (SecondMsg != null)
                 {
-                    SecondMsg.Draw(ref spriteBatch, ref Font); ;
+                    SecondMsg.Draw(ref spriteBatch, ref Font);
                 }
 
                 if (ThirdMsg != null)
                 {
-                    ThirdMsg.Draw(ref spriteBatch, ref Font); ;
+                    ThirdMsg.Draw(ref spriteBatch, ref Font);
                 }
             }
         }

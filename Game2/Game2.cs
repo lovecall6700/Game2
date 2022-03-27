@@ -203,7 +203,7 @@ namespace Game2
             if (location != _oldLocation)
             {
                 _oldLocation = location;
-                _initCamera2D = true; ;
+                _initCamera2D = true;
             }
 
             if (_initCamera2D)

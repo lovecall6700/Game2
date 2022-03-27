@@ -57,7 +57,7 @@ namespace Game2.Screens
                     {
                         _saveOnce = true;
                         Items[1].Menu = "Saved";
-                        Vector2 v = Utility.GetMsgSize(ref Font, "Saved", 1.5f) / 2; ;
+                        Vector2 v = Utility.GetMsgSize(ref Font, "Saved", 1.5f) / 2;
                         Items[1].Position.X = 128 - v.X;
                         Items[1].Disable = true;
                         Index = 0;
