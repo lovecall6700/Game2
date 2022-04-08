@@ -149,7 +149,7 @@ Finが表示されたら、Bボタンを押してタイトル画面に戻れま�
 
 Game2は`Game2 Releases`( https://github.com/lovecall6700/Game2/releases )からダウンロードできます。実行環境ごとに用意されたzipファイルをダウンロードしてください。ダウンロードするファイルが表示されていない場合は、「Assets」をクリックすると表示されます。
 
-ランタイムのインストールが難しくてわからない方は「Game2_v2.(バージョン番号).zip」をダウンロードしてください。Vista/7/8/10、どのWindowsでも動作すると思います。
+ランタイムのインストールが難しくてわからない方は「Game2_v2.(更新番号).zip」をダウンロードしてください。Vista/7/8/10、どのWindowsでも動作すると思います。
 
 実行してパソコンが爆発したり、死人が出ても俺は知らん。
 
@@ -158,7 +158,7 @@ Game2は`Game2 Releases`( https://github.com/lovecall6700/Game2/releases )から
 
 ### Windows 7/8/10 (32bit/64bit)、Linux (64bit)、macOS (64bit)
 
-「Game2_v3.(バージョン番号).zip」をダウンロードしてください。
+「Game2_v3.(更新番号).zip」をダウンロードしてください。
 
 `.NET Runtime 3.1.23`( https://dotnet.microsoft.com/download/dotnet-core/3.1 )のインストールが必要です。新しいバージョンがあるなら、それを使いましょう。
 
@@ -179,7 +179,7 @@ Game2は`Game2 Releases`( https://github.com/lovecall6700/Game2/releases )から
 
 ### Windows汎用 Vista/7/8/10
 
-「Game2_v2.(バージョン番号).zip」をダウンロードしてください。`Windows Vista`ではBGMが演奏されません。
+「Game2_v2.(更新番号).zip」をダウンロードしてください。`Windows Vista`ではBGMが演奏されません。
 
 `Windows`ではダウンロードしたzipファイルを右クリックし、`プロパティ`を選び、`ブロックの解除`にチェックを入れるか、`ブロックの解除`ボタンを押し、`OK`ボタンを押してください。その後、再びzipファイルを右クリックし、`すべて展開`を選択し、`展開`ボタンを押してください。zipファイルが展開されます。
 
