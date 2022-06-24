@@ -38,8 +38,6 @@ namespace Game2.Screens
 
         private bool _keyFlag = true;
 
-        private readonly Timer _timer = new Timer();
-
         internal SelectScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2)
         {
             Game2 = game2;
@@ -85,9 +83,7 @@ namespace Game2.Screens
                 return;
             }
 
-            _timer.Update(ref gameTime);
-
-            if (!_timer.Running && (Game2.GameCtrl.IsClick(ButtonNames.Up) || Game2.GameCtrl.IsRepeat(ButtonNames.Up)))
+            if (Game2.GameCtrl.IsClick(ButtonNames.Up))
             {
                 //上が押された
                 Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
@@ -106,9 +102,8 @@ namespace Game2.Screens
 
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
                 PushUp();
-                _timer.Start(180f, true);
             }
-            else if (!_timer.Running && (Game2.GameCtrl.IsClick(ButtonNames.Down) || Game2.GameCtrl.IsRepeat(ButtonNames.Down)))
+            else if (Game2.GameCtrl.IsClick(ButtonNames.Down))
             {
                 //下が押された
                 Index = MathHelper.Clamp(Index + 1, 0, Items.Count - 1);
@@ -121,7 +116,6 @@ namespace Game2.Screens
 
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");
                 PushDown();
-                _timer.Start(180f, true);
             }
             else if (Game2.GameCtrl.IsClick(ButtonNames.Fire))
             {
