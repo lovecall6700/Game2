@@ -566,12 +566,15 @@ namespace Game2
         /// </summary>
         public void SaveScreenshot()
         {
+            FileStream fs = null;
+            RenderTarget2D screenshot = null;
+
             try
             {
                 //原寸サイズのRenderTargetを作成する
                 int width = GraphicsDevice.PresentationParameters.BackBufferWidth;
                 int height = GraphicsDevice.PresentationParameters.BackBufferHeight;
-                RenderTarget2D screenshot = new RenderTarget2D(GraphicsDevice, width, height, false, SurfaceFormat.Color, DepthFormat.None);
+                screenshot = new RenderTarget2D(GraphicsDevice, width, height, false, SurfaceFormat.Color, DepthFormat.None);
 
                 //RenderTargetを変更する
                 GraphicsDevice.SetRenderTarget(screenshot);
@@ -582,26 +585,29 @@ namespace Game2
                 //RenderTargetに描画する
                 Draw(new GameTime());
 
+                //ファイルに書き出す
+                if (screenshot != null)
+                {
+                    DateTime datetime = DateTime.Now;
+                    string ymdhms = datetime.ToString("yyyyMMddHHmmss");
+                    fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), $"screenshot_{ymdhms}.png"), FileMode.OpenOrCreate);
+                    screenshot.SaveAsPng(fs, width, height);
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                fs?.Close();
+                screenshot?.Dispose();
+
                 //RenderTargetを戻す
                 GraphicsDevice.SetRenderTarget(null);
                 GraphicsDevice.Present();
 
                 //Viewportを再計算する
                 Camera2D.Initialize(GraphicsDevice, Width, Height);
-
-                //ファイルに書き出す
-                if (screenshot != null)
-                {
-                    DateTime datetime = DateTime.Now;
-                    string ymdhms = datetime.ToString("yyyyMMddHHmmss");
-                    FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), $"screenshot_{ymdhms}.png"), FileMode.OpenOrCreate);
-                    screenshot.SaveAsPng(fs, width, height);
-                    fs.Close();
-                    screenshot.Dispose();
-                }
-            }
-            catch
-            {
             }
         }
 

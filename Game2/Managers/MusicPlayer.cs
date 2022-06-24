@@ -64,26 +64,29 @@ namespace Game2.Managers
         /// </summary>
         internal void LoadSoundVolume()
         {
+            FileStream fs = null;
+
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "soundvolume.dat"), FileMode.Open);
+                fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "soundvolume.dat"), FileMode.Open);
                 SoundVolumeData sd = (SoundVolumeData)formatter.Deserialize(fs);
-                fs.Close();
                 _BGMVolume = sd.BGMVolume;
                 _SEVolume = sd.SEVolume;
                 SetSongVolume(_BGMVolume);
                 SetSEVolume(_SEVolume);
-                return;
             }
             catch
             {
+                _BGMVolume = 0.75f;
+                _SEVolume = 0.75f;
+                SetSongVolume(_BGMVolume);
+                SetSEVolume(_SEVolume);
             }
-
-            _BGMVolume = 0.75f;
-            _SEVolume = 0.75f;
-            SetSongVolume(_BGMVolume);
-            SetSEVolume(_SEVolume);
+            finally
+            {
+                fs?.Close();
+            }
         }
 
         /// <summary>
@@ -91,6 +94,8 @@ namespace Game2.Managers
         /// </summary>
         internal void SaveSoundVolume()
         {
+            FileStream fs = null;
+
             try
             {
                 SoundVolumeData data = new SoundVolumeData
@@ -100,12 +105,15 @@ namespace Game2.Managers
                 };
 
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "soundvolume.dat"), FileMode.Create);
+                fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "soundvolume.dat"), FileMode.Create);
                 formatter.Serialize(fs, data);
-                fs.Close();
             }
             catch
             {
+            }
+            finally
+            {
+                fs?.Close();
             }
         }
 

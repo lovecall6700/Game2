@@ -90,20 +90,23 @@ namespace Game2
         /// </summary>
         private void LoadHighScore()
         {
+            FileStream fs = null;
+
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "highscore.dat"), FileMode.Open);
+                fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "highscore.dat"), FileMode.Open);
                 HighScoreData sd = (HighScoreData)formatter.Deserialize(fs);
-                fs.Close();
                 HighScore = sd.HighScore;
-                return;
             }
             catch
             {
+                HighScore = 0;
             }
-
-            HighScore = 0;
+            finally
+            {
+                fs?.Close();
+            }
         }
 
         /// <summary>
@@ -111,6 +114,8 @@ namespace Game2
         /// </summary>
         internal void SaveHighScore()
         {
+            FileStream fs = null;
+
             try
             {
                 HighScoreData data = new HighScoreData
@@ -119,12 +124,15 @@ namespace Game2
                 };
 
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "highscore.dat"), FileMode.Create);
+                fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "highscore.dat"), FileMode.Create);
                 formatter.Serialize(fs, data);
-                fs.Close();
             }
             catch
             {
+            }
+            finally
+            {
+                fs?.Close();
             }
         }
 
@@ -133,28 +141,31 @@ namespace Game2
         /// </summary>
         internal void LoadStage()
         {
+            FileStream fs = null;
+
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "stage.dat"), FileMode.Open);
+                fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "stage.dat"), FileMode.Open);
                 SaveData sd = (SaveData)formatter.Deserialize(fs);
-                fs.Close();
                 StageNo = sd.StageNo;
                 DoorNo = sd.DoorNo;
                 TreasureBoxVisibility = sd.TreasureBoxVisibility;
                 DoorVisibility = sd.DoorVisibility;
                 ItemVisibility = sd.ItemVisibility;
-                return;
             }
             catch
             {
+                StageNo = Game2.StartStageNo;
+                DoorNo = Game2.StartDoorNo;
+                TreasureBoxVisibility.Clear();
+                DoorVisibility.Clear();
+                ItemVisibility.Clear();
             }
-
-            StageNo = Game2.StartStageNo;
-            DoorNo = Game2.StartDoorNo;
-            TreasureBoxVisibility.Clear();
-            DoorVisibility.Clear();
-            ItemVisibility.Clear();
+            finally
+            {
+                fs?.Close();
+            }
         }
 
         /// <summary>
@@ -162,6 +173,8 @@ namespace Game2
         /// </summary>
         internal void SaveStage()
         {
+            FileStream fs = null;
+
             try
             {
                 SaveData data = new SaveData
@@ -174,12 +187,15 @@ namespace Game2
                 };
 
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "stage.dat"), FileMode.Create);
+                fs = new FileStream(Path.Combine(Utility.GetSaveFilePath(), "stage.dat"), FileMode.Create);
                 formatter.Serialize(fs, data);
-                fs.Close();
             }
             catch
             {
+            }
+            finally
+            {
+                fs?.Close();
             }
         }
 
