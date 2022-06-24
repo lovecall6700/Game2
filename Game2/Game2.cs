@@ -69,7 +69,7 @@ namespace Game2
         /// <summary>
         /// ゲームコントローラ
         /// </summary>
-        internal GameController2 GameCtrl;
+        internal GameController3 GameCtrl;
 
         /// <summary>
         /// カメラ
@@ -163,7 +163,7 @@ namespace Game2
             UnsetFullscreen();
             Textures = new Textures();
             Scheduler = new Scheduler(ref _game2);
-            GameCtrl = new GameController2();
+            GameCtrl = new GameController3();
             base.Initialize();
         }
 
