@@ -93,19 +93,32 @@ namespace Game2.Screens
 
         internal override void Update(ref Vector2 offset, ref GameTime gametime)
         {
-            //一度離すのを確認してからスキップ入力を受け付ける
-            //絶対離したくない人が、そのまま押していてもタイムアップする。
-            if (_keyFlag && Game2.GameCtrl.IsRelease(ButtonNames.Fire))
+            if (WaitTimer.Update(ref gametime))
             {
-                _keyFlag = false;
+                return;
             }
-            else if (!_keyFlag && Game2.GameCtrl.IsClick(ButtonNames.Fire))
+
+            if (!Timer.Update(ref gametime))
+            {
+                Timeup();
+            }
+
+            //一度離すのを確認してから入力を受け付ける
+            if (_keyFlag)
+            {
+                if (Game2.GameCtrl.IsRelease(ButtonNames.Fire))
+                {
+                    _keyFlag = false;
+                }
+
+                return;
+            }
+
+            if (Game2.GameCtrl.IsClick(ButtonNames.Fire))
             {
                 //強制定期にタイムアップを発生させる
                 Timer.Running = false;
             }
-
-            base.Update(ref offset, ref gametime);
         }
 
         internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
