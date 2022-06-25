@@ -36,12 +36,18 @@ namespace Game2.Screens
         /// </summary>
         internal SpriteFont Font;
 
+        /// <summary>
+        /// 画面が出てからしばらくは操作できない
+        /// </summary>
+        internal readonly Timer WaitTimer = new Timer();
+
         private bool _keyFlag = true;
 
         internal SelectScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2)
         {
             Game2 = game2;
             Font = font;
+            WaitTimer.Start(300f, true);
         }
 
         internal void AddMenuItem(float x, float y, string menu, float scale)
@@ -70,6 +76,11 @@ namespace Game2.Screens
 
         internal override void Update(ref Vector2 offset, ref GameTime gameTime)
         {
+            if (WaitTimer.Update(ref gameTime))
+            {
+                return;
+            }
+
             //一度離すのを確認してから入力を受け付ける
             if (_keyFlag)
             {
