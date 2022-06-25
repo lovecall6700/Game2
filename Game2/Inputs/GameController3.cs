@@ -14,7 +14,7 @@ namespace Game2.Inputs
         private ButtonStatus _left = ButtonStatus.Release;
         private ButtonStatus _right = ButtonStatus.Release;
         private ButtonStatus _jump = ButtonStatus.Release;
-        private ButtonStatus _shot = ButtonStatus.Release;
+        private ButtonStatus _fire = ButtonStatus.Release;
         private ButtonStatus _pause = ButtonStatus.Release;
         private ButtonStatus _fullScreen = ButtonStatus.Release;
         private ButtonStatus _screenshot = ButtonStatus.Release;
@@ -35,7 +35,7 @@ namespace Game2.Inputs
             UpdateStatus(Left, ref _left);
             UpdateStatus(Right, ref _right);
             UpdateStatus(Jump, ref _jump);
-            UpdateStatus(Fire, ref _shot);
+            UpdateStatus(Fire, ref _fire);
             UpdateStatus(Pause, ref _pause);
             UpdateStatus(FullScreen, ref _fullScreen);
             UpdateStatus(Screenshot, ref _screenshot);
@@ -84,20 +84,33 @@ namespace Game2.Inputs
         /// <returns>ボタンが解放か</returns>
         internal bool IsRelease(ButtonNames name)
         {
-            return name switch
+#pragma warning disable IDE0066 // switch ステートメントを式に変換します
+            switch (name)
+#pragma warning restore IDE0066 // switch ステートメントを式に変換します
             {
-                ButtonNames.Jump => _jump == ButtonStatus.Release || _jump == ButtonStatus.Release,
-                ButtonNames.Fire => _shot == ButtonStatus.Release || _shot == ButtonStatus.Release,
-                ButtonNames.Left => _left == ButtonStatus.Release || _left == ButtonStatus.Release,
-                ButtonNames.Right => _right == ButtonStatus.Release || _right == ButtonStatus.Release,
-                ButtonNames.Down => _down == ButtonStatus.Release || _down == ButtonStatus.Release,
-                ButtonNames.Up => _up == ButtonStatus.Release || _up == ButtonStatus.Release,
-                ButtonNames.Pause => _pause == ButtonStatus.Release || _pause == ButtonStatus.Release,
-                ButtonNames.FullScreen => _fullScreen == ButtonStatus.Release || _fullScreen == ButtonStatus.Release,
-                ButtonNames.Screenshot => _screenshot == ButtonStatus.Release || _screenshot == ButtonStatus.Release,
-                ButtonNames.Exit => _exit == ButtonStatus.Release || _exit == ButtonStatus.Release,
-                _ => false,
-            };
+                case ButtonNames.Jump:
+                    return _jump == ButtonStatus.Release;
+                case ButtonNames.Fire:
+                    return _fire == ButtonStatus.Release;
+                case ButtonNames.Left:
+                    return _left == ButtonStatus.Release;
+                case ButtonNames.Right:
+                    return _right == ButtonStatus.Release;
+                case ButtonNames.Down:
+                    return _down == ButtonStatus.Release;
+                case ButtonNames.Up:
+                    return _up == ButtonStatus.Release;
+                case ButtonNames.Pause:
+                    return _pause == ButtonStatus.Release;
+                case ButtonNames.FullScreen:
+                    return _fullScreen == ButtonStatus.Release;
+                case ButtonNames.Screenshot:
+                    return _screenshot == ButtonStatus.Release;
+                case ButtonNames.Exit:
+                    return _exit == ButtonStatus.Release;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -107,20 +120,33 @@ namespace Game2.Inputs
         /// <returns>ボタンが押下か</returns>
         internal bool IsPress(ButtonNames name)
         {
-            return name switch
+#pragma warning disable IDE0066 // switch ステートメントを式に変換します
+            switch (name)
+#pragma warning restore IDE0066 // switch ステートメントを式に変換します
             {
-                ButtonNames.Jump => _jump == ButtonStatus.Press,
-                ButtonNames.Fire => _shot == ButtonStatus.Press,
-                ButtonNames.Left => _left == ButtonStatus.Press,
-                ButtonNames.Right => _right == ButtonStatus.Press,
-                ButtonNames.Down => _down == ButtonStatus.Press,
-                ButtonNames.Up => _up == ButtonStatus.Press,
-                ButtonNames.Pause => _pause == ButtonStatus.Press,
-                ButtonNames.FullScreen => _fullScreen == ButtonStatus.Press,
-                ButtonNames.Screenshot => _screenshot == ButtonStatus.Press,
-                ButtonNames.Exit => _exit == ButtonStatus.Press,
-                _ => false,
-            };
+                case ButtonNames.Jump:
+                    return _jump == ButtonStatus.Press;
+                case ButtonNames.Fire:
+                    return _fire == ButtonStatus.Press;
+                case ButtonNames.Left:
+                    return _left == ButtonStatus.Press;
+                case ButtonNames.Right:
+                    return _right == ButtonStatus.Press;
+                case ButtonNames.Down:
+                    return _down == ButtonStatus.Press;
+                case ButtonNames.Up:
+                    return _up == ButtonStatus.Press;
+                case ButtonNames.Pause:
+                    return _pause == ButtonStatus.Press;
+                case ButtonNames.FullScreen:
+                    return _fullScreen == ButtonStatus.Press;
+                case ButtonNames.Screenshot:
+                    return _screenshot == ButtonStatus.Press;
+                case ButtonNames.Exit:
+                    return _exit == ButtonStatus.Press;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -146,9 +172,9 @@ namespace Game2.Inputs
 
                 case ButtonNames.Fire:
 
-                    if (_shot == ButtonStatus.Click)
+                    if (_fire == ButtonStatus.Click)
                     {
-                        _shot = ButtonStatus.Release;
+                        _fire = ButtonStatus.Release;
                         b = true;
                     }
 
