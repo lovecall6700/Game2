@@ -24,7 +24,7 @@ namespace Game2.Screens
             WaitTimer.Start(500f, true);
         }
 
-        internal override void Update(ref Vector2 offset, ref GameTime gameTime)
+        internal override void Update(ref GameTime gameTime)
         {
             //画面が出てからしばらくは操作できない
             if (WaitTimer.Update(ref gameTime))

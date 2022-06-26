@@ -91,11 +91,6 @@ namespace Game2
         /// </summary>
         internal Textures Textures;
 
-        /// <summary>
-        /// 全体マップに対する描画位置
-        /// </summary>
-        internal Vector2 Offset;
-
         //その他のシステム周り
         internal SpriteFont Font;
         internal GraphicsDeviceManager Graphics;
@@ -280,7 +275,7 @@ namespace Game2
                 _lifeDisp.Update(ref gameTime);
             }
 
-            _screen.Update(ref Offset, ref gameTime);
+            _screen.Update(ref gameTime);
             base.Update(gameTime);
         }
 
@@ -332,7 +327,7 @@ namespace Game2
                 //ゲーム描画
                 GraphicsDevice.Clear(PlaySc.GetBackColor());
                 SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-                PlaySc.Draw(ref Offset, ref gameTime, ref SpriteBatch);
+                PlaySc.Draw(ref gameTime, ref SpriteBatch);
                 _timeLimitDisp.Draw(ref SpriteBatch);
                 _lifeDisp.Draw(ref SpriteBatch);
                 _remainDisp.Draw(ref SpriteBatch);
@@ -349,7 +344,7 @@ namespace Game2
             {
                 GraphicsDevice.Clear(Color.Black);
                 SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-                _screen.Draw(ref Offset, ref gameTime, ref SpriteBatch);
+                _screen.Draw(ref gameTime, ref SpriteBatch);
 
                 if (!_hideHiscore)
                 {

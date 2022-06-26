@@ -135,42 +135,42 @@ namespace Game2.Screens
         {
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (!GetDarkZone() || Game2.Inventory.HasLightItem())
             {
                 foreach (GameObject item in _nearBackObjs)
                 {
-                    item.Draw(ref offset, ref gameTime, ref spriteBatch);
+                    item.Draw(ref gameTime, ref spriteBatch);
                 }
 
                 foreach (GameObject item in NearMapObjs)
                 {
-                    item.Draw(ref offset, ref gameTime, ref spriteBatch);
+                    item.Draw(ref gameTime, ref spriteBatch);
                 }
             }
 
             foreach (GameObject item in ItemObjs)
             {
-                item.Draw(ref offset, ref gameTime, ref spriteBatch);
+                item.Draw(ref gameTime, ref spriteBatch);
             }
 
             foreach (GameObject item in PhysicsObjs)
             {
-                item.Draw(ref offset, ref gameTime, ref spriteBatch);
+                item.Draw(ref gameTime, ref spriteBatch);
             }
 
             if (!GetDarkZone() || Game2.Inventory.HasLightItem())
             {
                 foreach (GameObject item in _nearFrontObjs)
                 {
-                    item.Draw(ref offset, ref gameTime, ref spriteBatch);
+                    item.Draw(ref gameTime, ref spriteBatch);
                 }
             }
 
             foreach (GameObject item in EffectObjs)
             {
-                item.Draw(ref offset, ref gameTime, ref spriteBatch);
+                item.Draw(ref gameTime, ref spriteBatch);
             }
         }
 
@@ -401,7 +401,7 @@ namespace Game2.Screens
 
                 if (obj == null)
                 {
-                    //Do notiong
+                    //Do nothing
                 }
                 else if (depth < 0)
                 {
@@ -489,7 +489,7 @@ namespace Game2.Screens
             _enemyGenerator.BossFlag = false;
         }
 
-        internal override void Update(ref Vector2 offset, ref GameTime gameTime)
+        internal override void Update(ref GameTime gameTime)
         {
             foreach (GameObject item in ItemObjs)
             {
@@ -529,7 +529,7 @@ namespace Game2.Screens
                 NearMapObjs[i].Update(ref gameTime);
             }
 
-            _enemyGenerator.Update(ref offset, ref gameTime);
+            _enemyGenerator.Update(ref gameTime);
 
             FocusCamera2D();
             _backColorSwitchTimer.Update(ref gameTime);
@@ -538,30 +538,34 @@ namespace Game2.Screens
 
         private void FocusXCamera2D()
         {
-            if (Player.Rectangle.Left < Game2.Offset.X + 100)
+            if (Player.Rectangle.Left < Game2.Camera2D.Position.X + 100)
             {
-                Game2.Offset.X = Player.Rectangle.Left - 100;
+                int val = Player.Rectangle.Left - 100;
+                val = MathHelper.Clamp(val, 0, _mapWidth * 16 - Game2.Width);
+                Game2.Camera2D.FocusX(val);
             }
-            else if (Game2.Offset.X + 156 < Player.Rectangle.Right)
+            else if (Game2.Camera2D.Position.X + 156 < Player.Rectangle.Right)
             {
-                Game2.Offset.X = Player.Rectangle.Right - 156;
+                int val = Player.Rectangle.Right - 156;
+                val = MathHelper.Clamp(val, 0, _mapWidth * 16 - Game2.Width);
+                Game2.Camera2D.FocusX(val);
             }
-
-            Game2.Offset.X = MathHelper.Clamp(Game2.Offset.X, 0, _mapWidth * 16 - Game2.Width);
         }
 
         private void FocusYCamera2D()
         {
-            if (Player.Rectangle.Top < Game2.Offset.Y + 100)
+            if (Player.Rectangle.Top < Game2.Camera2D.Position.Y + 100)
             {
-                Game2.Offset.Y = Player.Rectangle.Top - 100;
+                int val = Player.Rectangle.Top - 100;
+                val = MathHelper.Clamp(val, 0, _mapHeight * 16 - Game2.Height);
+                Game2.Camera2D.FocusY(val);
             }
-            else if (Game2.Offset.Y + 156 < Player.Rectangle.Bottom)
+            else if (Game2.Camera2D.Position.Y + 156 < Player.Rectangle.Bottom)
             {
-                Game2.Offset.Y = Player.Rectangle.Bottom - 156;
+                int val = Player.Rectangle.Bottom - 156;
+                val = MathHelper.Clamp(val, 0, _mapHeight * 16 - Game2.Height);
+                Game2.Camera2D.FocusY(val);
             }
-
-            Game2.Offset.Y = MathHelper.Clamp(Game2.Offset.Y, 0, _mapHeight * 16 - Game2.Height);
         }
 
         /// <summary>
@@ -572,12 +576,10 @@ namespace Game2.Screens
             if (StageDir == StageDirType.Horizontal)
             {
                 FocusXCamera2D();
-                Game2.Offset.Y = 0;
             }
             else if (StageDir == StageDirType.Vertical)
             {
                 FocusYCamera2D();
-                Game2.Offset.X = 0;
             }
             else
             {
@@ -586,8 +588,8 @@ namespace Game2.Screens
             }
 
             //視界内のマップに対してのみ物理演算を行う
-            _sight.X = (int)(Game2.Offset.X - 16);
-            _sight.Y = (int)(Game2.Offset.Y - 16);
+            _sight.X = (int)Game2.Camera2D.Position.X - 16;
+            _sight.Y = (int)Game2.Camera2D.Position.Y - 16;
 
             foreach (GameObject item in _mapObjs)
             {

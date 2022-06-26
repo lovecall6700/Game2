@@ -31,13 +31,13 @@ namespace Game2.Screens
             _storyTimer.Start(8000f, true);
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            base.Draw(ref offset, ref gameTime, ref spriteBatch);
+            base.Draw(ref gameTime, ref spriteBatch);
             spriteBatch.Draw(Game2.Images, Vector2.Zero, _titleImg, Color.White);
         }
 
-        internal override void Update(ref Vector2 offset, ref GameTime gameTime)
+        internal override void Update(ref GameTime gameTime)
         {
             if (!_storyTimer.Update(ref gameTime))
             {
@@ -45,7 +45,7 @@ namespace Game2.Screens
                 return;
             }
 
-            base.Update(ref offset, ref gameTime);
+            base.Update(ref gameTime);
         }
 
         internal override void PushUp()

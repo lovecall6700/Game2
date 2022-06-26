@@ -24,10 +24,10 @@ namespace Game2.Screens
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             _item.Draw(ref spriteBatch, ref Font);
-            base.Draw(ref offset, ref gameTime, ref spriteBatch);
+            base.Draw(ref gameTime, ref spriteBatch);
         }
 
         internal override void SelectMenu()

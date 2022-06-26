@@ -48,13 +48,13 @@ namespace Game2.GameObjects
             base.Update(ref gameTime);
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            base.Draw(ref offset, ref gameTime, ref spriteBatch);
+            base.Draw(ref gameTime, ref spriteBatch);
 
             if (_life > 0)
             {
-                spriteBatch.Draw(Game2.Images, Position - offset, _crackImg.GetImage(_life - 1), Color.White);
+                spriteBatch.Draw(Game2.Images, Position, _crackImg.GetImage(_life - 1), Color.White);
             }
         }
 

@@ -136,9 +136,9 @@ namespace Game2.Screens
             return "Songs/BGM7";
         }
 
-        internal override void Update(ref Vector2 offset, ref GameTime gameTime)
+        internal override void Update(ref GameTime gameTime)
         {
-            base.Update(ref offset, ref gameTime);
+            base.Update(ref gameTime);
 
             if (_state == 0)
             {
@@ -175,15 +175,15 @@ namespace Game2.Screens
             }
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (_state == 0)
             {
-                base.Draw(ref offset, ref gameTime, ref spriteBatch);
+                base.Draw(ref gameTime, ref spriteBatch);
             }
             else if (_state == 1)
             {
-                base.Draw(ref offset, ref gameTime, ref spriteBatch);
+                base.Draw(ref gameTime, ref spriteBatch);
 
                 for (int i = 0; i < NumOfImage(); i++)
                 {
@@ -192,7 +192,7 @@ namespace Game2.Screens
             }
             else if (_state == 2)
             {
-                base.Draw(ref offset, ref gameTime, ref spriteBatch);
+                base.Draw(ref gameTime, ref spriteBatch);
 
                 if (SecondMsg != null)
                 {

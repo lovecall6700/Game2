@@ -30,7 +30,7 @@ namespace Game2.Screens
             Font = font;
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (Item != null)
             {

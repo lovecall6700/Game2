@@ -43,7 +43,7 @@ namespace Game2.Managers
             _game2 = game2;
         }
 
-        internal void Update(ref Vector2 offset, ref GameTime gameTime)
+        internal void Update(ref GameTime gameTime)
         {
             //画面に敵が多すぎる場合は敵を出さない
             if (_game2.PlaySc.PhysicsObjs.Count > 30)
@@ -74,12 +74,12 @@ namespace Game2.Managers
             if (_counter == 1 || _counter == 5)
             {
                 //1と5は飛行タイプなので地形無視で左右から出現する
-                SetEnemyPositionFlying(ref offset, ref e);
+                SetEnemyPositionFlying(ref e);
             }
             else if (_counter == 4)
             {
                 //4はプクプクタイプ
-                SetEnemyPositionJumping(ref offset, ref e);
+                SetEnemyPositionJumping(ref e);
             }
             else if (_counter == 10 && e != null)
             {
@@ -96,11 +96,11 @@ namespace Game2.Managers
             }
             else if (_game2.PlaySc.StageDir == Screens.StageDirType.Horizontal)
             {
-                SetEnemyPositionLeftRight(ref offset, ref e);
+                SetEnemyPositionLeftRight(ref e);
             }
             else
             {
-                SetEnemyPositionUp(ref offset, ref e);
+                SetEnemyPositionUp(ref e);
             }
 
             if (e != null)
@@ -110,25 +110,25 @@ namespace Game2.Managers
             }
         }
 
-        private void SetEnemyPositionFlying(ref Vector2 offset, ref Enemy e)
+        private void SetEnemyPositionFlying(ref Enemy e)
         {
             int y = _rnd.Next(0, Game2.Height - e.Height);
 
             if (_rnd.Next(0, 2) == 0)
             {
-                e.Position = new Vector2(-e.Width, y) + offset;
+                e.Position = new Vector2(-e.Width, y) + _game2.Camera2D.Position;
                 e.ControlDirectionX = 1;
             }
             else
             {
-                e.Position = new Vector2(256, y) + offset;
+                e.Position = new Vector2(256, y) + _game2.Camera2D.Position;
                 e.ControlDirectionX = -1;
             }
 
             e.Rectangle.Location = e.Position.ToPoint();
         }
 
-        private void SetEnemyPositionLeftRight(ref Vector2 offset, ref Enemy e)
+        private void SetEnemyPositionLeftRight(ref Enemy e)
         {
             int r;
             Player p = _game2.PlaySc.Player;
@@ -144,12 +144,12 @@ namespace Game2.Managers
 
             if (r == 0 || (r > 1 && p.Direction == -1))
             {
-                e.Rectangle.X = (int)(offset.X - e.Width);
+                e.Rectangle.X = (int)(_game2.Camera2D.Position.X - e.Width);
                 e.ControlDirectionX = 1;
             }
             else if (r == 1 || (r > 1 && p.Direction == 1))
             {
-                e.Rectangle.X = (int)(offset.X + 256);
+                e.Rectangle.X = (int)(_game2.Camera2D.Position.X + 256);
                 e.ControlDirectionX = -1;
             }
 
@@ -182,9 +182,9 @@ namespace Game2.Managers
             e = null;
         }
 
-        private void SetEnemyPositionJumping(ref Vector2 offset, ref Enemy e)
+        private void SetEnemyPositionJumping(ref Enemy e)
         {
-            e.Position = new Vector2(_rnd.Next(48, 208), 256) + offset;
+            e.Position = new Vector2(_rnd.Next(48, 208), 256) + _game2.Camera2D.Position;
             e.Rectangle.Location = e.Position.ToPoint();
             e.Jump();
 
@@ -198,10 +198,10 @@ namespace Game2.Managers
             }
         }
 
-        private void SetEnemyPositionUp(ref Vector2 offset, ref Enemy e)
+        private void SetEnemyPositionUp(ref Enemy e)
         {
             e.Rectangle.X = _rnd.Next(0, 256 - e.Width);
-            e.Rectangle.Y = (int)(offset.Y - e.Height);
+            e.Rectangle.Y = (int)(_game2.Camera2D.Position.Y - e.Height);
 
             foreach (GameObject o in _game2.PlaySc.NearMapObjs)
             {

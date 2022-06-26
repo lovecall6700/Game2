@@ -91,7 +91,7 @@ namespace Game2.Screens
             Game2.Scheduler.SetSchedule(Schedules.GameStart);
         }
 
-        internal override void Update(ref Vector2 offset, ref GameTime gametime)
+        internal override void Update(ref GameTime gametime)
         {
             if (WaitTimer.Update(ref gametime))
             {
@@ -121,9 +121,9 @@ namespace Game2.Screens
             }
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            base.Draw(ref offset, ref gameTime, ref spriteBatch);
+            base.Draw(ref gameTime, ref spriteBatch);
 
             for (int i = 0; i < _icons.Count; i++)
             {
