@@ -110,7 +110,7 @@
     <Compile Include="Inputs\ButtonNames.cs" />
     <Compile Include="Inputs\ButtonStatus.cs" />
     <Compile Include="Inputs\GameController.cs" />
-    <Compile Include="Inputs\GameController2.cs" />
+    <Compile Include="Inputs\GameController3.cs" />
     <Compile Include="Managers\Camera2D.cs" />
     <Compile Include="Managers\DigitalDisplay.cs" />
     <Compile Include="Managers\EnemyGenerator.cs" />
