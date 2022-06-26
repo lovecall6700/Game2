@@ -125,25 +125,25 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (Visibility == ObjectVisibility.Invisible || Visibility == ObjectVisibility.Hidden)
             {
                 //不可視・隠し扉はダミーのテクスチャを描画する
                 if (_dummyImgUp != null)
                 {
-                    spriteBatch.Draw(Game2.Images, Position - offset, _dummyImgUp, Color.White);
+                    spriteBatch.Draw(Game2.Images, Position, _dummyImgUp, Color.White);
                 }
 
                 if (_dummyImgDown != null)
                 {
-                    spriteBatch.Draw(Game2.Images, Position - offset + _downOffset, _dummyImgDown, Color.White);
+                    spriteBatch.Draw(Game2.Images, Position + _downOffset, _dummyImgDown, Color.White);
                 }
 
                 return;
             }
 
-            base.Draw(ref offset, ref gameTime, ref spriteBatch);
+            base.Draw(ref gameTime, ref spriteBatch);
         }
     }
 }

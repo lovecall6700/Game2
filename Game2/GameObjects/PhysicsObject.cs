@@ -564,7 +564,7 @@ namespace Game2.GameObjects
 
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (ObjectStatus == PhysicsObjectStatus.Damage)
             {
@@ -573,11 +573,11 @@ namespace Game2.GameObjects
                     return;
                 }
 
-                spriteBatch.Draw(Game2.Images, Position - offset, Img, Color.Red);
+                spriteBatch.Draw(Game2.Images, Position, Img, Color.Red);
             }
             else
             {
-                base.Draw(ref offset, ref gameTime, ref spriteBatch);
+                base.Draw(ref gameTime, ref spriteBatch);
             }
         }
 

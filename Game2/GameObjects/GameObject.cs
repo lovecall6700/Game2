@@ -83,14 +83,14 @@ namespace Game2.GameObjects
             Rectangle.Height = h;
         }
 
-        internal virtual void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal virtual void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (Img == null || ObjectKind == GameObjectKinds.Disable)
             {
                 return;
             }
 
-            spriteBatch.Draw(Game2.Images, Position - offset, Img, Color.White);
+            spriteBatch.Draw(Game2.Images, Position, Img, Color.White);
         }
 
         internal virtual void Update(ref GameTime gameTime)

@@ -13,13 +13,14 @@ namespace Game2.Screens
         internal Screen(ref Game2 game2)
         {
             Game2 = game2;
+            Game2.Camera2D.Focus(0, 0);
         }
 
-        internal virtual void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal virtual void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
         }
 
-        internal virtual void Update(ref Vector2 offset, ref GameTime gametime)
+        internal virtual void Update(ref GameTime gametime)
         {
         }
     }

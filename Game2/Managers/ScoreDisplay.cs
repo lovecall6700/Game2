@@ -35,7 +35,7 @@ namespace Game2.Managers
         internal virtual void DrawHighScore(ref SpriteBatch spriteBatch)
         {
             Format = "HI{0:00000000}";
-            spriteBatch.DrawString(Font, string.Format(Format, Game2.Session.HighScore), Position, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
+            spriteBatch.DrawString(Font, string.Format(Format, Game2.Session.HighScore), Game2.Camera2D.Position + Position, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
         internal override void Draw(ref SpriteBatch spriteBatch)

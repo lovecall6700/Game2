@@ -32,10 +32,10 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            base.Draw(ref offset, ref gameTime, ref spriteBatch);
-            spriteBatch.Draw(Game2.Images, Position - offset + (_vibro ? _vibroA : _vibroB), _beltImg, Color.White);
+            base.Draw(ref gameTime, ref spriteBatch);
+            spriteBatch.Draw(Game2.Images, Position + (_vibro ? _vibroA : _vibroB), _beltImg, Color.White);
         }
 
         internal override void Update(ref GameTime gameTime)

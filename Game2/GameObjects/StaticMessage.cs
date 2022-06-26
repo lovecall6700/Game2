@@ -17,9 +17,9 @@ namespace Game2.GameObjects
             _font = font;
         }
 
-        internal override void Draw(ref Vector2 offset, ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(_font, _message, Position - offset, Color.White);
+            spriteBatch.DrawString(_font, _message, Position, Color.White);
         }
     }
 }

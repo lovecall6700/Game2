@@ -36,11 +36,6 @@ namespace Game2.Managers
         /// </summary>
         internal int Value;
 
-        /// <summary>
-        /// 原点
-        /// </summary>
-        private Vector2 _zero = Vector2.Zero;
-
         internal DigitalDisplay(ref Game2 game2, ref SpriteFont font, GraphicsDevice device)
         {
             Game2 = game2;
@@ -50,14 +45,9 @@ namespace Game2.Managers
             Initialize(device);
         }
 
-        internal virtual void Draw(ref Vector2 offset, ref SpriteBatch spriteBatch)
-        {
-            spriteBatch.DrawString(Font, string.Format(Format, Value), Position - offset, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
-        }
-
         internal virtual void Draw(ref SpriteBatch spriteBatch)
         {
-            Draw(ref _zero, ref spriteBatch);
+            spriteBatch.DrawString(Font, string.Format(Format, Value), Game2.Camera2D.Position + Position, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
         internal virtual void Update(ref GameTime gameTime)
