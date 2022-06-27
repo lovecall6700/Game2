@@ -17,7 +17,7 @@ namespace Game2.Screens
         /// </summary>
         private bool _saveOnce = false;
 
-        internal GameoverScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
+        internal GameoverScreen(ref Game2 game2) : base(ref game2)
         {
             _item = new MenuItem(new Vector2(45, 70), "GAME OVER", 2f)
             {
@@ -33,7 +33,7 @@ namespace Game2.Screens
 
         internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            _item.Draw(ref spriteBatch, ref Font);
+            _item.Draw(ref spriteBatch, ref Game2.Font);
 
             if (WaitTimer.Running)
             {
@@ -64,7 +64,7 @@ namespace Game2.Screens
                     {
                         _saveOnce = true;
                         Items[1].Menu = "Saved";
-                        Vector2 v = Utility.GetMsgSize(ref Font, "Saved", 1.5f) / 2;
+                        Vector2 v = Utility.GetMsgSize(ref Game2.Font, "Saved", 1.5f) / 2;
                         Items[1].Position.X = 128 - v.X;
                         Items[1].Disable = true;
                         Index = 0;

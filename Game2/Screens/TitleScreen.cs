@@ -20,7 +20,7 @@ namespace Game2.Screens
         /// </summary>
         private readonly Timer _storyTimer = new Timer();
 
-        internal TitleScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
+        internal TitleScreen(ref Game2 game2) : base(ref game2)
         {
             AddMenuItem(128, 140, "Start", 1.2f);
             AddMenuItem(128, 162, "Continue", 1.2f);

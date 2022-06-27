@@ -19,7 +19,7 @@ namespace Game2.Screens
 
         private bool _keyFlag = true;
 
-        internal StageStart(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
+        internal StageStart(ref Game2 game2) : base(ref game2)
         {
             Timer.Start(4200, true);
             string msg;

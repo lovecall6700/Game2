@@ -32,27 +32,21 @@ namespace Game2.Screens
         internal Color NotSelectedColor = Color.Gray;
 
         /// <summary>
-        /// フォント
-        /// </summary>
-        internal SpriteFont Font;
-
-        /// <summary>
         /// 画面が出てからしばらくは操作できない
         /// </summary>
         internal readonly Timer WaitTimer = new Timer();
 
         private bool _keyFlag = true;
 
-        internal SelectScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2)
+        internal SelectScreen(ref Game2 game2) : base(ref game2)
         {
             Game2 = game2;
-            Font = font;
             WaitTimer.Start(100f, true);
         }
 
         internal void AddMenuItem(float x, float y, string menu, float scale)
         {
-            Vector2 v = Utility.GetMsgSize(ref Font, menu, scale) / 2;
+            Vector2 v = Utility.GetMsgSize(ref Game2.Font, menu, scale) / 2;
             v.Y = 0;
             Items.Add(new MenuItem(new Vector2(x, y) - v, menu, scale));
         }
@@ -70,7 +64,7 @@ namespace Game2.Screens
                     Items[i].Color = NotSelectedColor;
                 }
 
-                Items[i].Draw(ref spriteBatch, ref Font);
+                Items[i].Draw(ref spriteBatch, ref Game2.Font);
             }
         }
 

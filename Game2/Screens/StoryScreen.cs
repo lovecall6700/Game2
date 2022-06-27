@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework.Graphics;
-
 namespace Game2.Screens
 {
     /// <summary>
@@ -7,7 +5,7 @@ namespace Game2.Screens
     /// </summary>
     internal class StoryScreen : EndingScreen
     {
-        internal StoryScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
+        internal StoryScreen(ref Game2 game2) : base(ref game2)
         {
             AlwaysSkip = true;
         }

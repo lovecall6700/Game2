@@ -369,7 +369,7 @@ namespace Game2
         {
             Session = new Session();
             _hideHiscore = false;
-            _screen = new TitleScreen(ref _game2, ref Font);
+            _screen = new TitleScreen(ref _game2);
         }
 
         /// <summary>
@@ -394,7 +394,7 @@ namespace Game2
             _remainDisp.TitleContinue();
             _scoreDisp.TitleToLoadStart();
             Inventory.TitleToLoadStart();
-            _screen = new StageStart(ref _game2, ref Font);
+            _screen = new StageStart(ref _game2);
             PlaySc = new PlayScreen(ref _game2);
             PlaySc.LoadStage();
         }
@@ -413,7 +413,7 @@ namespace Game2
             _remainDisp.TitleToInitialStart();
             _scoreDisp.TitleToInitialStart();
             Inventory.TitleToInitialStart();
-            _screen = new StageStart(ref _game2, ref Font);
+            _screen = new StageStart(ref _game2);
             PlaySc = new PlayScreen(ref _game2);
             PlaySc.LoadStage();
         }
@@ -436,14 +436,14 @@ namespace Game2
             if (_remainDisp.Miss())
             {
                 SaveHighScore();
-                _screen = new GameoverScreen(ref _game2, ref Font);
+                _screen = new GameoverScreen(ref _game2);
             }
             else
             {
                 _timeLimitDisp.Timer.Start(Session.TimeLimit, true);
                 Session.Life = Player.MaxLife;
                 PlaySc.Restart();
-                _screen = new StageStart(ref _game2, ref Font);
+                _screen = new StageStart(ref _game2);
             }
         }
 
@@ -464,7 +464,7 @@ namespace Game2
 
             Session.EndTime();
             SaveHighScore();
-            _screen = new EndingScreen(ref _game2, ref Font);
+            _screen = new EndingScreen(ref _game2);
         }
 
         /// <summary>
@@ -476,7 +476,7 @@ namespace Game2
             Session.DoorNo = Session.DestDoorNo;
             Session.Life = PlaySc.Player.Life;
             PlaySc.LoadStage();
-            _screen = new StageStart(ref _game2, ref Font);
+            _screen = new StageStart(ref _game2);
         }
 
         /// <summary>
@@ -496,7 +496,7 @@ namespace Game2
             _scoreDisp.GameoverRetryToStart();
             Inventory.GameoverRetryToStart();
             PlaySc.Restart();
-            _screen = new StageStart(ref _game2, ref Font);
+            _screen = new StageStart(ref _game2);
         }
 
         /// <summary>
@@ -504,7 +504,7 @@ namespace Game2
         /// </summary>
         internal void ExecBGMVolume()
         {
-            _screen = new BGMVolumeScreen(ref _game2, ref Font);
+            _screen = new BGMVolumeScreen(ref _game2);
         }
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace Game2
         /// </summary>
         internal void ExecSEVolume()
         {
-            _screen = new SEVolumeScreen(ref _game2, ref Font);
+            _screen = new SEVolumeScreen(ref _game2);
         }
 
         /// <summary>
@@ -520,7 +520,7 @@ namespace Game2
         /// </summary>
         internal void ExecOptions()
         {
-            _screen = new OptionsScreen(ref _game2, ref Font);
+            _screen = new OptionsScreen(ref _game2);
         }
 
         /// <summary>
@@ -529,7 +529,7 @@ namespace Game2
         internal void ExecStory()
         {
             _hideHiscore = true;
-            _screen = new StoryScreen(ref _game2, ref Font);
+            _screen = new StoryScreen(ref _game2);
         }
 
         /// <summary>

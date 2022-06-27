@@ -12,7 +12,7 @@ namespace Game2.Screens
     {
         private readonly MenuItem _item;
 
-        internal SEVolumeScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
+        internal SEVolumeScreen(ref Game2 game2) : base(ref game2)
         {
             _item = new MenuItem(new Vector2(60, 70), "SE Volume", 1.5f)
             {
@@ -42,7 +42,7 @@ namespace Game2.Screens
 
         internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            _item.Draw(ref spriteBatch, ref Font);
+            _item.Draw(ref spriteBatch, ref Game2.Font);
             base.Draw(gameTime, ref spriteBatch);
         }
 

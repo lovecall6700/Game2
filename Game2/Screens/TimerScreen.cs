@@ -1,6 +1,5 @@
 using Game2.Utilities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Game2.Screens
 {
@@ -19,7 +18,7 @@ namespace Game2.Screens
         /// </summary>
         internal readonly Timer WaitTimer = new Timer();
 
-        internal TimerScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
+        internal TimerScreen(ref Game2 game2) : base(ref game2)
         {
             WaitTimer.Start(500f, true);
         }
