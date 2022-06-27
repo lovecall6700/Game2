@@ -193,7 +193,7 @@ namespace Game2
         protected override void Update(GameTime gameTime)
         {
             Scheduler.Update();
-            GameCtrl.Update(ref gameTime);
+            GameCtrl.Update(gameTime);
 
             //ウィンドウ位置が変更されたらCamera2Dを初期化する
             Rectangle location = Window.ClientBounds;
@@ -218,7 +218,7 @@ namespace Game2
             }
 
             //Alt+Enterで最大化
-            if (!_fullScTimer.Update(ref gameTime) && GameCtrl.IsClick(ButtonNames.FullScreen))
+            if (!_fullScTimer.Update(gameTime) && GameCtrl.IsClick(ButtonNames.FullScreen))
             {
                 _paused = true;
                 MusicPlayer.StopSong();
@@ -244,7 +244,7 @@ namespace Game2
             }
 
             //ポーズ切り替え
-            if (!_pauseTimer.Update(ref gameTime) && GameCtrl.IsClick(ButtonNames.Pause))
+            if (!_pauseTimer.Update(gameTime) && GameCtrl.IsClick(ButtonNames.Pause))
             {
                 _paused = !_paused;
 
@@ -262,20 +262,20 @@ namespace Game2
 
             if (!_focused || _paused)
             {
-                _pauseDisp.Update(ref gameTime);
+                _pauseDisp.Update(gameTime);
                 base.Update(gameTime);
                 return;
             }
 
             if (Scheduler.Playing)
             {
-                _scoreDisp.Update(ref gameTime);
-                _remainDisp.Update(ref gameTime);
-                _timeLimitDisp.Update(ref gameTime);
-                _lifeDisp.Update(ref gameTime);
+                _scoreDisp.Update(gameTime);
+                _remainDisp.Update(gameTime);
+                _timeLimitDisp.Update(gameTime);
+                _lifeDisp.Update(gameTime);
             }
 
-            _screen.Update(ref gameTime);
+            _screen.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -327,7 +327,7 @@ namespace Game2
                 //ゲーム描画
                 GraphicsDevice.Clear(PlaySc.GetBackColor());
                 SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-                PlaySc.Draw(ref gameTime, ref SpriteBatch);
+                PlaySc.Draw(gameTime, ref SpriteBatch);
                 _timeLimitDisp.Draw(ref SpriteBatch);
                 _lifeDisp.Draw(ref SpriteBatch);
                 _remainDisp.Draw(ref SpriteBatch);
@@ -344,7 +344,7 @@ namespace Game2
             {
                 GraphicsDevice.Clear(Color.Black);
                 SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-                _screen.Draw(ref gameTime, ref SpriteBatch);
+                _screen.Draw(gameTime, ref SpriteBatch);
 
                 if (!_hideHiscore)
                 {

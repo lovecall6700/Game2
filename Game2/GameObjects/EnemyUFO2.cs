@@ -20,10 +20,10 @@ namespace Game2.GameObjects
             ShotTime = 2000f;
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             AttackPlayer();
-            RecoveryDamage(ref gameTime);
+            RecoveryDamage(gameTime);
 
             if (ObjectStatus == PhysicsObjectStatus.Dead)
             {
@@ -31,7 +31,7 @@ namespace Game2.GameObjects
                 return;
             }
 
-            if (!_shotTimer.Update(ref gameTime))
+            if (!_shotTimer.Update(gameTime))
             {
                 Shot();
                 _shotTimer.Start(ShotTime, true);

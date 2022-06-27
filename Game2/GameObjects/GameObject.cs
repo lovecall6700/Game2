@@ -83,7 +83,7 @@ namespace Game2.GameObjects
             Rectangle.Height = h;
         }
 
-        internal virtual void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (Img == null || ObjectKind == GameObjectKinds.Disable)
             {
@@ -93,7 +93,7 @@ namespace Game2.GameObjects
             spriteBatch.Draw(Game2.Images, Position, Img, Color.White);
         }
 
-        internal virtual void Update(ref GameTime gameTime)
+        internal virtual void Update(GameTime gameTime)
         {
             if (Connection.Count > 0)
             {

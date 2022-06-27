@@ -16,11 +16,11 @@ namespace Game2.Screens
             Game2.Camera2D.Focus(0, 0);
         }
 
-        internal virtual void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
         }
 
-        internal virtual void Update(ref GameTime gametime)
+        internal virtual void Update(GameTime gameTime)
         {
         }
     }

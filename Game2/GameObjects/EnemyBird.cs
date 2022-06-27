@@ -23,7 +23,7 @@ namespace Game2.GameObjects
             _timer.Start(2000f, true);
         }
 
-        internal override bool MoveLeftOrRight(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(GameTime gameTime)
         {
             Velocity.X += ControlDirectionX * AirAccelerationX;
             Velocity.X = MathHelper.Clamp(Velocity.X, -MaxSpeedX, MaxSpeedX);
@@ -32,9 +32,9 @@ namespace Game2.GameObjects
             return false;
         }
 
-        internal override bool JumpAndGravity(ref GameTime gameTime)
+        internal override bool JumpAndGravity(GameTime gameTime)
         {
-            if (!_timer.Update(ref gameTime) && !_exit)
+            if (!_timer.Update(gameTime) && !_exit)
             {
                 _exit = true;
                 Player p = Game2.PlaySc.Player;

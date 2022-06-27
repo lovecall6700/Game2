@@ -18,15 +18,15 @@ namespace Game2.Managers
             _blinkTimer.Start(500f, true);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
-            if (!_blinkTimer.Update(ref gameTime))
+            if (!_blinkTimer.Update(gameTime))
             {
                 _blink = !_blink;
                 _blinkTimer.Start(500f, true);
             }
 
-            base.Update(ref gameTime);
+            base.Update(gameTime);
         }
 
         internal override void Draw(ref SpriteBatch spriteBatch)

@@ -86,7 +86,7 @@ namespace Game2.GameObjects
             return $"{_stageNo}-{_treasureBoxNo}";
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             if (Visibility == ObjectVisibility.Hidden)
             {

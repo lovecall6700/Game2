@@ -26,10 +26,10 @@ namespace Game2.Inputs
         /// </summary>
         internal float ClickTime = 50f;
 
-        internal void Update(ref GameTime gametime)
+        internal void Update(GameTime gameTime)
         {
             base.Update();
-            _timer.Update(ref gametime);
+            _timer.Update(gameTime);
             UpdateStatus(Up, ref _up);
             UpdateStatus(Down, ref _down);
             UpdateStatus(Left, ref _left);

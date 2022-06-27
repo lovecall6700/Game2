@@ -12,7 +12,7 @@ namespace Game2.GameObjects
         {
         }
 
-        internal override void FinallyUpdate(ref GameTime gameTime)
+        internal override void FinallyUpdate(GameTime gameTime)
         {
             if (GroundBlock != null)
             {

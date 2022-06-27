@@ -20,7 +20,7 @@ namespace Game2.GameObjects
             AnimationAlways = true;
         }
 
-        internal override bool MoveLeftOrRight(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(GameTime gameTime)
         {
             Velocity.X = ControlDirectionX * AccelerationX;
             Velocity.Y += Gravity;
@@ -35,7 +35,7 @@ namespace Game2.GameObjects
             return false;
         }
 
-        internal override bool JumpAndGravity(ref GameTime gameTime)
+        internal override bool JumpAndGravity(GameTime gameTime)
         {
             return false;
         }

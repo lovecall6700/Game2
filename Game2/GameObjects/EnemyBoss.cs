@@ -47,18 +47,18 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override bool JumpAndGravity(ref GameTime gameTime)
+        internal override bool JumpAndGravity(GameTime gameTime)
         {
             return false;
         }
 
-        internal override bool MoveLeftOrRight(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(GameTime gameTime)
         {
             if (ID == 0)
             {
                 Player p = Game2.PlaySc.Player;
 
-                if (!_hormingTimer.Update(ref gameTime))
+                if (!_hormingTimer.Update(gameTime))
                 {
                     _hormingTimer.Start(2000f, true);
                     _target = p.Position;

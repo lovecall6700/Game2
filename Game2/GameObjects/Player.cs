@@ -108,7 +108,7 @@ namespace Game2.GameObjects
             StandUp();
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             if (ObjectStatus == PhysicsObjectStatus.Dead)
             {
@@ -116,19 +116,19 @@ namespace Game2.GameObjects
             }
             else
             {
-                MoveLeftOrRight(ref gameTime);
+                MoveLeftOrRight(gameTime);
 
                 if (UseLadder)
                 {
-                    Ladder(ref gameTime);
+                    Ladder(gameTime);
                 }
                 else
                 {
-                    JumpAndGravity(ref gameTime);
+                    JumpAndGravity(gameTime);
                 }
             }
 
-            RecoveryDamage(ref gameTime);
+            RecoveryDamage(gameTime);
 
             if (ObjectStatus == PhysicsObjectStatus.Normal)
             {
@@ -188,7 +188,7 @@ namespace Game2.GameObjects
                 }
 
                 //発砲
-                if (!_bulletTimer.Update(ref gameTime) && !OnLadder && Game2.GameCtrl.Fire)
+                if (!_bulletTimer.Update(gameTime) && !OnLadder && Game2.GameCtrl.Fire)
                 {
                     StandUp();
 
