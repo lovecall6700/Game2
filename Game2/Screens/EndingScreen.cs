@@ -43,7 +43,7 @@ namespace Game2.Screens
         /// </summary>
         internal bool AlwaysSkip = false;
 
-        internal EndingScreen(ref Game2 game2, ref SpriteFont font) : base(ref game2, ref font)
+        internal EndingScreen(ref Game2 game2) : base(ref game2)
         {
             string baseName = FileName();
 
@@ -196,12 +196,12 @@ namespace Game2.Screens
 
                 if (SecondMsg != null)
                 {
-                    SecondMsg.Draw(ref spriteBatch, ref Font);
+                    SecondMsg.Draw(ref spriteBatch, ref Game2.Font);
                 }
 
                 if (ThirdMsg != null)
                 {
-                    ThirdMsg.Draw(ref spriteBatch, ref Font);
+                    ThirdMsg.Draw(ref spriteBatch, ref Game2.Font);
                 }
             }
         }
