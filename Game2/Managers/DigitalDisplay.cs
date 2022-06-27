@@ -22,11 +22,6 @@ namespace Game2.Managers
         internal Vector2 Position = Vector2.Zero;
 
         /// <summary>
-        /// フォント
-        /// </summary>
-        internal SpriteFont Font;
-
-        /// <summary>
         /// 表示倍率
         /// </summary>
         internal float Scale = 1f;
@@ -36,18 +31,17 @@ namespace Game2.Managers
         /// </summary>
         internal int Value;
 
-        internal DigitalDisplay(ref Game2 game2, ref SpriteFont font, GraphicsDevice device)
+        internal DigitalDisplay(ref Game2 game2, GraphicsDevice device)
         {
             Game2 = game2;
             Value = 0;
             Format = "{0:0000000000}";
-            Font = font;
             Initialize(device);
         }
 
         internal virtual void Draw(ref SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Font, string.Format(Format, Value), Game2.Camera2D.Position + Position, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
+            spriteBatch.DrawString(Game2.Font, string.Format(Format, Value), Game2.Camera2D.Position + Position, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
         internal virtual void Update(GameTime gameTime)

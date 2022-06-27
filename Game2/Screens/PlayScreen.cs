@@ -383,7 +383,7 @@ namespace Game2.Screens
 
                     case "StaticMessage":
 
-                        obj = new StaticMessage(ref Game2, ref Game2.Font, x, y, lines[3]);
+                        obj = new StaticMessage(ref Game2, x, y, lines[3]);
                         depth = -1;
                         break;
 

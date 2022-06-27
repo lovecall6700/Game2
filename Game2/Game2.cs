@@ -168,11 +168,11 @@ namespace Game2
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Images = Content.Load<Texture2D>("Images");
             Font = Content.Load<SpriteFont>("Fonts");
-            _timeLimitDisp = new TimeLimitDisplay(ref _game2, ref Font, GraphicsDevice);
-            _scoreDisp = new ScoreDisplay(ref _game2, ref Font, GraphicsDevice);
-            _remainDisp = new RemainDisplay(ref _game2, ref Font, GraphicsDevice);
-            _pauseDisp = new PauseDisplay(ref _game2, ref Font, GraphicsDevice);
-            _lifeDisp = new LifeDisplay(ref _game2, ref Font, GraphicsDevice);
+            _timeLimitDisp = new TimeLimitDisplay(ref _game2, GraphicsDevice);
+            _scoreDisp = new ScoreDisplay(ref _game2, GraphicsDevice);
+            _remainDisp = new RemainDisplay(ref _game2, GraphicsDevice);
+            _pauseDisp = new PauseDisplay(ref _game2, GraphicsDevice);
+            _lifeDisp = new LifeDisplay(ref _game2, GraphicsDevice);
 
             //ゲーム関連
             Inventory = new Inventory(ref _game2);

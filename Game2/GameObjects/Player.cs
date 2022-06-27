@@ -341,7 +341,7 @@ namespace Game2.GameObjects
                         i.Visibility = ObjectVisibility.Normal;
                         int s = Game2.Session.StageNo * Game2.FindBonus;
                         Game2.AddScore(s);
-                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, ref Game2.Font, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
+                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
                         Game2.Session.AddItem(i);
                         Game2.MusicPlayer.PlaySE("SoundEffects/Find");
                     }
@@ -371,7 +371,7 @@ namespace Game2.GameObjects
                         d.Visibility = ObjectVisibility.Normal;
                         int s = Game2.Session.StageNo * Game2.FindBonus;
                         Game2.AddScore(s);
-                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, ref Game2.Font, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
+                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
                         Game2.Session.AddDoor(d);
                         Game2.MusicPlayer.PlaySE("SoundEffects/Find");
                     }
@@ -386,7 +386,7 @@ namespace Game2.GameObjects
                     {
                         t.Visibility = ObjectVisibility.Open;
                         Game2.AddScore(t.Score);
-                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, ref Game2.Font, Position.X, Position.Y, GetDblScoreSymbol() + t.Score.ToString()));
+                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, Position.X, Position.Y, GetDblScoreSymbol() + t.Score.ToString()));
                         Game2.Session.AddTreasureBox(t);
                         Game2.MusicPlayer.PlaySE("SoundEffects/GetItem");
                         Life = MaxLife;
