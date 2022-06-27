@@ -23,7 +23,7 @@ namespace Game2.Managers
         /// </summary>
         private readonly int[] _extendScores = new[] { 10000, 20000, 30000, 50000 };
 
-        internal RemainDisplay(ref Game2 game2, ref SpriteFont font, GraphicsDevice device) : base(ref game2, ref font, device)
+        internal RemainDisplay(ref Game2 game2, GraphicsDevice device) : base(ref game2, device)
         {
             Format = "REMAIN {0:0}";
         }
