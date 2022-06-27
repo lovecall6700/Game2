@@ -10,12 +10,12 @@ namespace Game2.GameObjects
             UseAnimation = false;
         }
 
-        internal override bool MoveLeftOrRight(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(GameTime gameTime)
         {
             return false;
         }
 
-        internal override bool JumpAndGravity(ref GameTime gameTime)
+        internal override bool JumpAndGravity(GameTime gameTime)
         {
             return false;
         }

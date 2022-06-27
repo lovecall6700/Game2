@@ -60,7 +60,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             if (Visibility == ObjectVisibility.Hidden)
             {

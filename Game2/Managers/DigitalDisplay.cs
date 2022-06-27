@@ -50,7 +50,7 @@ namespace Game2.Managers
             spriteBatch.DrawString(Font, string.Format(Format, Value), Game2.Camera2D.Position + Position, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
-        internal virtual void Update(ref GameTime gameTime)
+        internal virtual void Update(GameTime gameTime)
         {
 
         }

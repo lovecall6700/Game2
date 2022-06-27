@@ -26,7 +26,7 @@ namespace Game2.GameObjects
             Position = Origin;
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             float s = (_dir ? -1f : 1f) * _speed;
             float d;
@@ -106,7 +106,7 @@ namespace Game2.GameObjects
                 }
             }
 
-            base.Update(ref gameTime);
+            base.Update(gameTime);
         }
 
         private void Collision(PhysicsObject p, bool crushable, float delta)

@@ -55,10 +55,10 @@ namespace Game2.GameObjects
             _shotTimer.Start(ShotTime, true);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
-            UpdateLifeTime(ref gameTime);
-            RecoveryDamage(ref gameTime);
+            UpdateLifeTime(gameTime);
+            RecoveryDamage(gameTime);
 
             if (ObjectStatus == PhysicsObjectStatus.Dead)
             {
@@ -66,15 +66,15 @@ namespace Game2.GameObjects
                 return;
             }
 
-            if (MoveLeftOrRight(ref gameTime))
+            if (MoveLeftOrRight(gameTime))
             {
                 TouchWithWall();
             }
 
-            JumpAndGravity(ref gameTime);
+            JumpAndGravity(gameTime);
             AttackPlayer();
-            UpdateShotTime(ref gameTime);
-            FinallyUpdate(ref gameTime);
+            UpdateShotTime(gameTime);
+            FinallyUpdate(gameTime);
             UpdateAnimation();
         }
 
@@ -88,21 +88,21 @@ namespace Game2.GameObjects
         /// 寿命を計算する
         /// </summary>
         /// <param name="gameTime">GameTime</param>
-        internal void UpdateLifeTime(ref GameTime gameTime)
+        internal void UpdateLifeTime(GameTime gameTime)
         {
             if (!UseLifeTime)
             {
                 return;
             }
-            else if (!_lifeTimer.Update(ref gameTime))
+            else if (!_lifeTimer.Update(gameTime))
             {
                 ObjectStatus = PhysicsObjectStatus.Dead;
             }
         }
 
-        internal void UpdateShotTime(ref GameTime gameTime)
+        internal void UpdateShotTime(GameTime gameTime)
         {
-            if (!_shotTimer.Update(ref gameTime))
+            if (!_shotTimer.Update(gameTime))
             {
                 Shot();
                 _shotTimer.Start(ShotTime, true);
@@ -140,7 +140,7 @@ namespace Game2.GameObjects
             ObjectStatus = PhysicsObjectStatus.Remove;
         }
 
-        internal virtual void FinallyUpdate(ref GameTime gameTime)
+        internal virtual void FinallyUpdate(GameTime gameTime)
         {
         }
     }

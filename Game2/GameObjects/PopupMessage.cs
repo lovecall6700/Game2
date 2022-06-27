@@ -16,9 +16,9 @@ namespace Game2.GameObjects
             _timer.Start(1000f, true);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
-            if (!_timer.Update(ref gameTime))
+            if (!_timer.Update(gameTime))
             {
                 ObjectStatus = PhysicsObjectStatus.Remove;
             }

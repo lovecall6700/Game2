@@ -21,11 +21,11 @@ namespace Game2.GameObjects
             LifeTime = 30000f;
         }
 
-        internal override bool MoveLeftOrRight(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(GameTime gameTime)
         {
             Player p = Game2.PlaySc.Player;
 
-            if (!_hormingTimer.Update(ref gameTime))
+            if (!_hormingTimer.Update(gameTime))
             {
                 _hormingTimer.Start(2000f, true);
                 _target = p.Position;
@@ -37,7 +37,7 @@ namespace Game2.GameObjects
             return false;
         }
 
-        internal override bool JumpAndGravity(ref GameTime gameTime)
+        internal override bool JumpAndGravity(GameTime gameTime)
         {
             return false;
         }

@@ -91,14 +91,14 @@ namespace Game2.Screens
             Game2.Scheduler.SetSchedule(Schedules.GameStart);
         }
 
-        internal override void Update(ref GameTime gametime)
+        internal override void Update(GameTime gameTime)
         {
-            if (WaitTimer.Update(ref gametime))
+            if (WaitTimer.Update(gameTime))
             {
                 return;
             }
 
-            if (!Timer.Update(ref gametime))
+            if (!Timer.Update(gameTime))
             {
                 Timeup();
             }
@@ -121,9 +121,9 @@ namespace Game2.Screens
             }
         }
 
-        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            base.Draw(ref gameTime, ref spriteBatch);
+            base.Draw(gameTime, ref spriteBatch);
 
             for (int i = 0; i < _icons.Count; i++)
             {

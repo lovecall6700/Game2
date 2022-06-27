@@ -22,19 +22,19 @@ namespace Game2.GameObjects
             SetSize(8, 8);
         }
 
-        internal override bool MoveLeftOrRight(ref GameTime gameTime)
+        internal override bool MoveLeftOrRight(GameTime gameTime)
         {
             Position += Velocity;
             Rectangle.Location = Position.ToPoint();
             return false;
         }
 
-        internal override bool JumpAndGravity(ref GameTime gameTime)
+        internal override bool JumpAndGravity(GameTime gameTime)
         {
             return false;
         }
 
-        internal override void FinallyUpdate(ref GameTime gameTime)
+        internal override void FinallyUpdate(GameTime gameTime)
         {
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {

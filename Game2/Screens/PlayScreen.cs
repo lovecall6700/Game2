@@ -135,42 +135,42 @@ namespace Game2.Screens
         {
         }
 
-        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (!GetDarkZone() || Game2.Inventory.HasLightItem())
             {
                 foreach (GameObject item in _nearBackObjs)
                 {
-                    item.Draw(ref gameTime, ref spriteBatch);
+                    item.Draw(gameTime, ref spriteBatch);
                 }
 
                 foreach (GameObject item in NearMapObjs)
                 {
-                    item.Draw(ref gameTime, ref spriteBatch);
+                    item.Draw(gameTime, ref spriteBatch);
                 }
             }
 
             foreach (GameObject item in ItemObjs)
             {
-                item.Draw(ref gameTime, ref spriteBatch);
+                item.Draw(gameTime, ref spriteBatch);
             }
 
             foreach (GameObject item in PhysicsObjs)
             {
-                item.Draw(ref gameTime, ref spriteBatch);
+                item.Draw(gameTime, ref spriteBatch);
             }
 
             if (!GetDarkZone() || Game2.Inventory.HasLightItem())
             {
                 foreach (GameObject item in _nearFrontObjs)
                 {
-                    item.Draw(ref gameTime, ref spriteBatch);
+                    item.Draw(gameTime, ref spriteBatch);
                 }
             }
 
             foreach (GameObject item in EffectObjs)
             {
-                item.Draw(ref gameTime, ref spriteBatch);
+                item.Draw(gameTime, ref spriteBatch);
             }
         }
 
@@ -489,18 +489,18 @@ namespace Game2.Screens
             _enemyGenerator.BossFlag = false;
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             foreach (GameObject item in ItemObjs)
             {
-                item.Update(ref gameTime);
+                item.Update(gameTime);
             }
 
             int count = EffectObjs.Count - 1;
 
             for (int i = count; i >= 0; i--)
             {
-                EffectObjs[i].Update(ref gameTime);
+                EffectObjs[i].Update(gameTime);
 
                 if (EffectObjs[i].ObjectStatus == PhysicsObjectStatus.Remove)
                 {
@@ -513,7 +513,7 @@ namespace Game2.Screens
 
             for (int i = count; i >= 0; i--)
             {
-                PhysicsObjs[i].Update(ref gameTime);
+                PhysicsObjs[i].Update(gameTime);
 
                 if (PhysicsObjs[i].ObjectStatus == PhysicsObjectStatus.Remove)
                 {
@@ -526,14 +526,14 @@ namespace Game2.Screens
 
             for (int i = count; i >= 0; i--)
             {
-                NearMapObjs[i].Update(ref gameTime);
+                NearMapObjs[i].Update(gameTime);
             }
 
-            _enemyGenerator.Update(ref gameTime);
+            _enemyGenerator.Update(gameTime);
 
             FocusCamera2D();
-            _backColorSwitchTimer.Update(ref gameTime);
-            _darkZoneSwitchTimer.Update(ref gameTime);
+            _backColorSwitchTimer.Update(gameTime);
+            _darkZoneSwitchTimer.Update(gameTime);
         }
 
         private void FocusXCamera2D()

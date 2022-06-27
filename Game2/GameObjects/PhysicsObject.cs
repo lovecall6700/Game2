@@ -142,7 +142,7 @@ namespace Game2.GameObjects
             ObjectStatus = PhysicsObjectStatus.Normal;
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
         }
 
@@ -151,7 +151,7 @@ namespace Game2.GameObjects
         /// ハシゴの上にいないなら通常のJumpAndGravity()を呼ぶ
         /// </summary>
         /// <param name="gameTime">GameTime</param>
-        internal void Ladder(ref GameTime gameTime)
+        internal void Ladder(GameTime gameTime)
         {
             OnLadder = false;
             GameObject ladder = null;
@@ -174,7 +174,7 @@ namespace Game2.GameObjects
             //ハシゴの上にいないなら普通に重力を処理
             if (!OnLadder)
             {
-                JumpAndGravity(ref gameTime);
+                JumpAndGravity(gameTime);
                 return;
             }
 
@@ -250,7 +250,7 @@ namespace Game2.GameObjects
         /// </summary>
         /// <param name="gameTime">GameTime</param>
         /// <returns>何かに接触したか</returns>
-        internal virtual bool JumpAndGravity(ref GameTime gameTime)
+        internal virtual bool JumpAndGravity(GameTime gameTime)
         {
             //とりあえず落ちてみる
             Velocity.Y += Gravity;
@@ -363,7 +363,7 @@ namespace Game2.GameObjects
         /// </summary>
         /// <param name="gameTime">GameTime</param>
         /// <returns>接触の有無</returns>
-        internal virtual bool MoveLeftOrRight(ref GameTime gameTime)
+        internal virtual bool MoveLeftOrRight(GameTime gameTime)
         {
             bool ret = false;
             Velocity.X += ControlDirectionX * (GroundBlock != null ? AccelerationX : AirAccelerationX);
@@ -564,7 +564,7 @@ namespace Game2.GameObjects
 
         }
 
-        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (ObjectStatus == PhysicsObjectStatus.Damage)
             {
@@ -577,7 +577,7 @@ namespace Game2.GameObjects
             }
             else
             {
-                base.Draw(ref gameTime, ref spriteBatch);
+                base.Draw(gameTime, ref spriteBatch);
             }
         }
 
@@ -585,9 +585,9 @@ namespace Game2.GameObjects
         /// ダメージ状態から回復する
         /// </summary>
         /// <param name="gameTime">GameTime</param>
-        internal void RecoveryDamage(ref GameTime gameTime)
+        internal void RecoveryDamage(GameTime gameTime)
         {
-            if (ObjectStatus == PhysicsObjectStatus.Damage && !DamageTimer.Update(ref gameTime))
+            if (ObjectStatus == PhysicsObjectStatus.Damage && !DamageTimer.Update(gameTime))
             {
                 ObjectStatus = PhysicsObjectStatus.Normal;
             }

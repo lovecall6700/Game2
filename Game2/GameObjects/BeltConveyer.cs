@@ -32,15 +32,15 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            base.Draw(ref gameTime, ref spriteBatch);
+            base.Draw(gameTime, ref spriteBatch);
             spriteBatch.Draw(Game2.Images, Position + (_vibro ? _vibroA : _vibroB), _beltImg, Color.White);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
-            if (!_timer.Update(ref gameTime))
+            if (!_timer.Update(gameTime))
             {
                 _vibro = !_vibro;
                 _timer.Start(_time, true);
@@ -65,7 +65,7 @@ namespace Game2.GameObjects
                 }
             }
 
-            base.Update(ref gameTime);
+            base.Update(gameTime);
         }
 
         private void Collision(PhysicsObject p, float delta)

@@ -26,14 +26,14 @@ namespace Game2.GameObjects
             SetSize(16, 16);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             if (ObjectKind == GameObjectKinds.Disable)
             {
                 return;
             }
 
-            if (!_timer.Update(ref gameTime) && Connection.Count != 0)
+            if (!_timer.Update(gameTime) && Connection.Count != 0)
             {
                 _timer.Start(_time, true);
                 _life--;
@@ -45,12 +45,12 @@ namespace Game2.GameObjects
                 }
             }
 
-            base.Update(ref gameTime);
+            base.Update(gameTime);
         }
 
-        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            base.Draw(ref gameTime, ref spriteBatch);
+            base.Draw(gameTime, ref spriteBatch);
 
             if (_life > 0)
             {

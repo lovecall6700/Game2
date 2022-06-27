@@ -14,7 +14,7 @@ namespace Game2.GameObjects
             Attack = 255;
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             AttackPlayer();
 

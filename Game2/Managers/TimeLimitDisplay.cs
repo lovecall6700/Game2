@@ -32,7 +32,7 @@ namespace Game2.Managers
             base.Draw(ref spriteBatch);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             if (Game2.Inventory.HasTimeItem())
             {
@@ -40,7 +40,7 @@ namespace Game2.Managers
             }
             else
             {
-                Timer.Update(ref gameTime);
+                Timer.Update(gameTime);
             }
 
             if (!Timer.Running)

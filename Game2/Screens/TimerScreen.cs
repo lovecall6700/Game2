@@ -24,15 +24,15 @@ namespace Game2.Screens
             WaitTimer.Start(500f, true);
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             //画面が出てからしばらくは操作できない
-            if (WaitTimer.Update(ref gameTime))
+            if (WaitTimer.Update(gameTime))
             {
                 return;
             }
 
-            if (!Timer.Update(ref gameTime))
+            if (!Timer.Update(gameTime))
             {
                 Timeup();
             }

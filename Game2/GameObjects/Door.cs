@@ -112,7 +112,7 @@ namespace Game2.GameObjects
             return $"{StageNo}-{DoorNo}";
         }
 
-        internal override void Update(ref GameTime gameTime)
+        internal override void Update(GameTime gameTime)
         {
             if (Visibility == ObjectVisibility.Normal)
             {
@@ -125,7 +125,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Draw(ref GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             if (Visibility == ObjectVisibility.Invisible || Visibility == ObjectVisibility.Hidden)
             {
@@ -143,7 +143,7 @@ namespace Game2.GameObjects
                 return;
             }
 
-            base.Draw(ref gameTime, ref spriteBatch);
+            base.Draw(gameTime, ref spriteBatch);
         }
     }
 }

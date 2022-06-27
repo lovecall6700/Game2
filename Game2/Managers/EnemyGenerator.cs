@@ -43,7 +43,7 @@ namespace Game2.Managers
             _game2 = game2;
         }
 
-        internal void Update(ref GameTime gameTime)
+        internal void Update(GameTime gameTime)
         {
             //画面に敵が多すぎる場合は敵を出さない
             if (_game2.PlaySc.PhysicsObjs.Count > 30)
@@ -52,7 +52,7 @@ namespace Game2.Managers
             }
 
             //敵の出現は一定間隔
-            if (_timer.Update(ref gameTime))
+            if (_timer.Update(gameTime))
             {
                 return;
             }

@@ -52,7 +52,7 @@ namespace Game2.Utilities
         /// </summary>
         /// <param name="gameTime">GameTime</param>
         /// <returns>タイマーが動作しているか(終了しているか)</returns>
-        internal bool Update(ref GameTime gameTime)
+        internal bool Update(GameTime gameTime)
         {
             if (Running && _time > 0f)
             {
