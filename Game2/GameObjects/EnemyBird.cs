@@ -52,5 +52,11 @@ namespace Game2.GameObjects
 
             return false;
         }
+
+        internal override void Died()
+        {
+            Gravity = 1;
+            base.Died();
+        }
     }
 }
