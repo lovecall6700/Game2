@@ -201,7 +201,6 @@ namespace Game2.Utilities
         /// <param name="speed">速度</param>
         internal static void Homing(PhysicsObject obj, Vector2 target, ref Vector2 velocity, float speed)
         {
-
             if (target != obj.Position)
             {
                 Vector2 v = Vector2.Normalize(target - obj.Position) * speed;
@@ -234,7 +233,7 @@ namespace Game2.Utilities
         /// <param name="msg">文字列</param>
         /// <param name="scale">表示倍率</param>
         /// <returns>描画サイズ</returns>
-        internal static Vector2 GetMsgSize(ref SpriteFont font, string msg, float scale)
+        internal static Vector2 GetMsgSize(SpriteFont font, string msg, float scale)
         {
             return font.MeasureString(msg) * scale;
         }

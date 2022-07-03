@@ -31,7 +31,7 @@ namespace Game2.Managers
         /// </summary>
         internal int Value;
 
-        internal DigitalDisplay(ref Game2 game2, GraphicsDevice device)
+        internal DigitalDisplay(Game2 game2, GraphicsDevice device)
         {
             Game2 = game2;
             Value = 0;
@@ -39,7 +39,7 @@ namespace Game2.Managers
             Initialize(device);
         }
 
-        internal virtual void Draw(ref SpriteBatch spriteBatch)
+        internal virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(Game2.Font, string.Format(Format, Value), Game2.Camera2D.Position + Position, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }

@@ -4,7 +4,7 @@ namespace Game2.GameObjects
 {
     internal class EnemyJumpFish : Enemy
     {
-        internal EnemyJumpFish(ref Game2 game2, float x, float y) : base(ref game2, x, y)
+        internal EnemyJumpFish(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyJumpFishR1"));
             RImg.AddImage(Game2.Textures.GetTexture("EnemyJumpFishR2"));

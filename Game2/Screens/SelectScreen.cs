@@ -38,7 +38,7 @@ namespace Game2.Screens
 
         private bool _keyFlag = true;
 
-        internal SelectScreen(ref Game2 game2) : base(ref game2)
+        internal SelectScreen(Game2 game2) : base(game2)
         {
             Game2 = game2;
             WaitTimer.Start(100f, true);
@@ -46,12 +46,12 @@ namespace Game2.Screens
 
         internal void AddMenuItem(float x, float y, string menu, float scale)
         {
-            Vector2 v = Utility.GetMsgSize(ref Game2.Font, menu, scale) / 2;
+            Vector2 v = Utility.GetMsgSize(Game2.Font, menu, scale) / 2;
             v.Y = 0;
             Items.Add(new MenuItem(new Vector2(x, y) - v, menu, scale));
         }
 
-        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             for (int i = 0; i < Items.Count; i++)
             {
@@ -64,7 +64,7 @@ namespace Game2.Screens
                     Items[i].Color = NotSelectedColor;
                 }
 
-                Items[i].Draw(ref spriteBatch, ref Game2.Font);
+                Items[i].Draw(spriteBatch, Game2.Font);
             }
         }
 

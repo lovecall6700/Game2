@@ -16,7 +16,7 @@ namespace Game2.GameObjects
         private readonly Timer _hormingTimer = new Timer();
         private Vector2 _target;
 
-        internal EnemyBoss(ref Game2 game2, float x, float y, int id) : base(ref game2, x, y)
+        internal EnemyBoss(Game2 game2, float x, float y, int id) : base(game2, x, y)
         {
             ID = id;
 

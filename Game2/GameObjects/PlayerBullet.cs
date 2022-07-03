@@ -18,7 +18,7 @@ namespace Game2.GameObjects
         /// </summary>
         private static readonly int bulletSpeed = 12;
 
-        internal PlayerBullet(ref Game2 game2, float x, float y, int direction) : base(ref game2, x, y)
+        internal PlayerBullet(Game2 game2, float x, float y, int direction) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.PlayerBullet;
             ControlDirectionX = direction;

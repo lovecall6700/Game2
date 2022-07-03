@@ -4,7 +4,7 @@ namespace Game2.GameObjects
 {
     internal class EnemyDog : Enemy
     {
-        internal EnemyDog(ref Game2 game2, float x, float y) : base(ref game2, x, y)
+        internal EnemyDog(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyDogR1"));
             RImg.AddImage(Game2.Textures.GetTexture("EnemyDogR2"));

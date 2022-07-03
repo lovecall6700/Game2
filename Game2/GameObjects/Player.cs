@@ -69,7 +69,7 @@ namespace Game2.GameObjects
         /// </summary>
         private bool _canJump = true;
 
-        internal Player(ref Game2 game2, float x, float y) : base(ref game2, x, y)
+        internal Player(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("PlayerR1"));
             RImg.AddImage(Game2.Textures.GetTexture("PlayerR2"));
@@ -195,26 +195,26 @@ namespace Game2.GameObjects
                     //左右を向いていないときは発砲しない
                     if (Direction == -1)
                     {
-                        Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(ref Game2, Position.X, Position.Y + 8, Direction));
+                        Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X, Position.Y + 8, Direction));
                         Game2.MusicPlayer.PlaySE("SoundEffects/PlayerShot");
                         _bulletTimer.Start(200f, true);
 
                         if (Game2.Inventory.HasTripleShotItem())
                         {
-                            Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(ref Game2, Position.X, Position.Y, Direction));
-                            Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(ref Game2, Position.X, Position.Y + 16, Direction));
+                            Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X, Position.Y, Direction));
+                            Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X, Position.Y + 16, Direction));
                         }
                     }
                     else if (Direction == 1)
                     {
-                        Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(ref Game2, Position.X + 8, Position.Y + 8, Direction));
+                        Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X + 8, Position.Y + 8, Direction));
                         Game2.MusicPlayer.PlaySE("SoundEffects/PlayerShot");
                         _bulletTimer.Start(200f, true);
 
                         if (Game2.Inventory.HasTripleShotItem())
                         {
-                            Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(ref Game2, Position.X + 8, Position.Y, Direction));
-                            Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(ref Game2, Position.X + 8, Position.Y + 16, Direction));
+                            Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X + 8, Position.Y, Direction));
+                            Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X + 8, Position.Y + 16, Direction));
                         }
                     }
                 }
@@ -341,7 +341,7 @@ namespace Game2.GameObjects
                         i.Visibility = ObjectVisibility.Normal;
                         int s = Game2.Session.StageNo * Game2.FindBonus;
                         Game2.AddScore(s);
-                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
+                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(Game2, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
                         Game2.Session.AddItem(i);
                         Game2.MusicPlayer.PlaySE("SoundEffects/Find");
                     }
@@ -371,7 +371,7 @@ namespace Game2.GameObjects
                         d.Visibility = ObjectVisibility.Normal;
                         int s = Game2.Session.StageNo * Game2.FindBonus;
                         Game2.AddScore(s);
-                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
+                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(Game2, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
                         Game2.Session.AddDoor(d);
                         Game2.MusicPlayer.PlaySE("SoundEffects/Find");
                     }
@@ -386,7 +386,7 @@ namespace Game2.GameObjects
                     {
                         t.Visibility = ObjectVisibility.Open;
                         Game2.AddScore(t.Score);
-                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(ref Game2, Position.X, Position.Y, GetDblScoreSymbol() + t.Score.ToString()));
+                        Game2.PlaySc.EffectObjs.Add(new PopupMessage(Game2, Position.X, Position.Y, GetDblScoreSymbol() + t.Score.ToString()));
                         Game2.Session.AddTreasureBox(t);
                         Game2.MusicPlayer.PlaySE("SoundEffects/GetItem");
                         Life = MaxLife;

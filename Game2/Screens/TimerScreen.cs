@@ -18,7 +18,7 @@ namespace Game2.Screens
         /// </summary>
         internal readonly Timer WaitTimer = new Timer();
 
-        internal TimerScreen(ref Game2 game2) : base(ref game2)
+        internal TimerScreen(Game2 game2) : base(game2)
         {
             WaitTimer.Start(500f, true);
         }

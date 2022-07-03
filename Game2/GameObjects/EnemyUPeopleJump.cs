@@ -8,7 +8,7 @@ namespace Game2.GameObjects
         private readonly Random _rnd = new Random();
         private Rectangle _jumpRect = new Rectangle(0, 0, 8, 16);
 
-        internal EnemyUPeopleJump(ref Game2 game2, float x, float y) : base(ref game2, x, y)
+        internal EnemyUPeopleJump(Game2 game2, float x, float y) : base(game2, x, y)
         {
         }
 

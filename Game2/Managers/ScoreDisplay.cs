@@ -8,7 +8,7 @@ namespace Game2.Managers
     /// </summary>
     internal class ScoreDisplay : DigitalDisplay
     {
-        internal ScoreDisplay(ref Game2 game2, GraphicsDevice device) : base(ref game2, device)
+        internal ScoreDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
         {
             Initialize(device);
         }
@@ -32,16 +32,16 @@ namespace Game2.Managers
         /// ハイスコアを描画する
         /// </summary>
         /// <param name="spriteBatch">SpriteBatch</param>
-        internal virtual void DrawHighScore(ref SpriteBatch spriteBatch)
+        internal virtual void DrawHighScore(SpriteBatch spriteBatch)
         {
             Format = "HI{0:00000000}";
             spriteBatch.DrawString(Game2.Font, string.Format(Format, Game2.Session.HighScore), Game2.Camera2D.Position + Position, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
-        internal override void Draw(ref SpriteBatch spriteBatch)
+        internal override void Draw(SpriteBatch spriteBatch)
         {
             Format = "  {0:00000000}";
-            base.Draw(ref spriteBatch);
+            base.Draw(spriteBatch);
         }
 
         internal void TitleToInitialStart()

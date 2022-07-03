@@ -9,7 +9,7 @@ namespace Game2.GameObjects
         private int _state = 0;
         private readonly Timer _shotTimer = new Timer();
 
-        internal EnemyUFO2(ref Game2 game2, float x, float y) : base(ref game2, x, y)
+        internal EnemyUFO2(Game2 game2, float x, float y) : base(game2, x, y)
         {
             Img = Game2.Textures.GetTexture("EnemyUFO");
             SetSize(256, 80);
@@ -70,7 +70,7 @@ namespace Game2.GameObjects
 
         internal override void Shot()
         {
-            Game2.PlaySc.PhysicsObjs.Add(new EnemyBullet(ref Game2, Position.X, Position.Y + 60, 270f));
+            Game2.PlaySc.PhysicsObjs.Add(new EnemyBullet(Game2, Position.X, Position.Y + 60, 270f));
             Game2.MusicPlayer.PlaySE("SoundEffects/EnemyShot");
             ShotTime = MathHelper.Clamp(ShotTime - 200f, 100f, float.MaxValue);
         }

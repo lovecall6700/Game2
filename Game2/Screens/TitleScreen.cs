@@ -20,7 +20,7 @@ namespace Game2.Screens
         /// </summary>
         private readonly Timer _storyTimer = new Timer();
 
-        internal TitleScreen(ref Game2 game2) : base(ref game2)
+        internal TitleScreen(Game2 game2) : base(game2)
         {
             AddMenuItem(128, 140, "Start", 1.2f);
             AddMenuItem(128, 162, "Continue", 1.2f);
@@ -31,9 +31,9 @@ namespace Game2.Screens
             _storyTimer.Start(8000f, true);
         }
 
-        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, ref spriteBatch);
+            base.Draw(gameTime, spriteBatch);
             spriteBatch.Draw(Game2.Images, Vector2.Zero, _titleImg, Color.White);
         }
 
