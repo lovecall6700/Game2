@@ -61,7 +61,7 @@ namespace Game2.GameObjects
         /// </summary>
         private static readonly float airFriction = 1f;
 
-        internal GameObject(ref Game2 game2, float x, float y)
+        internal GameObject(Game2 game2, float x, float y)
         {
             Game2 = game2;
             Position = new Vector2(x, y);
@@ -83,7 +83,7 @@ namespace Game2.GameObjects
             Rectangle.Height = h;
         }
 
-        internal virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (Img == null || ObjectKind == GameObjectKinds.Disable)
             {

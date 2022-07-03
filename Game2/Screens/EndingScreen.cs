@@ -43,7 +43,7 @@ namespace Game2.Screens
         /// </summary>
         internal bool AlwaysSkip = false;
 
-        internal EndingScreen(ref Game2 game2) : base(ref game2)
+        internal EndingScreen(Game2 game2) : base(game2)
         {
             string baseName = FileName();
 
@@ -175,15 +175,15 @@ namespace Game2.Screens
             }
         }
 
-        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (_state == 0)
             {
-                base.Draw(gameTime, ref spriteBatch);
+                base.Draw(gameTime, spriteBatch);
             }
             else if (_state == 1)
             {
-                base.Draw(gameTime, ref spriteBatch);
+                base.Draw(gameTime, spriteBatch);
 
                 for (int i = 0; i < NumOfImage(); i++)
                 {
@@ -192,16 +192,16 @@ namespace Game2.Screens
             }
             else if (_state == 2)
             {
-                base.Draw(gameTime, ref spriteBatch);
+                base.Draw(gameTime, spriteBatch);
 
                 if (SecondMsg != null)
                 {
-                    SecondMsg.Draw(ref spriteBatch, ref Game2.Font);
+                    SecondMsg.Draw(spriteBatch, Game2.Font);
                 }
 
                 if (ThirdMsg != null)
                 {
-                    ThirdMsg.Draw(ref spriteBatch, ref Game2.Font);
+                    ThirdMsg.Draw(spriteBatch, Game2.Font);
                 }
             }
         }

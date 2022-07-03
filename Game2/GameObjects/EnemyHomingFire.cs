@@ -8,7 +8,7 @@ namespace Game2.GameObjects
         private readonly Timer _hormingTimer = new Timer();
         private Vector2 _target;
 
-        internal EnemyHomingFire(ref Game2 game2, float x, float y) : base(ref game2, x, y)
+        internal EnemyHomingFire(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyFireR1"));
             RImg.AddImage(Game2.Textures.GetTexture("EnemyFireR2"));

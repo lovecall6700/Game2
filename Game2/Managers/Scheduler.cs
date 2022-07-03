@@ -17,7 +17,7 @@ namespace Game2.Managers
 
         private readonly Game2 _game2;
 
-        internal Scheduler(ref Game2 game2)
+        internal Scheduler(Game2 game2)
         {
             _game2 = game2;
         }

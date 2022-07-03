@@ -19,23 +19,23 @@ namespace Game2.Screens
         /// </summary>
         internal Color Color = Color.White;
 
-        internal MessageScreen(ref Game2 game2) : base(ref game2)
+        internal MessageScreen(Game2 game2) : base(game2)
         {
             Game2 = game2;
         }
 
-        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (Item != null)
             {
                 Item.Color = Color;
-                Item.Draw(ref spriteBatch, ref Game2.Font);
+                Item.Draw(spriteBatch, Game2.Font);
             }
         }
 
         internal Vector2 GetMsgSize(string msg, float scale)
         {
-            return Utility.GetMsgSize(ref Game2.Font, msg, scale);
+            return Utility.GetMsgSize(Game2.Font, msg, scale);
         }
     }
 }

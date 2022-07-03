@@ -9,7 +9,7 @@ namespace Game2.GameObjects
         /// </summary>
         private static readonly int bulletSpeed = 9;
 
-        internal EnemyBullet(ref Game2 game2, float x, float y, float angle) : base(ref game2, x, y)
+        internal EnemyBullet(Game2 game2, float x, float y, float angle) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.PlayerBullet;
             Vector2 upVector = new Vector2(0.0f, -1.0f);

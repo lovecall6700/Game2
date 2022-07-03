@@ -14,7 +14,7 @@ namespace Game2.GameObjects
         private readonly Timer _timer = new Timer();
         private readonly float _time = 120f;
 
-        internal Crack(ref Game2 game2, float x, float y, string dummy) : base(ref game2, x, y)
+        internal Crack(Game2 game2, float x, float y, string dummy) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.Carck;
             Img = Game2.Textures.GetTexture("" + dummy);
@@ -48,9 +48,9 @@ namespace Game2.GameObjects
             base.Update(gameTime);
         }
 
-        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, ref spriteBatch);
+            base.Draw(gameTime, spriteBatch);
 
             if (_life > 0)
             {

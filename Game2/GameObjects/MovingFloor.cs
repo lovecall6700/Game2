@@ -10,7 +10,7 @@ namespace Game2.GameObjects
         private readonly float _min = -50f;
         private readonly float _max = 50f;
 
-        internal MovingFloor(ref Game2 game2, float x, float y, string type, float min, float max) : base(ref game2, x, y)
+        internal MovingFloor(Game2 game2, float x, float y, string type, float min, float max) : base(game2, x, y)
         {
             Vertical = type == "Vertical";
             _dir = min < max;

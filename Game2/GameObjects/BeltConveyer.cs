@@ -15,7 +15,7 @@ namespace Game2.GameObjects
         private Vector2 _vibroA = new Vector2(1f, 0);
         private Vector2 _vibroB = new Vector2(-1f, 0);
 
-        internal BeltConveyer(ref Game2 game2, float x, float y, string dummy, string dir) : base(ref game2, x, y)
+        internal BeltConveyer(Game2 game2, float x, float y, string dummy, string dir) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.Block;
             Img = Game2.Textures.GetTexture("" + dummy);
@@ -32,9 +32,9 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, ref spriteBatch);
+            base.Draw(gameTime, spriteBatch);
             spriteBatch.Draw(Game2.Images, Position + (_vibro ? _vibroA : _vibroB), _beltImg, Color.White);
         }
 

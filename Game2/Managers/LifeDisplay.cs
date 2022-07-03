@@ -8,7 +8,7 @@ namespace Game2.Managers
     /// </summary>
     internal class LifeDisplay : DigitalDisplay
     {
-        internal LifeDisplay(ref Game2 game2, GraphicsDevice device) : base(ref game2, device)
+        internal LifeDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
         {
             Format = "LIFE {0:0}";
         }
@@ -19,11 +19,11 @@ namespace Game2.Managers
             Position = new Vector2(2, 20);
         }
 
-        internal override void Draw(ref SpriteBatch spriteBatch)
+        internal override void Draw(SpriteBatch spriteBatch)
         {
             int life = Game2.PlaySc.Player.Life;
             Value = life < 0 ? 0 : life;
-            base.Draw(ref spriteBatch);
+            base.Draw(spriteBatch);
         }
     }
 }

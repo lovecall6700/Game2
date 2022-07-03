@@ -137,7 +137,7 @@ namespace Game2.GameObjects
         /// </summary>
         internal bool UseAnimation = true;
 
-        internal PhysicsObject(ref Game2 game2, float x, float y) : base(ref game2, x, y)
+        internal PhysicsObject(Game2 game2, float x, float y) : base(game2, x, y)
         {
             ObjectStatus = PhysicsObjectStatus.Normal;
         }
@@ -564,7 +564,7 @@ namespace Game2.GameObjects
 
         }
 
-        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (ObjectStatus == PhysicsObjectStatus.Damage)
             {
@@ -577,7 +577,7 @@ namespace Game2.GameObjects
             }
             else
             {
-                base.Draw(gameTime, ref spriteBatch);
+                base.Draw(gameTime, spriteBatch);
             }
         }
 

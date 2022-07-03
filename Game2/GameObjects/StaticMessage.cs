@@ -10,12 +10,12 @@ namespace Game2.GameObjects
     {
         private readonly string _message;
 
-        internal StaticMessage(ref Game2 game2, float x, float y, string msg) : base(ref game2, x, y)
+        internal StaticMessage(Game2 game2, float x, float y, string msg) : base(game2, x, y)
         {
             _message = msg;
         }
 
-        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(Game2.Font, _message, Position, Color.White);
         }

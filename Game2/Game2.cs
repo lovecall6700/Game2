@@ -15,7 +15,7 @@ namespace Game2
     /// </summary>
     internal class Game2 : Game
     {
-        private Game2 _game2;
+        private readonly Game2 _game2;
 
         //タイマー
         private readonly Timer _fullScTimer = new Timer();
@@ -157,7 +157,7 @@ namespace Game2
             //ゲームシステム
             UnsetFullscreen();
             Textures = new Textures();
-            Scheduler = new Scheduler(ref _game2);
+            Scheduler = new Scheduler(_game2);
             GameCtrl = new GameController3();
             base.Initialize();
         }
@@ -168,14 +168,14 @@ namespace Game2
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Images = Content.Load<Texture2D>("Images");
             Font = Content.Load<SpriteFont>("Fonts");
-            _timeLimitDisp = new TimeLimitDisplay(ref _game2, GraphicsDevice);
-            _scoreDisp = new ScoreDisplay(ref _game2, GraphicsDevice);
-            _remainDisp = new RemainDisplay(ref _game2, GraphicsDevice);
-            _pauseDisp = new PauseDisplay(ref _game2, GraphicsDevice);
-            _lifeDisp = new LifeDisplay(ref _game2, GraphicsDevice);
+            _timeLimitDisp = new TimeLimitDisplay(_game2, GraphicsDevice);
+            _scoreDisp = new ScoreDisplay(_game2, GraphicsDevice);
+            _remainDisp = new RemainDisplay(_game2, GraphicsDevice);
+            _pauseDisp = new PauseDisplay(_game2, GraphicsDevice);
+            _lifeDisp = new LifeDisplay(_game2, GraphicsDevice);
 
             //ゲーム関連
-            Inventory = new Inventory(ref _game2);
+            Inventory = new Inventory(_game2);
 
             //音は最後
             MusicPlayer = new MusicPlayer(Content);
@@ -327,15 +327,15 @@ namespace Game2
                 //ゲーム描画
                 GraphicsDevice.Clear(PlaySc.GetBackColor());
                 SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-                PlaySc.Draw(gameTime, ref SpriteBatch);
-                _timeLimitDisp.Draw(ref SpriteBatch);
-                _lifeDisp.Draw(ref SpriteBatch);
-                _remainDisp.Draw(ref SpriteBatch);
-                _scoreDisp.Draw(ref SpriteBatch);
+                PlaySc.Draw(gameTime, SpriteBatch);
+                _timeLimitDisp.Draw(SpriteBatch);
+                _lifeDisp.Draw(SpriteBatch);
+                _remainDisp.Draw(SpriteBatch);
+                _scoreDisp.Draw(SpriteBatch);
 
                 if (!_focused || _paused)
                 {
-                    _pauseDisp.Draw(ref SpriteBatch);
+                    _pauseDisp.Draw(SpriteBatch);
                 }
 
                 SpriteBatch.End();
@@ -344,16 +344,16 @@ namespace Game2
             {
                 GraphicsDevice.Clear(Color.Black);
                 SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-                _screen.Draw(gameTime, ref SpriteBatch);
+                _screen.Draw(gameTime, SpriteBatch);
 
                 if (!_hideHiscore)
                 {
-                    _scoreDisp.DrawHighScore(ref SpriteBatch);
+                    _scoreDisp.DrawHighScore(SpriteBatch);
                 }
 
                 if (!_focused || _paused)
                 {
-                    _pauseDisp.Draw(ref SpriteBatch);
+                    _pauseDisp.Draw(SpriteBatch);
                 }
 
                 SpriteBatch.End();
@@ -369,7 +369,7 @@ namespace Game2
         {
             Session = new Session();
             _hideHiscore = false;
-            _screen = new TitleScreen(ref _game2);
+            _screen = new TitleScreen(_game2);
         }
 
         /// <summary>
@@ -394,8 +394,8 @@ namespace Game2
             _remainDisp.TitleContinue();
             _scoreDisp.TitleToLoadStart();
             Inventory.TitleToLoadStart();
-            _screen = new StageStart(ref _game2);
-            PlaySc = new PlayScreen(ref _game2);
+            _screen = new StageStart(_game2);
+            PlaySc = new PlayScreen(_game2);
             PlaySc.LoadStage();
         }
 
@@ -413,8 +413,8 @@ namespace Game2
             _remainDisp.TitleToInitialStart();
             _scoreDisp.TitleToInitialStart();
             Inventory.TitleToInitialStart();
-            _screen = new StageStart(ref _game2);
-            PlaySc = new PlayScreen(ref _game2);
+            _screen = new StageStart(_game2);
+            PlaySc = new PlayScreen(_game2);
             PlaySc.LoadStage();
         }
 
@@ -436,14 +436,14 @@ namespace Game2
             if (_remainDisp.Miss())
             {
                 SaveHighScore();
-                _screen = new GameoverScreen(ref _game2);
+                _screen = new GameoverScreen(_game2);
             }
             else
             {
                 _timeLimitDisp.Timer.Start(Session.TimeLimit, true);
                 Session.Life = Player.MaxLife;
                 PlaySc.Restart();
-                _screen = new StageStart(ref _game2);
+                _screen = new StageStart(_game2);
             }
         }
 
@@ -464,7 +464,7 @@ namespace Game2
 
             Session.EndTime();
             SaveHighScore();
-            _screen = new EndingScreen(ref _game2);
+            _screen = new EndingScreen(_game2);
         }
 
         /// <summary>
@@ -476,7 +476,7 @@ namespace Game2
             Session.DoorNo = Session.DestDoorNo;
             Session.Life = PlaySc.Player.Life;
             PlaySc.LoadStage();
-            _screen = new StageStart(ref _game2);
+            _screen = new StageStart(_game2);
         }
 
         /// <summary>
@@ -496,7 +496,7 @@ namespace Game2
             _scoreDisp.GameoverRetryToStart();
             Inventory.GameoverRetryToStart();
             PlaySc.Restart();
-            _screen = new StageStart(ref _game2);
+            _screen = new StageStart(_game2);
         }
 
         /// <summary>
@@ -504,7 +504,7 @@ namespace Game2
         /// </summary>
         internal void ExecBGMVolume()
         {
-            _screen = new BGMVolumeScreen(ref _game2);
+            _screen = new BGMVolumeScreen(_game2);
         }
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace Game2
         /// </summary>
         internal void ExecSEVolume()
         {
-            _screen = new SEVolumeScreen(ref _game2);
+            _screen = new SEVolumeScreen(_game2);
         }
 
         /// <summary>
@@ -520,7 +520,7 @@ namespace Game2
         /// </summary>
         internal void ExecOptions()
         {
-            _screen = new OptionsScreen(ref _game2);
+            _screen = new OptionsScreen(_game2);
         }
 
         /// <summary>
@@ -529,7 +529,7 @@ namespace Game2
         internal void ExecStory()
         {
             _hideHiscore = true;
-            _screen = new StoryScreen(ref _game2);
+            _screen = new StoryScreen(_game2);
         }
 
         /// <summary>

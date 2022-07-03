@@ -5,7 +5,7 @@ namespace Game2.Screens
     /// </summary>
     internal class StoryScreen : EndingScreen
     {
-        internal StoryScreen(ref Game2 game2) : base(ref game2)
+        internal StoryScreen(Game2 game2) : base(game2)
         {
             AlwaysSkip = true;
         }

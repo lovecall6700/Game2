@@ -12,7 +12,7 @@ namespace Game2.Managers
         private readonly Timer _blinkTimer = new Timer();
         private bool _blink = true;
 
-        internal PauseDisplay(ref Game2 game2, GraphicsDevice device) : base(ref game2, device)
+        internal PauseDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
         {
             Initialize(device);
             _blinkTimer.Start(500f, true);
@@ -29,18 +29,18 @@ namespace Game2.Managers
             base.Update(gameTime);
         }
 
-        internal override void Draw(ref SpriteBatch spriteBatch)
+        internal override void Draw(SpriteBatch spriteBatch)
         {
             if (_blink)
             {
-                base.Draw(ref spriteBatch);
+                base.Draw(spriteBatch);
             }
         }
 
         internal override void Initialize(GraphicsDevice device)
         {
             base.Initialize(device);
-            Position = new Vector2(128, 140) - Utility.GetMsgSize(ref Game2.Font, "PAUSE", 1f) / 2;
+            Position = new Vector2(128, 140) - Utility.GetMsgSize(Game2.Font, "PAUSE", 1f) / 2;
             Format = "PAUSE";
         }
     }

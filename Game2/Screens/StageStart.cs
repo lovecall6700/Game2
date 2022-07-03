@@ -19,7 +19,7 @@ namespace Game2.Screens
 
         private bool _keyFlag = true;
 
-        internal StageStart(ref Game2 game2) : base(ref game2)
+        internal StageStart(Game2 game2) : base(game2)
         {
             Timer.Start(4200, true);
             string msg;
@@ -121,9 +121,9 @@ namespace Game2.Screens
             }
         }
 
-        internal override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, ref spriteBatch);
+            base.Draw(gameTime, spriteBatch);
 
             for (int i = 0; i < _icons.Count; i++)
             {

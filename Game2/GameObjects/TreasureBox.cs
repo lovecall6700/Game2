@@ -51,7 +51,7 @@ namespace Game2.GameObjects
         /// <param name="hidden">隠し宝箱</param>
         /// <param name="score">得点</param>
         /// <param name="dummy">隠し宝箱のダミーテクスチャ名</param>
-        internal TreasureBox(ref Game2 game2, float x, float y, bool hidden, int score, string dummy, int stageNo, int treasureBoxNo) : base(ref game2, x, y)
+        internal TreasureBox(Game2 game2, float x, float y, bool hidden, int score, string dummy, int stageNo, int treasureBoxNo) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.TreasureBox;
             _stageNo = stageNo;

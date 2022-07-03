@@ -40,7 +40,7 @@ namespace Game2.Screens
             Scale = scale;
         }
 
-        internal void Draw(ref SpriteBatch spriteBatch, ref SpriteFont font)
+        internal void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
             if (Disable)
             {

@@ -10,7 +10,7 @@ namespace Game2.GameObjects
     {
         private readonly Timer _timer = new Timer();
 
-        internal PopupMessage(ref Game2 game2, float x, float y, string msg) : base(ref game2, x, y, msg)
+        internal PopupMessage(Game2 game2, float x, float y, string msg) : base(game2, x, y, msg)
         {
             _timer.Start(1000f, true);
         }
