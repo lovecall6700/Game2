@@ -3,18 +3,18 @@ using System;
 
 namespace Game2.GameObjects
 {
-    internal class EnemyUFO : Enemy
+    public class EnemyUFO : Enemy
     {
         private int _state = 0;
 
-        internal EnemyUFO(Game2 game2, float x, float y) : base(game2, x, y)
+        public EnemyUFO(Game2 game2, float x, float y) : base(game2, x, y)
         {
             Img = Game2.Textures.GetTexture("EnemyUFO");
             SetSize(256, 80);
             Attack = 255;
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             AttackPlayer();
 
@@ -73,7 +73,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Damage(int damage)
+        public override void Damage(int damage)
         {
             //無敵
         }

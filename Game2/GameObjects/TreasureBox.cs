@@ -5,7 +5,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// 宝箱
     /// </summary>
-    internal class TreasureBox : GameObject
+    public class TreasureBox : GameObject
     {
         /// <summary>
         /// ステージ番号
@@ -20,12 +20,12 @@ namespace Game2.GameObjects
         /// <summary>
         /// 宝箱タイプ
         /// </summary>
-        internal ObjectVisibility Visibility;
+        public ObjectVisibility Visibility;
 
         /// <summary>
         /// 得点
         /// </summary>
-        internal int Score;
+        public int Score;
 
         /// <summary>
         /// 開いた宝箱のテクスチャ
@@ -51,7 +51,7 @@ namespace Game2.GameObjects
         /// <param name="hidden">隠し宝箱</param>
         /// <param name="score">得点</param>
         /// <param name="dummy">隠し宝箱のダミーテクスチャ名</param>
-        internal TreasureBox(Game2 game2, float x, float y, bool hidden, int score, string dummy, int stageNo, int treasureBoxNo) : base(game2, x, y)
+        public TreasureBox(Game2 game2, float x, float y, bool hidden, int score, string dummy, int stageNo, int treasureBoxNo) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.TreasureBox;
             _stageNo = stageNo;
@@ -81,12 +81,12 @@ namespace Game2.GameObjects
         /// 宝箱ID「ステージ番号-宝箱番号」を得る。
         /// </summary>
         /// <returns>宝箱ID</returns>
-        internal string GetTreasureBoxID()
+        public string GetTreasureBoxID()
         {
             return $"{_stageNo}-{_treasureBoxNo}";
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (Visibility == ObjectVisibility.Hidden)
             {

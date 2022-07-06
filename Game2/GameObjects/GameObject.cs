@@ -7,49 +7,49 @@ namespace Game2.GameObjects
     /// <summary>
     /// 物体
     /// </summary>
-    internal class GameObject
+    public class GameObject
     {
-        internal Game2 Game2;
+        public Game2 Game2;
 
         /// <summary>
         /// 乗ってるオブジェクト
         /// </summary>
-        internal List<PhysicsObject> Connection = new List<PhysicsObject>();
+        public List<PhysicsObject> Connection = new List<PhysicsObject>();
 
         /// <summary>
         /// Texture2D
         /// </summary>
-        internal Rectangle? Img = null;
+        public Rectangle? Img = null;
 
         /// <summary>
         /// 位置
         /// </summary>
-        internal Vector2 Position;
+        public Vector2 Position;
 
         /// <summary>
         /// 幅
         /// </summary>
-        internal int Width = 16;
+        public int Width = 16;
 
         /// <summary>
         /// 高さ
         /// </summary>
-        internal int Height = 16;
+        public int Height = 16;
 
         /// <summary>
         /// 接触判定用の矩形領域
         /// </summary>
-        internal Rectangle Rectangle = new Rectangle();
+        public Rectangle Rectangle = new Rectangle();
 
         /// <summary>
         /// 生成位置X
         /// </summary>
-        internal Vector2 Origin;
+        public Vector2 Origin;
 
         /// <summary>
         /// ゲームオブジェクト種別
         /// </summary>
-        internal GameObjectKinds ObjectKind;
+        public GameObjectKinds ObjectKind;
 
         /// <summary>
         /// 摩擦力
@@ -61,7 +61,7 @@ namespace Game2.GameObjects
         /// </summary>
         private static readonly float airFriction = 1f;
 
-        internal GameObject(Game2 game2, float x, float y)
+        public GameObject(Game2 game2, float x, float y)
         {
             Game2 = game2;
             Position = new Vector2(x, y);
@@ -75,7 +75,7 @@ namespace Game2.GameObjects
         /// </summary>
         /// <param name="w">幅</param>
         /// <param name="h">高さ</param>
-        internal void SetSize(int w, int h)
+        public void SetSize(int w, int h)
         {
             Width = w;
             Height = h;
@@ -83,7 +83,7 @@ namespace Game2.GameObjects
             Rectangle.Height = h;
         }
 
-        internal virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (Img == null || ObjectKind == GameObjectKinds.Disable)
             {
@@ -93,7 +93,7 @@ namespace Game2.GameObjects
             spriteBatch.Draw(Game2.Images, Position, Img, Color.White);
         }
 
-        internal virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (Connection.Count > 0)
             {
@@ -107,7 +107,7 @@ namespace Game2.GameObjects
         /// <param name="velocity">速度</param>
         /// <param name="controlDirection">移動方向</param>
         /// <returns>摩擦力</returns>
-        internal virtual float GetFriction(float velocity, float controlDirection)
+        public virtual float GetFriction(float velocity, float controlDirection)
         {
             //通常の場合は制御は無関係に摩擦力は進行方向と逆に働く
             if (velocity < 0)
@@ -127,7 +127,7 @@ namespace Game2.GameObjects
         /// </summary>
         /// <param name="velocity">速度</param>
         /// <returns>摩擦力</returns>
-        internal static float GetAirFriction(float velocity)
+        public static float GetAirFriction(float velocity)
         {
             //通常の場合は制御は無関係に摩擦力は進行方向と逆に働く
             if (velocity < 0)
@@ -146,7 +146,7 @@ namespace Game2.GameObjects
         /// 上に乗った物体との接続を持つ
         /// </summary>
         /// <param name="o">PhysicsObject</param>
-        internal void AddConnection(PhysicsObject o)
+        public void AddConnection(PhysicsObject o)
         {
             Connection.Add(o);
             o.GroundBlock = this;
@@ -155,7 +155,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 画面外に出た時の処理
         /// </summary>
-        internal virtual void Outside()
+        public virtual void Outside()
         {
 
         }
@@ -163,7 +163,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// リスタート時のリセット処理
         /// </summary>
-        internal virtual void Restart()
+        public virtual void Restart()
         {
 
         }

@@ -6,11 +6,11 @@ namespace Game2
     /// ハイスコア
     /// </summary>
     [Serializable]
-    internal struct HighScoreData
+    public struct HighScoreData
     {
         /// <summary>
         /// ハイスコア
         /// </summary>
-        internal int HighScore;
+        public int HighScore;
     }
 }

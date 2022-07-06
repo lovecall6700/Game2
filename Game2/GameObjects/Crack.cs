@@ -7,14 +7,14 @@ namespace Game2.GameObjects
     /// <summary>
     /// ひび割れブロック
     /// </summary>
-    internal class Crack : Block
+    public class Crack : Block
     {
         private int _life = 5;
         private readonly ImageList _crackImg = new ImageList();
         private readonly Timer _timer = new Timer();
         private readonly float _time = 120f;
 
-        internal Crack(Game2 game2, float x, float y, string dummy) : base(game2, x, y)
+        public Crack(Game2 game2, float x, float y, string dummy) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.Carck;
             Img = Game2.Textures.GetTexture("" + dummy);
@@ -26,7 +26,7 @@ namespace Game2.GameObjects
             SetSize(16, 16);
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (ObjectKind == GameObjectKinds.Disable)
             {
@@ -48,7 +48,7 @@ namespace Game2.GameObjects
             base.Update(gameTime);
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, spriteBatch);
 
@@ -58,7 +58,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Outside()
+        public override void Outside()
         {
             //画面外に出たら崩れたブロックは復活する
             if (ObjectKind == GameObjectKinds.Disable)
@@ -67,7 +67,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Restart()
+        public override void Restart()
         {
             _life = 5;
             ObjectKind = GameObjectKinds.Carck;

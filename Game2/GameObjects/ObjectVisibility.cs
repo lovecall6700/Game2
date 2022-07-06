@@ -3,7 +3,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// 可視性一覧
     /// </summary>
-    internal enum ObjectVisibility : int
+    public enum ObjectVisibility : int
     {
         /// <summary>
         /// 通常

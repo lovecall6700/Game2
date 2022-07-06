@@ -7,11 +7,11 @@ namespace Game2.Screens
     /// <summary>
     /// オプション画面
     /// </summary>
-    internal class OptionsScreen : SelectScreen
+    public class OptionsScreen : SelectScreen
     {
         private readonly MenuItem _item;
 
-        internal OptionsScreen(Game2 game2) : base(game2)
+        public OptionsScreen(Game2 game2) : base(game2)
         {
             _item = new MenuItem(new Vector2(80, 70), "Options", 1.5f)
             {
@@ -24,13 +24,13 @@ namespace Game2.Screens
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             _item.Draw(spriteBatch, Game2.Font);
             base.Draw(gameTime, spriteBatch);
         }
 
-        internal override void SelectMenu()
+        public override void SelectMenu()
         {
             switch (Index)
             {

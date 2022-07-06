@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Game2.GameObjects
 {
-    internal class BeltConveyer : Block
+    public class BeltConveyer : Block
     {
         private readonly bool _left = false;
         private readonly float _speed = -4f;
@@ -15,7 +15,7 @@ namespace Game2.GameObjects
         private Vector2 _vibroA = new Vector2(1f, 0);
         private Vector2 _vibroB = new Vector2(-1f, 0);
 
-        internal BeltConveyer(Game2 game2, float x, float y, string dummy, string dir) : base(game2, x, y)
+        public BeltConveyer(Game2 game2, float x, float y, string dummy, string dir) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.Block;
             Img = Game2.Textures.GetTexture("" + dummy);
@@ -32,13 +32,13 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, spriteBatch);
             spriteBatch.Draw(Game2.Images, Position + (_vibro ? _vibroA : _vibroB), _beltImg, Color.White);
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (!_timer.Update(gameTime))
             {

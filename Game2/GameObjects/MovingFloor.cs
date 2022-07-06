@@ -2,15 +2,15 @@ using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
-    internal class MovingFloor : Block
+    public class MovingFloor : Block
     {
         private bool _dir = false;
         private readonly float _speed = 2f;
-        internal readonly bool Vertical = false;
+        public readonly bool Vertical = false;
         private readonly float _min = -50f;
         private readonly float _max = 50f;
 
-        internal MovingFloor(Game2 game2, float x, float y, string type, float min, float max) : base(game2, x, y)
+        public MovingFloor(Game2 game2, float x, float y, string type, float min, float max) : base(game2, x, y)
         {
             Vertical = type == "Vertical";
             _dir = min < max;
@@ -21,12 +21,12 @@ namespace Game2.GameObjects
             SetSize(48, 10);
         }
 
-        internal void ResetPosition()
+        public void ResetPosition()
         {
             Position = Origin;
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             float s = (_dir ? -1f : 1f) * _speed;
             float d;

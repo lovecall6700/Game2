@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Game2.Utilities
 {
-    internal class ImageList
+    public class ImageList
     {
         private int _index = 0;
         private readonly List<Rectangle?> _images = new List<Rectangle?>();
 
-        internal void IncIndex()
+        public void IncIndex()
         {
             if (_images.Count < 2)
             {
@@ -18,30 +18,30 @@ namespace Game2.Utilities
             _index = (_index + 1) % _images.Count;
         }
 
-        internal void AddImage(Rectangle? image)
+        public void AddImage(Rectangle? image)
         {
             _images.Add(image);
         }
 
-        internal void ClearAndAddImage(Rectangle? image)
+        public void ClearAndAddImage(Rectangle? image)
         {
             _index = 0;
             _images.Clear();
             _images.Add(image);
         }
 
-        internal void ClearImages()
+        public void ClearImages()
         {
             _index = 0;
             _images.Clear();
         }
 
-        internal void ResetIndex()
+        public void ResetIndex()
         {
             _index = 0;
         }
 
-        internal Rectangle? GetImage(bool incIndex)
+        public Rectangle? GetImage(bool incIndex)
         {
             if (incIndex)
             {
@@ -51,7 +51,7 @@ namespace Game2.Utilities
             return GetImage(_index);
         }
 
-        internal Rectangle? GetImage(int index)
+        public Rectangle? GetImage(int index)
         {
             if (_images.Count == 0 || index < 0 || _images.Count <= index)
             {

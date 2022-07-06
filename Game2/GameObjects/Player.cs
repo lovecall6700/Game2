@@ -7,7 +7,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// 主人公
     /// </summary>
-    internal class Player : PhysicsObject
+    public class Player : PhysicsObject
     {
         /// <summary>
         /// 座った絵
@@ -62,14 +62,14 @@ namespace Game2.GameObjects
         /// <summary>
         /// 最大ライフ
         /// </summary>
-        internal static readonly int MaxLife = 3;
+        public static readonly int MaxLife = 3;
 
         /// <summary>
         /// ジャンプ可能フラグ
         /// </summary>
         private bool _canJump = true;
 
-        internal Player(Game2 game2, float x, float y) : base(game2, x, y)
+        public Player(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("PlayerR1"));
             RImg.AddImage(Game2.Textures.GetTexture("PlayerR2"));
@@ -93,7 +93,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 再スタート時の状態リセット
         /// </summary>
-        internal override void Restart()
+        public override void Restart()
         {
             Life = Game2.Session.Life;
             Position = _restartPosition;
@@ -108,7 +108,7 @@ namespace Game2.GameObjects
             StandUp();
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (ObjectStatus == PhysicsObjectStatus.Dead)
             {
@@ -258,7 +258,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Jump()
+        public override void Jump()
         {
             if (Game2.Inventory.HasHighJumpItem())
             {
@@ -272,7 +272,7 @@ namespace Game2.GameObjects
             base.Jump();
         }
 
-        internal override void Died()
+        public override void Died()
         {
             StandUp();
             base.Died();
@@ -402,12 +402,12 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Removed()
+        public override void Removed()
         {
             Game2.Scheduler.SetSchedule(Schedules.RestartOrGameover);
         }
 
-        internal override void OutOfMapY()
+        public override void OutOfMapY()
         {
             if (ObjectStatus != PhysicsObjectStatus.Dead)
             {
@@ -417,7 +417,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void DecLife(int damage)
+        public override void DecLife(int damage)
         {
             if (!DamageTimer.Running)
             {
@@ -427,7 +427,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Damaged()
+        public override void Damaged()
         {
             base.Damaged();
             Velocity = new Vector2(-10 * Direction, -5);

@@ -3,21 +3,21 @@ namespace Game2.Managers
     /// <summary>
     /// 状態変更のスケジュール管理
     /// </summary>
-    internal class Scheduler
+    public class Scheduler
     {
         /// <summary>
         /// 画面の切り替え予約
         /// </summary>
-        internal Schedules Next = Schedules.None;
+        public Schedules Next = Schedules.None;
 
         /// <summary>
         /// ゲームプレイ中か
         /// </summary>
-        internal bool Playing;
+        public bool Playing;
 
         private readonly Game2 _game2;
 
-        internal Scheduler(Game2 game2)
+        public Scheduler(Game2 game2)
         {
             _game2 = game2;
         }
@@ -25,7 +25,7 @@ namespace Game2.Managers
         /// <summary>
         /// 次画面または次処理を予約
         /// </summary>
-        internal void SetSchedule(Schedules schedule)
+        public void SetSchedule(Schedules schedule)
         {
             if (Next != Schedules.None)
             {
@@ -38,7 +38,7 @@ namespace Game2.Managers
         /// <summary>
         /// 予約した処理を実際に実行する
         /// </summary>
-        internal void Update()
+        public void Update()
         {
             if (Next == Schedules.None)
             {

@@ -6,24 +6,24 @@ namespace Game2.Screens
     /// <summary>
     /// 時間経過で遷移する画面の親
     /// </summary>
-    internal class TimerScreen : MessageScreen
+    public class TimerScreen : MessageScreen
     {
         /// <summary>
         /// 表示時間
         /// </summary>
-        internal readonly Timer Timer = new Timer();
+        public readonly Timer Timer = new Timer();
 
         /// <summary>
         /// 画面が出てからしばらくは操作できない
         /// </summary>
-        internal readonly Timer WaitTimer = new Timer();
+        public readonly Timer WaitTimer = new Timer();
 
-        internal TimerScreen(Game2 game2) : base(game2)
+        public TimerScreen(Game2 game2) : base(game2)
         {
             WaitTimer.Start(500f, true);
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //画面が出てからしばらくは操作できない
             if (WaitTimer.Update(gameTime))
@@ -40,7 +40,7 @@ namespace Game2.Screens
         /// <summary>
         /// 時間経過後の処理
         /// </summary>
-        internal virtual void Timeup()
+        public virtual void Timeup()
         {
         }
     }

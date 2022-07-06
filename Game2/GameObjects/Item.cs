@@ -5,27 +5,27 @@ namespace Game2.GameObjects
     /// <summary>
     /// アイテム
     /// </summary>
-    internal class Item : GameObject
+    public class Item : GameObject
     {
         /// <summary>
         /// アイテム可視性
         /// </summary>
-        internal ObjectVisibility Visibility;
+        public ObjectVisibility Visibility;
 
         /// <summary>
         /// アイテム名
         /// </summary>
-        internal string Name;
+        public string Name;
 
         /// <summary>
         /// アイテム画像
         /// </summary>
-        internal Rectangle? ItemImg;
+        public Rectangle? ItemImg;
 
         /// <summary>
         /// 隠しアイテム用ダミー画像
         /// </summary>
-        internal Rectangle? DummyImg;
+        public Rectangle? DummyImg;
 
         /// <summary>
         /// ステージ番号
@@ -37,7 +37,7 @@ namespace Game2.GameObjects
         /// </summary>
         private readonly int _itemNo;
 
-        internal Item(Game2 game2, float x, float y, int stageNo, int itemNo, string name, bool hidden, string dummy) : base(game2, x, y)
+        public Item(Game2 game2, float x, float y, int stageNo, int itemNo, string name, bool hidden, string dummy) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.Item;
             Name = name;
@@ -60,7 +60,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (Visibility == ObjectVisibility.Hidden)
             {
@@ -80,7 +80,7 @@ namespace Game2.GameObjects
         /// ドアID「ステージ番号-ドア番号」を得る。
         /// </summary>
         /// <returns>宝箱ID</returns>
-        internal string GetItemID()
+        public string GetItemID()
         {
             return $"{_stageNo}-{_itemNo}";
         }

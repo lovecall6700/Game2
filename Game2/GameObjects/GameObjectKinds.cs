@@ -3,7 +3,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// ゲームオブジェクト種別一覧
     /// </summary>
-    internal enum GameObjectKinds : int
+    public enum GameObjectKinds : int
     {
         Player = 1,
         Enemy,

@@ -3,62 +3,62 @@ namespace Game2.Screens
     /// <summary>
     /// ストーリー画面
     /// </summary>
-    internal class StoryScreen : EndingScreen
+    public class StoryScreen : EndingScreen
     {
-        internal StoryScreen(Game2 game2) : base(game2)
+        public StoryScreen(Game2 game2) : base(game2)
         {
             AlwaysSkip = true;
         }
 
-        internal override void AddSecondMsg()
+        public override void AddSecondMsg()
         {
         }
 
-        internal override void AddThirdMsg()
+        public override void AddThirdMsg()
         {
         }
 
-        internal override string FileName()
+        public override string FileName()
         {
             return "Story";
         }
 
-        internal override int NumOfImage()
+        public override int NumOfImage()
         {
             return 4;
         }
 
-        internal override string Msg1()
+        public override string Msg1()
         {
             return "Story";
         }
 
-        internal override float Msg1Scale()
+        public override float Msg1Scale()
         {
             return 1f;
         }
 
-        internal override string Msg2()
+        public override string Msg2()
         {
             return "Good luck!";
         }
 
-        internal override float Msg2Scale()
+        public override float Msg2Scale()
         {
             return 1f;
         }
 
-        internal override float WaitTime1()
+        public override float WaitTime1()
         {
             return 1000f;
         }
 
-        internal override float WaitTime2()
+        public override float WaitTime2()
         {
             return 3000f;
         }
 
-        internal override string BgmName()
+        public override string BgmName()
         {
             return "Songs/BGM1";
         }

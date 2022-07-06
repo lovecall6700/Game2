@@ -18,7 +18,7 @@ namespace Game2.GameObjects
     /// 敵9(直進、壁でジャンプ or 反転、穴に落下、プレーヤーを左右攻撃、高耐久): EnemyUPeopleLife
     /// 敵10(ボス): EnemyBoss
     /// </summary>
-    internal class Enemy : PhysicsObject
+    public class Enemy : PhysicsObject
     {
         /// <summary>
         /// 寿命タイマー
@@ -28,12 +28,12 @@ namespace Game2.GameObjects
         /// <summary>
         /// 寿命までの時間
         /// </summary>
-        internal float LifeTime = 10000f;
+        public float LifeTime = 10000f;
 
         /// <summary>
         /// 寿命を使うか
         /// </summary>
-        internal bool UseLifeTime = true;
+        public bool UseLifeTime = true;
 
         /// <summary>
         /// 発砲タイマー
@@ -43,9 +43,9 @@ namespace Game2.GameObjects
         /// <summary>
         /// 発砲までの時間
         /// </summary>
-        internal float ShotTime = 10000f;
+        public float ShotTime = 10000f;
 
-        internal Enemy(Game2 game2, float x, float y) : base(game2, x, y)
+        public Enemy(Game2 game2, float x, float y) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.Enemy;
             DeadSE = "SoundEffects/EnemyDead";
@@ -55,7 +55,7 @@ namespace Game2.GameObjects
             _shotTimer.Start(ShotTime, true);
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             UpdateLifeTime(gameTime);
             RecoveryDamage(gameTime);
@@ -78,7 +78,7 @@ namespace Game2.GameObjects
             UpdateAnimation();
         }
 
-        internal override void Damaged()
+        public override void Damaged()
         {
             base.Damaged();
             Velocity = new Vector2(-10 * Direction, -5);
@@ -88,7 +88,7 @@ namespace Game2.GameObjects
         /// 寿命を計算する
         /// </summary>
         /// <param name="gameTime">GameTime</param>
-        internal void UpdateLifeTime(GameTime gameTime)
+        public void UpdateLifeTime(GameTime gameTime)
         {
             if (!UseLifeTime)
             {
@@ -100,7 +100,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal void UpdateShotTime(GameTime gameTime)
+        public void UpdateShotTime(GameTime gameTime)
         {
             if (!_shotTimer.Update(gameTime))
             {
@@ -112,7 +112,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// プレーヤーを攻撃する
         /// </summary>
-        internal virtual void AttackPlayer()
+        public virtual void AttackPlayer()
         {
             if (Game2.Inventory.HasShieldItem())
             {
@@ -127,20 +127,20 @@ namespace Game2.GameObjects
             }
         }
 
-        internal virtual void TouchWithWall()
+        public virtual void TouchWithWall()
         {
         }
 
-        internal virtual void Shot()
+        public virtual void Shot()
         {
         }
 
-        internal override void Outside()
+        public override void Outside()
         {
             ObjectStatus = PhysicsObjectStatus.Remove;
         }
 
-        internal virtual void FinallyUpdate(GameTime gameTime)
+        public virtual void FinallyUpdate(GameTime gameTime)
         {
         }
     }

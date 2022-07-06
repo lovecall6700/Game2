@@ -3,7 +3,7 @@ namespace Game2.Managers
     /// <summary>
     /// アイテム管理
     /// </summary>
-    internal class Inventory
+    public class Inventory
     {
         private bool _doubleScore = false;
         private bool _finder = false;
@@ -21,7 +21,7 @@ namespace Game2.Managers
             _game2 = game2;
         }
 
-        internal void SetItem(string name, bool flag)
+        public void SetItem(string name, bool flag)
         {
             switch (name)
             {
@@ -72,47 +72,47 @@ namespace Game2.Managers
             }
         }
 
-        internal bool HasDoubleScoreItem()
+        public bool HasDoubleScoreItem()
         {
             return _doubleScore;
         }
 
-        internal bool HasFinderItem()
+        public bool HasFinderItem()
         {
             return _finder;
         }
 
-        internal bool HasShieldItem()
+        public bool HasShieldItem()
         {
             return _shield;
         }
 
-        internal bool HasTimeItem()
+        public bool HasTimeItem()
         {
             return _time;
         }
 
-        internal bool HasLightItem()
+        public bool HasLightItem()
         {
             return _light;
         }
 
-        internal bool HasSwordItem()
+        public bool HasSwordItem()
         {
             return _sword;
         }
 
-        internal bool HasShoesItem()
+        public bool HasShoesItem()
         {
             return _shoes;
         }
 
-        internal bool HasTripleShotItem()
+        public bool HasTripleShotItem()
         {
             return _tripleShot;
         }
 
-        internal bool HasHighJumpItem()
+        public bool HasHighJumpItem()
         {
             return _highJump;
         }
@@ -144,17 +144,17 @@ namespace Game2.Managers
             }
         }
 
-        internal void GameoverRetryToStart()
+        public void GameoverRetryToStart()
         {
             FalseAllItems();
         }
 
-        internal void TitleToInitialStart()
+        public void TitleToInitialStart()
         {
             FalseAllItems();
         }
 
-        internal void TitleToLoadStart()
+        public void TitleToLoadStart()
         {
             FalseAllItems();
         }

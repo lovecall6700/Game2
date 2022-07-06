@@ -2,9 +2,9 @@ using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
-    internal class EnemyJumpFish : Enemy
+    public class EnemyJumpFish : Enemy
     {
-        internal EnemyJumpFish(Game2 game2, float x, float y) : base(game2, x, y)
+        public EnemyJumpFish(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyJumpFishR1"));
             RImg.AddImage(Game2.Textures.GetTexture("EnemyJumpFishR2"));
@@ -20,7 +20,7 @@ namespace Game2.GameObjects
             AnimationAlways = true;
         }
 
-        internal override bool MoveLeftOrRight(GameTime gameTime)
+        public override bool MoveLeftOrRight(GameTime gameTime)
         {
             Velocity.X = ControlDirectionX * AccelerationX;
             Velocity.Y += Gravity;
@@ -35,12 +35,12 @@ namespace Game2.GameObjects
             return false;
         }
 
-        internal override bool JumpAndGravity(GameTime gameTime)
+        public override bool JumpAndGravity(GameTime gameTime)
         {
             return false;
         }
 
-        internal override void Jump()
+        public override void Jump()
         {
             Velocity.Y = -JumpAcceleration;
         }

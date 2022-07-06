@@ -3,12 +3,12 @@ using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
-    internal class EnemyBird : Enemy
+    public class EnemyBird : Enemy
     {
         private readonly Timer _timer = new Timer();
         private bool _exit = false;
 
-        internal EnemyBird(Game2 game2, float x, float y) : base(game2, x, y)
+        public EnemyBird(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyBirdR1"));
             RImg.AddImage(Game2.Textures.GetTexture("EnemyBirdR2"));
@@ -23,7 +23,7 @@ namespace Game2.GameObjects
             _timer.Start(2000f, true);
         }
 
-        internal override bool MoveLeftOrRight(GameTime gameTime)
+        public override bool MoveLeftOrRight(GameTime gameTime)
         {
             Velocity.X += ControlDirectionX * AirAccelerationX;
             Velocity.X = MathHelper.Clamp(Velocity.X, -MaxSpeedX, MaxSpeedX);
@@ -32,7 +32,7 @@ namespace Game2.GameObjects
             return false;
         }
 
-        internal override bool JumpAndGravity(GameTime gameTime)
+        public override bool JumpAndGravity(GameTime gameTime)
         {
             if (!_timer.Update(gameTime) && !_exit)
             {
@@ -53,7 +53,7 @@ namespace Game2.GameObjects
             return false;
         }
 
-        internal override void Died()
+        public override void Died()
         {
             Gravity = 1;
             base.Died();

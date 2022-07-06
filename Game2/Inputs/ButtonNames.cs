@@ -3,7 +3,7 @@ namespace Game2.Inputs
     /// <summary>
     /// ボタンの機能名
     /// </summary>
-    internal enum ButtonNames
+    public enum ButtonNames
     {
         Jump = 0,
         Fire,

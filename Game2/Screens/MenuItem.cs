@@ -6,17 +6,17 @@ namespace Game2.Screens
     /// <summary>
     /// メニュー項目
     /// </summary>
-    internal class MenuItem
+    public class MenuItem
     {
         /// <summary>
         /// 描画位置
         /// </summary>
-        internal Vector2 Position;
+        public Vector2 Position;
 
         /// <summary>
         /// 文言
         /// </summary>
-        internal string Menu;
+        public string Menu;
 
         /// <summary>
         /// 文字倍率
@@ -26,21 +26,21 @@ namespace Game2.Screens
         /// <summary>
         /// 表示色
         /// </summary>
-        internal Color Color;
+        public Color Color;
 
         /// <summary>
         /// 無効
         /// </summary>
-        internal bool Disable;
+        public bool Disable;
 
-        internal MenuItem(Vector2 position, string menu, float scale)
+        public MenuItem(Vector2 position, string menu, float scale)
         {
             Position = position;
             Menu = menu;
             Scale = scale;
         }
 
-        internal void Draw(SpriteBatch spriteBatch, SpriteFont font)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
             if (Disable)
             {

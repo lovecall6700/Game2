@@ -3,7 +3,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// オブジェクト状態の一覧
     /// </summary>
-    internal enum PhysicsObjectStatus : int
+    public enum PhysicsObjectStatus : int
     {
         /// <summary>
         /// 通常

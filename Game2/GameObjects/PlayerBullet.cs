@@ -6,7 +6,7 @@ namespace Game2.GameObjects
     /// <summary>
     /// プレーヤー弾丸
     /// </summary>
-    internal class PlayerBullet : PhysicsObject
+    public class PlayerBullet : PhysicsObject
     {
         /// <summary>
         /// 消えるまでの時間
@@ -18,7 +18,7 @@ namespace Game2.GameObjects
         /// </summary>
         private static readonly int bulletSpeed = 12;
 
-        internal PlayerBullet(Game2 game2, float x, float y, int direction) : base(game2, x, y)
+        public PlayerBullet(Game2 game2, float x, float y, int direction) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.PlayerBullet;
             ControlDirectionX = direction;
@@ -41,7 +41,7 @@ namespace Game2.GameObjects
             Attack = 1;
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (!_removeTimer.Update(gameTime))
             {

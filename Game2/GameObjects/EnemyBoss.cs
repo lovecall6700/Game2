@@ -5,18 +5,18 @@ using System.Collections.Generic;
 
 namespace Game2.GameObjects
 {
-    internal class EnemyBoss : Enemy
+    public class EnemyBoss : Enemy
     {
-        internal EnemyBoss RootBody;
-        internal EnemyBoss UpperBody;
-        internal int ID;
-        internal bool Tail = false;
+        public EnemyBoss RootBody;
+        public EnemyBoss UpperBody;
+        public int ID;
+        public bool Tail = false;
         private readonly List<Vector2> _history = new List<Vector2>();
         private Vector2 _lastPosition;
         private readonly Timer _hormingTimer = new Timer();
         private Vector2 _target;
 
-        internal EnemyBoss(Game2 game2, float x, float y, int id) : base(game2, x, y)
+        public EnemyBoss(Game2 game2, float x, float y, int id) : base(game2, x, y)
         {
             ID = id;
 
@@ -39,7 +39,7 @@ namespace Game2.GameObjects
             UseLifeTime = false;
         }
 
-        internal void ResetAllHistory()
+        public void ResetAllHistory()
         {
             for (int i = 0; i < 10; i++)
             {
@@ -47,12 +47,12 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override bool JumpAndGravity(GameTime gameTime)
+        public override bool JumpAndGravity(GameTime gameTime)
         {
             return false;
         }
 
-        internal override bool MoveLeftOrRight(GameTime gameTime)
+        public override bool MoveLeftOrRight(GameTime gameTime)
         {
             if (ID == 0)
             {
@@ -89,7 +89,7 @@ namespace Game2.GameObjects
             return false;
         }
 
-        internal void CopyPosition()
+        public void CopyPosition()
         {
             if (ID == 0)
             {
@@ -100,7 +100,7 @@ namespace Game2.GameObjects
             Rectangle.Location = Position.ToPoint();
         }
 
-        internal override void Damage(int damage)
+        public override void Damage(int damage)
         {
             //体の最後以外は無敵
             if (Tail)
@@ -109,7 +109,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Died()
+        public override void Died()
         {
             base.Died();
 
@@ -119,7 +119,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Removed()
+        public override void Removed()
         {
             if (ID == 0)
             {

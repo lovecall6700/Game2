@@ -3,7 +3,7 @@ namespace Game2.Inputs
     /// <summary>
     /// ボタンの状態
     /// </summary>
-    internal enum ButtonStatus
+    public enum ButtonStatus
     {
         /// <summary>
         /// 解放

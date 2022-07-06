@@ -1,8 +1,8 @@
 namespace Game2.GameObjects
 {
-    internal class EnemyUPeopleBasic : EnemyDog
+    public class EnemyUPeopleBasic : EnemyDog
     {
-        internal EnemyUPeopleBasic(Game2 game2, float x, float y) : base(game2, x, y)
+        public EnemyUPeopleBasic(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyUPeopleR1"));
             RImg.AddImage(Game2.Textures.GetTexture("EnemyUPeopleR2"));
@@ -13,7 +13,7 @@ namespace Game2.GameObjects
             SetSize(16, 32);
         }
 
-        internal override void Shot()
+        public override void Shot()
         {
             Player p = Game2.PlaySc.Player;
             float dir;

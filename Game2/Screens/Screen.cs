@@ -6,21 +6,21 @@ namespace Game2.Screens
     /// <summary>
     /// 画面の親
     /// </summary>
-    internal class Screen
+    public class Screen
     {
-        internal Game2 Game2;
+        public Game2 Game2;
 
-        internal Screen(Game2 game2)
+        public Screen(Game2 game2)
         {
             Game2 = game2;
             Game2.Camera2D.Focus(0, 0);
         }
 
-        internal virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
         }
 
-        internal virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
         }
     }

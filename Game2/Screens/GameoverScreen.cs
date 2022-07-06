@@ -8,7 +8,7 @@ namespace Game2.Screens
     /// <summary>
     /// ゲームオーバー画面
     /// </summary>
-    internal class GameoverScreen : SelectScreen
+    public class GameoverScreen : SelectScreen
     {
         private readonly MenuItem _item;
 
@@ -17,7 +17,7 @@ namespace Game2.Screens
         /// </summary>
         private bool _saveOnce = false;
 
-        internal GameoverScreen(Game2 game2) : base(game2)
+        public GameoverScreen(Game2 game2) : base(game2)
         {
             _item = new MenuItem(new Vector2(45, 70), "GAME OVER", 2f)
             {
@@ -31,7 +31,7 @@ namespace Game2.Screens
             WaitTimer.Start(1500f, true);
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             _item.Draw(spriteBatch, Game2.Font);
 
@@ -43,7 +43,7 @@ namespace Game2.Screens
             base.Draw(gameTime, spriteBatch);
         }
 
-        internal override void SelectMenu()
+        public override void SelectMenu()
         {
             switch (Index)
             {

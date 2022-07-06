@@ -7,18 +7,18 @@ namespace Game2.Managers
     /// <summary>
     /// ポーズ表示
     /// </summary>
-    internal class PauseDisplay : DigitalDisplay
+    public class PauseDisplay : DigitalDisplay
     {
         private readonly Timer _blinkTimer = new Timer();
         private bool _blink = true;
 
-        internal PauseDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
+        public PauseDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
         {
             Initialize(device);
             _blinkTimer.Start(500f, true);
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (!_blinkTimer.Update(gameTime))
             {
@@ -29,7 +29,7 @@ namespace Game2.Managers
             base.Update(gameTime);
         }
 
-        internal override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (_blink)
             {
@@ -37,7 +37,7 @@ namespace Game2.Managers
             }
         }
 
-        internal override void Initialize(GraphicsDevice device)
+        public override void Initialize(GraphicsDevice device)
         {
             base.Initialize(device);
             Position = new Vector2(128, 140) - Utility.GetMsgSize(Game2.Font, "PAUSE", 1f) / 2;
