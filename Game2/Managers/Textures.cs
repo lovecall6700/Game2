@@ -6,7 +6,7 @@ namespace Game2.Managers
     /// <summary>
     /// テクスチャ管理
     /// </summary>
-    internal class Textures
+    public class Textures
     {
         /// <summary>
         /// テクスチャ名でテクスチャを管理
@@ -109,7 +109,7 @@ namespace Game2.Managers
         /// </summary>
         /// <param name="name">テクスチャ名</param>
         /// <returns>テクスチャ</returns>
-        internal Rectangle? GetTexture(string name)
+        public Rectangle? GetTexture(string name)
         {
             if (_rectangles.ContainsKey(name))
             {

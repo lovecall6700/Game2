@@ -11,7 +11,7 @@ namespace Game2.Screens
     /// <summary>
     /// ゲームプレイ画面
     /// </summary>
-    internal class PlayScreen : Screen
+    public class PlayScreen : Screen
     {
         /// <summary>
         /// 描画範囲より少し大きい範囲
@@ -21,7 +21,7 @@ namespace Game2.Screens
         /// <summary>
         /// ステージの構成
         /// </summary>
-        internal StageDirType StageDir;
+        public StageDirType StageDir;
 
         /// <summary>
         /// 非接触の前面オブジェクト
@@ -33,7 +33,7 @@ namespace Game2.Screens
         /// 接触オブジェクト
         /// </summary>
         private readonly List<GameObject> _mapObjs = new List<GameObject>();
-        internal List<GameObject> NearMapObjs = new List<GameObject>();
+        public List<GameObject> NearMapObjs = new List<GameObject>();
 
         /// <summary>
         /// 非接触の背面オブジェクト
@@ -44,17 +44,17 @@ namespace Game2.Screens
         /// <summary>
         /// 宝箱・アイテムオブジェクト
         /// </summary>
-        internal List<GameObject> ItemObjs = new List<GameObject>();
+        public List<GameObject> ItemObjs = new List<GameObject>();
 
         /// <summary>
         /// 動くオブジェクト
         /// </summary>
-        internal List<PhysicsObject> PhysicsObjs = new List<PhysicsObject>();
+        public List<PhysicsObject> PhysicsObjs = new List<PhysicsObject>();
 
         /// <summary>
         /// エフェクト用オブジェクト
         /// </summary>
-        internal List<PhysicsObject> EffectObjs = new List<PhysicsObject>();
+        public List<PhysicsObject> EffectObjs = new List<PhysicsObject>();
 
         /// <summary>
         /// 背景色を切り替えるか
@@ -74,7 +74,7 @@ namespace Game2.Screens
         /// <summary>
         /// Y軸方向下方向、画面外の限界
         /// </summary>
-        internal float OutOfMapY;
+        public float OutOfMapY;
 
         /// <summary>
         /// 背景色
@@ -119,7 +119,7 @@ namespace Game2.Screens
         /// <summary>
         /// プレーヤー
         /// </summary>
-        internal Player Player;
+        public Player Player;
 
         /// <summary>
         /// BGM名
@@ -131,11 +131,11 @@ namespace Game2.Screens
         /// </summary>
         private EnemyGenerator _enemyGenerator;
 
-        internal PlayScreen(Game2 game2) : base(game2)
+        public PlayScreen(Game2 game2) : base(game2)
         {
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (!GetDarkZone() || Game2.Inventory.HasLightItem())
             {
@@ -178,7 +178,7 @@ namespace Game2.Screens
         /// 描画する背景色を返す
         /// </summary>
         /// <returns>背景色</returns>
-        internal Color GetBackColor()
+        public Color GetBackColor()
         {
             if (_backColors[0] == _backColors[1])
             {
@@ -217,7 +217,7 @@ namespace Game2.Screens
         /// <summary>
         /// ゲーム再開
         /// </summary>
-        internal void Restart()
+        public void Restart()
         {
             PhysicsObjs.Clear();
             EffectObjs.Clear();
@@ -237,7 +237,7 @@ namespace Game2.Screens
         /// <summary>
         /// ステージを読み込む
         /// </summary>
-        internal void LoadStage()
+        public void LoadStage()
         {
             LoadSettings();
             LoadMap();
@@ -482,14 +482,14 @@ namespace Game2.Screens
         /// <summary>
         /// ゲーム開始
         /// </summary>
-        internal void GameStart()
+        public void GameStart()
         {
             FocusCamera2D();
             Game2.MusicPlayer.PlaySong(_songName);
             _enemyGenerator.BossFlag = false;
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             foreach (GameObject item in ItemObjs)
             {
@@ -571,7 +571,7 @@ namespace Game2.Screens
         /// <summary>
         /// カメラの位置を更新する
         /// </summary>
-        internal void FocusCamera2D()
+        public void FocusCamera2D()
         {
             if (StageDir == StageDirType.Horizontal)
             {

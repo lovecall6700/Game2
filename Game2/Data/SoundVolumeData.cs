@@ -6,9 +6,9 @@ namespace Game2
     /// 音量
     /// </summary>
     [Serializable]
-    internal struct SoundVolumeData
+    public struct SoundVolumeData
     {
-        internal float BGMVolume;
-        internal float SEVolume;
+        public float BGMVolume;
+        public float SEVolume;
     }
 }

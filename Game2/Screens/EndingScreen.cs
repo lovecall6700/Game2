@@ -10,7 +10,7 @@ namespace Game2.Screens
     /// <summary>
     /// エンディング画面
     /// </summary>
-    internal class EndingScreen : TimerScreen
+    public class EndingScreen : TimerScreen
     {
 
         /// <summary>
@@ -26,12 +26,12 @@ namespace Game2.Screens
         /// <summary>
         /// 2ndメッセージ
         /// </summary>
-        internal MenuItem SecondMsg;
+        public MenuItem SecondMsg;
 
         /// <summary>
         /// 3rdメッセージ
         /// </summary>
-        internal MenuItem ThirdMsg;
+        public MenuItem ThirdMsg;
 
         /// <summary>
         /// 画像の位置
@@ -41,9 +41,9 @@ namespace Game2.Screens
         /// <summary>
         /// 常時スキップを受け付けるか
         /// </summary>
-        internal bool AlwaysSkip = false;
+        public bool AlwaysSkip = false;
 
-        internal EndingScreen(Game2 game2) : base(game2)
+        public EndingScreen(Game2 game2) : base(game2)
         {
             string baseName = FileName();
 
@@ -62,7 +62,7 @@ namespace Game2.Screens
             Timer.Start(WaitTime1(), true);
         }
 
-        internal virtual void AddSecondMsg()
+        public virtual void AddSecondMsg()
         {
             int sc = Game2.GetScore();
             int hs = Game2.Session.HighScore;
@@ -79,7 +79,7 @@ namespace Game2.Screens
             }
         }
 
-        internal virtual void AddThirdMsg()
+        public virtual void AddThirdMsg()
         {
             if (Game2.Session.EnableTime)
             {
@@ -91,52 +91,52 @@ namespace Game2.Screens
             }
         }
 
-        internal virtual string FileName()
+        public virtual string FileName()
         {
             return "End";
         }
 
-        internal virtual int NumOfImage()
+        public virtual int NumOfImage()
         {
             return Game2.Session.StageNo == 24 ? 6 : 5;
         }
 
-        internal virtual string Msg1()
+        public virtual string Msg1()
         {
             return "Congratulations!!";
         }
 
-        internal virtual float Msg1Scale()
+        public virtual float Msg1Scale()
         {
             return 1f;
         }
 
-        internal virtual string Msg2()
+        public virtual string Msg2()
         {
             return Game2.Session.StageNo == 24 ? "Fin!!" : "Fin.";
         }
 
-        internal virtual float Msg2Scale()
+        public virtual float Msg2Scale()
         {
             return 3f;
         }
 
-        internal virtual float WaitTime1()
+        public virtual float WaitTime1()
         {
             return 2000f;
         }
 
-        internal virtual float WaitTime2()
+        public virtual float WaitTime2()
         {
             return 30000f;
         }
 
-        internal virtual string BgmName()
+        public virtual string BgmName()
         {
             return "Songs/BGM7";
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
@@ -175,7 +175,7 @@ namespace Game2.Screens
             }
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (_state == 0)
             {
@@ -206,7 +206,7 @@ namespace Game2.Screens
             }
         }
 
-        internal override void Timeup()
+        public override void Timeup()
         {
             if (_state == 0)
             {

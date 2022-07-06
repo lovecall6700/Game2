@@ -13,7 +13,7 @@ namespace Game2
     /// <summary>
     /// Game2
     /// </summary>
-    internal class Game2 : Game
+    public class Game2 : Game
     {
         private readonly Game2 _game2;
 
@@ -29,7 +29,7 @@ namespace Game2
         private PauseDisplay _pauseDisp;
 
         //画像セット
-        internal Texture2D Images = null;
+        public Texture2D Images = null;
 
         /// <summary>
         /// 現在描画する画面
@@ -54,87 +54,87 @@ namespace Game2
         /// <summary>
         /// 状態変更のスケジュール管理
         /// </summary>
-        internal Scheduler Scheduler;
+        public Scheduler Scheduler;
 
         /// <summary>
         /// アイテム管理
         /// </summary>
-        internal Inventory Inventory;
+        public Inventory Inventory;
 
         /// <summary>
         /// 音楽プレーヤー
         /// </summary>
-        internal MusicPlayer MusicPlayer;
+        public MusicPlayer MusicPlayer;
 
         /// <summary>
         /// ゲームコントローラ
         /// </summary>
-        internal GameController3 GameCtrl;
+        public GameController3 GameCtrl;
 
         /// <summary>
         /// カメラ
         /// </summary>
-        internal Camera2D Camera2D;
+        public Camera2D Camera2D;
 
         /// <summary>
         /// 画面間で共有される情報
         /// </summary>
-        internal Session Session;
+        public Session Session;
 
         /// <summary>
         /// ゲームプレイ画面
         /// </summary>
-        internal PlayScreen PlaySc;
+        public PlayScreen PlaySc;
 
         /// <summary>
         /// テクスチャ管理
         /// </summary>
-        internal Textures Textures;
+        public Textures Textures;
 
         //その他のシステム周り
-        internal SpriteFont Font;
-        internal GraphicsDeviceManager Graphics;
-        internal SpriteBatch SpriteBatch;
+        public SpriteFont Font;
+        public GraphicsDeviceManager Graphics;
+        public SpriteBatch SpriteBatch;
         private Rectangle _oldLocation;
 
         /// <summary>
         /// ゲーム開始時のステージ番号
         /// </summary>
-        internal static readonly int StartStageNo = 1;
+        public static readonly int StartStageNo = 1;
 
         /// <summary>
         /// ゲーム開始時のドア番号
         /// </summary>
-        internal static readonly int StartDoorNo = 3;
+        public static readonly int StartDoorNo = 3;
 
         /// <summary>
         /// 隠し扉発見得点
         /// </summary>
-        internal static readonly int FindBonus = 1000;
+        public static readonly int FindBonus = 1000;
 
         /// <summary>
         /// ゲーム画面の幅
         /// </summary>
-        internal static readonly int Width = 256;
+        public static readonly int Width = 256;
 
         /// <summary>
         /// ゲーム画面の高さ
         /// </summary>
-        internal static readonly int Height = 256;
+        public static readonly int Height = 256;
 
         /// <summary>
         /// ウィンドウの幅
         /// </summary>
-        internal static readonly int WindowWidth = 800;
+        public static readonly int WindowWidth = 800;
 
         /// <summary>
         /// ウィンドウの高さ
         /// </summary>
-        internal static readonly int WindowHeight = 600;
+        public static readonly int WindowHeight = 600;
 
         private bool _initCamera2D = false;
 
-        internal Game2()
+        public Game2()
         {
             //GraphicsDeviceManagerの初期化はこの位置でなければならない。
             //他の位置ではモニタ解像度に対するサイズ補正が動作しない。
@@ -284,7 +284,7 @@ namespace Game2
         /// </summary>
         /// <param name="y">キャラクターのY座標</param>
         /// <returns>画面外に出たか</returns>
-        internal bool IsOutOfMapY(float y)
+        public bool IsOutOfMapY(float y)
         {
             return y > PlaySc.OutOfMapY || y < -100;
         }
@@ -293,7 +293,7 @@ namespace Game2
         /// 得点を加算する
         /// </summary>
         /// <param name="score">得点</param>
-        internal void AddScore(int score)
+        public void AddScore(int score)
         {
             int s = score;
 
@@ -311,7 +311,7 @@ namespace Game2
         /// 得点を返す
         /// </summary>
         /// <returns>得点</returns>
-        internal int GetScore()
+        public int GetScore()
         {
             return _scoreDisp.Value;
         }
@@ -365,7 +365,7 @@ namespace Game2
         /// <summary>
         /// ゲームが起動したら、タイトル画面を表示
         /// </summary>
-        internal void ExecTitle()
+        public void ExecTitle()
         {
             Session = new Session();
             _hideHiscore = false;
@@ -375,7 +375,7 @@ namespace Game2
         /// <summary>
         /// ゲームを終了する
         /// </summary>
-        internal void ExecQuit()
+        public void ExecQuit()
         {
             Exit();
         }
@@ -383,7 +383,7 @@ namespace Game2
         /// <summary>
         /// コンティニューで続きを遊ぶ
         /// </summary>
-        internal void ExecContinueStart()
+        public void ExecContinueStart()
         {
             Session = new Session
             {
@@ -402,7 +402,7 @@ namespace Game2
         /// <summary>
         /// 最初から遊ぶ
         /// </summary>
-        internal void ExecInitialStart()
+        public void ExecInitialStart()
         {
             _hideHiscore = false;
             Session = new Session();
@@ -421,7 +421,7 @@ namespace Game2
         /// <summary>
         /// ゲームを開始する
         /// </summary>
-        internal void ExecGameStart()
+        public void ExecGameStart()
         {
             _screen = PlaySc;
             PlaySc.GameStart();
@@ -431,7 +431,7 @@ namespace Game2
         /// <summary>
         /// ミス時、ステージ開始画面かゲームオーバー画面を表示する
         /// </summary>
-        internal void ExecRestartOrGameover()
+        public void ExecRestartOrGameover()
         {
             if (_remainDisp.Miss())
             {
@@ -450,7 +450,7 @@ namespace Game2
         /// <summary>
         /// エンディング画面を表示する
         /// </summary>
-        internal void ExecEnding()
+        public void ExecEnding()
         {
             _hideHiscore = true;
 
@@ -470,7 +470,7 @@ namespace Game2
         /// <summary>
         /// 扉に入る
         /// </summary>
-        internal void ExecEnterDoor()
+        public void ExecEnterDoor()
         {
             Session.StageNo = Session.DestStageNo;
             Session.DoorNo = Session.DestDoorNo;
@@ -482,7 +482,7 @@ namespace Game2
         /// <summary>
         /// セーブする
         /// </summary>
-        internal void ExecSaveStage()
+        public void ExecSaveStage()
         {
             Session.SaveStage();
         }
@@ -490,7 +490,7 @@ namespace Game2
         /// <summary>
         /// ゲームオーバー時にリトライする
         /// </summary>
-        internal void ExecRetry()
+        public void ExecRetry()
         {
             _remainDisp.GameoverRetry();
             _scoreDisp.GameoverRetryToStart();
@@ -502,7 +502,7 @@ namespace Game2
         /// <summary>
         /// BGM音量変更画面を表示する
         /// </summary>
-        internal void ExecBGMVolume()
+        public void ExecBGMVolume()
         {
             _screen = new BGMVolumeScreen(_game2);
         }
@@ -510,7 +510,7 @@ namespace Game2
         /// <summary>
         /// SE音量変更画面を表示する
         /// </summary>
-        internal void ExecSEVolume()
+        public void ExecSEVolume()
         {
             _screen = new SEVolumeScreen(_game2);
         }
@@ -518,7 +518,7 @@ namespace Game2
         /// <summary>
         /// オプション画面を表示する
         /// </summary>
-        internal void ExecOptions()
+        public void ExecOptions()
         {
             _screen = new OptionsScreen(_game2);
         }
@@ -526,7 +526,7 @@ namespace Game2
         /// <summary>
         /// ストーリー画面を表示する
         /// </summary>
-        internal void ExecStory()
+        public void ExecStory()
         {
             _hideHiscore = true;
             _screen = new StoryScreen(_game2);

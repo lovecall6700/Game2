@@ -7,12 +7,12 @@ namespace Game2.Managers
     /// <summary>
     /// 2Dカメラ
     /// </summary>
-    internal class Camera2D
+    public class Camera2D
     {
         /// <summary>
         /// 画面サイズに合わせた画面引き延ばしの行列
         /// </summary>
-        internal Matrix Transform;
+        public Matrix Transform;
 
         /// <summary>
         /// 拡大・縮小行列
@@ -29,7 +29,7 @@ namespace Game2.Managers
         /// </summary>
         public Vector2 Position = Vector2.Zero;
 
-        internal void Initialize(GraphicsDevice device, int width, int height)
+        public void Initialize(GraphicsDevice device, int width, int height)
         {
             int backWidth = device.PresentationParameters.BackBufferWidth;
             int backHeight = device.PresentationParameters.BackBufferHeight;
@@ -70,20 +70,20 @@ namespace Game2.Managers
             Transform = Matrix.Invert(translationMatrix) * _scale;
         }
 
-        internal void Focus(int x, int y)
+        public void Focus(int x, int y)
         {
             Position.X = x;
             Position.Y = y;
             CalcTransform();
         }
 
-        internal void FocusX(int x)
+        public void FocusX(int x)
         {
             Position.X = x;
             CalcTransform();
         }
 
-        internal void FocusY(int y)
+        public void FocusY(int y)
         {
             Position.Y = y;
             CalcTransform();

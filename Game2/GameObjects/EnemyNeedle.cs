@@ -2,20 +2,20 @@ using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
-    internal class EnemyNeedle : Enemy
+    public class EnemyNeedle : Enemy
     {
-        internal EnemyNeedle(Game2 game2, float x, float y) : base(game2, x, y)
+        public EnemyNeedle(Game2 game2, float x, float y) : base(game2, x, y)
         {
             Img = Game2.Textures.GetTexture("EnemyNeedle");
             UseAnimation = false;
         }
 
-        internal override bool MoveLeftOrRight(GameTime gameTime)
+        public override bool MoveLeftOrRight(GameTime gameTime)
         {
             return false;
         }
 
-        internal override bool JumpAndGravity(GameTime gameTime)
+        public override bool JumpAndGravity(GameTime gameTime)
         {
             return false;
         }

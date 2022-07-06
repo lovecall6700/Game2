@@ -2,9 +2,9 @@ using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
-    internal class EnemyDog : Enemy
+    public class EnemyDog : Enemy
     {
-        internal EnemyDog(Game2 game2, float x, float y) : base(game2, x, y)
+        public EnemyDog(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyDogR1"));
             RImg.AddImage(Game2.Textures.GetTexture("EnemyDogR2"));
@@ -16,7 +16,7 @@ namespace Game2.GameObjects
             MaxSpeedX = 4;
         }
 
-        internal override void TouchWithWall()
+        public override void TouchWithWall()
         {
             ControlDirectionX *= -1;
         }

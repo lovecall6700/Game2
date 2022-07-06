@@ -8,7 +8,7 @@ namespace Game2
     /// <summary>
     /// The main class.
     /// </summary>
-    internal static class Program
+    public static class Program
     {
         //二重起動防止
         private static readonly Mutex _mutex = new Mutex(false, "GAME2");
@@ -29,7 +29,9 @@ namespace Game2
             string parent = Directory.GetParent(location).FullName;
             Directory.SetCurrentDirectory(parent);
 
+#pragma warning disable IDE0063 // 単純な 'using' ステートメントを使用する
             using (Game2 game = new Game2())
+#pragma warning restore IDE0063 // 単純な 'using' ステートメントを使用する
             {
                 game.Run();
             }

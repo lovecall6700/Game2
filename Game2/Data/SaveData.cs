@@ -8,31 +8,31 @@ namespace Game2
     /// セーブデータ
     /// </summary>
     [Serializable]
-    internal struct SaveData
+    public struct SaveData
     {
         /// <summary>
         /// ステージ番号
         /// </summary>
-        internal int StageNo;
+        public int StageNo;
 
         /// <summary>
         /// ドア番号
         /// </summary>
-        internal int DoorNo;
+        public int DoorNo;
 
         /// <summary>
         /// 宝箱の状態
         /// </summary>
-        internal Dictionary<string, ObjectVisibility> TreasureBoxVisibility;
+        public Dictionary<string, ObjectVisibility> TreasureBoxVisibility;
 
         /// <summary>
         /// ドアの状態
         /// </summary>
-        internal Dictionary<string, ObjectVisibility> DoorVisibility;
+        public Dictionary<string, ObjectVisibility> DoorVisibility;
 
         /// <summary>
         /// アイテムの状態
         /// </summary>
-        internal Dictionary<string, ObjectVisibility> ItemVisibility;
+        public Dictionary<string, ObjectVisibility> ItemVisibility;
     }
 }

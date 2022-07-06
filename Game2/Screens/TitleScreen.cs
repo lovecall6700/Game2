@@ -8,7 +8,7 @@ namespace Game2.Screens
     /// <summary>
     /// タイトル画面
     /// </summary>
-    internal class TitleScreen : SelectScreen
+    public class TitleScreen : SelectScreen
     {
         /// <summary>
         /// タイトルロゴ
@@ -20,7 +20,7 @@ namespace Game2.Screens
         /// </summary>
         private readonly Timer _storyTimer = new Timer();
 
-        internal TitleScreen(Game2 game2) : base(game2)
+        public TitleScreen(Game2 game2) : base(game2)
         {
             AddMenuItem(128, 140, "Start", 1.2f);
             AddMenuItem(128, 162, "Continue", 1.2f);
@@ -31,13 +31,13 @@ namespace Game2.Screens
             _storyTimer.Start(8000f, true);
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, spriteBatch);
             spriteBatch.Draw(Game2.Images, Vector2.Zero, _titleImg, Color.White);
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (!_storyTimer.Update(gameTime))
             {
@@ -48,22 +48,22 @@ namespace Game2.Screens
             base.Update(gameTime);
         }
 
-        internal override void PushUp()
+        public override void PushUp()
         {
             _storyTimer.Start(8000f, true);
         }
 
-        internal override void PushDown()
+        public override void PushDown()
         {
             _storyTimer.Start(8000f, true);
         }
 
-        internal override void PushFire()
+        public override void PushFire()
         {
             _storyTimer.Start(8000f, true);
         }
 
-        internal override void SelectMenu()
+        public override void SelectMenu()
         {
             switch (Index)
             {

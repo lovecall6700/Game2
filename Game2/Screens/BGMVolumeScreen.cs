@@ -8,11 +8,11 @@ namespace Game2.Screens
     /// <summary>
     /// BGM音量変更画面
     /// </summary>
-    internal class BGMVolumeScreen : SelectScreen
+    public class BGMVolumeScreen : SelectScreen
     {
         private readonly MenuItem _item;
 
-        internal BGMVolumeScreen(Game2 game2) : base(game2)
+        public BGMVolumeScreen(Game2 game2) : base(game2)
         {
             _item = new MenuItem(new Vector2(60, 70), "BGM Volume", 1.5f)
             {
@@ -40,13 +40,13 @@ namespace Game2.Screens
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             _item.Draw(spriteBatch, Game2.Font);
             base.Draw(gameTime, spriteBatch);
         }
 
-        internal override void SelectMenu()
+        public override void SelectMenu()
         {
             switch (Index)
             {
@@ -69,7 +69,7 @@ namespace Game2.Screens
         /// ボリュームの選択を行う
         /// </summary>
         /// <param name="volume">ボリューム</param>
-        internal void SelectVolumeItem(float volume)
+        public void SelectVolumeItem(float volume)
         {
             foreach (MenuItem item in Items)
             {

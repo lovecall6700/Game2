@@ -2,14 +2,14 @@ using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
-    internal class EnemyBullet : Enemy
+    public class EnemyBullet : Enemy
     {
         /// <summary>
         /// /弾速
         /// </summary>
         private static readonly int bulletSpeed = 9;
 
-        internal EnemyBullet(Game2 game2, float x, float y, float angle) : base(game2, x, y)
+        public EnemyBullet(Game2 game2, float x, float y, float angle) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.PlayerBullet;
             Vector2 upVector = new Vector2(0.0f, -1.0f);
@@ -22,19 +22,19 @@ namespace Game2.GameObjects
             SetSize(8, 8);
         }
 
-        internal override bool MoveLeftOrRight(GameTime gameTime)
+        public override bool MoveLeftOrRight(GameTime gameTime)
         {
             Position += Velocity;
             Rectangle.Location = Position.ToPoint();
             return false;
         }
 
-        internal override bool JumpAndGravity(GameTime gameTime)
+        public override bool JumpAndGravity(GameTime gameTime)
         {
             return false;
         }
 
-        internal override void FinallyUpdate(GameTime gameTime)
+        public override void FinallyUpdate(GameTime gameTime)
         {
             foreach (GameObject o in Game2.PlaySc.NearMapObjs)
             {

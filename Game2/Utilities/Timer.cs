@@ -5,7 +5,7 @@ namespace Game2.Utilities
     /// <summary>
     /// タイマーの管理
     /// </summary>
-    internal class Timer
+    public class Timer
     {
         /// <summary>
         /// タイマー
@@ -15,14 +15,14 @@ namespace Game2.Utilities
         /// <summary>
         /// タイマーが動作しているか(終了しているか)
         /// </summary>
-        internal bool Running = false;
+        public bool Running = false;
 
         /// <summary>
         /// タイマーを開始する
         /// </summary>
         /// <param name="time">時間</param>
         /// <param name="running">動作状態</param>
-        internal void Start(float time, bool running)
+        public void Start(float time, bool running)
         {
             _time = time;
             Running = running;
@@ -33,7 +33,7 @@ namespace Game2.Utilities
         /// ゼロ秒以下はゼロを返す。
         /// </summary>
         /// <returns>時間</returns>
-        internal float GetTime()
+        public float GetTime()
         {
             return _time > 0f ? _time : 0f;
         }
@@ -42,7 +42,7 @@ namespace Game2.Utilities
         /// 秒単位で時間を取得する。
         /// </summary>
         /// <returns>時間</returns>
-        internal int GetSecond()
+        public int GetSecond()
         {
             return (int)(_time / 1000);
         }
@@ -52,7 +52,7 @@ namespace Game2.Utilities
         /// </summary>
         /// <param name="gameTime">GameTime</param>
         /// <returns>タイマーが動作しているか(終了しているか)</returns>
-        internal bool Update(GameTime gameTime)
+        public bool Update(GameTime gameTime)
         {
             if (Running && _time > 0f)
             {
@@ -67,7 +67,7 @@ namespace Game2.Utilities
         /// ミリ秒指定でタイマーを更新する
         /// </summary>
         /// <param name="time">ミリ秒</param>
-        internal void Update(float time)
+        public void Update(float time)
         {
             if (Running && _time > 0f)
             {

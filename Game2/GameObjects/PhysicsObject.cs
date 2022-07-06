@@ -8,38 +8,38 @@ namespace Game2.GameObjects
     /// <summary>
     /// 敵や動く床などの画面上を動く物体
     /// </summary>
-    internal class PhysicsObject : GameObject
+    public class PhysicsObject : GameObject
     {
         //各種画像
-        internal ImageList RImg = new ImageList();
-        internal ImageList LImg = new ImageList();
-        internal ImageList LadderImg = new ImageList();
-        internal Rectangle? DeadImg = null;
-        internal Rectangle? DamageImg = null;
+        public ImageList RImg = new ImageList();
+        public ImageList LImg = new ImageList();
+        public ImageList LadderImg = new ImageList();
+        public Rectangle? DeadImg = null;
+        public Rectangle? DamageImg = null;
 
         //効果音
-        internal string DeadSE = null;
-        internal string DamageSE = null;
+        public string DeadSE = null;
+        public string DamageSE = null;
 
         /// <summary>
         /// 向いている方向
         /// </summary>
-        internal int Direction = 0;
+        public int Direction = 0;
 
         /// <summary>
         /// 常にアニメーションするか
         /// </summary>
-        internal bool AnimationAlways = false;
+        public bool AnimationAlways = false;
 
         /// <summary>
         /// ライフ
         /// </summary>
-        internal int Life = 1;
+        public int Life = 1;
 
         /// <summary>
         /// 攻撃力
         /// </summary>
-        internal int Attack = 1;
+        public int Attack = 1;
 
         /// <summary>
         /// 左右方向の移動が制御されているか
@@ -47,7 +47,7 @@ namespace Game2.GameObjects
         /// 0: 無制御
         /// 1: 右方向
         /// </summary>
-        internal float ControlDirectionX = 0;
+        public float ControlDirectionX = 0;
 
         /// <summary>
         /// 上下方向の移動が制御されているか
@@ -55,94 +55,94 @@ namespace Game2.GameObjects
         /// 0: 無制御
         /// 1: 下方向
         /// </summary>
-        internal float ControlDirectionY = 0;
+        public float ControlDirectionY = 0;
 
         /// <summary>
         /// 左右方向の加速度
         /// </summary>
-        internal float AccelerationX = 3f;
+        public float AccelerationX = 3f;
 
         /// <summary>
         /// 空中の左右方向の加速度
         /// </summary>
-        internal float AirAccelerationX = 2f;
+        public float AirAccelerationX = 2f;
 
         /// <summary>
         /// 左右方向の最大・最小速度の絶対値
         /// </summary>
-        internal float MaxSpeedX = 8;
+        public float MaxSpeedX = 8;
 
         /// <summary>
         /// 重力加速度
         /// </summary>
-        internal float Gravity = 1;
+        public float Gravity = 1;
 
         /// <summary>
         /// ジャンプ加速度
         /// </summary>
-        internal int JumpAcceleration = 12;
+        public int JumpAcceleration = 12;
 
         /// <summary>
         /// 最大・最小上下方向速度の絶対値
         /// </summary>
-        internal int MaxJumpSpeed = 15;
+        public int MaxJumpSpeed = 15;
 
         /// <summary>
         /// 速度
         /// </summary>
-        internal Vector2 Velocity;
+        public Vector2 Velocity;
 
         /// <summary>
         /// 空中の摩擦を使用するか
         /// </summary>
-        internal bool UseAirFriction = false;
+        public bool UseAirFriction = false;
 
         /// <summary>
         /// 抵抗を受けるブロック
         /// </summary>
-        internal GameObject GroundBlock;
+        public GameObject GroundBlock;
 
         /// <summary>
         /// オブジェクト状態
         /// </summary>
-        internal PhysicsObjectStatus ObjectStatus;
+        public PhysicsObjectStatus ObjectStatus;
 
         /// <summary>
         /// ハシゴを使用するか
         /// </summary>
-        internal bool UseLadder = false;
+        public bool UseLadder = false;
 
         /// <summary>
         /// ハシゴの上にいるか
         /// </summary>
-        internal bool OnLadder = false;
+        public bool OnLadder = false;
 
         /// <summary>
         /// 落下で消滅するか
         /// </summary>
-        internal bool UseOutOfMapY = true;
+        public bool UseOutOfMapY = true;
 
         /// <summary>
         /// 連続ダメージ回避時間
         /// </summary>
-        internal float DamageTime = 300f;
+        public float DamageTime = 300f;
 
         /// <summary>
         /// 連続ダメージ回避タイマー
         /// </summary>
-        internal readonly Timer DamageTimer = new Timer();
+        public readonly Timer DamageTimer = new Timer();
 
         /// <summary>
         /// アニメーションするか
         /// </summary>
-        internal bool UseAnimation = true;
+        public bool UseAnimation = true;
 
-        internal PhysicsObject(Game2 game2, float x, float y) : base(game2, x, y)
+        public PhysicsObject(Game2 game2, float x, float y) : base(game2, x, y)
         {
             ObjectStatus = PhysicsObjectStatus.Normal;
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
         }
 
@@ -151,7 +151,7 @@ namespace Game2.GameObjects
         /// ハシゴの上にいないなら通常のJumpAndGravity()を呼ぶ
         /// </summary>
         /// <param name="gameTime">GameTime</param>
-        internal void Ladder(GameTime gameTime)
+        public void Ladder(GameTime gameTime)
         {
             OnLadder = false;
             GameObject ladder = null;
@@ -231,7 +231,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 重力のみ処理する
         /// </summary>
-        internal void OnlyGravity()
+        public void OnlyGravity()
         {
             Velocity.Y += Gravity;
             Velocity.Y = MathHelper.Clamp(Velocity.Y, -MaxJumpSpeed, MaxJumpSpeed);
@@ -250,7 +250,7 @@ namespace Game2.GameObjects
         /// </summary>
         /// <param name="gameTime">GameTime</param>
         /// <returns>何かに接触したか</returns>
-        internal virtual bool JumpAndGravity(GameTime gameTime)
+        public virtual bool JumpAndGravity(GameTime gameTime)
         {
             //とりあえず落ちてみる
             Velocity.Y += Gravity;
@@ -363,7 +363,7 @@ namespace Game2.GameObjects
         /// </summary>
         /// <param name="gameTime">GameTime</param>
         /// <returns>接触の有無</returns>
-        internal virtual bool MoveLeftOrRight(GameTime gameTime)
+        public virtual bool MoveLeftOrRight(GameTime gameTime)
         {
             bool ret = false;
             Velocity.X += ControlDirectionX * (GroundBlock != null ? AccelerationX : AirAccelerationX);
@@ -430,7 +430,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// アニメーション画像を更新する
         /// </summary>
-        internal virtual void UpdateAnimation()
+        public virtual void UpdateAnimation()
         {
             if (!UseAnimation)
             {
@@ -474,7 +474,7 @@ namespace Game2.GameObjects
         /// ダメージ処理
         /// </summary>
         /// <param name="damage">ダメージ量</param>
-        internal virtual void Damage(int damage)
+        public virtual void Damage(int damage)
         {
             if (ObjectStatus == PhysicsObjectStatus.Dead)
             {
@@ -506,7 +506,7 @@ namespace Game2.GameObjects
         /// ダメージによるライフの減算処理
         /// </summary>
         /// <param name="damage">ダメージ量</param>
-        internal virtual void DecLife(int damage)
+        public virtual void DecLife(int damage)
         {
             Life -= damage;
         }
@@ -514,7 +514,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 画面から除去された時の処理
         /// </summary>
-        internal virtual void Removed()
+        public virtual void Removed()
         {
 
         }
@@ -522,7 +522,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// ダメージを受けた時の処理
         /// </summary>
-        internal virtual void Damaged()
+        public virtual void Damaged()
         {
             Game2.MusicPlayer.PlaySE(DamageSE);
 
@@ -535,7 +535,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 死んだときの処理
         /// </summary>
-        internal virtual void Died()
+        public virtual void Died()
         {
             Game2.MusicPlayer.PlaySE(DeadSE);
 
@@ -548,7 +548,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// ジャンプする
         /// </summary>
-        internal virtual void Jump()
+        public virtual void Jump()
         {
             if (GroundBlock != null)
             {
@@ -559,12 +559,12 @@ namespace Game2.GameObjects
         /// <summary>
         /// 画面外に出た場合の処理
         /// </summary>
-        internal virtual void OutOfMapY()
+        public virtual void OutOfMapY()
         {
 
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (ObjectStatus == PhysicsObjectStatus.Damage)
             {
@@ -585,7 +585,7 @@ namespace Game2.GameObjects
         /// ダメージ状態から回復する
         /// </summary>
         /// <param name="gameTime">GameTime</param>
-        internal void RecoveryDamage(GameTime gameTime)
+        public void RecoveryDamage(GameTime gameTime)
         {
             if (ObjectStatus == PhysicsObjectStatus.Damage && !DamageTimer.Update(gameTime))
             {

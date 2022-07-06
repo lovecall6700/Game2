@@ -6,7 +6,7 @@ namespace Game2.Managers
     /// <summary>
     /// 残機管理
     /// </summary>
-    internal class RemainDisplay : DigitalDisplay
+    public class RemainDisplay : DigitalDisplay
     {
         /// <summary>
         /// エクステンド回数
@@ -23,32 +23,32 @@ namespace Game2.Managers
         /// </summary>
         private readonly int[] _extendScores = new[] { 10000, 20000, 30000, 50000 };
 
-        internal RemainDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
+        public RemainDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
         {
             Format = "REMAIN {0:0}";
         }
 
-        internal override void Initialize(GraphicsDevice device)
+        public override void Initialize(GraphicsDevice device)
         {
             base.Initialize(device);
             Position = new Vector2(2, 5);
         }
 
-        internal void TitleToInitialStart()
+        public void TitleToInitialStart()
         {
             Value = 2;
             _lastExtendScore = 0;
             _extendCount = 0;
         }
 
-        internal void GameoverRetry()
+        public void GameoverRetry()
         {
             Value = 2;
             _lastExtendScore = 0;
             _extendCount = 0;
         }
 
-        internal void TitleContinue()
+        public void TitleContinue()
         {
             Value = 2;
             _lastExtendScore = 0;
@@ -59,7 +59,7 @@ namespace Game2.Managers
         /// 得点を獲得
         /// </summary>
         /// <param name="score">獲得した得点</param>
-        internal void AddScore(int score)
+        public void AddScore(int score)
         {
             _lastExtendScore += score;
 
@@ -81,7 +81,7 @@ namespace Game2.Managers
         /// ミスが発生
         /// </summary>
         /// <returns>ゲームオーバーか</returns>
-        internal bool Miss()
+        public bool Miss()
         {
             Value--;
 

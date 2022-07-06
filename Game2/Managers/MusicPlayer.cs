@@ -14,7 +14,7 @@ namespace Game2.Managers
     /// 音楽プレーヤー
     /// Vistaでは何故か動作しない？
     /// </summary>
-    internal class MusicPlayer
+    public class MusicPlayer
     {
 
         private TimeSpan _playPosition;
@@ -62,7 +62,7 @@ namespace Game2.Managers
         /// <summary>
         /// 前回音量をファイルから復元する
         /// </summary>
-        internal void LoadSoundVolume()
+        public void LoadSoundVolume()
         {
             FileStream fs = null;
 
@@ -92,7 +92,7 @@ namespace Game2.Managers
         /// <summary>
         /// 音量をファイルに保存する
         /// </summary>
-        internal void SaveSoundVolume()
+        public void SaveSoundVolume()
         {
             FileStream fs = null;
 
@@ -132,7 +132,7 @@ namespace Game2.Managers
         /// <summary>
         /// BGMの再生を一時停止する
         /// </summary>
-        internal void StopSong()
+        public void StopSong()
         {
             try
             {
@@ -148,7 +148,7 @@ namespace Game2.Managers
         /// <summary>
         /// BGMの再生を一時停止位置から再スタートする
         /// </summary>
-        internal void ReplaySong()
+        public void ReplaySong()
         {
             try
             {
@@ -169,7 +169,7 @@ namespace Game2.Managers
         /// 効果音を破棄する
         /// </summary>
         /// <param name="name">効果音名</param>
-        internal void UnLoadSE(string name)
+        public void UnLoadSE(string name)
         {
             if (_soundEffects.ContainsKey(name))
             {
@@ -183,7 +183,7 @@ namespace Game2.Managers
         /// BGMを再生する
         /// </summary>
         /// <param name="name">BGM名</param>
-        internal void PlaySong(string name)
+        public void PlaySong(string name)
         {
             if (name == null)
             {
@@ -211,7 +211,7 @@ namespace Game2.Managers
         /// 効果音を鳴らす
         /// </summary>
         /// <param name="name">効果音名</param>
-        internal void PlaySE(string name)
+        public void PlaySE(string name)
         {
             if (name == null)
             {
@@ -230,7 +230,7 @@ namespace Game2.Managers
         /// BGMの音量を設定する
         /// </summary>
         /// <param name="v">0.0から1.0までの数</param>
-        internal void SetSongVolume(float v)
+        public void SetSongVolume(float v)
         {
             try
             {
@@ -244,7 +244,7 @@ namespace Game2.Managers
         /// SEの音量を設定する
         /// </summary>
         /// <param name="v">0.0から1.0までの数</param>
-        internal void SetSEVolume(float v)
+        public void SetSEVolume(float v)
         {
             try
             {
@@ -258,7 +258,7 @@ namespace Game2.Managers
         /// BGMの音量を取得する
         /// </summary>
         /// <returns>0.0から1.0までの数</returns>
-        internal float GetSongVolume()
+        public float GetSongVolume()
         {
             return _BGMVolume;
         }
@@ -267,7 +267,7 @@ namespace Game2.Managers
         /// SEの音量を取得する
         /// </summary>
         /// <returns>0.0から1.0までの数</returns>
-        internal float GetSEVolume()
+        public float GetSEVolume()
         {
             return _SEVolume;
         }

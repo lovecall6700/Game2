@@ -10,47 +10,47 @@ namespace Game2
     /// <summary>
     /// 画面間で共有される情報
     /// </summary>
-    internal class Session
+    public class Session
     {
         /// <summary>
         /// 宝箱の状態
         /// </summary>
-        internal Dictionary<string, ObjectVisibility> TreasureBoxVisibility = new Dictionary<string, ObjectVisibility>();
+        public Dictionary<string, ObjectVisibility> TreasureBoxVisibility = new Dictionary<string, ObjectVisibility>();
 
         /// <summary>
         /// 扉の状態
         /// </summary>
-        internal Dictionary<string, ObjectVisibility> DoorVisibility = new Dictionary<string, ObjectVisibility>();
+        public Dictionary<string, ObjectVisibility> DoorVisibility = new Dictionary<string, ObjectVisibility>();
 
         /// <summary>
         /// アイテムの状態
         /// </summary>
-        internal Dictionary<string, ObjectVisibility> ItemVisibility = new Dictionary<string, ObjectVisibility>();
+        public Dictionary<string, ObjectVisibility> ItemVisibility = new Dictionary<string, ObjectVisibility>();
 
         /// <summary>
         /// ステージ番号
         /// </summary>
-        internal int StageNo;
+        public int StageNo;
 
         /// <summary>
         /// ドア番号
         /// </summary>
-        internal int DoorNo;
+        public int DoorNo;
 
         /// <summary>
         /// 次ステージ番号
         /// </summary>
-        internal int DestStageNo;
+        public int DestStageNo;
 
         /// <summary>
         /// 次ドア番号
         /// </summary>
-        internal int DestDoorNo;
+        public int DestDoorNo;
 
         /// <summary>
         /// 制限時間
         /// </summary>
-        internal float TimeLimit;
+        public float TimeLimit;
 
         /// <summary>
         /// ハイスコア
@@ -75,7 +75,7 @@ namespace Game2
         /// <summary>
         /// 時間測定が有効か
         /// </summary>
-        internal bool EnableTime = true;
+        public bool EnableTime = true;
 
         /// <summary>
         /// Session
@@ -112,7 +112,7 @@ namespace Game2
         /// <summary>
         /// ストレージにハイスコアをセーブする。
         /// </summary>
-        internal void SaveHighScore()
+        public void SaveHighScore()
         {
             FileStream fs = null;
 
@@ -139,7 +139,7 @@ namespace Game2
         /// <summary>
         /// ステージデータをロードする
         /// </summary>
-        internal void LoadStage()
+        public void LoadStage()
         {
             FileStream fs = null;
 
@@ -171,7 +171,7 @@ namespace Game2
         /// <summary>
         /// ステージデータをセーブする。
         /// </summary>
-        internal void SaveStage()
+        public void SaveStage()
         {
             FileStream fs = null;
 
@@ -203,7 +203,7 @@ namespace Game2
         /// ハイスコアを更新する
         /// </summary>
         /// <param name="value">スコア</param>
-        internal void UpdateHighScore(int value)
+        public void UpdateHighScore(int value)
         {
             if (value > HighScore)
             {
@@ -215,7 +215,7 @@ namespace Game2
         /// 宝箱の状態を保存する
         /// </summary>
         /// <param name="tb">TreasureBox</param>
-        internal void AddTreasureBox(TreasureBox tb)
+        public void AddTreasureBox(TreasureBox tb)
         {
             string id = tb.GetTreasureBoxID();
 
@@ -233,7 +233,7 @@ namespace Game2
         /// ドアの状態を保存する
         /// </summary>
         /// <param name="d">Door</param>
-        internal void AddDoor(Door d)
+        public void AddDoor(Door d)
         {
             string id = d.GetDoorID();
 
@@ -251,7 +251,7 @@ namespace Game2
         /// アイテムの状態を保存する
         /// </summary>
         /// <param name="d">Item</param>
-        internal void AddItem(Item d)
+        public void AddItem(Item d)
         {
             string id = d.GetItemID();
 
@@ -269,7 +269,7 @@ namespace Game2
         /// <summary>
         /// 時間測定を開始する
         /// </summary>
-        internal void StartTime()
+        public void StartTime()
         {
             _stopwatch.Start();
         }
@@ -277,7 +277,7 @@ namespace Game2
         /// <summary>
         /// 時間測定を終了する
         /// </summary>
-        internal void EndTime()
+        public void EndTime()
         {
             _stopwatch.Stop();
         }
@@ -286,7 +286,7 @@ namespace Game2
         /// クリア時間を得る
         /// </summary>
         /// <returns>クリア時間</returns>
-        internal long CalcTime()
+        public long CalcTime()
         {
             return _stopwatch.ElapsedMilliseconds;
         }

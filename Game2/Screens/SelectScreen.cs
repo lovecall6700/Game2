@@ -9,49 +9,49 @@ namespace Game2.Screens
     /// <summary>
     /// 選択肢画面
     /// </summary>
-    internal class SelectScreen : Screen
+    public class SelectScreen : Screen
     {
         /// <summary>
         /// 選択されているインデックス
         /// </summary>
-        internal int Index = 0;
+        public int Index = 0;
 
         /// <summary>
         /// 選択肢
         /// </summary>
-        internal List<MenuItem> Items = new List<MenuItem>();
+        public List<MenuItem> Items = new List<MenuItem>();
 
         /// <summary>
         /// 選択されている項目の色
         /// </summary>
-        internal Color SelectedColor = Color.White;
+        public Color SelectedColor = Color.White;
 
         /// <summary>
         /// 選択されていない項目の色
         /// </summary>
-        internal Color NotSelectedColor = Color.Gray;
+        public Color NotSelectedColor = Color.Gray;
 
         /// <summary>
         /// 画面が出てからしばらくは操作できない
         /// </summary>
-        internal readonly Timer WaitTimer = new Timer();
+        public readonly Timer WaitTimer = new Timer();
 
         private bool _keyFlag = true;
 
-        internal SelectScreen(Game2 game2) : base(game2)
+        public SelectScreen(Game2 game2) : base(game2)
         {
             Game2 = game2;
             WaitTimer.Start(100f, true);
         }
 
-        internal void AddMenuItem(float x, float y, string menu, float scale)
+        public void AddMenuItem(float x, float y, string menu, float scale)
         {
             Vector2 v = Utility.GetMsgSize(Game2.Font, menu, scale) / 2;
             v.Y = 0;
             Items.Add(new MenuItem(new Vector2(x, y) - v, menu, scale));
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             for (int i = 0; i < Items.Count; i++)
             {
@@ -68,7 +68,7 @@ namespace Game2.Screens
             }
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (WaitTimer.Update(gameTime))
             {
@@ -131,22 +131,22 @@ namespace Game2.Screens
             }
         }
 
-        internal virtual void PushUp()
+        public virtual void PushUp()
         {
         }
 
-        internal virtual void PushDown()
+        public virtual void PushDown()
         {
         }
 
-        internal virtual void PushFire()
+        public virtual void PushFire()
         {
         }
 
         /// <summary>
         /// 選択肢が選択された場合の処理
         /// </summary>
-        internal virtual void SelectMenu()
+        public virtual void SelectMenu()
         {
         }
     }

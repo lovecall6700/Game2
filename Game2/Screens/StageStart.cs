@@ -10,7 +10,7 @@ namespace Game2.Screens
     /// <summary>
     /// ステージ開始画面
     /// </summary>
-    internal class StageStart : TimerScreen
+    public class StageStart : TimerScreen
     {
         /// <summary>
         /// アイテムアイコン
@@ -19,7 +19,7 @@ namespace Game2.Screens
 
         private bool _keyFlag = true;
 
-        internal StageStart(Game2 game2) : base(game2)
+        public StageStart(Game2 game2) : base(game2)
         {
             Timer.Start(4200, true);
             string msg;
@@ -86,12 +86,12 @@ namespace Game2.Screens
             Game2.MusicPlayer.PlaySong($"Songs/BGM4");
         }
 
-        internal override void Timeup()
+        public override void Timeup()
         {
             Game2.Scheduler.SetSchedule(Schedules.GameStart);
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (WaitTimer.Update(gameTime))
             {
@@ -121,7 +121,7 @@ namespace Game2.Screens
             }
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, spriteBatch);
 

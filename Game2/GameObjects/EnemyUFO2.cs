@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
-    internal class EnemyUFO2 : Enemy
+    public class EnemyUFO2 : Enemy
     {
         private int _state = 0;
         private readonly Timer _shotTimer = new Timer();
 
-        internal EnemyUFO2(Game2 game2, float x, float y) : base(game2, x, y)
+        public EnemyUFO2(Game2 game2, float x, float y) : base(game2, x, y)
         {
             Img = Game2.Textures.GetTexture("EnemyUFO");
             SetSize(256, 80);
@@ -20,7 +20,7 @@ namespace Game2.GameObjects
             ShotTime = 2000f;
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             AttackPlayer();
             RecoveryDamage(gameTime);
@@ -68,14 +68,14 @@ namespace Game2.GameObjects
             Rectangle.Location = Position.ToPoint();
         }
 
-        internal override void Shot()
+        public override void Shot()
         {
             Game2.PlaySc.PhysicsObjs.Add(new EnemyBullet(Game2, Position.X, Position.Y + 60, 270f));
             Game2.MusicPlayer.PlaySE("SoundEffects/EnemyShot");
             ShotTime = MathHelper.Clamp(ShotTime - 200f, 100f, float.MaxValue);
         }
 
-        internal override void Removed()
+        public override void Removed()
         {
             Game2.Scheduler.SetSchedule(Schedules.Ending);
         }

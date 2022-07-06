@@ -2,14 +2,14 @@ using Game2.Utilities;
 
 namespace Game2.GameObjects
 {
-    internal class EnemyUPeople8Shots : EnemyJumpDog
+    public class EnemyUPeople8Shots : EnemyJumpDog
     {
         /// <summary>
         /// 連射間隔
         /// </summary>
         private readonly Timer _bulletTimer = new Timer();
 
-        internal EnemyUPeople8Shots(Game2 game2, float x, float y) : base(game2, x, y)
+        public EnemyUPeople8Shots(Game2 game2, float x, float y) : base(game2, x, y)
         {
             RImg.ClearAndAddImage(Game2.Textures.GetTexture("EnemyUPeopleR1"));
             RImg.AddImage(Game2.Textures.GetTexture("EnemyUPeopleR2"));
@@ -21,7 +21,7 @@ namespace Game2.GameObjects
             SetSize(16, 32);
         }
 
-        internal override void Shot()
+        public override void Shot()
         {
             for (int dir = 0; dir < 360; dir += 45)
             {

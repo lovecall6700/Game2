@@ -10,7 +10,7 @@ namespace Game2.Utilities
     /// <summary>
     /// 便利機能
     /// </summary>
-    internal static class Utility
+    public static class Utility
     {
         private static readonly Dictionary<string, Color> _color = new Dictionary<string, Color>()
         {
@@ -163,7 +163,7 @@ namespace Game2.Utilities
         /// </summary>
         /// <param name="name">カラー名称</param>
         /// <returns>Color</returns>
-        internal static Color GetColor(string name)
+        public static Color GetColor(string name)
         {
             if (_color.ContainsKey(name))
             {
@@ -177,7 +177,7 @@ namespace Game2.Utilities
         /// セーブデータのパスを取得する。末尾に\はない。
         /// </summary>
         /// <returns>セーブデータのパス</returns>
-        internal static string GetSaveFilePath()
+        public static string GetSaveFilePath()
         {
             // パスを取得
             System.Diagnostics.FileVersionInfo info = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -199,7 +199,7 @@ namespace Game2.Utilities
         /// <param name="target">対象座標</param>
         /// <param name="velocity">速度ベクトル</param>
         /// <param name="speed">速度</param>
-        internal static void Homing(PhysicsObject obj, Vector2 target, ref Vector2 velocity, float speed)
+        public static void Homing(PhysicsObject obj, Vector2 target, ref Vector2 velocity, float speed)
         {
             if (target != obj.Position)
             {
@@ -233,7 +233,7 @@ namespace Game2.Utilities
         /// <param name="msg">文字列</param>
         /// <param name="scale">表示倍率</param>
         /// <returns>描画サイズ</returns>
-        internal static Vector2 GetMsgSize(SpriteFont font, string msg, float scale)
+        public static Vector2 GetMsgSize(SpriteFont font, string msg, float scale)
         {
             return font.MeasureString(msg) * scale;
         }
@@ -245,7 +245,7 @@ namespace Game2.Utilities
         /// <param name="b">値1</param>
         /// <param name="epsilon">誤差</param>
         /// <returns>比較結果</returns>
-        internal static bool AlmostEqual(double a, double b, double epsilon = 0.01)
+        public static bool AlmostEqual(double a, double b, double epsilon = 0.01)
         {
             return Math.Abs(a - b) < epsilon;
         }

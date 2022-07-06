@@ -3,7 +3,7 @@ namespace Game2.Managers
     /// <summary>
     /// 画面の切り替え・状態一覧
     /// </summary>
-    internal enum Schedules : int
+    public enum Schedules : int
     {
         None = 1,
         RestartOrGameover,

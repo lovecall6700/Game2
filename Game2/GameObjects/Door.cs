@@ -6,32 +6,32 @@ namespace Game2.GameObjects
     /// <summary>
     /// 扉
     /// </summary>
-    internal class Door : GameObject
+    public class Door : GameObject
     {
         /// <summary>
         /// ステージ番号
         /// </summary>
-        internal readonly int StageNo;
+        public readonly int StageNo;
 
         /// <summary>
         /// ドア番号
         /// </summary>
-        internal readonly int DoorNo;
+        public readonly int DoorNo;
 
         /// <summary>
         /// ドアタイプ
         /// </summary>
-        internal ObjectVisibility Visibility;
+        public ObjectVisibility Visibility;
 
         /// <summary>
         /// ドアの移動先ステージ
         /// </summary>
-        internal int DestStageNo;
+        public int DestStageNo;
 
         /// <summary>
         /// ドアの移動先ドア番号
         /// </summary>
-        internal int DestDoorNo;
+        public int DestDoorNo;
 
         /// <summary>
         /// ドア下段の座標
@@ -65,7 +65,7 @@ namespace Game2.GameObjects
         /// <param name="destNo">ドアの移動先ドア番号</param>
         /// <param name="dummyUp">不可視・隠し扉の上段テクスチャ名</param>
         /// <param name="dummyDown">不可視・隠し扉の下段テクスチャ名</param>
-        internal Door(Game2 game2, float x, float y, int stageNo, int doorNo, string doorType, int destStage, int destNo, string dummyUp, string dummyDown) : base(game2, x, y)
+        public Door(Game2 game2, float x, float y, int stageNo, int doorNo, string doorType, int destStage, int destNo, string dummyUp, string dummyDown) : base(game2, x, y)
         {
             ObjectKind = GameObjectKinds.Door;
             DoorNo = doorNo;
@@ -107,12 +107,12 @@ namespace Game2.GameObjects
         /// ドアID「ステージ番号-ドア番号」を得る。
         /// </summary>
         /// <returns>宝箱ID</returns>
-        internal string GetDoorID()
+        public string GetDoorID()
         {
             return $"{StageNo}-{DoorNo}";
         }
 
-        internal override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (Visibility == ObjectVisibility.Normal)
             {
@@ -125,7 +125,7 @@ namespace Game2.GameObjects
             }
         }
 
-        internal override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (Visibility == ObjectVisibility.Invisible || Visibility == ObjectVisibility.Hidden)
             {

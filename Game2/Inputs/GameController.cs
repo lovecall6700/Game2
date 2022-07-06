@@ -9,7 +9,7 @@ namespace Game2.Inputs
     /// <summary>
     /// プレーヤーの操作をまとめる
     /// </summary>
-    internal class GameController
+    public class GameController
     {
         //パッドとキーボードの状態
         private GamePadState _pad1;
@@ -41,23 +41,23 @@ namespace Game2.Inputs
         private Keys _screenshotKey = Keys.F12;
 
         //押されたキー一覧
-        internal bool Jump;
-        internal bool Fire;
-        internal bool Left;
-        internal bool Right;
-        internal bool Down;
-        internal bool Up;
-        internal bool Exit;
-        internal bool Pause;
-        internal bool FullScreen;
-        internal bool Screenshot;
+        public bool Jump;
+        public bool Fire;
+        public bool Left;
+        public bool Right;
+        public bool Down;
+        public bool Up;
+        public bool Exit;
+        public bool Pause;
+        public bool FullScreen;
+        public bool Screenshot;
 
-        internal GameController()
+        public GameController()
         {
             Load();
         }
 
-        internal virtual void Update()
+        public virtual void Update()
         {
             _key = Keyboard.GetState();
             _pad1 = GamePad.GetState(PlayerIndex.One);

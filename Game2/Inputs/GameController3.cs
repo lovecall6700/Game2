@@ -7,7 +7,7 @@ namespace Game2.Inputs
     /// より詳細にプレーヤーの操作をまとめる
     /// 連打なしバージョン
     /// </summary>
-    internal class GameController3 : GameController
+    public class GameController3 : GameController
     {
         private ButtonStatus _up = ButtonStatus.Release;
         private ButtonStatus _down = ButtonStatus.Release;
@@ -24,9 +24,9 @@ namespace Game2.Inputs
         /// <summary>
         /// クリックの制限時間
         /// </summary>
-        internal float ClickTime = 50f;
+        public float ClickTime = 50f;
 
-        internal void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             base.Update();
             _timer.Update(gameTime);
@@ -82,7 +82,7 @@ namespace Game2.Inputs
         /// </summary>
         /// <param name="name">KeyName</param>
         /// <returns>ボタンが解放か</returns>
-        internal bool IsRelease(ButtonNames name)
+        public bool IsRelease(ButtonNames name)
         {
 #pragma warning disable IDE0066 // switch ステートメントを式に変換します
             switch (name)
@@ -118,7 +118,7 @@ namespace Game2.Inputs
         /// </summary>
         /// <param name="name">KeyName</param>
         /// <returns>ボタンが押下か</returns>
-        internal bool IsPress(ButtonNames name)
+        public bool IsPress(ButtonNames name)
         {
 #pragma warning disable IDE0066 // switch ステートメントを式に変換します
             switch (name)
@@ -154,7 +154,7 @@ namespace Game2.Inputs
         /// </summary>
         /// <param name="name">KeyName</param>
         /// <returns>ボタンがクリックか</returns>
-        internal bool IsClick(ButtonNames name)
+        public bool IsClick(ButtonNames name)
         {
             bool b = false;
 

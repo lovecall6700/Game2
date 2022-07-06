@@ -8,7 +8,7 @@ namespace Game2.Managers
     /// <summary>
     /// 敵を生成する
     /// </summary>
-    internal class EnemyGenerator
+    public class EnemyGenerator
     {
         private readonly Random _rnd = new Random();
         private readonly Game2 _game2;
@@ -36,14 +36,14 @@ namespace Game2.Managers
         /// <summary>
         /// ボスは1プレイ1回しか出てこない
         /// </summary>
-        internal bool BossFlag = false;
+        public bool BossFlag = false;
 
-        internal EnemyGenerator(Game2 game2)
+        public EnemyGenerator(Game2 game2)
         {
             _game2 = game2;
         }
 
-        internal void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             //画面に敵が多すぎる場合は敵を出さない
             if (_game2.PlaySc.PhysicsObjs.Count > 30)
@@ -306,7 +306,7 @@ namespace Game2.Managers
         /// </summary>
         /// <param name="enemyNo">敵番号</param>
         /// <param name="flag">敵が出現予定か</param>
-        internal void SetSpawn(int enemyNo, bool flag)
+        public void SetSpawn(int enemyNo, bool flag)
         {
             _enemies[enemyNo] = flag;
         }
