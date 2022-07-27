@@ -24,12 +24,12 @@ namespace Game2.Inputs
         /// <summary>
         /// クリックの制限時間
         /// </summary>
-        public float ClickTime = 50f;
+        public int ClickTime = 2;
 
         public void Update(GameTime gameTime)
         {
             base.Update();
-            _timer.Update(gameTime);
+            _timer.Update();
             UpdateStatus(Up, ref _up);
             UpdateStatus(Down, ref _down);
             UpdateStatus(Left, ref _left);
@@ -64,7 +64,7 @@ namespace Game2.Inputs
                 {
                     //一定時間以内に離れたらクリックへ
                     state = ButtonStatus.Click;
-                    _timer.Start(ClickTime, true);
+                    _timer.Start(ClickTime);
                 }
             }
             else if (state == ButtonStatus.Click)

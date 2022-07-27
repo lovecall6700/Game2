@@ -17,7 +17,7 @@ namespace Game2.GameObjects
             LImg.AddImage(Game2.Textures.GetTexture("EnemyUPeopleL2"));
             DeadImg = Game2.Textures.GetTexture("EnemyUPeopleDead");
             Life = 2;
-            _bulletTimer.Start(500f, true);
+            _bulletTimer.Start(15);
             SetSize(16, 32);
         }
 

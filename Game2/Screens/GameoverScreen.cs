@@ -28,7 +28,7 @@ namespace Game2.Screens
             AddMenuItem(128, 170, "Save", 1.5f);
             AddMenuItem(128, 200, "End", 1.5f);
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
-            WaitTimer.Start(1500f, true);
+            WaitTimer.Start(45);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

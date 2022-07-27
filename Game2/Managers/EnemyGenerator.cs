@@ -21,7 +21,7 @@ namespace Game2.Managers
         /// <summary>
         /// 敵を生成する間隔
         /// </summary>
-        private static readonly float spawnInterval = 2000f;
+        private static readonly int spawnInterval = 60;
 
         /// <summary>
         /// 出てくる予定の敵
@@ -52,7 +52,7 @@ namespace Game2.Managers
             }
 
             //敵の出現は一定間隔
-            if (_timer.Update(gameTime))
+            if (_timer.Update())
             {
                 return;
             }
@@ -106,7 +106,7 @@ namespace Game2.Managers
             if (e != null)
             {
                 _game2.PlaySc.PhysicsObjs.Add(e);
-                _timer.Start(spawnInterval, true);
+                _timer.Start(spawnInterval);
             }
         }
 

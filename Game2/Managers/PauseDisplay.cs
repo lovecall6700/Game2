@@ -15,15 +15,15 @@ namespace Game2.Managers
         public PauseDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
         {
             Initialize(device);
-            _blinkTimer.Start(500f, true);
+            _blinkTimer.Start(15);
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (!_blinkTimer.Update(gameTime))
+            if (!_blinkTimer.Update())
             {
                 _blink = !_blink;
-                _blinkTimer.Start(500f, true);
+                _blinkTimer.Start(15);
             }
 
             base.Update(gameTime);

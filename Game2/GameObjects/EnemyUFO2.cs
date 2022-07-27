@@ -17,7 +17,7 @@ namespace Game2.GameObjects
             Life = 14;
             UseLifeTime = false;
             UseAnimation = false;
-            ShotTime = 2000f;
+            ShotTime = 60;
         }
 
         public override void Update(GameTime gameTime)
@@ -31,10 +31,10 @@ namespace Game2.GameObjects
                 return;
             }
 
-            if (!_shotTimer.Update(gameTime))
+            if (!_shotTimer.Update())
             {
                 Shot();
-                _shotTimer.Start(ShotTime, true);
+                _shotTimer.Start(ShotTime);
             }
 
             if (_state == 0)
@@ -72,7 +72,7 @@ namespace Game2.GameObjects
         {
             Game2.PlaySc.PhysicsObjs.Add(new EnemyBullet(Game2, Position.X, Position.Y + 60, 270f));
             Game2.MusicPlayer.PlaySE("SoundEffects/EnemyShot");
-            ShotTime = MathHelper.Clamp(ShotTime - 200f, 100f, float.MaxValue);
+            ShotTime = MathHelper.Clamp(ShotTime - 6, 3, int.MaxValue);
         }
 
         public override void Removed()

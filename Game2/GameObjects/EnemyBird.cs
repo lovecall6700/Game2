@@ -20,7 +20,7 @@ namespace Game2.GameObjects
             MaxSpeedX = 9;
             AnimationAlways = true;
             //一定時間たったら退場する
-            _timer.Start(2000f, true);
+            _timer.Start(60);
         }
 
         public override bool MoveLeftOrRight(GameTime gameTime)
@@ -34,7 +34,7 @@ namespace Game2.GameObjects
 
         public override bool JumpAndGravity(GameTime gameTime)
         {
-            if (!_timer.Update(gameTime) && !_exit)
+            if (!_timer.Update() && !_exit)
             {
                 _exit = true;
                 Player p = Game2.PlaySc.Player;

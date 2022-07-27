@@ -36,14 +36,14 @@ namespace Game2.GameObjects
             MaxSpeedX = 12;
             UseAirFriction = false;
             Gravity = 0.3f;
-            _removeTimer.Start(500f, true);
+            _removeTimer.Start(15);
             SetSize(8, 8);
             Attack = 1;
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (!_removeTimer.Update(gameTime))
+            if (!_removeTimer.Update())
             {
                 ObjectStatus = PhysicsObjectStatus.Remove;
             }

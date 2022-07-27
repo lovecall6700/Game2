@@ -58,9 +58,9 @@ namespace Game2.GameObjects
             {
                 Player p = Game2.PlaySc.Player;
 
-                if (!_hormingTimer.Update(gameTime))
+                if (!_hormingTimer.Update())
                 {
-                    _hormingTimer.Start(2000f, true);
+                    _hormingTimer.Start(60);
                     _target = p.Position;
                 }
 

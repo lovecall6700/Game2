@@ -12,12 +12,12 @@ namespace Game2.GameObjects
 
         public PopupMessage(Game2 game2, float x, float y, string msg) : base(game2, x, y, msg)
         {
-            _timer.Start(1000f, true);
+            _timer.Start(30);
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (!_timer.Update(gameTime))
+            if (!_timer.Update())
             {
                 ObjectStatus = PhysicsObjectStatus.Remove;
             }

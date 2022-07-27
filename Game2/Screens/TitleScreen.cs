@@ -28,7 +28,7 @@ namespace Game2.Screens
             AddMenuItem(128, 208, "End", 1.2f);
             Game2.MusicPlayer.PlaySong($"Songs/BGM1");
             _titleImg = Game2.Textures.GetTexture("Title");
-            _storyTimer.Start(8000f, true);
+            _storyTimer.Start(240);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -39,7 +39,7 @@ namespace Game2.Screens
 
         public override void Update(GameTime gameTime)
         {
-            if (!_storyTimer.Update(gameTime))
+            if (!_storyTimer.Update())
             {
                 Game2.Scheduler.SetSchedule(Schedules.Story);
                 return;
@@ -50,17 +50,17 @@ namespace Game2.Screens
 
         public override void PushUp()
         {
-            _storyTimer.Start(8000f, true);
+            _storyTimer.Start(240);
         }
 
         public override void PushDown()
         {
-            _storyTimer.Start(8000f, true);
+            _storyTimer.Start(240);
         }
 
         public override void PushFire()
         {
-            _storyTimer.Start(8000f, true);
+            _storyTimer.Start(240);
         }
 
         public override void SelectMenu()

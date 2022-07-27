@@ -12,7 +12,7 @@ namespace Game2.GameObjects
         private int _life = 5;
         private readonly ImageList _crackImg = new ImageList();
         private readonly Timer _timer = new Timer();
-        private readonly float _time = 120f;
+        private readonly int _time = 4;
 
         public Crack(Game2 game2, float x, float y, string dummy) : base(game2, x, y)
         {
@@ -33,9 +33,9 @@ namespace Game2.GameObjects
                 return;
             }
 
-            if (!_timer.Update(gameTime) && Connection.Count != 0)
+            if (!_timer.Update() && Connection.Count != 0)
             {
-                _timer.Start(_time, true);
+                _timer.Start(_time);
                 _life--;
                 Game2.MusicPlayer.PlaySE("SoundEffects/Crack");
 

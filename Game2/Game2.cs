@@ -134,6 +134,8 @@ namespace Game2
 
         private bool _initCamera2D = false;
 
+        public float Frame = 33.33333f;
+
         public Game2()
         {
             //GraphicsDeviceManagerの初期化はこの位置でなければならない。
@@ -218,7 +220,7 @@ namespace Game2
             }
 
             //Alt+Enterで最大化
-            if (!_fullScTimer.Update(gameTime) && GameCtrl.IsClick(ButtonNames.FullScreen))
+            if (!_fullScTimer.Update() && GameCtrl.IsClick(ButtonNames.FullScreen))
             {
                 _paused = true;
                 MusicPlayer.StopSong();
@@ -232,7 +234,7 @@ namespace Game2
                     SetFullscreen();
                 }
 
-                _fullScTimer.Start(3000f, true);
+                _fullScTimer.Start(90);
                 base.Update(gameTime);
                 return;
             }
@@ -244,7 +246,7 @@ namespace Game2
             }
 
             //ポーズ切り替え
-            if (!_pauseTimer.Update(gameTime) && GameCtrl.IsClick(ButtonNames.Pause))
+            if (!_pauseTimer.Update() && GameCtrl.IsClick(ButtonNames.Pause))
             {
                 _paused = !_paused;
 
@@ -257,7 +259,7 @@ namespace Game2
                     MusicPlayer.ReplaySong();
                 }
 
-                _pauseTimer.Start(500f, true);
+                _pauseTimer.Start(15);
             }
 
             if (!_focused || _paused)
@@ -425,7 +427,7 @@ namespace Game2
         {
             _screen = PlaySc;
             PlaySc.GameStart();
-            _timeLimitDisp.Timer.Start(Session.TimeLimit, true);
+            _timeLimitDisp.Timer.Start(Session.TimeLimit);
         }
 
         /// <summary>
@@ -440,7 +442,7 @@ namespace Game2
             }
             else
             {
-                _timeLimitDisp.Timer.Start(Session.TimeLimit, true);
+                _timeLimitDisp.Timer.Start(Session.TimeLimit);
                 Session.Life = Player.MaxLife;
                 PlaySc.Restart();
                 _screen = new StageStart(_game2);

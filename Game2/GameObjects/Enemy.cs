@@ -28,7 +28,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 寿命までの時間
         /// </summary>
-        public float LifeTime = 10000f;
+        public int LifeTime = 300;
 
         /// <summary>
         /// 寿命を使うか
@@ -43,7 +43,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 発砲までの時間
         /// </summary>
-        public float ShotTime = 10000f;
+        public int ShotTime = 300;
 
         public Enemy(Game2 game2, float x, float y) : base(game2, x, y)
         {
@@ -51,8 +51,8 @@ namespace Game2.GameObjects
             DeadSE = "SoundEffects/EnemyDead";
             DamageSE = "SoundEffects/EnemyDead";
             //一定時間たったら勝手に死ぬ
-            _lifeTimer.Start(LifeTime, true);
-            _shotTimer.Start(ShotTime, true);
+            _lifeTimer.Start(LifeTime);
+            _shotTimer.Start(ShotTime);
         }
 
         public override void Update(GameTime gameTime)
@@ -94,7 +94,7 @@ namespace Game2.GameObjects
             {
                 return;
             }
-            else if (!_lifeTimer.Update(gameTime))
+            else if (!_lifeTimer.Update())
             {
                 ObjectStatus = PhysicsObjectStatus.Dead;
             }
@@ -102,10 +102,10 @@ namespace Game2.GameObjects
 
         public void UpdateShotTime(GameTime gameTime)
         {
-            if (!_shotTimer.Update(gameTime))
+            if (!_shotTimer.Update())
             {
                 Shot();
-                _shotTimer.Start(ShotTime, true);
+                _shotTimer.Start(ShotTime);
             }
         }
 

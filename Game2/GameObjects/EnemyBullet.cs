@@ -17,7 +17,7 @@ namespace Game2.GameObjects
             Vector2 direction = Vector2.Transform(upVector, rotation);
             Velocity = direction * bulletSpeed;
             MaxSpeedX = 10;
-            LifeTime = 800f;
+            LifeTime = 24;
             Img = Game2.Textures.GetTexture("EnemyBullet");
             SetSize(8, 8);
         }

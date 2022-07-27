@@ -21,7 +21,7 @@ namespace Game2.Screens
 
         public StageStart(Game2 game2) : base(game2)
         {
-            Timer.Start(4200, true);
+            Timer.Start(126);
             string msg;
 
             if (Game2.Session.StageNo == Game2.StartStageNo && Game2.Session.DoorNo == Game2.StartDoorNo)
@@ -93,12 +93,12 @@ namespace Game2.Screens
 
         public override void Update(GameTime gameTime)
         {
-            if (WaitTimer.Update(gameTime))
+            if (WaitTimer.Update())
             {
                 return;
             }
 
-            if (!Timer.Update(gameTime))
+            if (!Timer.Update())
             {
                 Timeup();
             }
