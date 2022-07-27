@@ -41,7 +41,7 @@ namespace Game2.Screens
         public SelectScreen(Game2 game2) : base(game2)
         {
             Game2 = game2;
-            WaitTimer.Start(100f, true);
+            WaitTimer.Start(3);
         }
 
         public void AddMenuItem(float x, float y, string menu, float scale)
@@ -70,7 +70,7 @@ namespace Game2.Screens
 
         public override void Update(GameTime gameTime)
         {
-            if (WaitTimer.Update(gameTime))
+            if (WaitTimer.Update())
             {
                 return;
             }

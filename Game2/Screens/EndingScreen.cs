@@ -59,7 +59,7 @@ namespace Game2.Screens
             AddSecondMsg();
             AddThirdMsg();
             Game2.MusicPlayer.PlaySong(BgmName());
-            Timer.Start(WaitTime1(), true);
+            Timer.Start(WaitTime1());
         }
 
         public virtual void AddSecondMsg()
@@ -121,14 +121,14 @@ namespace Game2.Screens
             return 3f;
         }
 
-        public virtual float WaitTime1()
+        public virtual int WaitTime1()
         {
-            return 2000f;
+            return 60;
         }
 
-        public virtual float WaitTime2()
+        public virtual int WaitTime2()
         {
-            return 30000f;
+            return 900;
         }
 
         public virtual string BgmName()
@@ -158,7 +158,7 @@ namespace Game2.Screens
                 if (_position[NumOfImage() - 1].Y == 0)
                 {
                     //ダミーの時間を上書きする
-                    Timer.Start(5000, true);
+                    Timer.Start(150);
                 }
             }
             else if (_state == 2)
@@ -212,7 +212,7 @@ namespace Game2.Screens
             {
                 _state = 1;
                 //ダミーの時間を長めにセット
-                Timer.Start(1000000, true);
+                Timer.Start(30000);
             }
             else if (_state == 1)
             {
@@ -220,7 +220,7 @@ namespace Game2.Screens
                 string msg2 = Msg2();
                 float msg2Sclae = Msg2Scale();
                 Item = new MenuItem(new Vector2(128, 128) - GetMsgSize(msg2, msg2Sclae) / 2, msg2, msg2Sclae);
-                Timer.Start(WaitTime2(), true);
+                Timer.Start(WaitTime2());
             }
             else if (_state == 2)
             {

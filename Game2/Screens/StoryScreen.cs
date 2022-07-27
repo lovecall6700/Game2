@@ -48,14 +48,14 @@ namespace Game2.Screens
             return 1f;
         }
 
-        public override float WaitTime1()
+        public override int WaitTime1()
         {
-            return 1000f;
+            return 30;
         }
 
-        public override float WaitTime2()
+        public override int WaitTime2()
         {
-            return 3000f;
+            return 30;
         }
 
         public override string BgmName()

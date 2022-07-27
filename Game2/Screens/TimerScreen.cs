@@ -20,18 +20,18 @@ namespace Game2.Screens
 
         public TimerScreen(Game2 game2) : base(game2)
         {
-            WaitTimer.Start(500f, true);
+            WaitTimer.Start(15);
         }
 
         public override void Update(GameTime gameTime)
         {
             //画面が出てからしばらくは操作できない
-            if (WaitTimer.Update(gameTime))
+            if (WaitTimer.Update())
             {
                 return;
             }
 
-            if (!Timer.Update(gameTime))
+            if (!Timer.Update())
             {
                 Timeup();
             }

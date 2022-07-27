@@ -50,7 +50,7 @@ namespace Game2
         /// <summary>
         /// 制限時間
         /// </summary>
-        public float TimeLimit;
+        public int TimeLimit;
 
         /// <summary>
         /// ハイスコア

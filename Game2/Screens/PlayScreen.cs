@@ -84,7 +84,7 @@ namespace Game2.Screens
         /// <summary>
         /// 背景色切り替え時間
         /// </summary>
-        private readonly float[] _backColorSwitchTimes = new float[2];
+        private readonly int[] _backColorSwitchTimes = new int[2];
 
         /// <summary>
         /// 切り替えタイマー
@@ -94,7 +94,7 @@ namespace Game2.Screens
         /// <summary>
         /// 制限時間
         /// </summary>
-        private float _timeLimit;
+        private int _timeLimit;
 
         /// <summary>
         /// 暗闇ステージ
@@ -104,7 +104,7 @@ namespace Game2.Screens
         /// <summary>
         /// 暗闇ステージの明滅間隔
         /// </summary>
-        private readonly float[] _darkZoneSwitchTimes = new float[2];
+        private readonly int[] _darkZoneSwitchTimes = new int[2];
 
         /// <summary>
         /// 暗闇ステージの切り替えタイマー
@@ -188,7 +188,7 @@ namespace Game2.Screens
             if (!_backColorSwitchTimer.Running)
             {
                 _backColorSwitchable = !_backColorSwitchable;
-                _backColorSwitchTimer.Start(_backColorSwitchTimes[_backColorSwitchable ? 0 : 1], true);
+                _backColorSwitchTimer.Start(_backColorSwitchTimes[_backColorSwitchable ? 0 : 1]);
             }
 
             return _backColorSwitchable ? _backColors[0] : _backColors[1];
@@ -208,7 +208,7 @@ namespace Game2.Screens
             if (!_darkZoneSwitchTimer.Running)
             {
                 _darkZoneSwitch = !_darkZoneSwitch;
-                _darkZoneSwitchTimer.Start(_darkZoneSwitchTimes[_darkZoneSwitch ? 0 : 1], true);
+                _darkZoneSwitchTimer.Start(_darkZoneSwitchTimes[_darkZoneSwitch ? 0 : 1]);
             }
 
             return _darkZoneSwitch;
@@ -447,11 +447,11 @@ namespace Game2.Screens
             _backColorSwitchTimer.Running = false;
             _backColors[0] = Utility.GetColor(settings[index++]);
             _backColors[1] = Utility.GetColor(settings[index++]);
-            _backColorSwitchTimes[0] = float.Parse(settings[index++]);
-            _backColorSwitchTimes[1] = float.Parse(settings[index++]);
+            _backColorSwitchTimes[0] = (int)(float.Parse(settings[index++]) / Game2.Frame);
+            _backColorSwitchTimes[1] = (int)(float.Parse(settings[index++]) / Game2.Frame);
 
             //制限時間
-            _timeLimit = float.Parse(settings[index++]);
+            _timeLimit = (int)(float.Parse(settings[index++]) / Game2.Frame);
             Game2.Session.TimeLimit = _timeLimit;
 
             //BGM演奏開始
@@ -461,8 +461,8 @@ namespace Game2.Screens
             _darkZoneSwitchTimer.Running = false;
             _darkZoneSwitch = false;
             _darkZone = bool.Parse(settings[index++]);
-            _darkZoneSwitchTimes[0] = float.Parse(settings[index++]);
-            _darkZoneSwitchTimes[1] = float.Parse(settings[index++]);
+            _darkZoneSwitchTimes[0] = (int)(float.Parse(settings[index++]) / Game2.Frame);
+            _darkZoneSwitchTimes[1] = (int)(float.Parse(settings[index++]) / Game2.Frame);
 
             //敵
             _enemyGenerator = new EnemyGenerator(Game2);
@@ -532,8 +532,8 @@ namespace Game2.Screens
             _enemyGenerator.Update(gameTime);
 
             FocusCamera2D();
-            _backColorSwitchTimer.Update(gameTime);
-            _darkZoneSwitchTimer.Update(gameTime);
+            _backColorSwitchTimer.Update();
+            _darkZoneSwitchTimer.Update();
         }
 
         private void FocusXCamera2D()

@@ -188,7 +188,7 @@ namespace Game2.GameObjects
                 }
 
                 //発砲
-                if (!_bulletTimer.Update(gameTime) && !OnLadder && Game2.GameCtrl.Fire)
+                if (!_bulletTimer.Update() && !OnLadder && Game2.GameCtrl.Fire)
                 {
                     StandUp();
 
@@ -197,7 +197,7 @@ namespace Game2.GameObjects
                     {
                         Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X, Position.Y + 8, Direction));
                         Game2.MusicPlayer.PlaySE("SoundEffects/PlayerShot");
-                        _bulletTimer.Start(200f, true);
+                        _bulletTimer.Start(6);
 
                         if (Game2.Inventory.HasTripleShotItem())
                         {
@@ -209,7 +209,7 @@ namespace Game2.GameObjects
                     {
                         Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X + 8, Position.Y + 8, Direction));
                         Game2.MusicPlayer.PlaySE("SoundEffects/PlayerShot");
-                        _bulletTimer.Start(200f, true);
+                        _bulletTimer.Start(6);
 
                         if (Game2.Inventory.HasTripleShotItem())
                         {

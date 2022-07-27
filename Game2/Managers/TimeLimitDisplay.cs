@@ -15,6 +15,8 @@ namespace Game2.Managers
         /// </summary>
         public Timer Timer = new Timer();
 
+        private bool _slow = false;
+
         public TimeLimitDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
         {
             Format = "{0:000}";
@@ -34,13 +36,15 @@ namespace Game2.Managers
 
         public override void Update(GameTime gameTime)
         {
-            if (Game2.Inventory.HasTimeItem())
+            _slow = !_slow;
+
+            if (_slow && Game2.Inventory.HasTimeItem())
             {
-                Timer.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds / 2f);
+                //タイマーアイテム所持の場合、2フレームに一回だけタイマーの更新を行う
             }
             else
             {
-                Timer.Update(gameTime);
+                Timer.Update();
             }
 
             if (!Timer.Running)

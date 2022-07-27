@@ -1,41 +1,52 @@
-using Microsoft.Xna.Framework;
-
 namespace Game2.Utilities
 {
     /// <summary>
-    /// タイマーの管理
+    /// フレーム数の管理
     /// </summary>
     public class Timer
     {
         /// <summary>
-        /// タイマー
+        /// フレーム数
         /// </summary>
-        private float _time = 0f;
+        private int _time = 0;
 
         /// <summary>
-        /// タイマーが動作しているか(終了しているか)
+        /// フレーム数が動作しているか(終了しているか)
         /// </summary>
         public bool Running = false;
 
         /// <summary>
-        /// タイマーを開始する
+        /// フレーム数を開始する
+        /// 時間指定がゼロ以下の時はフレーム数を開始しない。
         /// </summary>
-        /// <param name="time">時間</param>
-        /// <param name="running">動作状態</param>
-        public void Start(float time, bool running)
+        /// <param name="count">時間</param>
+        public void Start(int count)
         {
-            _time = time;
-            Running = running;
+            if (count <= 0f)
+            {
+                _time = 0;
+                Running = false;
+                return;
+            }
+
+            _time = count;
+            Running = true;
         }
 
         /// <summary>
-        /// ミリ秒単位で時間を取得する。
-        /// ゼロ秒以下はゼロを返す。
+        /// フレーム数を更新する
         /// </summary>
-        /// <returns>時間</returns>
-        public float GetTime()
+        /// <param name="count">カウント数</param>
+        /// <returns>タイムアップしたか</returns>
+        public virtual bool Update(int count = 1)
         {
-            return _time > 0f ? _time : 0f;
+            if (Running && 0f < _time)
+            {
+                _time -= count;
+                Running = 0f < _time;
+            }
+
+            return Running;
         }
 
         /// <summary>
@@ -44,36 +55,7 @@ namespace Game2.Utilities
         /// <returns>時間</returns>
         public int GetSecond()
         {
-            return (int)(_time / 1000);
-        }
-
-        /// <summary>
-        /// ゲーム時間でタイマーを更新する
-        /// </summary>
-        /// <param name="gameTime">GameTime</param>
-        /// <returns>タイマーが動作しているか(終了しているか)</returns>
-        public bool Update(GameTime gameTime)
-        {
-            if (Running && _time > 0f)
-            {
-                _time -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                Running = _time > 0f;
-            }
-
-            return Running;
-        }
-
-        /// <summary>
-        /// ミリ秒指定でタイマーを更新する
-        /// </summary>
-        /// <param name="time">ミリ秒</param>
-        public void Update(float time)
-        {
-            if (Running && _time > 0f)
-            {
-                _time -= time;
-                Running = _time > 0f;
-            }
+            return (int)(_time * 0.03333333f);
         }
     }
 }

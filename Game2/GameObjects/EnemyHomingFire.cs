@@ -18,16 +18,16 @@ namespace Game2.GameObjects
             Velocity = Vector2.Zero;
             MaxSpeedX = 3;
             AnimationAlways = true;
-            LifeTime = 30000f;
+            LifeTime = 900;
         }
 
         public override bool MoveLeftOrRight(GameTime gameTime)
         {
             Player p = Game2.PlaySc.Player;
 
-            if (!_hormingTimer.Update(gameTime))
+            if (!_hormingTimer.Update())
             {
-                _hormingTimer.Start(2000f, true);
+                _hormingTimer.Start(60);
                 _target = p.Position;
             }
 

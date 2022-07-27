@@ -125,7 +125,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 連続ダメージ回避時間
         /// </summary>
-        public float DamageTime = 300f;
+        public int DamageTime = 9;
 
         /// <summary>
         /// 連続ダメージ回避タイマー
@@ -497,7 +497,7 @@ namespace Game2.GameObjects
             else
             {
                 ObjectStatus = PhysicsObjectStatus.Damage;
-                DamageTimer.Start(DamageTime, true);
+                DamageTimer.Start(DamageTime);
                 Damaged();
             }
         }
@@ -587,7 +587,7 @@ namespace Game2.GameObjects
         /// <param name="gameTime">GameTime</param>
         public void RecoveryDamage(GameTime gameTime)
         {
-            if (ObjectStatus == PhysicsObjectStatus.Damage && !DamageTimer.Update(gameTime))
+            if (ObjectStatus == PhysicsObjectStatus.Damage && !DamageTimer.Update())
             {
                 ObjectStatus = PhysicsObjectStatus.Normal;
             }

@@ -10,7 +10,7 @@ namespace Game2.GameObjects
         private readonly float _speed = -4f;
         private readonly Rectangle? _beltImg;
         private readonly Timer _timer = new Timer();
-        private readonly float _time = 100f;
+        private readonly int _time = 3;
         private bool _vibro = false;
         private Vector2 _vibroA = new Vector2(1f, 0);
         private Vector2 _vibroB = new Vector2(-1f, 0);
@@ -40,10 +40,10 @@ namespace Game2.GameObjects
 
         public override void Update(GameTime gameTime)
         {
-            if (!_timer.Update(gameTime))
+            if (!_timer.Update())
             {
                 _vibro = !_vibro;
-                _timer.Start(_time, true);
+                _timer.Start(_time);
             }
 
             float s = (_left ? -1f : 1f) * _speed;
