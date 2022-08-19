@@ -209,6 +209,11 @@ namespace Game2
             {
                 Camera2D.Initialize(GraphicsDevice, Width, Height);
                 _initCamera2D = false;
+
+                if (Scheduler.Playing && PlaySc != null && _paused)
+                {
+                    PlaySc.FocusCamera2D();
+                }
             }
 
             //ESCで終了
