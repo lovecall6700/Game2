@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -20,11 +19,6 @@ namespace Game2.Managers
         private TimeSpan _playPosition;
 
         private readonly ContentManager _content;
-
-        /// <summary>
-        /// 効果音
-        /// </summary>
-        private readonly Dictionary<string, SoundEffect> _soundEffects = new Dictionary<string, SoundEffect>();
 
         /// <summary>
         /// BGM
@@ -118,18 +112,6 @@ namespace Game2.Managers
         }
 
         /// <summary>
-        /// 効果音を読み込む
-        /// </summary>
-        /// <param name="name">効果音名</param>
-        private void LoadSE(string name)
-        {
-            if (!_soundEffects.ContainsKey(name))
-            {
-                _soundEffects.Add(name, _content.Load<SoundEffect>(name));
-            }
-        }
-
-        /// <summary>
         /// BGMの再生を一時停止する
         /// </summary>
         public void StopSong()
@@ -163,20 +145,6 @@ namespace Game2.Managers
                 }
             }
             catch { }
-        }
-
-        /// <summary>
-        /// 効果音を破棄する
-        /// </summary>
-        /// <param name="name">効果音名</param>
-        public void UnLoadSE(string name)
-        {
-            if (_soundEffects.ContainsKey(name))
-            {
-                SoundEffect s = _soundEffects[name];
-                s.Dispose();
-                _soundEffects.Remove(name);
-            }
         }
 
         /// <summary>
@@ -220,8 +188,12 @@ namespace Game2.Managers
 
             try
             {
-                LoadSE(name);
-                _soundEffects[name].Play();
+                SoundEffect se = _content.Load<SoundEffect>(name);
+
+                if (se != null)
+                {
+                    se.Play();
+                }
             }
             catch { }
         }
