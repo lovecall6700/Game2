@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -19,6 +20,11 @@ namespace Game2.Managers
         private TimeSpan _playPosition;
 
         private readonly ContentManager _content;
+
+        /// <summary>
+        /// 効果音
+        /// </summary>
+        private readonly Dictionary<string, SoundEffect> _soundEffects = new Dictionary<string, SoundEffect>();
 
         /// <summary>
         /// BGM
@@ -153,23 +159,20 @@ namespace Game2.Managers
         /// <param name="name">BGM名</param>
         public void PlaySong(string name)
         {
-            if (name == null)
+            //nullか同じ名前が演奏されているなら何もしない
+            if (name == null || _lastSongName == name)
             {
                 return;
             }
 
             try
             {
-                //同じ名前が演奏されていない場合のみ、新たに演奏を開始
-                if (_lastSongName != name)
-                {
-                    _bgm = _content.Load<Song>(name);
-                    _lastSongName = name;
+                _bgm = _content.Load<Song>(name);
+                _lastSongName = name;
 
-                    if (_bgm != null)
-                    {
-                        MediaPlayer.Play(_bgm);
-                    }
+                if (_bgm != null)
+                {
+                    MediaPlayer.Play(_bgm);
                 }
             }
             catch { }
@@ -188,11 +191,19 @@ namespace Game2.Managers
 
             try
             {
+                //演奏周りは不思議なことが起こるのでtry内部に入れておく
+                if (_soundEffects.ContainsKey(name))
+                {
+                    _soundEffects[name].Play();
+                    return;
+                }
+
                 SoundEffect se = _content.Load<SoundEffect>(name);
 
                 if (se != null)
                 {
                     se.Play();
+                    _soundEffects.Add(name, se);
                 }
             }
             catch { }
