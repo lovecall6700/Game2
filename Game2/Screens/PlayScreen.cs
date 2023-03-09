@@ -532,8 +532,8 @@ namespace Game2.Screens
             _enemyGenerator.Update(gameTime);
 
             FocusCamera2D();
-            _backColorSwitchTimer.Update();
-            _darkZoneSwitchTimer.Update();
+            _ = _backColorSwitchTimer.Update();
+            _ = _darkZoneSwitchTimer.Update();
         }
 
         private void FocusXCamera2D()
@@ -541,13 +541,13 @@ namespace Game2.Screens
             if (Player.Rectangle.Left < Game2.Camera2D.Position.X + 100)
             {
                 int val = Player.Rectangle.Left - 100;
-                val = MathHelper.Clamp(val, 0, _mapWidth * 16 - Game2.Width);
+                val = MathHelper.Clamp(val, 0, (_mapWidth * 16) - Game2.Width);
                 Game2.Camera2D.FocusX(val);
             }
             else if (Game2.Camera2D.Position.X + 156 < Player.Rectangle.Right)
             {
                 int val = Player.Rectangle.Right - 156;
-                val = MathHelper.Clamp(val, 0, _mapWidth * 16 - Game2.Width);
+                val = MathHelper.Clamp(val, 0, (_mapWidth * 16) - Game2.Width);
                 Game2.Camera2D.FocusX(val);
             }
         }
@@ -557,13 +557,13 @@ namespace Game2.Screens
             if (Player.Rectangle.Top < Game2.Camera2D.Position.Y + 100)
             {
                 int val = Player.Rectangle.Top - 100;
-                val = MathHelper.Clamp(val, 0, _mapHeight * 16 - Game2.Height);
+                val = MathHelper.Clamp(val, 0, (_mapHeight * 16) - Game2.Height);
                 Game2.Camera2D.FocusY(val);
             }
             else if (Game2.Camera2D.Position.Y + 156 < Player.Rectangle.Bottom)
             {
                 int val = Player.Rectangle.Bottom - 156;
-                val = MathHelper.Clamp(val, 0, _mapHeight * 16 - Game2.Height);
+                val = MathHelper.Clamp(val, 0, (_mapHeight * 16) - Game2.Height);
                 Game2.Camera2D.FocusY(val);
             }
         }
@@ -598,7 +598,7 @@ namespace Game2.Screens
                 {
                     if (NearMapObjs.Contains(item))
                     {
-                        NearMapObjs.Remove(item);
+                        _ = NearMapObjs.Remove(item);
                     }
 
                     item.Outside();
@@ -618,7 +618,7 @@ namespace Game2.Screens
                 {
                     if (_nearBackObjs.Contains(item))
                     {
-                        _nearBackObjs.Remove(item);
+                        _ = _nearBackObjs.Remove(item);
                     }
 
                     item.Outside();
@@ -638,7 +638,7 @@ namespace Game2.Screens
                 {
                     if (_nearFrontObjs.Contains(item))
                     {
-                        _nearFrontObjs.Remove(item);
+                        _ = _nearFrontObjs.Remove(item);
                     }
 
                     item.Outside();

@@ -28,14 +28,7 @@ namespace Game2.Screens
             float volume = Game2.MusicPlayer.GetSEVolume();
             SelectVolumeItem(volume);
 
-            if (Utility.AlmostEqual(volume, 1.0f))
-            {
-                Index = 1;
-            }
-            else
-            {
-                Index = 0;
-            }
+            Index = Utility.AlmostEqual(volume, 1.0f) ? 1 : 0;
 
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
@@ -57,7 +50,7 @@ namespace Game2.Screens
 
                 default:
 
-                    float v = 1f - 0.25f * Index;
+                    float v = 1f - (0.25f * Index);
                     Game2.MusicPlayer.SetSEVolume(v);
                     Game2.MusicPlayer.SaveSoundVolume();
                     SelectVolumeItem(v);

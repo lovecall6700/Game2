@@ -50,12 +50,12 @@ namespace Game2.Screens
             for (int i = 0; i < NumOfImage(); i++)
             {
                 _img.AddImage(Game2.Textures.GetTexture(baseName + (i + 1)));
-                _position.Add(new Vector2(0, 256 + i * 128));
+                _position.Add(new Vector2(0, 256 + (i * 128)));
             }
 
             string msg1 = Msg1();
             float msg1Sclae = Msg1Scale();
-            Item = new MenuItem(new Vector2(128, 128) - GetMsgSize(msg1, msg1Sclae) / 2, msg1, msg1Sclae);
+            Item = new MenuItem(new Vector2(128, 128) - (GetMsgSize(msg1, msg1Sclae) / 2), msg1, msg1Sclae);
             AddSecondMsg();
             AddThirdMsg();
             Game2.MusicPlayer.PlaySong(BgmName());
@@ -67,16 +67,10 @@ namespace Game2.Screens
             int sc = Game2.GetScore();
             int hs = Game2.Session.HighScore;
             string score = $"SCORE:{sc}";
-            SecondMsg = new MenuItem(new Vector2(128, 200) - GetMsgSize(score, 0.5f) / 2, score, 0.5f);
-
-            if (sc == hs)
+            SecondMsg = new MenuItem(new Vector2(128, 200) - (GetMsgSize(score, 0.5f) / 2), score, 0.5f)
             {
-                SecondMsg.Color = Color.Red;
-            }
-            else
-            {
-                SecondMsg.Color = Color.White;
-            }
+                Color = sc == hs ? Color.Red : Color.White
+            };
         }
 
         public virtual void AddThirdMsg()
@@ -84,7 +78,7 @@ namespace Game2.Screens
             if (Game2.Session.EnableTime)
             {
                 string time = $"TIME:{Game2.Session.CalcTime()}ms";
-                ThirdMsg = new MenuItem(new Vector2(128, 220) - GetMsgSize(time, 0.5f) / 2, time, 0.5f)
+                ThirdMsg = new MenuItem(new Vector2(128, 220) - (GetMsgSize(time, 0.5f) / 2), time, 0.5f)
                 {
                     Color = Color.White
                 };
@@ -194,15 +188,9 @@ namespace Game2.Screens
             {
                 base.Draw(gameTime, spriteBatch);
 
-                if (SecondMsg != null)
-                {
-                    SecondMsg.Draw(spriteBatch, Game2.Font);
-                }
+                SecondMsg?.Draw(spriteBatch, Game2.Font);
 
-                if (ThirdMsg != null)
-                {
-                    ThirdMsg.Draw(spriteBatch, Game2.Font);
-                }
+                ThirdMsg?.Draw(spriteBatch, Game2.Font);
             }
         }
 
@@ -219,7 +207,7 @@ namespace Game2.Screens
                 _state = 2;
                 string msg2 = Msg2();
                 float msg2Sclae = Msg2Scale();
-                Item = new MenuItem(new Vector2(128, 128) - GetMsgSize(msg2, msg2Sclae) / 2, msg2, msg2Sclae);
+                Item = new MenuItem(new Vector2(128, 128) - (GetMsgSize(msg2, msg2Sclae) / 2), msg2, msg2Sclae);
                 Timer.Start(WaitTime2());
             }
             else if (_state == 2)

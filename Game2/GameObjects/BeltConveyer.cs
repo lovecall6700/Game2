@@ -22,14 +22,7 @@ namespace Game2.GameObjects
             _beltImg = Game2.Textures.GetTexture("BeltConveyer");
             SetSize(16, 16);
 
-            if (dir == "Left")
-            {
-                _left = false;
-            }
-            else
-            {
-                _left = true;
-            }
+            _left = dir != "Left";
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

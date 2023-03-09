@@ -45,14 +45,7 @@ namespace Game2.GameObjects
             _itemNo = itemNo;
             ItemImg = Game2.Textures.GetTexture($"Item{name}");
 
-            if (hidden)
-            {
-                Visibility = ObjectVisibility.Hidden;
-            }
-            else
-            {
-                Visibility = ObjectVisibility.Normal;
-            }
+            Visibility = hidden ? ObjectVisibility.Hidden : ObjectVisibility.Normal;
 
             if (dummy != "Null")
             {

@@ -29,7 +29,7 @@ namespace Game2.Inputs
         public void Update(GameTime gameTime)
         {
             base.Update();
-            _timer.Update();
+            _ = _timer.Update();
             UpdateStatus(Up, ref _up);
             UpdateStatus(Down, ref _down);
             UpdateStatus(Left, ref _left);
@@ -84,9 +84,7 @@ namespace Game2.Inputs
         /// <returns>ボタンが解放か</returns>
         public bool IsRelease(ButtonNames name)
         {
-#pragma warning disable IDE0066 // switch ステートメントを式に変換します
             switch (name)
-#pragma warning restore IDE0066 // switch ステートメントを式に変換します
             {
                 case ButtonNames.Jump:
                     return _jump == ButtonStatus.Release;
@@ -120,9 +118,7 @@ namespace Game2.Inputs
         /// <returns>ボタンが押下か</returns>
         public bool IsPress(ButtonNames name)
         {
-#pragma warning disable IDE0066 // switch ステートメントを式に変換します
             switch (name)
-#pragma warning restore IDE0066 // switch ステートメントを式に変換します
             {
                 case ButtonNames.Jump:
                     return _jump == ButtonStatus.Press;

@@ -194,7 +194,7 @@ namespace Game2.Managers
                 //演奏周りは不思議なことが起こるのでtry内部に入れておく
                 if (_soundEffects.ContainsKey(name))
                 {
-                    _soundEffects[name].Play();
+                    _ = _soundEffects[name].Play();
                     return;
                 }
 
@@ -202,7 +202,7 @@ namespace Game2.Managers
 
                 if (se != null)
                 {
-                    se.Play();
+                    _ = se.Play();
                     _soundEffects.Add(name, se);
                 }
             }

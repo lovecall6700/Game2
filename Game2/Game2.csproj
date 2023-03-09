@@ -1,34 +1,134 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CFE2FBD9-750A-4FAF-96A4-B6EB578E83D7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PublishReadyToRun>false</PublishReadyToRun>
-    <TieredCompilation>false</TieredCompilation>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Game2</RootNamespace>
+    <AssemblyName>Game2</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;LINUX</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <Version>1.0.0.0</Version>
-    <Authors>SHIRAISHI</Authors>
-    <Description>謎の島の奥を目指せ！隠された扉を見つけろ！宝箱を集めて得点を稼げ！</Description>
-    <Copyright>Copyright (C) 2020 SHIRAISHI.</Copyright>
+  </PropertyGroup>
+  <PropertyGroup>
     <StartupObject>Game2.Program</StartupObject>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Content\bin\**" />
-    <Compile Remove="Content\obj\**" />
-    <EmbeddedResource Remove="Content\bin\**" />
-    <EmbeddedResource Remove="Content\obj\**" />
-    <None Remove="Content\bin\**" />
-    <None Remove="Content\obj\**" />
+    <Compile Include="Data\HighScoreData.cs" />
+    <Compile Include="Data\SaveData.cs" />
+    <Compile Include="Data\Session.cs" />
+    <Compile Include="Data\SoundVolumeData.cs" />
+    <Compile Include="Game2.cs" />
+    <Compile Include="GameObjects\BeltConveyer.cs" />
+    <Compile Include="GameObjects\Block.cs" />
+    <Compile Include="GameObjects\Cloud.cs" />
+    <Compile Include="GameObjects\Crack.cs" />
+    <Compile Include="GameObjects\Door.cs" />
+    <Compile Include="GameObjects\Enemy.cs" />
+    <Compile Include="GameObjects\EnemyBird.cs" />
+    <Compile Include="GameObjects\EnemyBoss.cs" />
+    <Compile Include="GameObjects\EnemyBullet.cs" />
+    <Compile Include="GameObjects\EnemyDog.cs" />
+    <Compile Include="GameObjects\EnemyHomingFire.cs" />
+    <Compile Include="GameObjects\EnemyJumpDog.cs" />
+    <Compile Include="GameObjects\EnemyJumpFish.cs" />
+    <Compile Include="GameObjects\EnemyNeedle.cs" />
+    <Compile Include="GameObjects\EnemyUFO.cs" />
+    <Compile Include="GameObjects\EnemyUFO2.cs" />
+    <Compile Include="GameObjects\EnemyUPeople8Shots.cs" />
+    <Compile Include="GameObjects\EnemyUPeopleBasic.cs" />
+    <Compile Include="GameObjects\EnemyUPeopleJump.cs" />
+    <Compile Include="GameObjects\EnemyUPeopleLife.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\GameObjectKinds.cs" />
+    <Compile Include="GameObjects\Ice.cs" />
+    <Compile Include="GameObjects\Item.cs" />
+    <Compile Include="GameObjects\Ladder.cs" />
+    <Compile Include="GameObjects\MovingFloor.cs" />
+    <Compile Include="GameObjects\ObjectVisibility.cs" />
+    <Compile Include="GameObjects\PhysicsObject.cs" />
+    <Compile Include="GameObjects\PhysicsObjectStatus.cs" />
+    <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="GameObjects\PlayerBullet.cs" />
+    <Compile Include="GameObjects\PopupMessage.cs" />
+    <Compile Include="GameObjects\StaticMessage.cs" />
+    <Compile Include="GameObjects\TreasureBox.cs" />
+    <Compile Include="Inputs\ButtonNames.cs" />
+    <Compile Include="Inputs\ButtonStatus.cs" />
+    <Compile Include="Inputs\GameController.cs" />
+    <Compile Include="Inputs\GameController3.cs" />
+    <Compile Include="Managers\Camera2D.cs" />
+    <Compile Include="Managers\DigitalDisplay.cs" />
+    <Compile Include="Managers\EnemyGenerator.cs" />
+    <Compile Include="Managers\Inventory.cs" />
+    <Compile Include="Managers\LifeDisplay.cs" />
+    <Compile Include="Managers\MusicPlayer.cs" />
+    <Compile Include="Managers\PauseDisplay.cs" />
+    <Compile Include="Managers\RemainDisplay.cs" />
+    <Compile Include="Managers\Scheduler.cs" />
+    <Compile Include="Managers\Schedules.cs" />
+    <Compile Include="Managers\ScoreDisplay.cs" />
+    <Compile Include="Managers\Textures.cs" />
+    <Compile Include="Managers\TimeLimitDisplay.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\BGMVolumeScreen.cs" />
+    <Compile Include="Screens\EndingScreen.cs" />
+    <Compile Include="Screens\GameoverScreen.cs" />
+    <Compile Include="Screens\MenuItem.cs" />
+    <Compile Include="Screens\MessageScreen.cs" />
+    <Compile Include="Screens\OptionsScreen.cs" />
+    <Compile Include="Screens\PlayScreen.cs" />
+    <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\SelectScreen.cs" />
+    <Compile Include="Screens\SEVolumeScreen.cs" />
+    <Compile Include="Screens\StageDirType.cs" />
+    <Compile Include="Screens\StageStart.cs" />
+    <Compile Include="Screens\StoryScreen.cs" />
+    <Compile Include="Screens\TimerScreen.cs" />
+    <Compile Include="Screens\TitleScreen.cs" />
+    <Compile Include="Utilities\ImageList.cs" />
+    <Compile Include="Utilities\Timer.cs" />
+    <Compile Include="Utilities\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Icon.ico" />
-    <None Remove="Icon.bmp" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -36,12 +136,60 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
+      <Link>x86\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\SDL2.dll">
+      <Link>x64\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\soft_oal.dll">
+      <Link>x86\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\soft_oal.dll">
+      <Link>x64\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libSDL2-2.0.so.0">
+      <Link>x86\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libSDL2-2.0.so.0">
+      <Link>x64\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libopenal.so.1">
+      <Link>x86\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libopenal.so.1">
+      <Link>x64\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+      <Link>libSDL2-2.0.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+      <Link>libopenal.1.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
+      <Link>MonoGame.Framework.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
   </ItemGroup>
-  <ItemGroup>
-    <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

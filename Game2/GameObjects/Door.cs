@@ -75,22 +75,11 @@ namespace Game2.GameObjects
             _closeImg = Game2.Textures.GetTexture("DoorClose");
             SetSize(16, 32);
 
-            if (doorType == "Hidden")
-            {
-                Visibility = ObjectVisibility.Hidden;
-            }
-            else if (doorType == "Invisible")
-            {
-                Visibility = ObjectVisibility.Invisible;
-            }
-            else if (doorType == "Disable")
-            {
-                Visibility = ObjectVisibility.Disable;
-            }
-            else
-            {
-                Visibility = ObjectVisibility.Normal;
-            }
+            Visibility = doorType == "Hidden"
+                ? ObjectVisibility.Hidden
+                : doorType == "Invisible"
+                    ? ObjectVisibility.Invisible
+                    : doorType == "Disable" ? ObjectVisibility.Disable : ObjectVisibility.Normal;
 
             if (dummyUp != "Null")
             {

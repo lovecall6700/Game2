@@ -174,7 +174,7 @@ namespace Game2.GameObjects
             //ハシゴの上にいないなら普通に重力を処理
             if (!OnLadder)
             {
-                JumpAndGravity(gameTime);
+                _ = JumpAndGravity(gameTime);
                 return;
             }
 

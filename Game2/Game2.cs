@@ -615,10 +615,7 @@ namespace Game2
 
         public void SaveHighScore()
         {
-            if (Session != null)
-            {
-                Session.SaveHighScore();
-            }
+            Session?.SaveHighScore();
         }
 
         private void SetFullscreen()

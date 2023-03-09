@@ -71,7 +71,7 @@ namespace Game2.GameObjects
                 TouchWithWall();
             }
 
-            JumpAndGravity(gameTime);
+            _ = JumpAndGravity(gameTime);
             AttackPlayer();
             UpdateShotTime(gameTime);
             FinallyUpdate(gameTime);

@@ -111,12 +111,7 @@ namespace Game2.Managers
         /// <returns>テクスチャ</returns>
         public Rectangle? GetTexture(string name)
         {
-            if (_rectangles.ContainsKey(name))
-            {
-                return _rectangles[name];
-            }
-
-            return null;
+            return _rectangles.ContainsKey(name) ? _rectangles[name] : (Rectangle?)null;
         }
     }
 }

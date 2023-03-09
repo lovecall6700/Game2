@@ -57,14 +57,7 @@ namespace Game2.GameObjects
             _stageNo = stageNo;
             _treasureBoxNo = treasureBoxNo;
 
-            if (hidden)
-            {
-                Visibility = ObjectVisibility.Hidden;
-            }
-            else
-            {
-                Visibility = ObjectVisibility.Normal;
-            }
+            Visibility = hidden ? ObjectVisibility.Hidden : ObjectVisibility.Normal;
 
             Score = score;
             _closeImg = Game2.Textures.GetTexture("TreasureBoxClose");
@@ -88,18 +81,7 @@ namespace Game2.GameObjects
 
         public override void Update(GameTime gameTime)
         {
-            if (Visibility == ObjectVisibility.Hidden)
-            {
-                Img = _dummyImg;
-            }
-            else if (Visibility == ObjectVisibility.Open)
-            {
-                Img = _openImg;
-            }
-            else
-            {
-                Img = _closeImg;
-            }
+            Img = Visibility == ObjectVisibility.Hidden ? _dummyImg : Visibility == ObjectVisibility.Open ? _openImg : _closeImg;
         }
     }
 }

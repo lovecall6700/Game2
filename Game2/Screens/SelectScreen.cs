@@ -55,14 +55,7 @@ namespace Game2.Screens
         {
             for (int i = 0; i < Items.Count; i++)
             {
-                if (Index == i)
-                {
-                    Items[i].Color = SelectedColor;
-                }
-                else
-                {
-                    Items[i].Color = NotSelectedColor;
-                }
+                Items[i].Color = Index == i ? SelectedColor : NotSelectedColor;
 
                 Items[i].Draw(spriteBatch, Game2.Font);
             }
@@ -95,14 +88,7 @@ namespace Game2.Screens
 
                 if (Items[Index].Disable)
                 {
-                    if (Index == 0)
-                    {
-                        Index = 1;
-                    }
-                    else
-                    {
-                        Index = MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
-                    }
+                    Index = Index == 0 ? 1 : MathHelper.Clamp(Index - 1, 0, Items.Count - 1);
                 }
 
                 Game2.MusicPlayer.PlaySE("SoundEffects/MenuChange");

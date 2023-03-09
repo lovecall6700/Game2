@@ -116,7 +116,7 @@ namespace Game2.GameObjects
             }
             else
             {
-                MoveLeftOrRight(gameTime);
+                _ = MoveLeftOrRight(gameTime);
 
                 if (UseLadder)
                 {
@@ -124,7 +124,7 @@ namespace Game2.GameObjects
                 }
                 else
                 {
-                    JumpAndGravity(gameTime);
+                    _ = JumpAndGravity(gameTime);
                 }
             }
 
@@ -132,18 +132,7 @@ namespace Game2.GameObjects
 
             if (ObjectStatus == PhysicsObjectStatus.Normal)
             {
-                if (Game2.GameCtrl.Left)
-                {
-                    ControlDirectionX = -1;
-                }
-                else if (Game2.GameCtrl.Right)
-                {
-                    ControlDirectionX = 1;
-                }
-                else
-                {
-                    ControlDirectionX = 0;
-                }
+                ControlDirectionX = Game2.GameCtrl.Left ? -1 : Game2.GameCtrl.Right ? 1 : 0;
 
                 if (Game2.GameCtrl.Up)
                 {
@@ -260,14 +249,7 @@ namespace Game2.GameObjects
 
         public override void Jump()
         {
-            if (Game2.Inventory.HasHighJumpItem())
-            {
-                Gravity = 0.5f;
-            }
-            else
-            {
-                Gravity = 1;
-            }
+            Gravity = Game2.Inventory.HasHighJumpItem() ? 0.5f : 1;
 
             base.Jump();
         }
@@ -312,12 +294,7 @@ namespace Game2.GameObjects
 
         private string GetDblScoreSymbol()
         {
-            if (Game2.Inventory.HasDoubleScoreItem())
-            {
-                return "2x";
-            }
-
-            return "";
+            return Game2.Inventory.HasDoubleScoreItem() ? "2x" : "";
         }
 
         private void CollisionWithItem(GameObject item)
@@ -352,7 +329,7 @@ namespace Game2.GameObjects
 
                     Door d = (Door)item;
 
-                    if (d.Visibility == ObjectVisibility.Normal && _enterDoor || d.Visibility == ObjectVisibility.Invisible)
+                    if ((d.Visibility == ObjectVisibility.Normal && _enterDoor) || d.Visibility == ObjectVisibility.Invisible)
                     {
                         Game2.Session.DestStageNo = d.DestStageNo;
                         Game2.Session.DestDoorNo = d.DestDoorNo;

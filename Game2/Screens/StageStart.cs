@@ -22,20 +22,12 @@ namespace Game2.Screens
         public StageStart(Game2 game2) : base(game2)
         {
             Timer.Start(126);
-            string msg;
-
-            if (Game2.Session.StageNo == Game2.StartStageNo && Game2.Session.DoorNo == Game2.StartDoorNo)
-            {
-                msg = $"Stage {Game2.Session.StageNo} Start!!";
-            }
-            else
-            {
-                msg = $"Stage {Game2.Session.StageNo} - Door {Game2.Session.DoorNo + 1} Start!!";
-            }
-
+            string msg = Game2.Session.StageNo == Game2.StartStageNo && Game2.Session.DoorNo == Game2.StartDoorNo
+                ? $"Stage {Game2.Session.StageNo} Start!!"
+                : $"Stage {Game2.Session.StageNo} - Door {Game2.Session.DoorNo + 1} Start!!";
             Vector2 v = GetMsgSize(msg, 1f);
             v.Y = 0;
-            Item = new MenuItem(new Vector2(128, 100) - v / 2, msg, 1f);
+            Item = new MenuItem(new Vector2(128, 100) - (v / 2), msg, 1f);
 
             //アイテムの所有を確認する
             if (Game2.Inventory.HasDoubleScoreItem())
@@ -127,7 +119,7 @@ namespace Game2.Screens
 
             for (int i = 0; i < _icons.Count; i++)
             {
-                spriteBatch.Draw(Game2.Images, new Vector2(20 + 20 * i, 150), _icons[i], Color.White);
+                spriteBatch.Draw(Game2.Images, new Vector2(20 + (20 * i), 150), _icons[i], Color.White);
             }
         }
     }

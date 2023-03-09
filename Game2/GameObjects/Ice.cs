@@ -12,12 +12,7 @@ namespace Game2.GameObjects
 
         public override float GetFriction(float velocity, float controlDirection)
         {
-            if (Game2.Inventory.HasShoesItem())
-            {
-                return base.GetFriction(velocity, controlDirection);
-            }
-
-            return -controlDirection * 1f;
+            return Game2.Inventory.HasShoesItem() ? base.GetFriction(velocity, controlDirection) : -controlDirection * 1f;
         }
     }
 }

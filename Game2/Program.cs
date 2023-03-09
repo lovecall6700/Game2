@@ -28,10 +28,7 @@ namespace Game2
             string location = Assembly.GetExecutingAssembly().Location;
             string parent = Directory.GetParent(location).FullName;
             Directory.SetCurrentDirectory(parent);
-
-#pragma warning disable IDE0063 // 単純な 'using' ステートメントを使用する
             using (Game2 game = new Game2())
-#pragma warning restore IDE0063 // 単純な 'using' ステートメントを使用する
             {
                 game.Run();
             }

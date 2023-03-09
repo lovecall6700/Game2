@@ -85,12 +85,7 @@ namespace Game2.Managers
         {
             Value--;
 
-            if (Value < 0)
-            {
-                return true;
-            }
-
-            return false;
+            return Value < 0;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Game2.Managers
         public override void Initialize(GraphicsDevice device)
         {
             base.Initialize(device);
-            Position = new Vector2(128, 140) - Utility.GetMsgSize(Game2.Font, "PAUSE", 1f) / 2;
+            Position = new Vector2(128, 140) - (Utility.GetMsgSize(Game2.Font, "PAUSE", 1f) / 2);
             Format = "PAUSE";
         }
     }

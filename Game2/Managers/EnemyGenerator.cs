@@ -83,14 +83,7 @@ namespace Game2.Managers
             }
             else if (_counter == 10 && e != null)
             {
-                if (_game2.Session.StageNo == 24)
-                {
-                    e.Position = new Vector2(136, -80);
-                }
-                else
-                {
-                    e.Position = new Vector2(272, -128);
-                }
+                e.Position = _game2.Session.StageNo == 24 ? new Vector2(136, -80) : new Vector2(272, -128);
 
                 e.Rectangle.Location = e.Position.ToPoint();
             }
@@ -133,14 +126,7 @@ namespace Game2.Managers
             int r;
             Player p = _game2.PlaySc.Player;
 
-            if (p.Direction == 0)
-            {
-                r = _rnd.Next(0, 2);
-            }
-            else
-            {
-                r = _rnd.Next(0, 6);
-            }
+            r = p.Direction == 0 ? _rnd.Next(0, 2) : _rnd.Next(0, 6);
 
             if (r == 0 || (r > 1 && p.Direction == -1))
             {
@@ -188,14 +174,7 @@ namespace Game2.Managers
             e.Rectangle.Location = e.Position.ToPoint();
             e.Jump();
 
-            if (e.Position.X < 128)
-            {
-                e.ControlDirectionX = 1;
-            }
-            else
-            {
-                e.ControlDirectionX = -1;
-            }
+            e.ControlDirectionX = e.Position.X < 128 ? 1 : -1;
         }
 
         private void SetEnemyPositionUp(ref Enemy e)
@@ -212,14 +191,7 @@ namespace Game2.Managers
                 }
             }
 
-            if (e.Position.X < 128)
-            {
-                e.ControlDirectionX = 1;
-            }
-            else
-            {
-                e.ControlDirectionX = -1;
-            }
+            e.ControlDirectionX = e.Position.X < 128 ? 1 : -1;
 
             e.Position = e.Rectangle.Location.ToVector2();
         }

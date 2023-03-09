@@ -165,12 +165,7 @@ namespace Game2.Utilities
         /// <returns>Color</returns>
         public static Color GetColor(string name)
         {
-            if (_color.ContainsKey(name))
-            {
-                return _color[name];
-            }
-
-            return Color.SkyBlue;
+            return _color.ContainsKey(name) ? _color[name] : Color.SkyBlue;
         }
 
         /// <summary>
@@ -186,7 +181,7 @@ namespace Game2.Utilities
             // パスのフォルダを作成
             if (!Directory.Exists(path))
             {
-                Directory.CreateDirectory(path);
+                _ = Directory.CreateDirectory(path);
             }
 
             return path;

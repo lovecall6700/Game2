@@ -53,12 +53,7 @@ namespace Game2.Utilities
 
         public Rectangle? GetImage(int index)
         {
-            if (_images.Count == 0 || index < 0 || _images.Count <= index)
-            {
-                return null;
-            }
-
-            return _images[index];
+            return _images.Count == 0 || index < 0 || _images.Count <= index ? null : _images[index];
         }
     }
 }

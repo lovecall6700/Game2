@@ -44,7 +44,7 @@ namespace Game2.Managers
             }
             else
             {
-                Timer.Update();
+                _ = Timer.Update();
             }
 
             if (!Timer.Running)
