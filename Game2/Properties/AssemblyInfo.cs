@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Game2")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("謎の島の奥を目指せ！隠された扉を見つけろ！宝箱を集めて得点を稼げ！")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("SHIRAISHI")]
 [assembly: AssemblyCopyright("Copyright © 2023 SHIRAISHI.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

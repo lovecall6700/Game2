@@ -148,56 +148,60 @@ Finが表示されたら、Bボタンを押してタイトル画面に戻れま�
 
 Game2は`Game2 Releases`( https://github.com/lovecall6700/Game2/releases )からダウンロードできます。実行環境ごとに用意されたzipファイルをダウンロードしてください。ダウンロードするファイルが表示されていない場合は、「Assets」をクリックすると表示されます。
 
-ランタイムのインストールが難しくてわからない方は「Game2_v2.(更新番号).zip」をダウンロードしてください。Vista/7/8/10、どのWindowsでも動作すると思います。
-
 実行してパソコンが爆発したり、死人が出ても俺は知らん。
 
 説明書は`Documents`フォルダ内の`Manual.txt`です。`README.mf`と`Manual.txt`は同じものです。
 
 
-### Windows 7/8/10 (32bit/64bit)、Linux (64bit)、macOS (64bit)
+### Windows 7/8/10/11 (32bit/64bit)
 
-「Game2_v3.(更新番号).zip」をダウンロードしてください。
+「Game2_v3.(更新番号)_net48.zip」をダウンロードしてください。
 
-`.NET Runtime 3.1`( https://dotnet.microsoft.com/download/dotnet-core/3.1 )のインストールが必要です。.NET Core 3.1は2022年12月31日にマイクロソフトによるメンテナンスが終了しました。.NET 5以降のバージョンでGame2が動作するかは知りません。
+ダウンロードしたzipファイルを右クリックし、`プロパティ`を選び、`ブロックの解除`にチェックを入れるか、`ブロックの解除`ボタンを押し、`OK`ボタンを押してください。その後、再びzipファイルを右クリックし、`すべて展開`を選択し、`展開`ボタンを押してください。zipファイルが展開されます。
 
-`Windows`ではダウンロードしたzipファイルを右クリックし、`プロパティ`を選び、`ブロックの解除`にチェックを入れるか、`ブロックの解除`ボタンを押し、`OK`ボタンを押してください。その後、再びzipファイルを右クリックし、`すべて展開`を選択し、`展開`ボタンを押してください。zipファイルが展開されます。
+`.NET Framework 4.8`( https://dotnet.microsoft.com/ja-jp/download/dotnet-framework/net48 )ランタイムのインストールが必要ですが、ランタイムは既にインストールされているかもしれません。`Game2.exe`を実行して動かない場合だけ、`Web インストーラー`と`オフライン インストーラー`のどちらかをインストールしてください。
 
-`Linux`と`macOS`では、シェルから展開したフォルダ内に移動し、`dotnet Game2.dll`でゲームが開始します。
-`Windows 7/8/10`では、展開したフォルダ内の`Game2.exe`をダブルクリックするとゲームが開始します。
+展開したフォルダ内の`Game2.exe`をダブルクリックするとゲームが開始します。
+
+
+###Linux (64bit)、macOS (64bit)
+
+「Game2_v3.(更新番号)_net48.zip」をダウンロードしてください。
+
+zipファイルの展開を行ってください。
+
+`Mono`( https://www.mono-project.com/download/stable/ )の`mono-runtime`パッケージのインストールが必要です。
+
+シェルから展開したフォルダ内に移動し、`mono Game2.exe`でゲームが開始します。
 
 
 ### Linux (32bit)
 
-「Game2_v3.(バージョン番号)_net452.zip」をダウンロードしてください。
+「Game2_v3.(更新番号)_net452.zip」をダウンロードしてください。
 
 `Mono`( https://www.mono-project.com/download/stable/#download-lin )の`mono-runtime`パッケージのインストールが必要です。
 
 シェルから展開したフォルダ内に移動し、`mono Game2.exe`でゲームが開始します。
 
 
-### Windows汎用 Vista/7/8/10
-
-「Game2_v2.(更新番号).zip」をダウンロードしてください。`Windows Vista`ではBGMが演奏されません。
-
-`Windows`ではダウンロードしたzipファイルを右クリックし、`プロパティ`を選び、`ブロックの解除`にチェックを入れるか、`ブロックの解除`ボタンを押し、`OK`ボタンを押してください。その後、再びzipファイルを右クリックし、`すべて展開`を選択し、`展開`ボタンを押してください。zipファイルが展開されます。
-
-展開したフォルダ内の`Game2.exe`をダブルクリックするとゲームが開始します。
-
-
 ## ソースコードからビルドする
 
 - Windows以外のビルド環境は不明です。ビルドしたバイナリは、他の環境でも適切なランタイムをインストールすれば動作します。
 - `PixelMplus10 Regular` ( https://itouhiro.hatenablog.com/entry/20130602/font )をインストールしてください。ダウンロードしたファイルを展開し、`PixelMplus10-Regular.ttf`を右クリックして`すべてのユーザーに対してインストール`を選んでください。
-- `VisualStudio 2019`をインストールしてください。私は`.NETデスクトップ開発`、`.NETによるモバイル開発`、`.NETクロスプラットフォーム開発`を選択しました。
-- `MonoGame 3.8.0` ( https://docs.monogame.net/articles/getting_started/0_getting_started.html ) をインストールしてください。3.8.1以降に置き換わってしまっているかもしれませんが、自力でなんとかしてください。オフラインインストーラを公開している人がいます。利用できるかもしれません。
-- 古いWindowsや32bit Linuxで環境でバイナリを動作させたい場合は`VisualStudio 2017`と`MonoGame 3.7.1`をインストールします。`VisualStudio 2017`は`MonoGame 3.7.1`のインストール時に参照されるだけです。最小限のインストールで構いません。私はアンインストールしてしまいました。`Documents\Visual Studio 2017\Templates\ProjectTemplates\Visual C#`フォルダ内の`MonoGame`フォルダを`Documents\Visual Studio 2019\Templates\ProjectTemplates\Visual C#`フォルダ内にコピーすると`VisualStudio 2019`から`MonoGame 3.7.1`用のプロジェクトを作成することもできます。
+- `VisualStudio 2022`をインストールしてください。私は`.NETデスクトップ開発`、`.NET マルチプラットフォーム アプリのUI開発`を選択しました。
+- `MonoGame 3.8.1` ( https://docs.monogame.net/articles/getting_started/0_getting_started.html ) をインストールしてください。
+- 古いWindowsや32bit Linuxで環境でバイナリを動作させたい場合は`VisualStudio 2017`と`MonoGame 3.7.1`をインストールします。
 - Game2のソースコードをクローンするかダウンロードしてください。
-- ビルドしたいブランチを選んでください。`.NET Runtime 3.1`環境で動作させたいならブランチ`monogame3.8gl`を、古いWindowsや32bit Linuxで環境で動作させたいならブランチ`monogame3.7dx`を、Android環境なら`monogame3.8android`を選びます。Android環境は起動するだけでタッチパネルでは遊べません。ゲームパッドをAndroid端末に接続すれば遊べるのかもしれませんが、試したことはありません。
+- ビルドしたいブランチを選んでください。`.NET Runtime 3.1`環境で動作させたいならブランチ`monogame3.8gl`を、古いWindowsや32bit Linuxで環境で動作させたいならブランチ`monogame3.7dx`を、Android環境なら`monogame3.8android`、`.NET Framework 4.8`環境なら`monogame3.8gl_and_dotnet4.8`を選びます。デフォルトブランチは`monogame3.8gl_and_dotnet4.8`です。Android環境は起動するだけでタッチパネルでは遊べません。ゲームパッドをAndroid端末に接続すれば遊べるのかもしれませんが、試したことはありません。
 - `Game2.sln`をダブルクリックしてください。開発環境が起動します。
 
 
-## ライセンス
+## Game2のライセンス
 
 常識の範囲でお使いください。
-コレを使って何か面白いことをするなら教えてください。
+
+
+## MonoGameのライセンス
+
+`Documents/MonoGame`フォルダ内`LICENSE.txt`を参照してください。
+
