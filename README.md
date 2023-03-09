@@ -164,7 +164,7 @@ Game2は`Game2 Releases`( https://github.com/lovecall6700/Game2/releases )から
 展開したフォルダ内の`Game2.exe`をダブルクリックするとゲームが開始します。
 
 
-###Linux (64bit)、macOS (64bit)
+### Linux (64bit)、macOS (64bit)
 
 「Game2_v3.(更新番号)_net48.zip」をダウンロードしてください。
 
