@@ -177,14 +177,17 @@ zipファイルの展開を行ってください。
 
 ## ソースコードからビルドする
 
-- Windows以外のビルド環境は不明です。ビルドしたバイナリは、他の環境でも適切なランタイムをインストールすれば動作します。
 - `PixelMplus10 Regular` ( https://itouhiro.hatenablog.com/entry/20130602/font )をインストールしてください。ダウンロードしたファイルを展開し、`PixelMplus10-Regular.ttf`を右クリックして`すべてのユーザーに対してインストール`を選んでください。
 - `VisualStudio 2022`をインストールしてください。私は`.NETデスクトップ開発`、`.NET マルチプラットフォーム アプリのUI開発`を選択しました。
-- `MonoGame 3.8.1` ( https://docs.monogame.net/articles/getting_started/0_getting_started.html ) をインストールしてください。
-- Windows Vista環境でバイナリを動作させたい場合は`VisualStudio 2017`と`MonoGame 3.7.1`をインストールします。
-- Game2のソースコードをクローンするかダウンロードしてください。
-- ビルドしたいブランチを選んでください。`.NET Runtime 3.1`環境で動作させたいならブランチ`monogame3.8gl`を、Windows Vista環境で動作させたいならブランチ`monogame3.7dx`を、Android環境なら`monogame3.8android`、`.NET Framework 4.8`環境なら`monogame3.8gl_and_dotnet4.8`を選びます。デフォルトブランチは`monogame3.8gl_and_dotnet4.8`です。Android環境は起動するだけでタッチパネルでは遊べません。ゲームパッドをAndroid端末に接続すれば遊べるのかもしれませんが、試したことはありません。
+- `MonoGame 3.7.1` ( https://github.com/MonoGame/MonoGame/releases/tag/v3.7.1 ) をインストールしてください。
+- Game2のソースコードのデフォルトブランチ`dotnet4.8`をクローンするかダウンロードしてください。
 - `Game2.sln`をダブルクリックしてください。開発環境が起動します。
+
+
+- Windows以外のビルド環境は不明です。
+- `MonoGame 3.7.1`のインストーラでは`VisualStudio 2022`用のプロジェクト テンプレートはインストールされません。新規にプロジェクトを作成したい場合、`MonoGame 3.7.1`のインストーラの中身を抽出するか`MonoGame 3.7.1`より先に`VisualStudio 2017`をインストールし、プロジェクトテンプレートを移植してください。
+- ブランチ`android`のビルドには`VisualStudio 2019`と`MonoGame 3.8.0`をインストールが必要です。最新版の`MonoGame 3.8.1`しかインストールできないかもしれません。
+- Android環境では起動するだけでタッチパネルでは遊べません。ゲームパッドをAndroid端末に接続すれば遊べるのかもしれませんが、試したことはありません。
 
 
 ## Game2のライセンス
