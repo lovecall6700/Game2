@@ -1,4 +1,3 @@
-using Game2.GameObjects;
 using Game2.Inputs;
 using Game2.Managers;
 using Game2.Screens;
@@ -22,9 +21,22 @@ namespace Game2
         private readonly Timer _pauseTimer = new Timer();
 
         //画面構成物
-        private ScoreDisplay _scoreDisp;
-        private RemainDisplay _remainDisp;
-        private TimeLimitDisplay _timeLimitDisp;
+
+        /// <summary>
+        /// 得点を画面に表示するか
+        /// </summary>
+        public ScoreDisplay ScoreDisp;
+
+        /// <summary>
+        /// 残機を画面に表示するか
+        /// </summary>
+        public RemainDisplay RemainDisp;
+
+        /// <summary>
+        /// 制限時間を画面に表示するか
+        /// </summary>
+        public TimeLimitDisplay TimeLimitDisp;
+
         private LifeDisplay _lifeDisp;
         private PauseDisplay _pauseDisp;
 
@@ -34,12 +46,12 @@ namespace Game2
         /// <summary>
         /// 現在描画する画面
         /// </summary>
-        private Screen _screen;
+        public Screen Screen;
 
         /// <summary>
         /// ハイスコア表示を隠すか
         /// </summary>
-        private bool _hideHiscore = false;
+        public bool HideHiscore = false;
 
         /// <summary>
         /// アプリがフォーカスされているか
@@ -96,16 +108,6 @@ namespace Game2
         public GraphicsDeviceManager Graphics;
         public SpriteBatch SpriteBatch;
         private Rectangle _oldLocation;
-
-        /// <summary>
-        /// ゲーム開始時のステージ番号
-        /// </summary>
-        public static readonly int StartStageNo = 1;
-
-        /// <summary>
-        /// ゲーム開始時のドア番号
-        /// </summary>
-        public static readonly int StartDoorNo = 3;
 
         /// <summary>
         /// 隠し扉発見得点
@@ -170,9 +172,9 @@ namespace Game2
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Images = Content.Load<Texture2D>("Images");
             Font = Content.Load<SpriteFont>("Fonts");
-            _timeLimitDisp = new TimeLimitDisplay(_game2, GraphicsDevice);
-            _scoreDisp = new ScoreDisplay(_game2, GraphicsDevice);
-            _remainDisp = new RemainDisplay(_game2, GraphicsDevice);
+            TimeLimitDisp = new TimeLimitDisplay(_game2, GraphicsDevice);
+            ScoreDisp = new ScoreDisplay(_game2, GraphicsDevice);
+            RemainDisp = new RemainDisplay(_game2, GraphicsDevice);
             _pauseDisp = new PauseDisplay(_game2, GraphicsDevice);
             _lifeDisp = new LifeDisplay(_game2, GraphicsDevice);
 
@@ -276,13 +278,13 @@ namespace Game2
 
             if (Scheduler.Playing)
             {
-                _scoreDisp.Update(gameTime);
-                _remainDisp.Update(gameTime);
-                _timeLimitDisp.Update(gameTime);
+                ScoreDisp.Update(gameTime);
+                RemainDisp.Update(gameTime);
+                TimeLimitDisp.Update(gameTime);
                 _lifeDisp.Update(gameTime);
             }
 
-            _screen.Update(gameTime);
+            Screen.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -309,9 +311,9 @@ namespace Game2
                 s *= 2;
             }
 
-            _scoreDisp.AddScore(s);
-            _remainDisp.AddScore(s);
-            Session.UpdateHighScore(_scoreDisp.Value);
+            ScoreDisp.AddScore(s);
+            RemainDisp.AddScore(s);
+            Session.UpdateHighScore(ScoreDisp.Value);
         }
 
         /// <summary>
@@ -320,7 +322,7 @@ namespace Game2
         /// <returns>得点</returns>
         public int GetScore()
         {
-            return _scoreDisp.Value;
+            return ScoreDisp.Value;
         }
 
         /// <summary>
@@ -335,10 +337,10 @@ namespace Game2
                 GraphicsDevice.Clear(PlaySc.GetBackColor());
                 SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
                 PlaySc.Draw(gameTime, SpriteBatch);
-                _timeLimitDisp.Draw(SpriteBatch);
+                TimeLimitDisp.Draw(SpriteBatch);
                 _lifeDisp.Draw(SpriteBatch);
-                _remainDisp.Draw(SpriteBatch);
-                _scoreDisp.Draw(SpriteBatch);
+                RemainDisp.Draw(SpriteBatch);
+                ScoreDisp.Draw(SpriteBatch);
 
                 if (!_focused || _paused)
                 {
@@ -351,11 +353,11 @@ namespace Game2
             {
                 GraphicsDevice.Clear(Color.Black);
                 SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-                _screen.Draw(gameTime, SpriteBatch);
+                Screen.Draw(gameTime, SpriteBatch);
 
-                if (!_hideHiscore)
+                if (!HideHiscore)
                 {
-                    _scoreDisp.DrawHighScore(SpriteBatch);
+                    ScoreDisp.DrawHighScore(SpriteBatch);
                 }
 
                 if (!_focused || _paused)
@@ -367,176 +369,6 @@ namespace Game2
             }
 
             base.Draw(gameTime);
-        }
-
-        /// <summary>
-        /// ゲームが起動したら、タイトル画面を表示
-        /// </summary>
-        public void ExecTitle()
-        {
-            Session = new Session();
-            _hideHiscore = false;
-            _screen = new TitleScreen(_game2);
-        }
-
-        /// <summary>
-        /// ゲームを終了する
-        /// </summary>
-        public void ExecQuit()
-        {
-            Exit();
-        }
-
-        /// <summary>
-        /// コンティニューで続きを遊ぶ
-        /// </summary>
-        public void ExecContinueStart()
-        {
-            Session = new Session
-            {
-                EnableTime = false
-            };
-            Session.LoadStage();
-            Session.Life = Player.MaxLife;
-            _remainDisp.TitleContinue();
-            _scoreDisp.TitleToLoadStart();
-            Inventory.TitleToLoadStart();
-            _screen = new StageStart(_game2);
-            PlaySc = new PlayScreen(_game2);
-            PlaySc.LoadStage();
-        }
-
-        /// <summary>
-        /// 最初から遊ぶ
-        /// </summary>
-        public void ExecInitialStart()
-        {
-            _hideHiscore = false;
-            Session = new Session();
-            Session.StartTime();
-            Session.StageNo = StartStageNo;
-            Session.DoorNo = StartDoorNo;
-            Session.Life = Player.MaxLife;
-            _remainDisp.TitleToInitialStart();
-            _scoreDisp.TitleToInitialStart();
-            Inventory.TitleToInitialStart();
-            _screen = new StageStart(_game2);
-            PlaySc = new PlayScreen(_game2);
-            PlaySc.LoadStage();
-        }
-
-        /// <summary>
-        /// ゲームを開始する
-        /// </summary>
-        public void ExecGameStart()
-        {
-            _screen = PlaySc;
-            PlaySc.GameStart();
-            _timeLimitDisp.Timer.Start(Session.TimeLimit);
-        }
-
-        /// <summary>
-        /// ミス時、ステージ開始画面かゲームオーバー画面を表示する
-        /// </summary>
-        public void ExecRestartOrGameover()
-        {
-            if (_remainDisp.Miss())
-            {
-                SaveHighScore();
-                _screen = new GameoverScreen(_game2);
-            }
-            else
-            {
-                _timeLimitDisp.Timer.Start(Session.TimeLimit);
-                Session.Life = Player.MaxLife;
-                PlaySc.Restart();
-                _screen = new StageStart(_game2);
-            }
-        }
-
-        /// <summary>
-        /// エンディング画面を表示する
-        /// </summary>
-        public void ExecEnding()
-        {
-            _hideHiscore = true;
-
-            if (Session == null)
-            {
-                Session = new Session
-                {
-                    EnableTime = false
-                };
-            }
-
-            Session.EndTime();
-            SaveHighScore();
-            _screen = new EndingScreen(_game2);
-        }
-
-        /// <summary>
-        /// 扉に入る
-        /// </summary>
-        public void ExecEnterDoor()
-        {
-            Session.StageNo = Session.DestStageNo;
-            Session.DoorNo = Session.DestDoorNo;
-            Session.Life = PlaySc.Player.Life;
-            PlaySc.LoadStage();
-            _screen = new StageStart(_game2);
-        }
-
-        /// <summary>
-        /// セーブする
-        /// </summary>
-        public void ExecSaveStage()
-        {
-            Session.SaveStage();
-        }
-
-        /// <summary>
-        /// ゲームオーバー時にリトライする
-        /// </summary>
-        public void ExecRetry()
-        {
-            _remainDisp.GameoverRetry();
-            _scoreDisp.GameoverRetryToStart();
-            Inventory.GameoverRetryToStart();
-            PlaySc.Restart();
-            _screen = new StageStart(_game2);
-        }
-
-        /// <summary>
-        /// BGM音量変更画面を表示する
-        /// </summary>
-        public void ExecBGMVolume()
-        {
-            _screen = new BGMVolumeScreen(_game2);
-        }
-
-        /// <summary>
-        /// SE音量変更画面を表示する
-        /// </summary>
-        public void ExecSEVolume()
-        {
-            _screen = new SEVolumeScreen(_game2);
-        }
-
-        /// <summary>
-        /// オプション画面を表示する
-        /// </summary>
-        public void ExecOptions()
-        {
-            _screen = new OptionsScreen(_game2);
-        }
-
-        /// <summary>
-        /// ストーリー画面を表示する
-        /// </summary>
-        public void ExecStory()
-        {
-            _hideHiscore = true;
-            _screen = new StoryScreen(_game2);
         }
 
         /// <summary>

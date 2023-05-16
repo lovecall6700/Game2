@@ -1,3 +1,6 @@
+using Game2.GameObjects;
+using Game2.Screens;
+
 namespace Game2.Managers
 {
     /// <summary>
@@ -51,89 +54,259 @@ namespace Game2.Managers
                 case Schedules.EnterDoor:
 
                     Playing = false;
-                    _game2.ExecEnterDoor();
+                    ExecEnterDoor();
                     break;
 
                 case Schedules.RestartOrGameover:
 
                     Playing = false;
-                    _game2.ExecRestartOrGameover();
+                    ExecRestartOrGameover();
                     break;
 
                 case Schedules.Ending:
 
                     Playing = false;
-                    _game2.ExecEnding();
+                    ExecEnding();
                     break;
 
                 case Schedules.GameStart:
 
                     Playing = true;
-                    _game2.ExecGameStart();
+                    ExecGameStart();
                     break;
 
                 case Schedules.Title:
 
                     Playing = false;
-                    _game2.ExecTitle();
+                    ExecTitle();
                     break;
 
                 case Schedules.Retry:
 
                     Playing = false;
-                    _game2.ExecRetry();
+                    ExecRetry();
                     break;
 
                 case Schedules.Quit:
 
                     Playing = false;
-                    _game2.ExecQuit();
+                    ExecQuit();
                     return;
 
                 case Schedules.ContinueStart:
 
                     Playing = false;
-                    _game2.ExecContinueStart();
+                    ExecContinueStart();
                     break;
 
                 case Schedules.InitialStart:
 
                     Playing = false;
-                    _game2.ExecInitialStart();
+                    ExecInitialStart();
                     break;
 
                 case Schedules.SaveStage:
 
                     Playing = false;
-                    _game2.ExecSaveStage();
+                    ExecSaveStage();
                     break;
 
                 case Schedules.BGMVolume:
 
                     Playing = false;
-                    _game2.ExecBGMVolume();
+                    ExecBGMVolume();
                     break;
 
                 case Schedules.SEVolume:
 
                     Playing = false;
-                    _game2.ExecSEVolume();
+                    ExecSEVolume();
                     break;
 
                 case Schedules.Options:
 
                     Playing = false;
-                    _game2.ExecOptions();
+                    ExecOptions();
                     break;
 
                 case Schedules.Story:
 
                     Playing = false;
-                    _game2.ExecStory();
+                    ExecStory();
                     break;
             }
 
             Next = Schedules.None;
+        }
+
+        /// <summary>
+        /// ゲームが起動したら、タイトル画面を表示
+        /// </summary>
+        private void ExecTitle()
+        {
+            _game2.Session = new Session();
+            _game2.HideHiscore = false;
+            _game2.Screen = new TitleScreen(_game2);
+        }
+
+        /// <summary>
+        /// ゲームを終了する
+        /// </summary>
+        private void ExecQuit()
+        {
+            _game2.Exit();
+        }
+
+        /// <summary>
+        /// コンティニューで続きを遊ぶ
+        /// </summary>
+        private void ExecContinueStart()
+        {
+            _game2.Session = new Session
+            {
+                EnableTime = false
+            };
+            _game2.Session.LoadStage();
+            _game2.Session.Life = Player.MaxLife;
+            _game2.RemainDisp.TitleContinue();
+            _game2.ScoreDisp.TitleToLoadStart();
+            _game2.Inventory.TitleToLoadStart();
+            _game2.Screen = new StageStart(_game2);
+            _game2.PlaySc = new PlayScreen(_game2);
+            _game2.PlaySc.LoadStage();
+        }
+
+        /// <summary>
+        /// 最初から遊ぶ
+        /// </summary>
+        private void ExecInitialStart()
+        {
+            _game2.HideHiscore = false;
+            _game2.Session = new Session();
+            _game2.Session.StartTime();
+            _game2.Session.StageNo = Session.StartStageNo;
+            _game2.Session.DoorNo = Session.StartDoorNo;
+            _game2.Session.Life = Player.MaxLife;
+            _game2.RemainDisp.TitleToInitialStart();
+            _game2.ScoreDisp.TitleToInitialStart();
+            _game2.Inventory.TitleToInitialStart();
+            _game2.Screen = new StageStart(_game2);
+            _game2.PlaySc = new PlayScreen(_game2);
+            _game2.PlaySc.LoadStage();
+        }
+
+        /// <summary>
+        /// ゲームを開始する
+        /// </summary>
+        private void ExecGameStart()
+        {
+            _game2.Screen = _game2.PlaySc;
+            _game2.PlaySc.GameStart();
+            _game2.TimeLimitDisp.Timer.Start(_game2.Session.TimeLimit);
+        }
+
+        /// <summary>
+        /// ミス時、ステージ開始画面かゲームオーバー画面を表示する
+        /// </summary>
+        private void ExecRestartOrGameover()
+        {
+            if (_game2.RemainDisp.Miss())
+            {
+                _game2.SaveHighScore();
+                _game2.Screen = new GameoverScreen(_game2);
+            }
+            else
+            {
+                _game2.TimeLimitDisp.Timer.Start(_game2.Session.TimeLimit);
+                _game2.Session.Life = Player.MaxLife;
+                _game2.PlaySc.Restart();
+                _game2.Screen = new StageStart(_game2);
+            }
+        }
+
+        /// <summary>
+        /// エンディング画面を表示する
+        /// </summary>
+        private void ExecEnding()
+        {
+            _game2.HideHiscore = true;
+
+            if (_game2.Session == null)
+            {
+                _game2.Session = new Session
+                {
+                    EnableTime = false
+                };
+            }
+
+            _game2.Session.EndTime();
+            _game2.SaveHighScore();
+            _game2.Screen = new EndingScreen(_game2);
+        }
+
+        /// <summary>
+        /// 扉に入る
+        /// </summary>
+        private void ExecEnterDoor()
+        {
+            _game2.Session.StageNo = _game2.Session.DestStageNo;
+            _game2.Session.DoorNo = _game2.Session.DestDoorNo;
+            _game2.Session.Life = _game2.PlaySc.Player.Life;
+            _game2.PlaySc.LoadStage();
+            _game2.Screen = new StageStart(_game2);
+        }
+
+        /// <summary>
+        /// セーブする
+        /// </summary>
+        private void ExecSaveStage()
+        {
+            _game2.Session.SaveStage();
+        }
+
+        /// <summary>
+        /// ゲームオーバー時にリトライする
+        /// </summary>
+        private void ExecRetry()
+        {
+            _game2.RemainDisp.GameoverRetry();
+            _game2.ScoreDisp.GameoverRetryToStart();
+            _game2.Inventory.GameoverRetryToStart();
+            _game2.PlaySc.Restart();
+            _game2.Screen = new StageStart(_game2);
+        }
+
+        /// <summary>
+        /// BGM音量変更画面を表示する
+        /// </summary>
+        private void ExecBGMVolume()
+        {
+            _game2.Screen = new BGMVolumeScreen(_game2);
+        }
+
+        /// <summary>
+        /// SE音量変更画面を表示する
+        /// </summary>
+        private void ExecSEVolume()
+        {
+            _game2.Screen = new SEVolumeScreen(_game2);
+        }
+
+        /// <summary>
+        /// オプション画面を表示する
+        /// </summary>
+        private void ExecOptions()
+        {
+            _game2.Screen = new OptionsScreen(_game2);
+        }
+
+        /// <summary>
+        /// ストーリー画面を表示する
+        /// </summary>
+        private void ExecStory()
+        {
+            _game2.HideHiscore = true;
+            _game2.Screen = new StoryScreen(_game2);
         }
     }
 }

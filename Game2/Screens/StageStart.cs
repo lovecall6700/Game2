@@ -22,7 +22,7 @@ namespace Game2.Screens
         public StageStart(Game2 game2) : base(game2)
         {
             Timer.Start(126);
-            string msg = Game2.Session.StageNo == Game2.StartStageNo && Game2.Session.DoorNo == Game2.StartDoorNo
+            string msg = Game2.Session.StageNo == Session.StartStageNo && Game2.Session.DoorNo == Session.StartDoorNo
                 ? $"Stage {Game2.Session.StageNo} Start!!"
                 : $"Stage {Game2.Session.StageNo} - Door {Game2.Session.DoorNo + 1} Start!!";
             Vector2 v = GetMsgSize(msg, 1f);

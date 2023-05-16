@@ -78,6 +78,16 @@ namespace Game2
         public bool EnableTime = true;
 
         /// <summary>
+        /// ゲーム開始時のステージ番号
+        /// </summary>
+        public static readonly int StartStageNo = 1;
+
+        /// <summary>
+        /// ゲーム開始時のドア番号
+        /// </summary>
+        public static readonly int StartDoorNo = 3;
+
+        /// <summary>
         /// Session
         /// </summary>
         public Session()
@@ -156,8 +166,8 @@ namespace Game2
             }
             catch
             {
-                StageNo = Game2.StartStageNo;
-                DoorNo = Game2.StartDoorNo;
+                StageNo = StartStageNo;
+                DoorNo = StartDoorNo;
                 TreasureBoxVisibility.Clear();
                 DoorVisibility.Clear();
                 ItemVisibility.Clear();
