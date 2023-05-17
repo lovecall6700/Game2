@@ -37,14 +37,14 @@ namespace Game2.Screens
             _scoreDisp = new HighScoreDisplay(game2);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(spriteBatch);
             spriteBatch.Draw(Game2.Images, Vector2.Zero, _titleImg, Color.White);
             _scoreDisp.Draw(spriteBatch);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (!_storyTimer.Update())
             {
@@ -52,7 +52,7 @@ namespace Game2.Screens
                 return;
             }
 
-            base.Update(gameTime);
+            base.Update();
         }
 
         public override void PushUp()

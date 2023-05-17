@@ -37,7 +37,7 @@ namespace Game2.Screens
             _scoreDisp = new ScoreDisplay(game2);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             _item.Draw(spriteBatch, Game2.Font);
             _scoreDisp.Draw(spriteBatch);
@@ -47,7 +47,7 @@ namespace Game2.Screens
                 return;
             }
 
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(spriteBatch);
         }
 
         public override void SelectMenu()

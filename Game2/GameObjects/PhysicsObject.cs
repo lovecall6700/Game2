@@ -561,7 +561,7 @@ namespace Game2.GameObjects
 
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (ObjectStatus == PhysicsObjectStatus.Damage)
             {
@@ -574,7 +574,7 @@ namespace Game2.GameObjects
             }
             else
             {
-                base.Draw(gameTime, spriteBatch);
+                base.Draw(spriteBatch);
             }
         }
 

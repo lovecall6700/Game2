@@ -18,7 +18,7 @@ namespace Game2.Managers
             Format = "REMAIN {0:0}";
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             Value = Game2.Session.Remain;
         }

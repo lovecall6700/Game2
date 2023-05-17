@@ -17,7 +17,7 @@ namespace Game2.Managers
             _blinkTimer.Start(15);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (!_blinkTimer.Update())
             {
@@ -25,7 +25,7 @@ namespace Game2.Managers
                 _blinkTimer.Start(15);
             }
 
-            base.Update(gameTime);
+            base.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)

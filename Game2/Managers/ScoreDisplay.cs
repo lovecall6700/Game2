@@ -19,10 +19,10 @@ namespace Game2.Managers
             Value = Game2.Session.Score;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             Value = Game2.Session.Score;
-            base.Update(gameTime);
+            base.Update();
         }
     }
 }

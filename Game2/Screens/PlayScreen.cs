@@ -178,42 +178,42 @@ namespace Game2.Screens
             _scoreDisp = new ScoreDisplay(game2);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (!GetDarkZone() || Game2.Session.Inventory.HasLightItem())
             {
                 foreach (GameObject item in _nearBackObjs)
                 {
-                    item.Draw(gameTime, spriteBatch);
+                    item.Draw(spriteBatch);
                 }
 
                 foreach (GameObject item in NearMapObjs)
                 {
-                    item.Draw(gameTime, spriteBatch);
+                    item.Draw(spriteBatch);
                 }
             }
 
             foreach (GameObject item in ItemObjs)
             {
-                item.Draw(gameTime, spriteBatch);
+                item.Draw(spriteBatch);
             }
 
             foreach (GameObject item in PhysicsObjs)
             {
-                item.Draw(gameTime, spriteBatch);
+                item.Draw(spriteBatch);
             }
 
             if (!GetDarkZone() || Game2.Session.Inventory.HasLightItem())
             {
                 foreach (GameObject item in _nearFrontObjs)
                 {
-                    item.Draw(gameTime, spriteBatch);
+                    item.Draw(spriteBatch);
                 }
             }
 
             foreach (GameObject item in EffectObjs)
             {
-                item.Draw(gameTime, spriteBatch);
+                item.Draw(spriteBatch);
             }
 
             _lifeDisp.Draw(spriteBatch);
@@ -540,11 +540,11 @@ namespace Game2.Screens
             Timer.Start(Game2.Session.TimeLimit);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
-            _lifeDisp.Update(gameTime);
-            _remainDisp.Update(gameTime);
-            _scoreDisp.Update(gameTime);
+            _lifeDisp.Update();
+            _remainDisp.Update();
+            _scoreDisp.Update();
 
             //タイマー制御
             _slow = !_slow;
@@ -569,7 +569,7 @@ namespace Game2.Screens
                 }
             }
 
-            _timeLimitDisp.Update(gameTime);
+            _timeLimitDisp.Update();
             _timeLimitDisp.Value = Timer.GetSecond();
 
             foreach (GameObject item in ItemObjs)

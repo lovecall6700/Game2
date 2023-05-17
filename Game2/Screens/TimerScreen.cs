@@ -1,5 +1,4 @@
 using Game2.Utilities;
-using Microsoft.Xna.Framework;
 
 namespace Game2.Screens
 {
@@ -23,7 +22,7 @@ namespace Game2.Screens
             WaitTimer.Start(15);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             //画面が出てからしばらくは操作できない
             if (WaitTimer.Update())

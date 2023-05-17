@@ -25,9 +25,9 @@ namespace Game2.GameObjects
             _left = dir != "Left";
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(spriteBatch);
             spriteBatch.Draw(Game2.Images, Position + (_vibro ? _vibroA : _vibroB), _beltImg, Color.White);
         }
 

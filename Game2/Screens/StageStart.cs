@@ -89,7 +89,7 @@ namespace Game2.Screens
             Game2.Scheduler.SetSchedule(Schedules.GameStart);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (WaitTimer.Update())
             {
@@ -119,9 +119,9 @@ namespace Game2.Screens
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(spriteBatch);
 
             for (int i = 0; i < _icons.Count; i++)
             {

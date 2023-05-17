@@ -48,9 +48,9 @@ namespace Game2.GameObjects
             base.Update();
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(spriteBatch);
 
             if (_life > 0)
             {

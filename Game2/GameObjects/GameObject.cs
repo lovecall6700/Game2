@@ -83,7 +83,7 @@ namespace Game2.GameObjects
             Rectangle.Height = h;
         }
 
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (Img == null || ObjectKind == GameObjectKinds.Disable)
             {

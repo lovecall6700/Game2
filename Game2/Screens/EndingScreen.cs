@@ -130,9 +130,9 @@ namespace Game2.Screens
             return "Songs/BGM7";
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
-            base.Update(gameTime);
+            base.Update();
 
             if (_state == 0)
             {
@@ -169,15 +169,15 @@ namespace Game2.Screens
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (_state == 0)
             {
-                base.Draw(gameTime, spriteBatch);
+                base.Draw(spriteBatch);
             }
             else if (_state == 1)
             {
-                base.Draw(gameTime, spriteBatch);
+                base.Draw(spriteBatch);
 
                 for (int i = 0; i < NumOfImage(); i++)
                 {
@@ -186,10 +186,8 @@ namespace Game2.Screens
             }
             else if (_state == 2)
             {
-                base.Draw(gameTime, spriteBatch);
-
+                base.Draw(spriteBatch);
                 SecondMsg?.Draw(spriteBatch, Game2.Font);
-
                 ThirdMsg?.Draw(spriteBatch, Game2.Font);
             }
         }

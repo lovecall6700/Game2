@@ -43,7 +43,7 @@ namespace Game2.Managers
             spriteBatch.DrawString(Game2.Font, string.Format(Format, Value), Game2.Camera2D.Position + Position, Color.White, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update()
         {
         }
 

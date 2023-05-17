@@ -51,7 +51,7 @@ namespace Game2.Screens
             Items.Add(new MenuItem(new Vector2(x, y) - v, menu, scale));
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < Items.Count; i++)
             {
@@ -61,7 +61,7 @@ namespace Game2.Screens
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (WaitTimer.Update())
             {

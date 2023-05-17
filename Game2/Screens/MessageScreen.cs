@@ -24,7 +24,7 @@ namespace Game2.Screens
             Game2 = game2;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (Item != null)
             {

@@ -15,7 +15,7 @@ namespace Game2.GameObjects
             _message = msg;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(Game2.Font, _message, Position, Color.White);
         }

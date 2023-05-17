@@ -24,9 +24,9 @@ namespace Game2.Screens
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(spriteBatch);
             _item.Draw(spriteBatch, Game2.Font);
         }
 

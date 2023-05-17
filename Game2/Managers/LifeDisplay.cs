@@ -18,11 +18,11 @@ namespace Game2.Managers
             Format = "LIFE {0:0}";
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             int life = Game2.PlaySc.Player.Life;
             Value = life < 0 ? 0 : life;
-            base.Update(gameTime);
+            base.Update();
         }
     }
 }

@@ -33,10 +33,10 @@ namespace Game2.Screens
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             _item.Draw(spriteBatch, Game2.Font);
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(spriteBatch);
         }
 
         public override void SelectMenu()

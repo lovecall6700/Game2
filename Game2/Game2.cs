@@ -232,12 +232,12 @@ namespace Game2
 
             if (!_focused || _paused)
             {
-                _pauseDisp.Update(gameTime);
+                _pauseDisp.Update();
                 base.Update(gameTime);
                 return;
             }
 
-            Screen.Update(gameTime);
+            Screen.Update();
             base.Update(gameTime);
         }
 
@@ -249,7 +249,7 @@ namespace Game2
         {
             GraphicsDevice.Clear(Screen.GetBackColor());
             SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-            Screen.Draw(gameTime, SpriteBatch);
+            Screen.Draw(SpriteBatch);
 
             if (!_focused || _paused)
             {

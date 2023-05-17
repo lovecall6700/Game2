@@ -114,7 +114,7 @@ namespace Game2.GameObjects
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (Visibility == ObjectVisibility.Invisible || Visibility == ObjectVisibility.Hidden)
             {
@@ -132,7 +132,7 @@ namespace Game2.GameObjects
                 return;
             }
 
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(spriteBatch);
         }
     }
 }
