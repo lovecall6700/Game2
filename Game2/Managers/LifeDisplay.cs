@@ -13,7 +13,6 @@ namespace Game2.Managers
 
         public override void Initialize()
         {
-            base.Initialize();
             Position = new Vector2(2, 20);
             Format = "LIFE {0:0}";
         }
@@ -22,7 +21,6 @@ namespace Game2.Managers
         {
             int life = Game2.PlaySc.Player.Life;
             Value = life < 0 ? 0 : life;
-            base.Update();
         }
     }
 }

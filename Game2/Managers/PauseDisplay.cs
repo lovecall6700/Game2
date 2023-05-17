@@ -24,8 +24,6 @@ namespace Game2.Managers
                 _blink = !_blink;
                 _blinkTimer.Start(15);
             }
-
-            base.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -38,7 +36,6 @@ namespace Game2.Managers
 
         public override void Initialize()
         {
-            base.Initialize();
             Position = new Vector2(128, 140) - (Utility.GetMsgSize(Game2.Font, "PAUSE", 1f) / 2);
             Format = "PAUSE";
         }

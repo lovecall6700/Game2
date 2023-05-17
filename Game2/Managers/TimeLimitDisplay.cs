@@ -13,7 +13,6 @@ namespace Game2.Managers
 
         public override void Initialize()
         {
-            base.Initialize();
             Position = new Vector2(110, 5);
             Format = "{0:000}";
         }

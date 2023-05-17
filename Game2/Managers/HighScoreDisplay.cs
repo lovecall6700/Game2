@@ -13,7 +13,6 @@ namespace Game2.Managers
 
         public override void Initialize()
         {
-            base.Initialize();
             Position = new Vector2(155, 5);
             Format = "HI{0:00000000}";
             Value = Game2.Session.HighScore;
