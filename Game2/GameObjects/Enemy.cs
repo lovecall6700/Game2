@@ -114,7 +114,7 @@ namespace Game2.GameObjects
         /// </summary>
         public virtual void AttackPlayer()
         {
-            if (Game2.Inventory.HasShieldItem())
+            if (Game2.Session.Inventory.HasShieldItem())
             {
                 return;
             }

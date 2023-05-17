@@ -10,6 +10,8 @@ namespace Game2.Screens
     {
         public Game2 Game2;
 
+        private Color BackGroundColor = Color.Black;
+
         public Screen(Game2 game2)
         {
             Game2 = game2;
@@ -21,6 +23,15 @@ namespace Game2.Screens
         }
 
         public virtual void Update(GameTime gameTime)
+        {
+        }
+
+        public virtual Color GetBackColor()
+        {
+            return BackGroundColor;
+        }
+
+        public virtual void FocusCamera2D()
         {
         }
     }

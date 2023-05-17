@@ -9,7 +9,6 @@ namespace Game2.Managers
     public class DigitalDisplay
     {
         public Game2 Game2;
-        public GraphicsDevice Device;
 
         /// <summary>
         /// フォーマット
@@ -31,12 +30,12 @@ namespace Game2.Managers
         /// </summary>
         public int Value;
 
-        public DigitalDisplay(Game2 game2, GraphicsDevice device)
+        public DigitalDisplay(Game2 game2)
         {
             Game2 = game2;
             Value = 0;
             Format = "{0:0000000000}";
-            Initialize(device);
+            Initialize();
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -46,12 +45,10 @@ namespace Game2.Managers
 
         public virtual void Update(GameTime gameTime)
         {
-
         }
 
-        public virtual void Initialize(GraphicsDevice device)
+        public virtual void Initialize()
         {
-            Device = device;
         }
     }
 }

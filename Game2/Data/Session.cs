@@ -1,5 +1,7 @@
 using Game2.GameObjects;
+using Game2.Managers;
 using Game2.Utilities;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -58,6 +60,31 @@ namespace Game2
         public int HighScore = 0;
 
         /// <summary>
+        /// スコア
+        /// </summary>
+        public int Score = 0;
+
+        /// <summary>
+        /// 残機
+        /// </summary>
+        public int Remain = 2;
+
+        /// <summary>
+        /// エクステンド回数
+        /// </summary>
+        private int _extendCount = 0;
+
+        /// <summary>
+        /// 前回エクステンドスコア
+        /// </summary>
+        private int _lastExtendScore;
+
+        /// <summary>
+        /// エクステンドスコア
+        /// </summary>
+        private readonly int[] _extendScores = new[] { 10000, 20000, 30000, 50000 };
+
+        /// <summary>
         /// ライフ
         /// </summary>
         public int Life = Player.MaxLife;
@@ -86,6 +113,11 @@ namespace Game2
         /// ゲーム開始時のドア番号
         /// </summary>
         public static readonly int StartDoorNo = 3;
+
+        /// <summary>
+        /// アイテム管理
+        /// </summary>
+        public Inventory Inventory = new Inventory();
 
         /// <summary>
         /// Session
@@ -210,18 +242,6 @@ namespace Game2
         }
 
         /// <summary>
-        /// ハイスコアを更新する
-        /// </summary>
-        /// <param name="value">スコア</param>
-        public void UpdateHighScore(int value)
-        {
-            if (value > HighScore)
-            {
-                HighScore = value;
-            }
-        }
-
-        /// <summary>
         /// 宝箱の状態を保存する
         /// </summary>
         /// <param name="tb">TreasureBox</param>
@@ -299,6 +319,55 @@ namespace Game2
         public long CalcTime()
         {
             return _stopwatch.ElapsedMilliseconds;
+        }
+
+        /// <summary>
+        /// スコアを加算する
+        /// スコアがハイスコアを上回った場合は更新する
+        /// </summary>
+        /// <param name="score">スコア</param>
+        public void AddScore(int score, bool doubleScoreItem)
+        {
+            int s = score * (doubleScoreItem ? 2 : 1);
+            Score += s;
+            _lastExtendScore += s;
+
+            if (Score > HighScore)
+            {
+                HighScore = Score;
+            }
+
+            while (true)
+            {
+                if (_extendScores[_extendCount] <= _lastExtendScore)
+                {
+                    _lastExtendScore -= _extendScores[_extendCount];
+                    _extendCount = MathHelper.Clamp(_extendCount + 1, 0, _extendScores.Length - 1);
+                    Remain = MathHelper.Clamp(Remain + 1, 0, 10);
+                    continue;
+                }
+
+                break;
+            }
+        }
+
+        /// <summary>
+        /// ミスが発生
+        /// </summary>
+        /// <returns>ゲームオーバーか</returns>
+        public bool Miss()
+        {
+            Remain--;
+            return Remain < 0;
+        }
+
+        public void GameoverRetryToStart()
+        {
+            Score = 0;
+            Remain = 2;
+            _lastExtendScore = 0;
+            _extendCount = 0;
+            Inventory.SetAllFlags(InfiniteItem);
         }
     }
 }

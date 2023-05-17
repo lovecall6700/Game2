@@ -17,6 +17,11 @@ namespace Game2.Screens
         /// </summary>
         private bool _saveOnce = false;
 
+        /// <summary>
+        /// スコアを画面に表示するか
+        /// </summary>
+        private readonly ScoreDisplay _scoreDisp;
+
         public GameoverScreen(Game2 game2) : base(game2)
         {
             _item = new MenuItem(new Vector2(45, 70), "GAME OVER", 2f)
@@ -29,11 +34,13 @@ namespace Game2.Screens
             AddMenuItem(128, 200, "End", 1.5f);
             Game2.MusicPlayer.PlaySong($"Songs/BGM9");
             WaitTimer.Start(45);
+            _scoreDisp = new ScoreDisplay(game2);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             _item.Draw(spriteBatch, Game2.Font);
+            _scoreDisp.Draw(spriteBatch);
 
             if (WaitTimer.Running)
             {

@@ -64,7 +64,7 @@ namespace Game2.Screens
 
         public virtual void AddSecondMsg()
         {
-            int sc = Game2.GetScore();
+            int sc = Game2.Session.Score;
             int hs = Game2.Session.HighScore;
             string score = $"SCORE:{sc}";
             SecondMsg = new MenuItem(new Vector2(128, 200) - (GetMsgSize(score, 0.5f) / 2), score, 0.5f)

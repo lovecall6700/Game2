@@ -26,8 +26,8 @@ namespace Game2.Screens
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            _item.Draw(spriteBatch, Game2.Font);
             base.Draw(gameTime, spriteBatch);
+            _item.Draw(spriteBatch, Game2.Font);
         }
 
         public override void SelectMenu()

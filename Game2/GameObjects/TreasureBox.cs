@@ -23,7 +23,7 @@ namespace Game2.GameObjects
         public ObjectVisibility Visibility;
 
         /// <summary>
-        /// 得点
+        /// スコア
         /// </summary>
         public int Score;
 
@@ -49,7 +49,7 @@ namespace Game2.GameObjects
         /// <param name="x">x</param>
         /// <param name="y">y</param>
         /// <param name="hidden">隠し宝箱</param>
-        /// <param name="score">得点</param>
+        /// <param name="score">スコア</param>
         /// <param name="dummy">隠し宝箱のダミーテクスチャ名</param>
         public TreasureBox(Game2 game2, float x, float y, bool hidden, int score, string dummy, int stageNo, int treasureBoxNo) : base(game2, x, y)
         {

@@ -20,6 +20,11 @@ namespace Game2.Screens
         /// </summary>
         private readonly Timer _storyTimer = new Timer();
 
+        /// <summary>
+        /// スコアを画面に表示するか
+        /// </summary>
+        private readonly HighScoreDisplay _scoreDisp;
+
         public TitleScreen(Game2 game2) : base(game2)
         {
             AddMenuItem(128, 140, "Start", 1.2f);
@@ -29,12 +34,14 @@ namespace Game2.Screens
             Game2.MusicPlayer.PlaySong($"Songs/BGM1");
             _titleImg = Game2.Textures.GetTexture("Title");
             _storyTimer.Start(240);
+            _scoreDisp = new HighScoreDisplay(game2);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, spriteBatch);
             spriteBatch.Draw(Game2.Images, Vector2.Zero, _titleImg, Color.White);
+            _scoreDisp.Draw(spriteBatch);
         }
 
         public override void Update(GameTime gameTime)

@@ -14,11 +14,9 @@ namespace Game2.Managers
         private bool _shoes = false;
         private bool _tripleShot = false;
         private bool _highJump = false;
-        private readonly Game2 _game2;
 
-        public Inventory(Game2 game2)
+        public Inventory()
         {
-            _game2 = game2;
         }
 
         public void SetItem(string name, bool flag)
@@ -117,46 +115,17 @@ namespace Game2.Managers
             return _highJump;
         }
 
-        private void FalseAllItems()
+        public void SetAllFlags(bool flag)
         {
-            _doubleScore = false;
-            _finder = false;
-            _shield = false;
-            _time = false;
-            _light = false;
-            _sword = false;
-            _shoes = false;
-            _tripleShot = false;
-            _highJump = false;
-
-            //裏技
-            if (_game2.Session.InfiniteItem)
-            {
-                _doubleScore = true;
-                _finder = true;
-                _shield = true;
-                _time = true;
-                _light = true;
-                _sword = true;
-                _shoes = true;
-                _tripleShot = true;
-                _highJump = true;
-            }
-        }
-
-        public void GameoverRetryToStart()
-        {
-            FalseAllItems();
-        }
-
-        public void TitleToInitialStart()
-        {
-            FalseAllItems();
-        }
-
-        public void TitleToLoadStart()
-        {
-            FalseAllItems();
+            _doubleScore = flag;
+            _finder = flag;
+            _shield = flag;
+            _time = flag;
+            _light = flag;
+            _sword = flag;
+            _shoes = flag;
+            _tripleShot = flag;
+            _highJump = flag;
         }
     }
 }

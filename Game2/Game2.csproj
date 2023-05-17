@@ -99,6 +99,7 @@
     <Compile Include="Managers\RemainDisplay.cs" />
     <Compile Include="Managers\Scheduler.cs" />
     <Compile Include="Managers\Schedules.cs" />
+    <Compile Include="Managers\HighScoreDisplay.cs" />
     <Compile Include="Managers\ScoreDisplay.cs" />
     <Compile Include="Managers\Textures.cs" />
     <Compile Include="Managers\TimeLimitDisplay.cs" />

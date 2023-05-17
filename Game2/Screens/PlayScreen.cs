@@ -39,6 +39,10 @@ namespace Game2.Screens
         /// 非接触の背面オブジェクト
         /// </summary>
         private readonly List<GameObject> _backObjs = new List<GameObject>();
+
+        /// <summary>
+        /// 非接触の背面オブジェクト(近接)
+        /// </summary>
         private readonly List<GameObject> _nearBackObjs = new List<GameObject>();
 
         /// <summary>
@@ -131,13 +135,52 @@ namespace Game2.Screens
         /// </summary>
         private EnemyGenerator _enemyGenerator;
 
+        /// <summary>
+        /// 隠し扉発見スコア
+        /// </summary>
+        public static readonly int FindBonus = 1000;
+
+        /// <summary>
+        /// ライフ表示
+        /// </summary>
+        private readonly LifeDisplay _lifeDisp;
+
+        /// <summary>
+        /// 残機表示
+        /// </summary>
+        private readonly RemainDisplay _remainDisp;
+
+        /// <summary>
+        /// 制限時間表示
+        /// </summary>
+        private readonly TimeLimitDisplay _timeLimitDisp;
+
+        /// <summary>
+        /// 制限時間タイマー
+        /// </summary>
+        public Timer Timer = new Timer();
+
+        /// <summary>
+        /// 低速時タイマー制御
+        /// </summary>
+        private bool _slow = false;
+
+        /// <summary>
+        /// スコア表示
+        /// </summary>
+        private readonly ScoreDisplay _scoreDisp;
+
         public PlayScreen(Game2 game2) : base(game2)
         {
+            _lifeDisp = new LifeDisplay(game2);
+            _remainDisp = new RemainDisplay(game2);
+            _timeLimitDisp = new TimeLimitDisplay(game2);
+            _scoreDisp = new ScoreDisplay(game2);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!GetDarkZone() || Game2.Inventory.HasLightItem())
+            if (!GetDarkZone() || Game2.Session.Inventory.HasLightItem())
             {
                 foreach (GameObject item in _nearBackObjs)
                 {
@@ -160,7 +203,7 @@ namespace Game2.Screens
                 item.Draw(gameTime, spriteBatch);
             }
 
-            if (!GetDarkZone() || Game2.Inventory.HasLightItem())
+            if (!GetDarkZone() || Game2.Session.Inventory.HasLightItem())
             {
                 foreach (GameObject item in _nearFrontObjs)
                 {
@@ -172,13 +215,18 @@ namespace Game2.Screens
             {
                 item.Draw(gameTime, spriteBatch);
             }
+
+            _lifeDisp.Draw(spriteBatch);
+            _remainDisp.Draw(spriteBatch);
+            _timeLimitDisp.Draw(spriteBatch);
+            _scoreDisp.Draw(spriteBatch);
         }
 
         /// <summary>
         /// 描画する背景色を返す
         /// </summary>
         /// <returns>背景色</returns>
-        public Color GetBackColor()
+        public override Color GetBackColor()
         {
             if (_backColors[0] == _backColors[1])
             {
@@ -232,6 +280,8 @@ namespace Game2.Screens
             {
                 item.Restart();
             }
+
+            Timer.Start(Game2.Session.TimeLimit);
         }
 
         /// <summary>
@@ -487,10 +537,41 @@ namespace Game2.Screens
             FocusCamera2D();
             Game2.MusicPlayer.PlaySong(_songName);
             _enemyGenerator.BossFlag = false;
+            Timer.Start(Game2.Session.TimeLimit);
         }
 
         public override void Update(GameTime gameTime)
         {
+            _lifeDisp.Update(gameTime);
+            _remainDisp.Update(gameTime);
+            _scoreDisp.Update(gameTime);
+
+            //タイマー制御
+            _slow = !_slow;
+
+            if (Game2.Session.Inventory.HasTimeItem() && _slow)
+            {
+                //タイマーアイテム所持の場合、2フレームに一回だけタイマーの更新を行う
+            }
+            else
+            {
+                _ = Timer.Update();
+            }
+
+            if (!Timer.Running)
+            {
+                if (Player.ObjectStatus == PhysicsObjectStatus.Normal)
+                {
+                    EffectObjs.Add(new PopupMessage(Game2, Player.Position.X, Player.Position.Y, "TIME OVER"));
+                    Player.ObjectStatus = PhysicsObjectStatus.Dead;
+                    Game2.Session.Inventory.SetItem("Shoes", false);
+                    Game2.Session.Inventory.SetItem("Time", false);
+                }
+            }
+
+            _timeLimitDisp.Update(gameTime);
+            _timeLimitDisp.Value = Timer.GetSecond();
+
             foreach (GameObject item in ItemObjs)
             {
                 item.Update(gameTime);
@@ -569,9 +650,19 @@ namespace Game2.Screens
         }
 
         /// <summary>
+        /// キャラクターが上下方向の画面外に出たか確認する
+        /// </summary>
+        /// <param name="y">キャラクターのY座標</param>
+        /// <returns>画面外に出たか</returns>
+        public bool IsOutOfMapY(float y)
+        {
+            return y > OutOfMapY || y < -100;
+        }
+
+        /// <summary>
         /// カメラの位置を更新する
         /// </summary>
-        public void FocusCamera2D()
+        public override void FocusCamera2D()
         {
             if (StageDir == StageDirType.Horizontal)
             {

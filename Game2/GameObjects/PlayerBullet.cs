@@ -68,7 +68,7 @@ namespace Game2.GameObjects
 
                     ObjectStatus = PhysicsObjectStatus.Remove;
 
-                    if (Game2.Inventory.HasSwordItem())
+                    if (Game2.Session.Inventory.HasSwordItem())
                     {
                         o.Damage(255);
                     }

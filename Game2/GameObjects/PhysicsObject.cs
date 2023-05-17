@@ -238,7 +238,7 @@ namespace Game2.GameObjects
             Rectangle.Y = (int)(Position.Y + Velocity.Y);
             Position.Y = Rectangle.Y;
 
-            if (Game2.IsOutOfMapY(Position.Y) && UseOutOfMapY)
+            if (Game2.PlaySc.IsOutOfMapY(Position.Y) && UseOutOfMapY)
             {
                 OutOfMapY();
                 ObjectStatus = PhysicsObjectStatus.Remove;
@@ -305,7 +305,7 @@ namespace Game2.GameObjects
                 {
                     if (Position.Y <= o.Rectangle.Top - Height)
                     {
-                        if (ObjectKind == GameObjectKinds.Enemy || (ObjectKind == GameObjectKinds.Player && Game2.Inventory.HasShoesItem()))
+                        if (ObjectKind == GameObjectKinds.Enemy || (ObjectKind == GameObjectKinds.Player && Game2.Session.Inventory.HasShoesItem()))
                         {
                             //素通りさせる
                         }
@@ -349,7 +349,7 @@ namespace Game2.GameObjects
             //移動を確定する
             Position.Y = Rectangle.Y;
 
-            if (Game2.IsOutOfMapY(Position.Y) && UseOutOfMapY)
+            if (Game2.PlaySc.IsOutOfMapY(Position.Y) && UseOutOfMapY)
             {
                 OutOfMapY();
                 ObjectStatus = PhysicsObjectStatus.Remove;

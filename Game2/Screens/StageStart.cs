@@ -19,6 +19,11 @@ namespace Game2.Screens
 
         private bool _keyFlag = true;
 
+        /// <summary>
+        /// スコアを画面に表示するか
+        /// </summary>
+        private readonly HighScoreDisplay _scoreDisp;
+
         public StageStart(Game2 game2) : base(game2)
         {
             Timer.Start(126);
@@ -30,52 +35,53 @@ namespace Game2.Screens
             Item = new MenuItem(new Vector2(128, 100) - (v / 2), msg, 1f);
 
             //アイテムの所有を確認する
-            if (Game2.Inventory.HasDoubleScoreItem())
+            if (Game2.Session.Inventory.HasDoubleScoreItem())
             {
                 _icons.Add(Game2.Textures.GetTexture($"ItemDoubleScore"));
             }
 
-            if (Game2.Inventory.HasFinderItem())
+            if (Game2.Session.Inventory.HasFinderItem())
             {
                 _icons.Add(Game2.Textures.GetTexture($"ItemFinder"));
             }
 
-            if (Game2.Inventory.HasShieldItem())
+            if (Game2.Session.Inventory.HasShieldItem())
             {
                 _icons.Add(Game2.Textures.GetTexture($"ItemShield"));
             }
 
-            if (Game2.Inventory.HasTimeItem())
+            if (Game2.Session.Inventory.HasTimeItem())
             {
                 _icons.Add(Game2.Textures.GetTexture($"ItemTime"));
             }
 
-            if (Game2.Inventory.HasLightItem())
+            if (Game2.Session.Inventory.HasLightItem())
             {
                 _icons.Add(Game2.Textures.GetTexture($"ItemLight"));
             }
 
-            if (Game2.Inventory.HasSwordItem())
+            if (Game2.Session.Inventory.HasSwordItem())
             {
                 _icons.Add(Game2.Textures.GetTexture($"ItemSword"));
             }
 
-            if (Game2.Inventory.HasShoesItem())
+            if (Game2.Session.Inventory.HasShoesItem())
             {
                 _icons.Add(Game2.Textures.GetTexture($"ItemShoes"));
             }
 
-            if (Game2.Inventory.HasTripleShotItem())
+            if (Game2.Session.Inventory.HasTripleShotItem())
             {
                 _icons.Add(Game2.Textures.GetTexture($"ItemTripleShot"));
             }
 
-            if (Game2.Inventory.HasHighJumpItem())
+            if (Game2.Session.Inventory.HasHighJumpItem())
             {
                 _icons.Add(Game2.Textures.GetTexture($"ItemHighJump"));
             }
 
             Game2.MusicPlayer.PlaySong($"Songs/BGM4");
+            _scoreDisp = new HighScoreDisplay(game2);
         }
 
         public override void Timeup()
@@ -121,6 +127,8 @@ namespace Game2.Screens
             {
                 spriteBatch.Draw(Game2.Images, new Vector2(20 + (20 * i), 150), _icons[i], Color.White);
             }
+
+            _scoreDisp.Draw(spriteBatch);
         }
     }
 }

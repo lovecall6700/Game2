@@ -1,4 +1,5 @@
 using Game2.Managers;
+using Game2.Screens;
 using Game2.Utilities;
 using Microsoft.Xna.Framework;
 
@@ -188,7 +189,7 @@ namespace Game2.GameObjects
                         Game2.MusicPlayer.PlaySE("SoundEffects/PlayerShot");
                         _bulletTimer.Start(6);
 
-                        if (Game2.Inventory.HasTripleShotItem())
+                        if (Game2.Session.Inventory.HasTripleShotItem())
                         {
                             Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X, Position.Y, Direction));
                             Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X, Position.Y + 16, Direction));
@@ -200,7 +201,7 @@ namespace Game2.GameObjects
                         Game2.MusicPlayer.PlaySE("SoundEffects/PlayerShot");
                         _bulletTimer.Start(6);
 
-                        if (Game2.Inventory.HasTripleShotItem())
+                        if (Game2.Session.Inventory.HasTripleShotItem())
                         {
                             Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X + 8, Position.Y, Direction));
                             Game2.PlaySc.PhysicsObjs.Add(new PlayerBullet(Game2, Position.X + 8, Position.Y + 16, Direction));
@@ -249,7 +250,7 @@ namespace Game2.GameObjects
 
         public override void Jump()
         {
-            Gravity = Game2.Inventory.HasHighJumpItem() ? 0.5f : 1;
+            Gravity = Game2.Session.Inventory.HasHighJumpItem() ? 0.5f : 1;
 
             base.Jump();
         }
@@ -258,9 +259,9 @@ namespace Game2.GameObjects
         {
             StandUp();
             base.Died();
-            Game2.Inventory.SetItem("TripleShot", false);
-            Game2.Inventory.SetItem("Sword", false);
-            Game2.Inventory.SetItem("Finder", false);
+            Game2.Session.Inventory.SetItem("TripleShot", false);
+            Game2.Session.Inventory.SetItem("Sword", false);
+            Game2.Session.Inventory.SetItem("Finder", false);
         }
 
         private void SitDown()
@@ -294,7 +295,7 @@ namespace Game2.GameObjects
 
         private string GetDblScoreSymbol()
         {
-            return Game2.Inventory.HasDoubleScoreItem() ? "2x" : "";
+            return Game2.Session.Inventory.HasDoubleScoreItem() ? "2x" : "";
         }
 
         private void CollisionWithItem(GameObject item)
@@ -308,16 +309,16 @@ namespace Game2.GameObjects
                     if (i.Visibility == ObjectVisibility.Normal)
                     {
                         i.Visibility = ObjectVisibility.Disable;
-                        Game2.Inventory.SetItem(i.Name, true);
+                        Game2.Session.Inventory.SetItem(i.Name, true);
                         Game2.Session.AddItem(i);
                         Game2.MusicPlayer.PlaySE("SoundEffects/GetItem");
                         Life = MaxLife;
                     }
-                    else if (i.Visibility == ObjectVisibility.Hidden && (_sitDown || Game2.Inventory.HasFinderItem()))
+                    else if (i.Visibility == ObjectVisibility.Hidden && (_sitDown || Game2.Session.Inventory.HasFinderItem()))
                     {
                         i.Visibility = ObjectVisibility.Normal;
-                        int s = Game2.Session.StageNo * Game2.FindBonus;
-                        Game2.AddScore(s);
+                        int s = Game2.Session.StageNo * PlayScreen.FindBonus;
+                        Game2.Session.AddScore(s, Game2.Session.Inventory.HasDoubleScoreItem());
                         Game2.PlaySc.EffectObjs.Add(new PopupMessage(Game2, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
                         Game2.Session.AddItem(i);
                         Game2.MusicPlayer.PlaySE("SoundEffects/Find");
@@ -343,11 +344,11 @@ namespace Game2.GameObjects
                         Game2.Scheduler.SetSchedule(Schedules.EnterDoor);
 
                     }
-                    else if (d.Visibility == ObjectVisibility.Hidden && (_sitDown || Game2.Inventory.HasFinderItem()))
+                    else if (d.Visibility == ObjectVisibility.Hidden && (_sitDown || Game2.Session.Inventory.HasFinderItem()))
                     {
                         d.Visibility = ObjectVisibility.Normal;
-                        int s = Game2.Session.StageNo * Game2.FindBonus;
-                        Game2.AddScore(s);
+                        int s = Game2.Session.StageNo * PlayScreen.FindBonus;
+                        Game2.Session.AddScore(s, Game2.Session.Inventory.HasDoubleScoreItem());
                         Game2.PlaySc.EffectObjs.Add(new PopupMessage(Game2, Position.X, Position.Y, GetDblScoreSymbol() + s.ToString()));
                         Game2.Session.AddDoor(d);
                         Game2.MusicPlayer.PlaySE("SoundEffects/Find");
@@ -362,13 +363,13 @@ namespace Game2.GameObjects
                     if (t.Visibility == ObjectVisibility.Normal)
                     {
                         t.Visibility = ObjectVisibility.Open;
-                        Game2.AddScore(t.Score);
+                        Game2.Session.AddScore(t.Score, Game2.Session.Inventory.HasDoubleScoreItem());
                         Game2.PlaySc.EffectObjs.Add(new PopupMessage(Game2, Position.X, Position.Y, GetDblScoreSymbol() + t.Score.ToString()));
                         Game2.Session.AddTreasureBox(t);
                         Game2.MusicPlayer.PlaySE("SoundEffects/GetItem");
                         Life = MaxLife;
                     }
-                    else if (t.Visibility == ObjectVisibility.Hidden && (_sitDown || Game2.Inventory.HasFinderItem()))
+                    else if (t.Visibility == ObjectVisibility.Hidden && (_sitDown || Game2.Session.Inventory.HasFinderItem()))
                     {
                         t.Visibility = ObjectVisibility.Normal;
                         Game2.Session.AddTreasureBox(t);
@@ -389,8 +390,8 @@ namespace Game2.GameObjects
             if (ObjectStatus != PhysicsObjectStatus.Dead)
             {
                 //死んでいないのに画面外に出たなら落下死
-                Game2.Inventory.SetItem("Shield", false);
-                Game2.Inventory.SetItem("HighJump", false);
+                Game2.Session.Inventory.SetItem("Shield", false);
+                Game2.Session.Inventory.SetItem("HighJump", false);
             }
         }
 
@@ -399,8 +400,8 @@ namespace Game2.GameObjects
             if (!DamageTimer.Running)
             {
                 base.DecLife(damage);
-                Game2.Inventory.SetItem("DoubleScore", false);
-                Game2.Inventory.SetItem("Sword", false);
+                Game2.Session.Inventory.SetItem("DoubleScore", false);
+                Game2.Session.Inventory.SetItem("Sword", false);
             }
         }
 

@@ -145,7 +145,6 @@ namespace Game2.Managers
         private void ExecTitle()
         {
             _game2.Session = new Session();
-            _game2.HideHiscore = false;
             _game2.Screen = new TitleScreen(_game2);
         }
 
@@ -168,9 +167,6 @@ namespace Game2.Managers
             };
             _game2.Session.LoadStage();
             _game2.Session.Life = Player.MaxLife;
-            _game2.RemainDisp.TitleContinue();
-            _game2.ScoreDisp.TitleToLoadStart();
-            _game2.Inventory.TitleToLoadStart();
             _game2.Screen = new StageStart(_game2);
             _game2.PlaySc = new PlayScreen(_game2);
             _game2.PlaySc.LoadStage();
@@ -181,15 +177,11 @@ namespace Game2.Managers
         /// </summary>
         private void ExecInitialStart()
         {
-            _game2.HideHiscore = false;
             _game2.Session = new Session();
             _game2.Session.StartTime();
             _game2.Session.StageNo = Session.StartStageNo;
             _game2.Session.DoorNo = Session.StartDoorNo;
             _game2.Session.Life = Player.MaxLife;
-            _game2.RemainDisp.TitleToInitialStart();
-            _game2.ScoreDisp.TitleToInitialStart();
-            _game2.Inventory.TitleToInitialStart();
             _game2.Screen = new StageStart(_game2);
             _game2.PlaySc = new PlayScreen(_game2);
             _game2.PlaySc.LoadStage();
@@ -202,7 +194,6 @@ namespace Game2.Managers
         {
             _game2.Screen = _game2.PlaySc;
             _game2.PlaySc.GameStart();
-            _game2.TimeLimitDisp.Timer.Start(_game2.Session.TimeLimit);
         }
 
         /// <summary>
@@ -210,14 +201,13 @@ namespace Game2.Managers
         /// </summary>
         private void ExecRestartOrGameover()
         {
-            if (_game2.RemainDisp.Miss())
+            if (_game2.Session.Miss())
             {
                 _game2.SaveHighScore();
                 _game2.Screen = new GameoverScreen(_game2);
             }
             else
             {
-                _game2.TimeLimitDisp.Timer.Start(_game2.Session.TimeLimit);
                 _game2.Session.Life = Player.MaxLife;
                 _game2.PlaySc.Restart();
                 _game2.Screen = new StageStart(_game2);
@@ -229,8 +219,6 @@ namespace Game2.Managers
         /// </summary>
         private void ExecEnding()
         {
-            _game2.HideHiscore = true;
-
             if (_game2.Session == null)
             {
                 _game2.Session = new Session
@@ -269,9 +257,7 @@ namespace Game2.Managers
         /// </summary>
         private void ExecRetry()
         {
-            _game2.RemainDisp.GameoverRetry();
-            _game2.ScoreDisp.GameoverRetryToStart();
-            _game2.Inventory.GameoverRetryToStart();
+            _game2.Session.GameoverRetryToStart();
             _game2.PlaySc.Restart();
             _game2.Screen = new StageStart(_game2);
         }
@@ -305,7 +291,6 @@ namespace Game2.Managers
         /// </summary>
         private void ExecStory()
         {
-            _game2.HideHiscore = true;
             _game2.Screen = new StoryScreen(_game2);
         }
     }

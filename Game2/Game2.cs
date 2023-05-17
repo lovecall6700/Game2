@@ -21,23 +21,6 @@ namespace Game2
         private readonly Timer _pauseTimer = new Timer();
 
         //画面構成物
-
-        /// <summary>
-        /// 得点を画面に表示するか
-        /// </summary>
-        public ScoreDisplay ScoreDisp;
-
-        /// <summary>
-        /// 残機を画面に表示するか
-        /// </summary>
-        public RemainDisplay RemainDisp;
-
-        /// <summary>
-        /// 制限時間を画面に表示するか
-        /// </summary>
-        public TimeLimitDisplay TimeLimitDisp;
-
-        private LifeDisplay _lifeDisp;
         private PauseDisplay _pauseDisp;
 
         //画像セット
@@ -47,11 +30,6 @@ namespace Game2
         /// 現在描画する画面
         /// </summary>
         public Screen Screen;
-
-        /// <summary>
-        /// ハイスコア表示を隠すか
-        /// </summary>
-        public bool HideHiscore = false;
 
         /// <summary>
         /// アプリがフォーカスされているか
@@ -67,11 +45,6 @@ namespace Game2
         /// 状態変更のスケジュール管理
         /// </summary>
         public Scheduler Scheduler;
-
-        /// <summary>
-        /// アイテム管理
-        /// </summary>
-        public Inventory Inventory;
 
         /// <summary>
         /// 音楽プレーヤー
@@ -108,11 +81,6 @@ namespace Game2
         public GraphicsDeviceManager Graphics;
         public SpriteBatch SpriteBatch;
         private Rectangle _oldLocation;
-
-        /// <summary>
-        /// 隠し扉発見得点
-        /// </summary>
-        public static readonly int FindBonus = 1000;
 
         /// <summary>
         /// ゲーム画面の幅
@@ -172,14 +140,7 @@ namespace Game2
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Images = Content.Load<Texture2D>("Images");
             Font = Content.Load<SpriteFont>("Fonts");
-            TimeLimitDisp = new TimeLimitDisplay(_game2, GraphicsDevice);
-            ScoreDisp = new ScoreDisplay(_game2, GraphicsDevice);
-            RemainDisp = new RemainDisplay(_game2, GraphicsDevice);
-            _pauseDisp = new PauseDisplay(_game2, GraphicsDevice);
-            _lifeDisp = new LifeDisplay(_game2, GraphicsDevice);
-
-            //ゲーム関連
-            Inventory = new Inventory(_game2);
+            _pauseDisp = new PauseDisplay(_game2);
 
             //音は最後
             MusicPlayer = new MusicPlayer(Content);
@@ -212,9 +173,9 @@ namespace Game2
                 Camera2D.Initialize(GraphicsDevice, Width, Height);
                 _initCamera2D = false;
 
-                if (Scheduler.Playing && PlaySc != null && _paused)
+                if (Screen != null && _paused)
                 {
-                    PlaySc.FocusCamera2D();
+                    Screen.FocusCamera2D();
                 }
             }
 
@@ -276,53 +237,8 @@ namespace Game2
                 return;
             }
 
-            if (Scheduler.Playing)
-            {
-                ScoreDisp.Update(gameTime);
-                RemainDisp.Update(gameTime);
-                TimeLimitDisp.Update(gameTime);
-                _lifeDisp.Update(gameTime);
-            }
-
             Screen.Update(gameTime);
             base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// キャラクターが上下方向の画面外に出たか確認する
-        /// </summary>
-        /// <param name="y">キャラクターのY座標</param>
-        /// <returns>画面外に出たか</returns>
-        public bool IsOutOfMapY(float y)
-        {
-            return y > PlaySc.OutOfMapY || y < -100;
-        }
-
-        /// <summary>
-        /// 得点を加算する
-        /// </summary>
-        /// <param name="score">得点</param>
-        public void AddScore(int score)
-        {
-            int s = score;
-
-            if (Inventory.HasDoubleScoreItem())
-            {
-                s *= 2;
-            }
-
-            ScoreDisp.AddScore(s);
-            RemainDisp.AddScore(s);
-            Session.UpdateHighScore(ScoreDisp.Value);
-        }
-
-        /// <summary>
-        /// 得点を返す
-        /// </summary>
-        /// <returns>得点</returns>
-        public int GetScore()
-        {
-            return ScoreDisp.Value;
         }
 
         /// <summary>
@@ -331,43 +247,16 @@ namespace Game2
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            if (Scheduler.Playing)
+            GraphicsDevice.Clear(Screen.GetBackColor());
+            SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
+            Screen.Draw(gameTime, SpriteBatch);
+
+            if (!_focused || _paused)
             {
-                //ゲーム描画
-                GraphicsDevice.Clear(PlaySc.GetBackColor());
-                SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-                PlaySc.Draw(gameTime, SpriteBatch);
-                TimeLimitDisp.Draw(SpriteBatch);
-                _lifeDisp.Draw(SpriteBatch);
-                RemainDisp.Draw(SpriteBatch);
-                ScoreDisp.Draw(SpriteBatch);
-
-                if (!_focused || _paused)
-                {
-                    _pauseDisp.Draw(SpriteBatch);
-                }
-
-                SpriteBatch.End();
-            }
-            else
-            {
-                GraphicsDevice.Clear(Color.Black);
-                SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2D.Transform);
-                Screen.Draw(gameTime, SpriteBatch);
-
-                if (!HideHiscore)
-                {
-                    ScoreDisp.DrawHighScore(SpriteBatch);
-                }
-
-                if (!_focused || _paused)
-                {
-                    _pauseDisp.Draw(SpriteBatch);
-                }
-
-                SpriteBatch.End();
+                _pauseDisp.Draw(SpriteBatch);
             }
 
+            SpriteBatch.End();
             base.Draw(gameTime);
         }
 

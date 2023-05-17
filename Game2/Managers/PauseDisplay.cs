@@ -12,9 +12,8 @@ namespace Game2.Managers
         private readonly Timer _blinkTimer = new Timer();
         private bool _blink = true;
 
-        public PauseDisplay(Game2 game2, GraphicsDevice device) : base(game2, device)
+        public PauseDisplay(Game2 game2) : base(game2)
         {
-            Initialize(device);
             _blinkTimer.Start(15);
         }
 
@@ -37,9 +36,9 @@ namespace Game2.Managers
             }
         }
 
-        public override void Initialize(GraphicsDevice device)
+        public override void Initialize()
         {
-            base.Initialize(device);
+            base.Initialize();
             Position = new Vector2(128, 140) - (Utility.GetMsgSize(Game2.Font, "PAUSE", 1f) / 2);
             Format = "PAUSE";
         }
