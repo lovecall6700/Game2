@@ -203,7 +203,7 @@ namespace Game2.Managers
         {
             if (_game2.Session.Miss())
             {
-                _game2.SaveHighScore();
+                _game2.Session.SaveHighScore();
                 _game2.Screen = new GameoverScreen(_game2);
             }
             else
@@ -228,7 +228,7 @@ namespace Game2.Managers
             }
 
             _game2.Session.EndTime();
-            _game2.SaveHighScore();
+            _game2.Session.SaveHighScore();
             _game2.Screen = new EndingScreen(_game2);
         }
 

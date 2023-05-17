@@ -334,11 +334,6 @@ namespace Game2
             }
         }
 
-        public void SaveHighScore()
-        {
-            Session?.SaveHighScore();
-        }
-
         private void SetFullscreen()
         {
             Graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
