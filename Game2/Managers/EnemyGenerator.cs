@@ -43,7 +43,7 @@ namespace Game2.Managers
             _game2 = game2;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             //画面に敵が多すぎる場合は敵を出さない
             if (_game2.PlaySc.PhysicsObjs.Count > 30)

@@ -142,7 +142,7 @@ namespace Game2.GameObjects
             ObjectStatus = PhysicsObjectStatus.Normal;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
         }
 
@@ -150,8 +150,7 @@ namespace Game2.GameObjects
         /// ハシゴの処理
         /// ハシゴの上にいないなら通常のJumpAndGravity()を呼ぶ
         /// </summary>
-        /// <param name="gameTime">GameTime</param>
-        public void Ladder(GameTime gameTime)
+        public void Ladder()
         {
             OnLadder = false;
             GameObject ladder = null;
@@ -174,7 +173,7 @@ namespace Game2.GameObjects
             //ハシゴの上にいないなら普通に重力を処理
             if (!OnLadder)
             {
-                _ = JumpAndGravity(gameTime);
+                _ = JumpAndGravity();
                 return;
             }
 
@@ -248,9 +247,8 @@ namespace Game2.GameObjects
         /// <summary>
         /// 上下方向の物理制御をおこない、何かに接触したかを返す
         /// </summary>
-        /// <param name="gameTime">GameTime</param>
         /// <returns>何かに接触したか</returns>
-        public virtual bool JumpAndGravity(GameTime gameTime)
+        public virtual bool JumpAndGravity()
         {
             //とりあえず落ちてみる
             Velocity.Y += Gravity;
@@ -361,9 +359,8 @@ namespace Game2.GameObjects
         /// <summary>
         /// 左右方向の物理制御をおこない、何かに接触したかを調べる
         /// </summary>
-        /// <param name="gameTime">GameTime</param>
         /// <returns>接触の有無</returns>
-        public virtual bool MoveLeftOrRight(GameTime gameTime)
+        public virtual bool MoveLeftOrRight()
         {
             bool ret = false;
             Velocity.X += ControlDirectionX * (GroundBlock != null ? AccelerationX : AirAccelerationX);
@@ -584,8 +581,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// ダメージ状態から回復する
         /// </summary>
-        /// <param name="gameTime">GameTime</param>
-        public void RecoveryDamage(GameTime gameTime)
+        public void RecoveryDamage()
         {
             if (ObjectStatus == PhysicsObjectStatus.Damage && !DamageTimer.Update())
             {

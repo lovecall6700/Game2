@@ -20,10 +20,10 @@ namespace Game2.GameObjects
             ShotTime = 60;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             AttackPlayer();
-            RecoveryDamage(gameTime);
+            RecoveryDamage();
 
             if (ObjectStatus == PhysicsObjectStatus.Dead)
             {

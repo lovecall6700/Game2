@@ -12,7 +12,7 @@ namespace Game2.GameObjects
         {
         }
 
-        public override void FinallyUpdate(GameTime gameTime)
+        public override void FinallyUpdate()
         {
             if (GroundBlock != null)
             {

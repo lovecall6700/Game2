@@ -26,7 +26,7 @@ namespace Game2.GameObjects
             SetSize(16, 16);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (ObjectKind == GameObjectKinds.Disable)
             {
@@ -45,7 +45,7 @@ namespace Game2.GameObjects
                 }
             }
 
-            base.Update(gameTime);
+            base.Update();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

@@ -101,7 +101,7 @@ namespace Game2.GameObjects
             return $"{StageNo}-{DoorNo}";
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (Visibility == ObjectVisibility.Normal)
             {

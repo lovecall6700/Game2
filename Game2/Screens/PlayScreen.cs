@@ -574,14 +574,14 @@ namespace Game2.Screens
 
             foreach (GameObject item in ItemObjs)
             {
-                item.Update(gameTime);
+                item.Update();
             }
 
             int count = EffectObjs.Count - 1;
 
             for (int i = count; i >= 0; i--)
             {
-                EffectObjs[i].Update(gameTime);
+                EffectObjs[i].Update();
 
                 if (EffectObjs[i].ObjectStatus == PhysicsObjectStatus.Remove)
                 {
@@ -594,7 +594,7 @@ namespace Game2.Screens
 
             for (int i = count; i >= 0; i--)
             {
-                PhysicsObjs[i].Update(gameTime);
+                PhysicsObjs[i].Update();
 
                 if (PhysicsObjs[i].ObjectStatus == PhysicsObjectStatus.Remove)
                 {
@@ -607,10 +607,10 @@ namespace Game2.Screens
 
             for (int i = count; i >= 0; i--)
             {
-                NearMapObjs[i].Update(gameTime);
+                NearMapObjs[i].Update();
             }
 
-            _enemyGenerator.Update(gameTime);
+            _enemyGenerator.Update();
 
             FocusCamera2D();
             _ = _backColorSwitchTimer.Update();

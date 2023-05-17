@@ -41,14 +41,14 @@ namespace Game2.GameObjects
             Attack = 1;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (!_removeTimer.Update())
             {
                 ObjectStatus = PhysicsObjectStatus.Remove;
             }
 
-            if (MoveLeftOrRight(gameTime) | JumpAndGravity(gameTime))
+            if (MoveLeftOrRight() | JumpAndGravity())
             {
                 ObjectStatus = PhysicsObjectStatus.Remove;
             }

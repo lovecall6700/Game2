@@ -47,12 +47,12 @@ namespace Game2.GameObjects
             }
         }
 
-        public override bool JumpAndGravity(GameTime gameTime)
+        public override bool JumpAndGravity()
         {
             return false;
         }
 
-        public override bool MoveLeftOrRight(GameTime gameTime)
+        public override bool MoveLeftOrRight()
         {
             if (ID == 0)
             {

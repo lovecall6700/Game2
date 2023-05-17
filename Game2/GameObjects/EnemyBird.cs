@@ -23,7 +23,7 @@ namespace Game2.GameObjects
             _timer.Start(60);
         }
 
-        public override bool MoveLeftOrRight(GameTime gameTime)
+        public override bool MoveLeftOrRight()
         {
             Velocity.X += ControlDirectionX * AirAccelerationX;
             Velocity.X = MathHelper.Clamp(Velocity.X, -MaxSpeedX, MaxSpeedX);
@@ -32,7 +32,7 @@ namespace Game2.GameObjects
             return false;
         }
 
-        public override bool JumpAndGravity(GameTime gameTime)
+        public override bool JumpAndGravity()
         {
             if (!_timer.Update() && !_exit)
             {

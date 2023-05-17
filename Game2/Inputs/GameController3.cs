@@ -1,5 +1,4 @@
 using Game2.Utilities;
-using Microsoft.Xna.Framework;
 
 namespace Game2.Inputs
 {
@@ -26,7 +25,7 @@ namespace Game2.Inputs
         /// </summary>
         public int ClickTime = 2;
 
-        public void Update(GameTime gameTime)
+        public override void Update()
         {
             base.Update();
             _ = _timer.Update();

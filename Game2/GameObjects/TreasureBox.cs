@@ -79,7 +79,7 @@ namespace Game2.GameObjects
             return $"{_stageNo}-{_treasureBoxNo}";
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             Img = Visibility == ObjectVisibility.Hidden ? _dummyImg : Visibility == ObjectVisibility.Open ? _openImg : _closeImg;
         }

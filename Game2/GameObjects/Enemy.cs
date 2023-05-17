@@ -55,10 +55,10 @@ namespace Game2.GameObjects
             _shotTimer.Start(ShotTime);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
-            UpdateLifeTime(gameTime);
-            RecoveryDamage(gameTime);
+            UpdateLifeTime();
+            RecoveryDamage();
 
             if (ObjectStatus == PhysicsObjectStatus.Dead)
             {
@@ -66,15 +66,15 @@ namespace Game2.GameObjects
                 return;
             }
 
-            if (MoveLeftOrRight(gameTime))
+            if (MoveLeftOrRight())
             {
                 TouchWithWall();
             }
 
-            _ = JumpAndGravity(gameTime);
+            _ = JumpAndGravity();
             AttackPlayer();
-            UpdateShotTime(gameTime);
-            FinallyUpdate(gameTime);
+            UpdateShotTime();
+            FinallyUpdate();
             UpdateAnimation();
         }
 
@@ -87,8 +87,7 @@ namespace Game2.GameObjects
         /// <summary>
         /// 寿命を計算する
         /// </summary>
-        /// <param name="gameTime">GameTime</param>
-        public void UpdateLifeTime(GameTime gameTime)
+        public void UpdateLifeTime()
         {
             if (!UseLifeTime)
             {
@@ -100,7 +99,7 @@ namespace Game2.GameObjects
             }
         }
 
-        public void UpdateShotTime(GameTime gameTime)
+        public void UpdateShotTime()
         {
             if (!_shotTimer.Update())
             {
@@ -140,7 +139,7 @@ namespace Game2.GameObjects
             ObjectStatus = PhysicsObjectStatus.Remove;
         }
 
-        public virtual void FinallyUpdate(GameTime gameTime)
+        public virtual void FinallyUpdate()
         {
         }
     }

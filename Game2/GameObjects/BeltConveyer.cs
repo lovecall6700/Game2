@@ -31,7 +31,7 @@ namespace Game2.GameObjects
             spriteBatch.Draw(Game2.Images, Position + (_vibro ? _vibroA : _vibroB), _beltImg, Color.White);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (!_timer.Update())
             {
@@ -58,7 +58,7 @@ namespace Game2.GameObjects
                 }
             }
 
-            base.Update(gameTime);
+            base.Update();
         }
 
         private void Collision(PhysicsObject p, float delta)

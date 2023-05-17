@@ -1,5 +1,4 @@
 using Game2.Utilities;
-using Microsoft.Xna.Framework;
 
 namespace Game2.GameObjects
 {
@@ -15,7 +14,7 @@ namespace Game2.GameObjects
             _timer.Start(30);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (!_timer.Update())
             {

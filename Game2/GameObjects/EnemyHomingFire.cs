@@ -21,7 +21,7 @@ namespace Game2.GameObjects
             LifeTime = 900;
         }
 
-        public override bool MoveLeftOrRight(GameTime gameTime)
+        public override bool MoveLeftOrRight()
         {
             Player p = Game2.PlaySc.Player;
 
@@ -37,7 +37,7 @@ namespace Game2.GameObjects
             return false;
         }
 
-        public override bool JumpAndGravity(GameTime gameTime)
+        public override bool JumpAndGravity()
         {
             return false;
         }

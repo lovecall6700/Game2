@@ -158,7 +158,7 @@ namespace Game2
         protected override void Update(GameTime gameTime)
         {
             Scheduler.Update();
-            GameCtrl.Update(gameTime);
+            GameCtrl.Update();
 
             //ウィンドウ位置が変更されたらCamera2Dを初期化する
             Rectangle location = Window.ClientBounds;

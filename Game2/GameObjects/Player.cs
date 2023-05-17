@@ -109,7 +109,7 @@ namespace Game2.GameObjects
             StandUp();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             if (ObjectStatus == PhysicsObjectStatus.Dead)
             {
@@ -117,19 +117,19 @@ namespace Game2.GameObjects
             }
             else
             {
-                _ = MoveLeftOrRight(gameTime);
+                _ = MoveLeftOrRight();
 
                 if (UseLadder)
                 {
-                    Ladder(gameTime);
+                    Ladder();
                 }
                 else
                 {
-                    _ = JumpAndGravity(gameTime);
+                    _ = JumpAndGravity();
                 }
             }
 
-            RecoveryDamage(gameTime);
+            RecoveryDamage();
 
             if (ObjectStatus == PhysicsObjectStatus.Normal)
             {

@@ -93,7 +93,7 @@ namespace Game2.GameObjects
             spriteBatch.Draw(Game2.Images, Position, Img, Color.White);
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update()
         {
             if (Connection.Count > 0)
             {

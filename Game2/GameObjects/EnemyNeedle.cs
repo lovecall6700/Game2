@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-
 namespace Game2.GameObjects
 {
     public class EnemyNeedle : Enemy
@@ -10,12 +8,12 @@ namespace Game2.GameObjects
             UseAnimation = false;
         }
 
-        public override bool MoveLeftOrRight(GameTime gameTime)
+        public override bool MoveLeftOrRight()
         {
             return false;
         }
 
-        public override bool JumpAndGravity(GameTime gameTime)
+        public override bool JumpAndGravity()
         {
             return false;
         }
